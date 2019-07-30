@@ -37,8 +37,10 @@ export const handleRedirection = async (baseUrl: string) => {
         (await existsDhis2Url(baseUrl, "/api/apps/Landing-Page/index.html"))
     ) {
         goToDhis2Url(baseUrl, "/api/apps/Landing-Page/index.html");
+        return null;
     } else if (process.env.NODE_ENV === "production") {
         goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
+        return null;
     } else {
         return {
             title: "Landing Page Development",

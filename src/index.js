@@ -8,7 +8,6 @@ import { DataProvider } from "@dhis2/app-runtime";
 import "font-awesome/css/font-awesome.min.css";
 
 import App from "./components/app/App";
-import { handleRedirection } from "./logic/redirection";
 import "./locales";
 
 function isLangRTL(code) {
@@ -45,19 +44,17 @@ async function getBaseUrl() {
 
 async function main() {
     const baseUrl = await getBaseUrl();
-    const apiUrl = baseUrl.replace(/\/*$/, "") + "/api";
     try {
+        const apiUrl = baseUrl.replace(/\/*$/, "") + "/api";
         const d2 = await init({ baseUrl: apiUrl });
         window.d2 = d2; // Make d2 available in the console
         const userSettings = await getUserSettings();
         configI18n(userSettings);
 
-        const options = await handleRedirection(baseUrl);
-        if (options.title) document.title = options.title;
         ReactDOM.render(
             <HashRouter>
                 <DataProvider baseUrl={baseUrl} apiVersion={d2.system.version.minor}>
-                    <App d2={d2} headerOptions={options} />
+                    <App d2={d2} />
                 </DataProvider>
             </HashRouter>,
             document.getElementById("root")
