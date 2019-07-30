@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CircularProgress, Typography, Divider } from "@material-ui/core";
+import { CircularProgress, Typography, Divider, withStyles } from "@material-ui/core";
 
-import { useStyles } from "./styles";
+import { styles } from "./styles";
 
-const Loading = ({ isLoading, message, progress }) => {
-    const classes = useStyles();
+const LoadingMask = ({ classes, message, progress }) => {
     const hideMessage = !message || !message.trim();
 
     return (
@@ -32,13 +31,13 @@ const Loading = ({ isLoading, message, progress }) => {
     );
 };
 
-Loading.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
+LoadingMask.propTypes = {
+    classes: PropTypes.object.isRequired,
     message: PropTypes.string,
     progress: PropTypes.number,
     root: PropTypes.string,
 };
 
-Loading.defaultProps = {};
+LoadingMask.defaultProps = {};
 
-export default Loading;
+export default withStyles(styles)(LoadingMask);

@@ -38,4 +38,3 @@ $ cp i18n/en.pot i18n/es.po
 # ... add translations to i18n/es.po ...
 $ yarn localize
 ```
->>>>>>> Initial landing page

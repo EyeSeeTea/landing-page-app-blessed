@@ -2,8 +2,6 @@ import _ from "lodash";
 import axios from "axios";
 import i18n from "@dhis2/d2-i18n";
 
-import { getGridRow } from "../utils";
-
 const actionCascadeCare = async (baseUrl, cb) => {
     const dataSet = "jfawDJZ5fOX";
 
@@ -22,7 +20,10 @@ const actionCascadeCare = async (baseUrl, cb) => {
         _.find(organisationUnits, ou => ou.dataSets.map(ds => ds.id).includes(dataSet)) ||
         organisationUnits[0];
 
-    cb(`entryCapture/dataSet/${organisationUnit.id}/${dataSet}/${period}`);
+    cb({
+        type: "page",
+        value: `entryCapture/dataSet/${organisationUnit.id}/${dataSet}/${period}`,
+    });
 };
 
 const actionPolicyUptake = async (baseUrl, cb) => {
@@ -78,60 +79,91 @@ const actionPolicyUptake = async (baseUrl, cb) => {
               eventDate: new Date(),
           })).data.response.importSummaries[0].reference;
 
-    cb(`entryCapture/program/${organisationUnit.id}/${event}/${period}`);
+    cb({
+        type: "page",
+        value: `entryCapture/program/${organisationUnit.id}/${event}/${period}`,
+    });
 };
 
-export const HepatitisData = [
-    ["title-data", i18n.t("Data"), null, null, null, getGridRow(1)],
-    [
-        "data-entry",
-        i18n.t("Cascade of care / cure"),
-        i18n.t("Enter data for Cascade of care / cure data set."),
-        "img/dhis-web-dataentry.png",
-        actionCascadeCare,
-        getGridRow(3),
-    ],
-    [
-        "event-capture",
-        i18n.t("Policy uptake"),
-        i18n.t("Register event for Report your situation with respect to policy uptake program."),
-        "img/dhis-web-event-capture.png",
-        actionPolicyUptake,
-        getGridRow(3),
-    ],
-    [
-        "dashboard",
-        i18n.t("Dashboard"),
-        i18n.t("Access pre populated data infographics based on existing data."),
-        "img/dhis-web-dashboard.png",
-        "/dhis-web-dashboard/index.action",
-        getGridRow(3),
-    ],
-    ["title-other", i18n.t("Other Useful Features"), null, null, null, getGridRow(1)],
-    [
-        "cache-cleaner",
-        i18n.t("Browser Cache Cleaner"),
-        i18n.t("Enables the users to clear the browser cache."),
-        "img/dhis-web-cache-cleaner.png",
-        "/dhis-web-cache-cleaner/index.action",
-        getGridRow(3),
-    ],
-    [
-        "profile",
-        i18n.t("User Profile"),
-        i18n.t("Enable the user to set his profile and account credentials."),
-        "img/dhis-web-profile.png",
-        "/dhis-web-user-profile/#/profile",
-        getGridRow(3),
-    ],
-    [
-        "messaging",
-        i18n.t("Messaging"),
-        i18n.t(
+export const hepatitisData = [
+    {
+        key: "title-data",
+        title: i18n.t("Data"),
+        rowLength: 1,
+    },
+    {
+        key: "data-entry",
+        title: i18n.t("Cascade of care / cure"),
+        description: i18n.t("Enter data for Cascade of care / cure data set."),
+        rowLength: 3,
+        icon: "img/dhis-web-dataentry.png",
+        action: {
+            type: "method",
+            value: actionCascadeCare,
+        },
+    },
+    {
+        key: "event-capture",
+        title: i18n.t("Policy uptake"),
+        description: i18n.t(
+            "Register event for Report your situation with respect to policy uptake program."
+        ),
+        rowLength: 3,
+        icon: "img/dhis-web-event-capture.png",
+        action: {
+            type: "method",
+            value: actionPolicyUptake,
+        },
+    },
+    {
+        key: "dashboard",
+        title: i18n.t("Dashboard"),
+        description: i18n.t("Access pre populated data infographics based on existing data."),
+        rowLength: 3,
+        icon: "img/dhis-web-dashboard.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-dashboard/index.action",
+        },
+    },
+    {
+        key: "title-other",
+        title: i18n.t("Other Useful Features"),
+        rowLength: 1,
+    },
+    {
+        key: "cache-cleaner",
+        title: i18n.t("Browser Cache Cleaner"),
+        description: i18n.t("Enables the users to clear the browser cache."),
+        rowLength: 3,
+        icon: "img/dhis-web-cache-cleaner.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-cache-cleaner/index.action",
+        },
+    },
+    {
+        key: "profile",
+        title: i18n.t("User Profile"),
+        description: i18n.t("Enable the user to set his profile and account credentials."),
+        rowLength: 3,
+        icon: "img/dhis-web-profile.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-user-profile/#/profile",
+        },
+    },
+    {
+        key: "messaging",
+        title: i18n.t("Messaging"),
+        description: i18n.t(
             "Enables the user to communicate with other users in the system and give feedback to the system administrators."
         ),
-        "img/dhis-web-messaging.png",
-        "/dhis-web-messaging",
-        getGridRow(3),
-    ],
+        rowLength: 3,
+        icon: "img/dhis-web-messaging.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-messaging",
+        },
+    },
 ];

@@ -1,4 +1,4 @@
-export const styles = () => ({
+export const styles = _theme => ({
     header: {
         backgroundColor: "#0072bb",
         transition: "all 0.3s",

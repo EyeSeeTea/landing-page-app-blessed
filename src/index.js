@@ -8,6 +8,8 @@ import { DataProvider } from "@dhis2/app-runtime";
 import "font-awesome/css/font-awesome.min.css";
 
 import App from "./components/app/App";
+import { handleRedirection } from "./logic/redirection";
+import { LoadingMask } from "./components/loading";
 import "./locales";
 
 function isLangRTL(code) {
@@ -50,10 +52,15 @@ async function main() {
         window.d2 = d2; // Make d2 available in the console
         const userSettings = await getUserSettings();
         configI18n(userSettings);
+
+        const options = await handleRedirection(baseUrl);
+        if (!options) {
+            ReactDOM.render(<LoadingMask />, document.getElementById("root"));
+        } else if (options.title) document.title = options.title;
         ReactDOM.render(
             <HashRouter>
                 <DataProvider baseUrl={baseUrl} apiVersion={d2.system.version.minor}>
-                    <App d2={d2} />
+                    <App d2={d2} headerOptions={options} />
                 </DataProvider>
             </HashRouter>,
             document.getElementById("root")

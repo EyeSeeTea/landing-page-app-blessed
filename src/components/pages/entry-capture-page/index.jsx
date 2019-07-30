@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
-import IFrame, { DataEntryStyling, EventCaptureStyling } from "../../iframe";
+import IFrame, { dataEntryStyling, eventCaptureStyling } from "../../iframe";
 
 const EntryCapturePage = ({ match, baseUrl }) => {
     const { type, organisationUnit, element, period } = match.params;
@@ -14,7 +14,7 @@ const EntryCapturePage = ({ match, baseUrl }) => {
     return (
         <IFrame
             src={isDataSet ? dataSetUrl : programUrl}
-            styling={isDataSet ? DataEntryStyling : EventCaptureStyling}
+            customize={isDataSet ? dataEntryStyling : eventCaptureStyling}
             builder={{ organisationUnit, element, period }}
         />
     );

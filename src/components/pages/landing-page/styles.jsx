@@ -1,4 +1,4 @@
-export const styles = () => ({
+export const styles = _theme => ({
     root: {
         display: "flex",
         justifyContent: "center",

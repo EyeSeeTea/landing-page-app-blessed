@@ -1,28 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, withStyles } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
 import { styles } from "./styles";
 import { goToDhis2Url } from "../../../utils";
 
 const LandingPage = ({ classes, history, baseUrl, items }) => {
-    const visitPage = action => {
-        switch (typeof action) {
-            case "string":
-                if (action.startsWith("/")) return goToDhis2Url(baseUrl, action);
-                else return history.push(action);
-            case "function":
-                return action(baseUrl, url => visitPage(url));
+    const visitPage = ({ type, value }) => {
+        switch (type) {
+            case "page":
+                return history.push(value);
+            case "dhisRedirect":
+                return goToDhis2Url(baseUrl, value);
+            case "method":
+                return value(baseUrl, action => visitPage(action));
             default:
                 break;
         }
     };
 
-    const menuItems = items.map(([key, title, description, icon, action, xs]) => (
+    const menuItems = items.map(({ key, title, description, icon, action, rowLength }) => (
         <Grid
             item
-            xs={xs}
+            xs={12 / rowLength}
             className={action ? classes.item : classes.separator}
             key={key}
             onClick={() => visitPage(action)}

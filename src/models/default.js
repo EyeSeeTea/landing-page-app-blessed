@@ -1,15 +1,29 @@
 import i18n from "@dhis2/d2-i18n";
-import { getGridRow } from "../utils";
 
-export const DefaultData = [
-    ["title-data", i18n.t("World Health Organization"), null, null, null, getGridRow(1)],
-    ["hepatitis", i18n.t("Hepatitis"), null, "img/hepatitis.png", "hepatitis", getGridRow(2)],
-    [
-        "dhis2",
-        i18n.t("DHIS2"),
-        null,
-        "img/dhis2.png",
-        "/dhis-web-dashboard/index.action",
-        getGridRow(2),
-    ],
+export const defaultData = [
+    {
+        key: "title-data",
+        title: i18n.t("World Health Organization"),
+        rowLength: 1,
+    },
+    {
+        key: "hepatitis",
+        title: i18n.t("Hepatitis"),
+        rowLength: 2,
+        icon: "img/hepatitis.png",
+        action: {
+            type: "page",
+            value: "hepatitis",
+        },
+    },
+    {
+        key: "dhis2",
+        title: i18n.t("DHIS2"),
+        rowLength: 2,
+        icon: "img/dhis2.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-dashboard/index.action",
+        },
+    },
 ];

@@ -1,25 +1,26 @@
 import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { DataEntryStyling, EventCaptureStyling } from "./styling";
+import { dataEntryStyling } from "./dataEntry";
+import { eventCaptureStyling } from "./eventCapture";
 import { useLoading } from "../loading";
 
 const styles = {
     iframe: { width: "100%", height: 1000 },
 };
 
-const IFrame = ({ src, styling, builder }) => {
+const IFrame = ({ src, customize, builder }) => {
     const ref = useRef(null);
-    const [renderLoading, updateLoading] = useLoading({ isLoading: true });
+    const loading = useLoading({ isLoading: true });
 
     useEffect(() => {
-        if (styling && builder)
+        if (customize && builder)
             ref.current.addEventListener("load", () =>
-                styling(ref.current, builder).then(() => updateLoading({ isLoading: false }))
+                customize(ref.current, builder).then(() => loading.hide())
             );
-    }, [styling, builder, updateLoading]);
+    }, [customize, builder, loading]);
 
-    return [<iframe ref={ref} src={src} title={"IFrame"} style={styles.iframe} />, renderLoading];
+    return [<iframe ref={ref} src={src} title={"IFrame"} style={styles.iframe} />];
 };
 
 IFrame.propTypes = {
@@ -31,4 +32,4 @@ IFrame.propTypes = {
 IFrame.defaultProps = {};
 
 export default IFrame;
-export { DataEntryStyling, EventCaptureStyling };
+export { dataEntryStyling, eventCaptureStyling };

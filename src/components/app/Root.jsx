@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 
 import { LandingPage, EntryCapturePage } from "../pages";
-import { DefaultData } from "../../models/default";
-import { HepatitisData } from "../../models/hepatitis";
+import { defaultData } from "../../models/default";
+import { hepatitisData } from "../../models/hepatitis";
 
 const Root = ({ baseUrl }) => {
     return (
@@ -16,10 +16,10 @@ const Root = ({ baseUrl }) => {
 
             <Route
                 path="/hepatitis"
-                render={() => <LandingPage baseUrl={baseUrl} items={HepatitisData} />}
+                render={() => <LandingPage baseUrl={baseUrl} items={hepatitisData} />}
             />
 
-            <Route render={() => <LandingPage baseUrl={baseUrl} items={DefaultData} />} />
+            <Route render={() => <LandingPage baseUrl={baseUrl} items={defaultData} />} />
         </Switch>
     );
 };
