@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import context from "./context";
 import LoadingMask from "./loading";
 
-function withLoading(WrappedComponent) {
+export function withLoading(WrappedComponent) {
     return class extends React.Component {
         static displayName = `withLoading${WrappedComponent.displayName}`;
         static contextType = context;
@@ -21,7 +21,7 @@ const defaultProps = {
     progress: -1,
 };
 
-const useLoading = initialProps => {
+export const useLoading = initialProps => {
     const [props, updateProps] = useState({
         ...defaultProps,
         ...initialProps,
@@ -55,5 +55,3 @@ const useLoading = initialProps => {
 
     return value;
 };
-
-export { withLoading, useLoading, LoadingMask };
