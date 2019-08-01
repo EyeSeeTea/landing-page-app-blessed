@@ -1,4 +1,4 @@
-import { selectorWait, selector, hideSelector } from "../../utils";
+import { selectorWait, selector, hideSelector, findElementByText } from "../../../utils";
 
 export const eventCaptureStyling = async iframe => {
     const { contentWindow, contentDocument } = iframe;
@@ -6,8 +6,9 @@ export const eventCaptureStyling = async iframe => {
 
     // Hide unecessary elements
     hideSelector(document, "#header");
-    hideSelector(document, "#headerMessage");
     hideSelector(document, "#leftBar");
+    hideSelector(document, ".div-bottom-container");
+    selectorWait(document, "#headerMessage", e => e.remove());
 
     // Scale body to be centered
     selector(document, "body", e => {
@@ -18,5 +19,11 @@ export const eventCaptureStyling = async iframe => {
     // Disable clicks on selection group
     selectorWait(document, ".selectionGroup", e => {
         e.style.pointerEvents = "none";
+    });
+
+    // Rename event date
+    selectorWait(document, ".bordered-div", () => {
+        const eventDateField = findElementByText(document, "Event date");
+        if (eventDateField) eventDateField.textContent = "Reporting date *";
     });
 };

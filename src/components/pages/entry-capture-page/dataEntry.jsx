@@ -1,4 +1,4 @@
-import { selectorWait, selector, hideSelector } from "../../utils";
+import { selectorWait, selector, hideSelector, sleep } from "../../../utils";
 
 export const dataEntryStyling = async (iframe, { organisationUnit, element, period }) => {
     const { contentWindow, contentDocument } = iframe;
@@ -37,4 +37,6 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
             contentWindow.periodSelected();
         });
     }
+
+    await sleep(2000);
 };

@@ -27,7 +27,7 @@ export const handleRedirection = async (baseUrl: string) => {
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
 
     if (shouldRedirect(userGroupIds, USER_GROUPS_HEPATITIS)) {
-        window.location.hash = "/hepatitis";
+        if (window.location.hash === "#/") window.location.hash = "/hepatitis";
         return {
             title: "The Global Hepatitis Programme",
             backUrl: "/hepatitis",

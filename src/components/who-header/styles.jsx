@@ -10,20 +10,18 @@ export const styles = _theme => ({
         verticalAlign: "middle",
         filter: "brightness(0) invert(1)",
         height: "100px",
-        paddingLeft: "175px",
         cursor: "pointer",
+        margin: "auto",
     },
     headerTitle: {
         color: "white",
         lineHeight: "100px",
         cursor: "pointer",
+        margin: "0 auto",
     },
     headerLogout: {
         cursor: "pointer",
         color: "white",
-        display: "flex",
-        alignItems: "center",
-        paddingRight: "300px",
-        paddingLeft: "150px",
+        margin: "auto",
     },
 });

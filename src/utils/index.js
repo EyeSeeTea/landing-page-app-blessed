@@ -39,3 +39,10 @@ export const hideSelector = (document, id) =>
     selectorWait(document, id, element => {
         element.hidden = true;
     });
+
+export const findXPath = (document, xpath) =>
+    document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
+        .singleNodeValue;
+
+export const findElementByText = (document, text) =>
+    findXPath(document, `//td[contains(text(),'${text}')]`);

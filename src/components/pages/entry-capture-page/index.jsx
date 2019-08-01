@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
-import IFrame, { dataEntryStyling, eventCaptureStyling } from "../../iframe";
+import IFrame from "../../iframe";
+import { dataEntryStyling } from "./dataEntry";
+import { eventCaptureStyling } from "./eventCapture";
 
 const EntryCapturePage = ({ match, baseUrl }) => {
     const { type, organisationUnit, element, period } = match.params;

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 
-import { LandingPage, EntryCapturePage } from "../pages";
+import { LandingPage, EntryCapturePage, CacheCleanerPage } from "../pages";
 import { defaultData } from "../../models/default";
 import { hepatitisData } from "../../models/hepatitis";
 
@@ -10,8 +10,15 @@ const Root = ({ baseUrl }) => {
     return (
         <Switch>
             <Route
-                path={"/entryCapture/:type(dataSet|program)/:organisationUnit/:element/:period"}
+                path={
+                    "/frame/entryCapture/:type(dataSet|program)/:organisationUnit/:element/:period"
+                }
                 render={() => <EntryCapturePage baseUrl={baseUrl} />}
+            />
+
+            <Route
+                path={"/frame/cacheCleaner"}
+                render={() => <CacheCleanerPage baseUrl={baseUrl} />}
             />
 
             <Route

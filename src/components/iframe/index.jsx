@@ -1,8 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { dataEntryStyling } from "./dataEntry";
-import { eventCaptureStyling } from "./eventCapture";
 import { useLoading } from "../loading";
 
 const styles = {
@@ -14,10 +12,11 @@ const IFrame = ({ src, customize, builder }) => {
     const loading = useLoading({ isLoading: true });
 
     useEffect(() => {
-        if (customize && builder)
+        if (customize) {
             ref.current.addEventListener("load", () =>
                 customize(ref.current, builder).then(() => loading.hide())
             );
+        } else loading.hide();
     }, [customize, builder, loading]);
 
     return [<iframe ref={ref} src={src} title={"IFrame"} style={styles.iframe} />];
@@ -32,4 +31,3 @@ IFrame.propTypes = {
 IFrame.defaultProps = {};
 
 export default IFrame;
-export { dataEntryStyling, eventCaptureStyling };

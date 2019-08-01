@@ -22,7 +22,7 @@ const actionCascadeCare = async (baseUrl, cb) => {
 
     cb({
         type: "page",
-        value: `entryCapture/dataSet/${organisationUnit.id}/${dataSet}/${period}`,
+        value: `frame/entryCapture/dataSet/${organisationUnit.id}/${dataSet}/${period}`,
     });
 };
 
@@ -81,7 +81,7 @@ const actionPolicyUptake = async (baseUrl, cb) => {
 
     cb({
         type: "page",
-        value: `entryCapture/program/${organisationUnit.id}/${event}/${period}`,
+        value: `frame/entryCapture/program/${organisationUnit.id}/${event}/${period}`,
     });
 };
 
@@ -135,35 +135,22 @@ export const hepatitisData = [
         key: "cache-cleaner",
         title: i18n.t("Browser Cache Cleaner"),
         description: i18n.t("Enables the users to clear the browser cache."),
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/dhis-web-cache-cleaner.png",
         action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-cache-cleaner/index.action",
+            type: "page",
+            value: "/frame/cacheCleaner",
         },
     },
     {
         key: "profile",
         title: i18n.t("User Profile"),
         description: i18n.t("Enable the user to set his profile and account credentials."),
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/dhis-web-profile.png",
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-user-profile/#/profile",
-        },
-    },
-    {
-        key: "messaging",
-        title: i18n.t("Messaging"),
-        description: i18n.t(
-            "Enables the user to communicate with other users in the system and give feedback to the system administrators."
-        ),
-        rowLength: 3,
-        icon: "img/dhis-web-messaging.png",
-        action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-messaging",
         },
     },
 ];
