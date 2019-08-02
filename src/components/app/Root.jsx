@@ -16,7 +16,7 @@ const Root = ({ baseUrl }) => {
 
             <Route
                 path={
-                    "/frame/entryCapture/:type(dataSet|program)/:organisationUnit/:element/:period"
+                    "/frame/entryCapture/:type(dataSet|program)/:organisationUnit/:element/:filter?"
                 }
                 render={() => <EntryCapturePage baseUrl={baseUrl} />}
             />

@@ -7,17 +7,19 @@ import { dataEntryStyling } from "./dataEntry";
 import { eventCaptureStyling } from "./eventCapture";
 
 const EntryCapturePage = ({ match, baseUrl }) => {
-    const { type, organisationUnit, element, period } = match.params;
+    const { type, organisationUnit, element, filter } = match.params;
 
     const isDataSet = type === "dataSet";
     const dataSetUrl = `${baseUrl}/dhis-web-dataentry/index.action`;
-    const programUrl = `${baseUrl}/dhis-web-event-capture/index.html#/?ou=${organisationUnit}&event=${element}`;
+    const programUrl = filter
+        ? `${baseUrl}/dhis-web-event-capture/index.html#/?event=${filter}`
+        : `${baseUrl}/dhis-web-event-capture/index.html`;
 
     return (
         <IFrame
             src={isDataSet ? dataSetUrl : programUrl}
             customize={isDataSet ? dataEntryStyling : eventCaptureStyling}
-            builder={{ organisationUnit, element, period, baseUrl }}
+            builder={{ organisationUnit, element, filter, baseUrl }}
         />
     );
 };

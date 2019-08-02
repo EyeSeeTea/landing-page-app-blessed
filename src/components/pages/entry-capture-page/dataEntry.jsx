@@ -1,17 +1,7 @@
-import _ from "lodash";
 import axios from "axios";
+
+import { filterOrgUnits } from "./common";
 import { selectorWait, selector, hideSelector, sleep } from "../../../utils";
-
-const filterOrgUnits = async (document, visibleOrganisationUnits) => {
-    await selectorWait(document, "#orgUnitTree a", a => {
-        const parent = a.parentNode;
-        const id = parent.getAttribute("id").replace("orgUnit", "");
-
-        if (!_.find(visibleOrganisationUnits, ["id", id])) {
-            a.setAttribute("href", "javascript:;");
-        } else a.style.fontWeight = "bold";
-    });
-};
 
 const selectDataset = (document, contentWindow, dataset) =>
     selectorWait(document, `#selectedDataSetId > option[value="${dataset}"]`, e => {
@@ -25,7 +15,7 @@ const selectPeriod = (document, contentWindow, period) =>
         contentWindow.periodSelected();
     });
 
-export const dataEntryStyling = async (iframe, { organisationUnit, element, period, baseUrl }) => {
+export const dataEntryStyling = async (iframe, { organisationUnit, element, filter, baseUrl }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document, selection } = contentWindow || contentDocument;
 
@@ -50,10 +40,10 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
         e.style.pointerEvents = "none";
     });
 
-    if (organisationUnit && element && period) {
+    if (organisationUnit && element && filter) {
         selection.select(organisationUnit);
         selectDataset(document, contentWindow, element);
-        selectPeriod(document, contentWindow, period);
+        selectPeriod(document, contentWindow, filter);
     }
 
     const { organisationUnits: visibleOrganisationUnits } = (await axios.get(
@@ -67,7 +57,7 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
         e.addEventListener("click", event => {
             filterOrgUnits(document, visibleOrganisationUnits);
             selectDataset(document, contentWindow, element);
-            selectPeriod(document, contentWindow, period);
+            selectPeriod(document, contentWindow, filter);
         });
     });
 

@@ -47,8 +47,6 @@ const actionPolicyUptake = async (baseUrl, cb) => {
         "code"
     );
 
-    const period = categoryOption.code;
-
     const { organisationUnits } = (await axios.get(`${baseUrl}/api/me.json`, {
         params: { fields: "organisationUnits[id,programs]" },
     })).data;
@@ -69,20 +67,28 @@ const actionPolicyUptake = async (baseUrl, cb) => {
         },
     })).data;
 
-    // TODO: Edge case not controlled (multiple events already recorded)
-    const event = events[0]
-        ? events[0].event
-        : (await axios.post(`${baseUrl}/api/events`, {
-              program,
-              orgUnit: organisationUnit.id,
-              attributeCategoryOptions: categoryOption.id,
-              eventDate: new Date(),
-          })).data.response.importSummaries[0].reference;
+    try {
+        // TODO: Edge case not controlled (multiple events already recorded)
+        const event = events[0]
+            ? events[0].event
+            : (await axios.post(`${baseUrl}/api/events`, {
+                  program,
+                  orgUnit: organisationUnit.id,
+                  attributeCategoryOptions: categoryOption.id,
+                  eventDate: new Date(),
+              })).data.response.importSummaries[0].reference;
 
-    cb({
-        type: "page",
-        value: `frame/entryCapture/program/${organisationUnit.id}/${event}/${period}`,
-    });
+        cb({
+            type: "page",
+            value: `frame/entryCapture/program/${organisationUnit.id}/${program}/${event}`,
+        });
+    } catch (error) {
+        console.error(error);
+        cb({
+            type: "page",
+            value: `frame/entryCapture/program/${organisationUnit.id}/${program}`,
+        });
+    }
 };
 
 export const hepatitisData = [
