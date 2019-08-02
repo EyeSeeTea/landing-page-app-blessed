@@ -10,21 +10,18 @@ const Root = ({ baseUrl }) => {
     return (
         <Switch>
             <Route
+                path="/hepatitis"
+                render={() => <LandingPage baseUrl={baseUrl} items={hepatitisData} />}
+            />
+
+            <Route
                 path={
                     "/frame/entryCapture/:type(dataSet|program)/:organisationUnit/:element/:period"
                 }
                 render={() => <EntryCapturePage baseUrl={baseUrl} />}
             />
 
-            <Route
-                path={"/frame/cacheCleaner"}
-                render={() => <CacheCleanerPage baseUrl={baseUrl} />}
-            />
-
-            <Route
-                path="/hepatitis"
-                render={() => <LandingPage baseUrl={baseUrl} items={hepatitisData} />}
-            />
+            <Route path={"/cache-cleaner"} render={() => <CacheCleanerPage baseUrl={baseUrl} />} />
 
             <Route render={() => <LandingPage baseUrl={baseUrl} items={defaultData} />} />
         </Switch>

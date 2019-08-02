@@ -17,7 +17,7 @@ const EntryCapturePage = ({ match, baseUrl }) => {
         <IFrame
             src={isDataSet ? dataSetUrl : programUrl}
             customize={isDataSet ? dataEntryStyling : eventCaptureStyling}
-            builder={{ organisationUnit, element, period }}
+            builder={{ organisationUnit, element, period, baseUrl }}
         />
     );
 };

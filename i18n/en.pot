@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-07-27T16:23:23.256Z\n"
-"PO-Revision-Date: 2019-07-27T16:23:23.256Z\n"
+"POT-Creation-Date: 2019-08-02T17:41:38.749Z\n"
+"PO-Revision-Date: 2019-08-02T17:41:38.749Z\n"
 
 msgid "World Health Organization"
 msgstr ""
@@ -53,12 +53,4 @@ msgid "User Profile"
 msgstr ""
 
 msgid "Enable the user to set his profile and account credentials."
-msgstr ""
-
-msgid "Messaging"
-msgstr ""
-
-msgid ""
-"Enables the user to communicate with other users in the system and give "
-"feedback to the system administrators."
 msgstr ""

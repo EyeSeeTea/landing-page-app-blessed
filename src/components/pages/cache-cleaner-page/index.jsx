@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import IFrame, { genericStyling } from "../../iframe";
+import IFrame from "../../iframe";
 import { hideSelector, selector, sleep } from "../../../utils";
 
 export const customize = async iframe => {
@@ -19,7 +19,7 @@ export const customize = async iframe => {
     await sleep(1000);
 };
 
-const CacheCleanerPage = ({ match, baseUrl }) => {
+const CacheCleanerPage = ({ baseUrl }) => {
     return <IFrame src={`${baseUrl}/dhis-web-cache-cleaner/index.action`} customize={customize} />;
 };
 

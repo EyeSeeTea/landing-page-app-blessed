@@ -1,19 +1,48 @@
+import _ from "lodash";
+import axios from "axios";
 import { selectorWait, selector, hideSelector, sleep } from "../../../utils";
 
-export const dataEntryStyling = async (iframe, { organisationUnit, element, period }) => {
+const filterOrgUnits = async (document, visibleOrganisationUnits) => {
+    await selectorWait(document, "#orgUnitTree a", a => {
+        const parent = a.parentNode;
+        const id = parent.getAttribute("id").replace("orgUnit", "");
+
+        if (!_.find(visibleOrganisationUnits, ["id", id])) {
+            a.setAttribute("href", "javascript:;");
+        } else a.style.fontWeight = "bold";
+    });
+};
+
+const selectDataset = (document, contentWindow, dataset) =>
+    selectorWait(document, `#selectedDataSetId > option[value="${dataset}"]`, e => {
+        e.selected = true;
+        contentWindow.dataSetSelected();
+    });
+
+const selectPeriod = (document, contentWindow, period) =>
+    selectorWait(document, `#selectedPeriodId [value="${period}"]`, e => {
+        e.selected = true;
+        contentWindow.periodSelected();
+    });
+
+export const dataEntryStyling = async (iframe, { organisationUnit, element, period, baseUrl }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document, selection } = contentWindow || contentDocument;
 
     // Hide unecessary elements
     hideSelector(document, "#header");
     hideSelector(document, "#moduleHeader");
-    hideSelector(document, "#leftBar");
+    hideSelector(document, "#hideLeftBar");
     hideSelector(document, "#currentSelection");
 
     // Scale body to be centered
     selector(document, "body", e => {
         e.style.marginTop = "-50px";
-        e.style.marginLeft = "-260px";
+    });
+
+    // Scale body to be centered
+    selector(document, "#leftBar", e => {
+        e.style.marginTop = "-50px";
     });
 
     // Disable clicks on selection group
@@ -22,21 +51,27 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
     });
 
     if (organisationUnit && element && period) {
-        // Select Organisation Unit
-        selection.select(organisationUnit); // Select OU
-
-        // Select DataSet
-        await selectorWait(document, `#selectedDataSetId > option[value="${element}"]`, e => {
-            e.selected = true;
-            contentWindow.dataSetSelected();
-        });
-
-        // Select Period
-        await selectorWait(document, `#selectedPeriodId [value="${period}"]`, e => {
-            e.selected = true;
-            contentWindow.periodSelected();
-        });
+        selection.select(organisationUnit);
+        selectDataset(document, contentWindow, element);
+        selectPeriod(document, contentWindow, period);
     }
 
-    await sleep(2000);
+    const { organisationUnits: visibleOrganisationUnits } = (await axios.get(
+        `${baseUrl}/api/dataSets/${element}.json`,
+        {
+            params: { fields: "organisationUnits" },
+        }
+    )).data;
+
+    await selectorWait(document, "#orgUnitTree", e => {
+        e.addEventListener("click", event => {
+            filterOrgUnits(document, visibleOrganisationUnits);
+            selectDataset(document, contentWindow, element);
+            selectPeriod(document, contentWindow, period);
+        });
+    });
+
+    await sleep(1500);
+
+    await filterOrgUnits(document, visibleOrganisationUnits);
 };
