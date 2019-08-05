@@ -1,25 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
+import qs from "qs";
 
 import IFrame from "../../iframe";
 import { dataEntryStyling } from "./dataEntry";
 import { eventCaptureStyling } from "./eventCapture";
 
-const EntryCapturePage = ({ match, baseUrl }) => {
-    const { type, organisationUnit, element, filter } = match.params;
+const EntryCapturePage = ({ match, location, baseUrl }) => {
+    const { type, element } = match.params;
+    const { event, period, organisationUnit } = qs.parse(location.search, {
+        ignoreQueryPrefix: true,
+    });
 
     const isDataSet = type === "dataSet";
     const dataSetUrl = `${baseUrl}/dhis-web-dataentry/index.action`;
-    const programUrl = filter
-        ? `${baseUrl}/dhis-web-event-capture/index.html#/?event=${filter}`
+    const programUrl = event
+        ? `${baseUrl}/dhis-web-event-capture/index.html#/?event=${event}`
         : `${baseUrl}/dhis-web-event-capture/index.html`;
 
     return (
         <IFrame
             src={isDataSet ? dataSetUrl : programUrl}
             customize={isDataSet ? dataEntryStyling : eventCaptureStyling}
-            builder={{ organisationUnit, element, filter, baseUrl }}
+            builder={{ baseUrl, element, event, period, organisationUnit }}
         />
     );
 };

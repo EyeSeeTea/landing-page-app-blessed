@@ -1,22 +1,22 @@
 import axios from "axios";
 
 import { filterOrgUnits } from "./common";
-import { selectorWait, selector, hideSelector, findElementByText, sleep } from "../../../utils";
+import { selectorWait, selector, hideSelector, textSelector, sleep } from "../../../utils";
 
-export const eventCaptureStyling = async (iframe, { baseUrl, element, filter }) => {
+export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document } = contentWindow || contentDocument;
 
     // Hide unecessary elements
     hideSelector(document, "#header");
-    if (filter) hideSelector(document, "#leftBar");
     hideSelector(document, ".div-bottom-container");
     selectorWait(document, "#headerMessage", e => e.remove());
+    if (event) hideSelector(document, "#leftBar");
 
     // Scale body to be centered
     selector(document, "body", e => {
         e.style.marginTop = "-50px";
-        if (filter) e.style.marginLeft = "-260px";
+        if (event) e.style.marginLeft = "-260px";
     });
 
     // Scale body to be centered
@@ -26,13 +26,7 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, filter }) 
 
     // Disable clicks on selection group
     selectorWait(document, ".selectionGroup", e => {
-        if (filter) e.style.pointerEvents = "none";
-    });
-
-    // Rename event date
-    selectorWait(document, ".bordered-div", () => {
-        const eventDateField = findElementByText(document, "Event date");
-        if (eventDateField) eventDateField.textContent = "Reporting date *";
+        if (event) e.style.pointerEvents = "none";
     });
 
     const { organisationUnits: visibleOrganisationUnits } = (await axios.get(
@@ -51,4 +45,9 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, filter }) 
     await sleep(1500);
 
     filterOrgUnits(document, visibleOrganisationUnits);
+
+    // Rename event date
+    textSelector(document, "Event date", field => {
+        field.textContent = "Reporting date";
+    });
 };

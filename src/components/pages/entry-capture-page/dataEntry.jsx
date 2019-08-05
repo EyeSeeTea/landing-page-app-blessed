@@ -15,7 +15,7 @@ const selectPeriod = (document, contentWindow, period) =>
         contentWindow.periodSelected();
     });
 
-export const dataEntryStyling = async (iframe, { organisationUnit, element, filter, baseUrl }) => {
+export const dataEntryStyling = async (iframe, { organisationUnit, element, period, baseUrl }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document, selection } = contentWindow || contentDocument;
 
@@ -24,10 +24,12 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, filt
     hideSelector(document, "#moduleHeader");
     hideSelector(document, "#hideLeftBar");
     hideSelector(document, "#currentSelection");
+    if (organisationUnit) hideSelector(document, "#leftBar");
 
     // Scale body to be centered
     selector(document, "body", e => {
         e.style.marginTop = "-50px";
+        if (organisationUnit) e.style.marginLeft = "-260px";
     });
 
     // Scale body to be centered
@@ -37,13 +39,13 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, filt
 
     // Disable clicks on selection group
     selectorWait(document, "#selectionBox", e => {
-        e.style.pointerEvents = "none";
+        if (organisationUnit) e.style.pointerEvents = "none";
     });
 
-    if (organisationUnit && element && filter) {
+    if (organisationUnit && element && period) {
         selection.select(organisationUnit);
         selectDataset(document, contentWindow, element);
-        selectPeriod(document, contentWindow, filter);
+        selectPeriod(document, contentWindow, period);
     }
 
     const { organisationUnits: visibleOrganisationUnits } = (await axios.get(
@@ -57,7 +59,7 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, filt
         e.addEventListener("click", event => {
             filterOrgUnits(document, visibleOrganisationUnits);
             selectDataset(document, contentWindow, element);
-            selectPeriod(document, contentWindow, filter);
+            selectPeriod(document, contentWindow, period);
         });
     });
 

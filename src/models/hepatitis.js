@@ -16,14 +16,21 @@ const actionCascadeCare = async (baseUrl, cb) => {
     })).data;
 
     // TODO: Edge case not controlled (multiple valid OUs)
-    const organisationUnit =
-        _.find(organisationUnits, ou => ou.dataSets.map(ds => ds.id).includes(dataSet)) ||
-        organisationUnits[0];
+    const organisationUnit = _.find(organisationUnits, ou =>
+        ou.dataSets.map(ds => ds.id).includes(dataSet)
+    );
 
-    cb({
-        type: "page",
-        value: `frame/entryCapture/dataSet/${organisationUnit.id}/${dataSet}/${period}`,
-    });
+    if (organisationUnit) {
+        cb({
+            type: "page",
+            value: `entryCapture/dataSet/${dataSet}?period=${period}&organisationUnit=${organisationUnit.id}`,
+        });
+    } else {
+        cb({
+            type: "page",
+            value: `entryCapture/dataSet/${dataSet}?period=${period}`,
+        });
+    }
 };
 
 const actionPolicyUptake = async (baseUrl, cb) => {
@@ -80,13 +87,13 @@ const actionPolicyUptake = async (baseUrl, cb) => {
 
         cb({
             type: "page",
-            value: `frame/entryCapture/program/${organisationUnit.id}/${program}/${event}`,
+            value: `entryCapture/program/${program}?event=${event}`,
         });
     } catch (error) {
         console.error(error);
         cb({
             type: "page",
-            value: `frame/entryCapture/program/${organisationUnit.id}/${program}`,
+            value: `entryCapture/program/${program}`,
         });
     }
 };
