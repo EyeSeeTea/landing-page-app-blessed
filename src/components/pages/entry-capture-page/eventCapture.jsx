@@ -52,4 +52,8 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
     await sleep(1500);
 
     filterOrgUnits(document, visibleOrganisationUnits);
+
+    textSelector(document, "Event date", field => {
+        field.textContent = "Reporting date";
+    });
 };
