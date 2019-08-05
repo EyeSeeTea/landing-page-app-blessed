@@ -42,12 +42,14 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
         });
     });
 
+    document.addEventListener("click", event => {
+        // Rename event date
+        textSelector(document, "Event date", field => {
+            field.textContent = "Reporting date";
+        });
+    });
+
     await sleep(1500);
 
     filterOrgUnits(document, visibleOrganisationUnits);
-
-    // Rename event date
-    textSelector(document, "Event date", field => {
-        field.textContent = "Reporting date";
-    });
 };
