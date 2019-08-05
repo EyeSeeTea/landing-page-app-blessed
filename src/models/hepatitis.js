@@ -152,7 +152,7 @@ export const hepatitisData = [
         icon: "img/dhis-web-cache-cleaner.png",
         action: {
             type: "page",
-            value: "/frame/cacheCleaner",
+            value: "/cache-cleaner",
         },
     },
     {

@@ -3,6 +3,20 @@ import axios from "axios";
 import { filterOrgUnits } from "./common";
 import { selectorWait, selector, hideSelector, textSelector, sleep } from "../../../utils";
 
+const recurrentTasks = document => {
+    textSelector(document, "Event date", field => {
+        field.textContent = "Reporting date";
+    });
+
+    textSelector(document, "Update", field => {
+        field.textContent = "Submit";
+    });
+
+    textSelector(document, "Cancel", field => {
+        field.parentNode.remove();
+    });
+};
+
 export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document } = contentWindow || contentDocument;
@@ -43,17 +57,12 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
     });
 
     document.addEventListener("click", event => {
-        // Rename event date
-        textSelector(document, "Event date", field => {
-            field.textContent = "Reporting date";
-        });
+        recurrentTasks(document);
     });
 
     await sleep(1500);
 
     filterOrgUnits(document, visibleOrganisationUnits);
 
-    textSelector(document, "Event date", field => {
-        field.textContent = "Reporting date";
-    });
+    recurrentTasks(document);
 };
