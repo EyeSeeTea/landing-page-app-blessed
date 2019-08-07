@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { withStyles, Typography } from "@material-ui/core";
-import { ExitToApp } from "@material-ui/icons";
 
 import { styles } from "./styles";
-import { goToDhis2Url } from "../../utils";
+import { goToExternalUrl, goToDhis2Url } from "../../utils";
 
 const WHOHeader = ({ classes, history, baseUrl, title, backUrl }) => {
     return (
@@ -14,7 +13,7 @@ const WHOHeader = ({ classes, history, baseUrl, title, backUrl }) => {
                 className={classes.headerLogo}
                 alt={title}
                 src="img/who-logo.png"
-                onClick={() => history.push(backUrl)}
+                onClick={() => goToExternalUrl("https://who.int")}
             />
             <Typography
                 className={classes.headerTitle}
@@ -23,12 +22,13 @@ const WHOHeader = ({ classes, history, baseUrl, title, backUrl }) => {
             >
                 {title}
             </Typography>
-            <div
+            <Typography
                 className={classes.headerLogout}
+                variant="h6"
                 onClick={() => goToDhis2Url(baseUrl, "/dhis-web-commons-security/logout.action")}
             >
-                <ExitToApp fontSize="large" />
-            </div>
+                {"LOG OUT"}
+            </Typography>
         </header>
     );
 };

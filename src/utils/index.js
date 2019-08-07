@@ -1,5 +1,9 @@
 import axios from "axios";
 
+export const goToExternalUrl = externalUrl => {
+    if (externalUrl) window.location = externalUrl;
+};
+
 const cleanDhis2Url = (baseUrl, path) =>
     [baseUrl.replace(/\/$/, ""), path.replace(/^\//, "")].join("/");
 

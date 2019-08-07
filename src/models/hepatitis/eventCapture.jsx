@@ -1,19 +1,47 @@
 import axios from "axios";
 
-import { filterOrgUnits } from "./common";
-import { selectorWait, selector, hideSelector, textSelector, sleep } from "../../../utils";
+import { filterOrgUnits } from "../../components/pages/hepatitis-form-page/common";
+import {
+    selectorWait,
+    selector,
+    hideSelector,
+    textSelector,
+    sleep,
+    goToExternalUrl,
+} from "../../utils";
 
 const recurrentTasks = document => {
+    hideSelector(document, ".div-bottom-container");
+
+    textSelector(document, "Event capture", field => {
+        field.textContent = "Report of the policy situation for:";
+    });
+
+    textSelector(document, "Event details", field => {
+        field.textContent = "Details of the report";
+    });
+
     textSelector(document, "Event date", field => {
         field.textContent = "Reporting date";
     });
 
     textSelector(document, "Update", field => {
-        field.textContent = "Submit";
+        field.textContent = "Submit or update your report";
+        field.parentNode.addEventListener("click", event => {
+            window.alert("Thank you for your report on the policy situation");
+            goToExternalUrl("/#/hepatitis");
+        });
     });
 
     textSelector(document, "Cancel", field => {
-        field.parentNode.remove();
+        field.textContent = "Go back to home page";
+        field.parentNode.addEventListener("click", event => {
+            goToExternalUrl("/#/hepatitis");
+        });
+    });
+
+    textSelector(document, "Section", field => {
+        field.parentNode.parentNode.hidden = true;
     });
 };
 
@@ -23,7 +51,6 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
 
     // Hide unecessary elements
     hideSelector(document, "#header");
-    hideSelector(document, ".div-bottom-container");
     selectorWait(document, "#headerMessage", e => e.remove());
     if (event) hideSelector(document, "#leftBar");
 

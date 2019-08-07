@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import { filterOrgUnits } from "./common";
-import { selectorWait, selector, hideSelector, sleep } from "../../../utils";
+import { filterOrgUnits } from "../../components/pages/hepatitis-form-page/common";
+import { selectorWait, selector, hideSelector, sleep } from "../../utils";
 
 const selectDataset = (document, contentWindow, dataset) =>
     selectorWait(document, `#selectedDataSetId > option[value="${dataset}"]`, e => {
@@ -24,7 +24,20 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
     hideSelector(document, "#moduleHeader");
     hideSelector(document, "#hideLeftBar");
     hideSelector(document, "#currentSelection");
+    hideSelector(document, "#validationButton");
     if (organisationUnit) hideSelector(document, "#leftBar");
+
+    // Rename components
+    selector(document, "input[value='Print form']", field => {
+        field.value = "Print the data you entered";
+        field.style.width = "240px";
+        field.parentNode.style.width = "240px";
+    });
+    selector(document, "input[value='Print blank form']", field => {
+        field.value = "Print a blank version of the data form";
+        field.style.width = "240px";
+        field.parentNode.style.width = "240px";
+    });
 
     // Scale body to be centered
     selector(document, "body", e => {
@@ -66,4 +79,6 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
     await sleep(1500);
 
     await filterOrgUnits(document, visibleOrganisationUnits);
+    selectDataset(document, contentWindow, element);
+    selectPeriod(document, contentWindow, period);
 };

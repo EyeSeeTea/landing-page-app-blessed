@@ -6,6 +6,7 @@ export const styles = _theme => ({
     container: {
         width: "70%",
         padding: 10,
+        paddingBottom: "80px",
     },
     item: {
         textAlign: "center",

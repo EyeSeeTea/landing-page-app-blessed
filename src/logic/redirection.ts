@@ -29,7 +29,7 @@ export const handleRedirection = async (baseUrl: string) => {
     if (shouldRedirect(userGroupIds, USER_GROUPS_HEPATITIS)) {
         if (window.location.hash === "#/") window.location.hash = "/hepatitis";
         return {
-            title: "The Global Hepatitis Programme",
+            title: "Home page for the Global Reporting System for Hepatitis",
             backUrl: "/hepatitis",
         };
     } else if (

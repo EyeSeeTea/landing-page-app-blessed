@@ -4,8 +4,8 @@ import { withRouter } from "react-router-dom";
 import qs from "qs";
 
 import IFrame from "../../iframe";
-import { dataEntryStyling } from "./dataEntry";
-import { eventCaptureStyling } from "./eventCapture";
+import { dataEntryStyling } from "../../../models/hepatitis/dataEntry";
+import { eventCaptureStyling } from "../../../models/hepatitis/eventCapture";
 
 const EntryCapturePage = ({ match, location, baseUrl }) => {
     const { type, element } = match.params;

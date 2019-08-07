@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-08-02T17:41:38.749Z\n"
-"PO-Revision-Date: 2019-08-02T17:41:38.749Z\n"
+"POT-Creation-Date: 2019-08-07T14:26:49.235Z\n"
+"PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 
 msgid "World Health Organization"
 msgstr ""
@@ -23,34 +23,32 @@ msgstr ""
 msgid "Cascade of care / cure"
 msgstr ""
 
-msgid "Enter data for Cascade of care / cure data set."
+msgid "Enter data on the cascade of care / cure"
 msgstr ""
 
 msgid "Policy uptake"
 msgstr ""
 
-msgid ""
-"Register event for Report your situation with respect to policy uptake "
-"program."
+msgid "Report your situation with respect to policy uptake"
 msgstr ""
 
 msgid "Dashboard"
 msgstr ""
 
-msgid "Access pre populated data infographics based on existing data."
+msgid "Access a dashboard visualizing the data that you entered before"
 msgstr ""
 
 msgid "Other Useful Features"
 msgstr ""
 
-msgid "Browser Cache Cleaner"
+msgid "Browser cache cleaner"
 msgstr ""
 
-msgid "Enables the users to clear the browser cache."
+msgid "Enables the users to clear the browser cache"
 msgstr ""
 
-msgid "User Profile"
+msgid "User profile"
 msgstr ""
 
-msgid "Enable the user to set his profile and account credentials."
+msgid "Allows the users to edit account credentials and public profile"
 msgstr ""

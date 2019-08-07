@@ -15,9 +15,11 @@ export const styles = _theme => ({
     },
     headerTitle: {
         color: "white",
-        lineHeight: "100px",
+        lineHeight: "1.5",
         cursor: "pointer",
-        margin: "0 auto",
+        margin: "auto",
+        padding: "25px",
+        textAlign: "center",
     },
     headerLogout: {
         cursor: "pointer",

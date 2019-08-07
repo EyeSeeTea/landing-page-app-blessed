@@ -23,12 +23,12 @@ const actionCascadeCare = async (baseUrl, cb) => {
     if (organisationUnit) {
         cb({
             type: "page",
-            value: `entryCapture/dataSet/${dataSet}?period=${period}&organisationUnit=${organisationUnit.id}`,
+            value: `hepatitis/dataSet/${dataSet}?period=${period}&organisationUnit=${organisationUnit.id}`,
         });
     } else {
         cb({
             type: "page",
-            value: `entryCapture/dataSet/${dataSet}?period=${period}`,
+            value: `hepatitis/dataSet/${dataSet}?period=${period}`,
         });
     }
 };
@@ -87,13 +87,13 @@ const actionPolicyUptake = async (baseUrl, cb) => {
 
         cb({
             type: "page",
-            value: `entryCapture/program/${program}?event=${event}`,
+            value: `hepatitis/program/${program}?event=${event}`,
         });
     } catch (error) {
         console.error(error);
         cb({
             type: "page",
-            value: `entryCapture/program/${program}`,
+            value: `hepatitis/program/${program}`,
         });
     }
 };
@@ -107,7 +107,7 @@ export const hepatitisData = [
     {
         key: "data-entry",
         title: i18n.t("Cascade of care / cure"),
-        description: i18n.t("Enter data for Cascade of care / cure data set."),
+        description: i18n.t("Enter data on the cascade of care / cure"),
         rowLength: 3,
         icon: "img/dhis-web-dataentry.png",
         action: {
@@ -118,9 +118,7 @@ export const hepatitisData = [
     {
         key: "event-capture",
         title: i18n.t("Policy uptake"),
-        description: i18n.t(
-            "Register event for Report your situation with respect to policy uptake program."
-        ),
+        description: i18n.t("Report your situation with respect to policy uptake"),
         rowLength: 3,
         icon: "img/dhis-web-event-capture.png",
         action: {
@@ -131,7 +129,7 @@ export const hepatitisData = [
     {
         key: "dashboard",
         title: i18n.t("Dashboard"),
-        description: i18n.t("Access pre populated data infographics based on existing data."),
+        description: i18n.t("Access a dashboard visualizing the data that you entered before"),
         rowLength: 3,
         icon: "img/dhis-web-dashboard.png",
         action: {
@@ -146,8 +144,8 @@ export const hepatitisData = [
     },
     {
         key: "cache-cleaner",
-        title: i18n.t("Browser Cache Cleaner"),
-        description: i18n.t("Enables the users to clear the browser cache."),
+        title: i18n.t("Browser cache cleaner"),
+        description: i18n.t("Enables the users to clear the browser cache"),
         rowLength: 2,
         icon: "img/dhis-web-cache-cleaner.png",
         action: {
@@ -157,8 +155,8 @@ export const hepatitisData = [
     },
     {
         key: "profile",
-        title: i18n.t("User Profile"),
-        description: i18n.t("Enable the user to set his profile and account credentials."),
+        title: i18n.t("User profile"),
+        description: i18n.t("Allows the users to edit account credentials and public profile"),
         rowLength: 2,
         icon: "img/dhis-web-profile.png",
         action: {
