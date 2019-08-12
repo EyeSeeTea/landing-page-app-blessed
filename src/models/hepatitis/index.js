@@ -109,7 +109,7 @@ export const hepatitisData = [
         title: i18n.t("Cascade of care / cure"),
         description: i18n.t("Enter data on the cascade of care / cure"),
         rowLength: 3,
-        icon: "img/dhis-web-dataentry.png",
+        icon: "img/cascade.png",
         action: {
             type: "method",
             value: actionCascadeCare,
