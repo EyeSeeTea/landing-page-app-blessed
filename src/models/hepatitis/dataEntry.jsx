@@ -15,6 +15,19 @@ const selectPeriod = (document, contentWindow, period) =>
         contentWindow.periodSelected();
     });
 
+const recurrentTasks = document => {
+    // Exclusive checkboxes
+    selector(document, ".checkbox", e => {
+        e.addEventListener("change", event => {
+            if (e.checked) {
+                selector(document, `input[name=${e.name}]`, o => {
+                    if (o.id !== e.id && o.checked) o.click();
+                });
+            }
+        });
+    });
+};
+
 export const dataEntryStyling = async (iframe, { organisationUnit, element, period, baseUrl }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document, selection } = contentWindow || contentDocument;
@@ -74,6 +87,10 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
             selectDataset(document, contentWindow, element);
             selectPeriod(document, contentWindow, period);
         });
+    });
+
+    document.addEventListener("click", event => {
+        recurrentTasks(document);
     });
 
     await sleep(1500);
