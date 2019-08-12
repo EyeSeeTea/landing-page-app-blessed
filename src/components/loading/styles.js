@@ -1,4 +1,4 @@
-export const styles = _theme => ({
+export const styles = () => ({
     loadingMask: {
         height: "100%",
         width: "100%",

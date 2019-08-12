@@ -11,6 +11,17 @@ import {
 } from "../../utils";
 
 const recurrentTasks = document => {
+    selectorWait(document, ".bordered-div", e => {
+        e.parentNode.style.width = "100%";
+        e.style.marginTop = "15px";
+        e.style.marginLeft = "0";
+    });
+
+    selectorWait(document, ".selectionArea", e => {
+        e.style.width = "100%";
+        e.style.margin = "15px";
+    });
+
     hideSelector(document, ".div-bottom-container");
 
     textSelector(document, "Event capture", field => {
