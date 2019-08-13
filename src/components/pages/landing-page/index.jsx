@@ -31,7 +31,7 @@ const LandingPage = ({ classes, history, baseUrl, items }) => {
             >
                 <Typography
                     className={action ? classes.title : classes.separatorTitle}
-                    variant={size === "small" ? "h7" : "h5"}
+                    variant={size === "small" ? "h6" : "h5"}
                 >
                     {title}
                 </Typography>

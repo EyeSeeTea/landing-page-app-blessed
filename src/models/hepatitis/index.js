@@ -63,32 +63,44 @@ const actionPolicyUptake = async (baseUrl, cb) => {
         _.find(organisationUnits, ou => ou.programs.map(ds => ds.id).includes(program)) ||
         organisationUnits[0];
 
-    const { events } = (await axios.get(`${baseUrl}/api/events.json`, {
-        params: {
-            fields: "event",
-            orgUnit: organisationUnit.id,
-            programStage: programStages[0].id,
-            attributeCc: categoryCombo.id,
-            attributeCos: categoryOption.id,
-            paging: false,
-        },
-    })).data;
-
     try {
-        // TODO: Edge case not controlled (multiple events already recorded)
-        const event = events[0]
-            ? events[0].event
-            : (await axios.post(`${baseUrl}/api/events`, {
-                  program,
-                  orgUnit: organisationUnit.id,
-                  attributeCategoryOptions: categoryOption.id,
-                  eventDate: new Date(),
-              })).data.response.importSummaries[0].reference;
+        const { events } = (await axios.get(`${baseUrl}/api/events.json`, {
+            params: {
+                fields: "event,dataValues",
+                orgUnit: organisationUnit.id,
+                programStage: programStages[0].id,
+                attributeCc: categoryCombo.id,
+                attributeCos: categoryOption.id,
+                paging: false,
+            },
+        })).data;
 
-        cb({
-            type: "page",
-            value: `hepatitis/program/${program}?event=${event}`,
-        });
+        const existsEvent = !!events[0];
+        const eventHasData = existsEvent && events[0].dataValues.length > 0;
+
+        if (eventHasData) {
+            if (window.confirm(
+                "There's already one report for this organisation and the latest period. Do you want to edit the previously entered data?"
+            )) cb({
+                type: "page",
+                value: `hepatitis/program/${program}?event=${events[0].event}`,
+            });
+        } else {
+            // TODO: Edge case not controlled (multiple events already recorded)
+            const event = existsEvent
+                ? events[0].event
+                : (await axios.post(`${baseUrl}/api/events`, {
+                      program,
+                      orgUnit: organisationUnit.id,
+                      attributeCategoryOptions: categoryOption.id,
+                      eventDate: new Date(),
+                  })).data.response.importSummaries[0].reference;
+
+            cb({
+                type: "page",
+                value: `hepatitis/program/${program}?event=${event}`,
+            });
+        }
     } catch (error) {
         console.error(error);
         cb({
