@@ -141,12 +141,14 @@ export const hepatitisData = [
         key: "title-other",
         title: i18n.t("Other Useful Features"),
         rowLength: 1,
+        size: "small",
     },
     {
         key: "cache-cleaner",
         title: i18n.t("Browser cache cleaner"),
         description: i18n.t("Enables the users to clear the browser cache"),
         rowLength: 2,
+        size: "small",
         icon: "img/dhis-web-cache-cleaner.png",
         action: {
             type: "page",
@@ -158,6 +160,7 @@ export const hepatitisData = [
         title: i18n.t("User profile"),
         description: i18n.t("Allows the users to edit account credentials and public profile"),
         rowLength: 2,
+        size: "small",
         icon: "img/dhis-web-profile.png",
         action: {
             type: "dhisRedirect",

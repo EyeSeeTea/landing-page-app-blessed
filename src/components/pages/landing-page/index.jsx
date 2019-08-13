@@ -20,22 +20,40 @@ const LandingPage = ({ classes, history, baseUrl, items }) => {
         }
     };
 
-    const menuItems = items.map(({ key, title, description, icon, action, rowLength }) => (
-        <Grid
-            item
-            xs={12 / rowLength}
-            className={action ? classes.item : classes.separator}
-            key={key}
-            onClick={() => visitPage(action)}
-        >
-            <Typography className={action ? classes.title : classes.separatorTitle} variant="h5">
-                {title}
-            </Typography>
-            {!action && <hr className={classes.bottomLine} />}
-            {icon && <img className={`icons ${classes.icons}`} alt={title} src={icon}></img>}
-            {description && <p>{description}</p>}
-        </Grid>
-    ));
+    const menuItems = items.map(
+        ({ key, title, description, icon, action, rowLength, size = "large" }) => (
+            <Grid
+                item
+                xs={12 / rowLength}
+                className={action ? classes.item : classes.separator}
+                key={key}
+                onClick={() => visitPage(action)}
+            >
+                <Typography
+                    className={action ? classes.title : classes.separatorTitle}
+                    variant={size === "small" ? "h7" : "h5"}
+                >
+                    {title}
+                </Typography>
+                {!action && <hr className={classes.bottomLine} />}
+                {icon && (
+                    <img
+                        className={size === "small" ? classes.smallIcon : classes.icon}
+                        alt={title}
+                        src={icon}
+                    ></img>
+                )}
+                {description &&
+                    (size === "small" ? (
+                        <small>
+                            <p>{description}</p>
+                        </small>
+                    ) : (
+                        <p>{description}</p>
+                    ))}
+            </Grid>
+        )
+    );
 
     return (
         <div className={classes.root}>

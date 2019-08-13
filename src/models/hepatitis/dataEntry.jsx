@@ -15,7 +15,7 @@ const selectPeriod = (document, contentWindow, period) =>
         contentWindow.periodSelected();
     });
 
-const recurrentTasks = document => {
+const recurrentTasks = (document, isAdmin) => {
     // Exclusive checkboxes
     selector(document, ".checkbox", e => {
         e.addEventListener("change", event => {
@@ -26,11 +26,17 @@ const recurrentTasks = document => {
             }
         });
     });
+
+    if (!isAdmin)
+        selectorWait(document, "#completenessDivCustom", e => {
+            e.remove();
+        });
 };
 
 export const dataEntryStyling = async (iframe, { organisationUnit, element, period, baseUrl }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document, selection } = contentWindow || contentDocument;
+    const isAdmin = !organisationUnit;
 
     // Hide unecessary elements
     hideSelector(document, "#header");
@@ -38,7 +44,7 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
     hideSelector(document, "#hideLeftBar");
     hideSelector(document, "#currentSelection");
     hideSelector(document, "#validationButton");
-    if (organisationUnit) hideSelector(document, "#leftBar");
+    if (!isAdmin) hideSelector(document, "#leftBar");
 
     // Rename components
     selector(document, "input[value='Print form']", field => {
@@ -55,7 +61,7 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
     // Scale body to be centered
     selector(document, "body", e => {
         e.style.marginTop = "-50px";
-        if (organisationUnit) e.style.marginLeft = "-260px";
+        if (!isAdmin) e.style.marginLeft = "-260px";
     });
 
     // Scale body to be centered
@@ -65,10 +71,10 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
 
     // Disable clicks on selection group
     selectorWait(document, "#selectionBox", e => {
-        if (organisationUnit) e.style.pointerEvents = "none";
+        if (!isAdmin) e.style.pointerEvents = "none";
     });
 
-    if (organisationUnit && element && period) {
+    if (!isAdmin && element && period) {
         selection.select(organisationUnit);
         selectDataset(document, contentWindow, element);
         selectPeriod(document, contentWindow, period);
@@ -90,7 +96,7 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
     });
 
     document.addEventListener("click", event => {
-        recurrentTasks(document);
+        recurrentTasks(document, isAdmin);
     });
 
     await sleep(1500);
@@ -98,4 +104,8 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
     await filterOrgUnits(document, visibleOrganisationUnits);
     selectDataset(document, contentWindow, element);
     selectPeriod(document, contentWindow, period);
+
+    await sleep(500);
+
+    recurrentTasks(document, isAdmin);
 };

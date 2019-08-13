@@ -7,7 +7,7 @@ import {
     hideSelector,
     textSelector,
     sleep,
-    goToExternalUrl,
+    goToHashUrl,
 } from "../../utils";
 
 const recurrentTasks = document => {
@@ -40,35 +40,40 @@ const recurrentTasks = document => {
         field.textContent = "Submit or update your report";
         field.parentNode.addEventListener("click", event => {
             window.alert("Thank you for your report on the policy situation");
-            goToExternalUrl("/#/hepatitis");
+            goToHashUrl("/hepatitis");
         });
     });
 
     textSelector(document, "Cancel", field => {
         field.textContent = "Go back to home page";
         field.parentNode.addEventListener("click", event => {
-            goToExternalUrl("/#/hepatitis");
+            goToHashUrl("/hepatitis");
         });
     });
 
     textSelector(document, "Section", field => {
         field.parentNode.parentNode.hidden = true;
     });
+
+    textSelector(document, "Program", field => {
+        field.textContent = "Programme";
+    });
 };
 
 export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document } = contentWindow || contentDocument;
+    const isAdmin = !event;
 
     // Hide unecessary elements
     hideSelector(document, "#header");
     selectorWait(document, "#headerMessage", e => e.remove());
-    if (event) hideSelector(document, "#leftBar");
+    if (!isAdmin) hideSelector(document, "#leftBar");
 
     // Scale body to be centered
     selector(document, "body", e => {
         e.style.marginTop = "-50px";
-        if (event) e.style.marginLeft = "-260px";
+        if (!isAdmin) e.style.marginLeft = "-260px";
     });
 
     // Scale body to be centered
@@ -78,7 +83,7 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
 
     // Disable clicks on selection group
     selectorWait(document, ".selectionGroup", e => {
-        if (event) e.style.pointerEvents = "none";
+        if (!isAdmin) e.style.pointerEvents = "none";
     });
 
     const { organisationUnits: visibleOrganisationUnits } = (await axios.get(
@@ -98,7 +103,7 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
         recurrentTasks(document);
     });
 
-    await sleep(1500);
+    await sleep(2500);
 
     filterOrgUnits(document, visibleOrganisationUnits);
 

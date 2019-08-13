@@ -28,9 +28,13 @@ export const styles = _theme => ({
         margin: 15,
         color: "#000000",
     },
-    icons: {
+    icon: {
         margin: 15,
-        height: "40px",
+        height: "60px",
+    },
+    smallIcon: {
+        margin: 15,
+        height: "35px",
     },
     bottomLine: {
         marginTop: "20px",

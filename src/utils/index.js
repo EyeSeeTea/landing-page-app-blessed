@@ -4,6 +4,10 @@ export const goToExternalUrl = externalUrl => {
     if (externalUrl) window.location = externalUrl;
 };
 
+export const goToHashUrl = hash => {
+    if (hash) window.location.hash = hash;
+};
+
 const cleanDhis2Url = (baseUrl, path) =>
     [baseUrl.replace(/\/$/, ""), path.replace(/^\//, "")].join("/");
 
