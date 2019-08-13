@@ -79,12 +79,15 @@ const actionPolicyUptake = async (baseUrl, cb) => {
         const eventHasData = existsEvent && events[0].dataValues.length > 0;
 
         if (eventHasData) {
-            if (window.confirm(
-                "There's already one report for this organisation and the latest period. Do you want to edit the previously entered data?"
-            )) cb({
-                type: "page",
-                value: `hepatitis/program/${program}?event=${events[0].event}`,
-            });
+            if (
+                window.confirm(
+                    "There's already one report for this organisation and the latest period. Do you want to edit the previously entered data?"
+                )
+            )
+                cb({
+                    type: "page",
+                    value: `hepatitis/program/${program}?event=${events[0].event}`,
+                });
         } else {
             // TODO: Edge case not controlled (multiple events already recorded)
             const event = existsEvent
