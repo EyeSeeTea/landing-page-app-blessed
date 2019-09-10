@@ -9,7 +9,7 @@ const NHWAHeader = ({ classes, title }) => {
         <div className={classes.container}>
             <div className={classes.header}>
                 <div className={classes.logoBox}>
-                    <img className={classes.logo} src="/img/who-logo-black.png" alt={"WHO"}></img>
+                    <img className={classes.logo} src="img/who-logo-black.png" alt={"WHO"}></img>
                 </div>
                 <div className={classes.box}>
                     <nav className={classes.navbar}>
