@@ -4,22 +4,26 @@ import { withStyles } from "@material-ui/core";
 
 import { styles } from "./styles";
 
-const NHWAHeader = ({ classes, baseUrl, title }) => {
+const NHWAHeader = ({ classes, title }) => {
     return (
-            <nav className={classes.navbar}>
-                <div className={classes.containerFluid}>
-                    <div className={classes.header}>
-                        <h4 className={classes.title}>{title}</h4>
-                    </div>
+        <div className={classes.container}>
+            <div className={classes.header}>
+                <div className={classes.logoBox}>
+                    <img className={classes.logo} src="/img/who-logo-black.png" alt={"WHO"}></img>
                 </div>
-            </nav>
+                <div className={classes.box}>
+                    <nav className={classes.navbar}>
+                        <div className={classes.containerFluid}></div>
+                        <h4 className={classes.title}>{title}</h4>
+                    </nav>
+                </div>
+            </div>
+        </div>
     );
 };
 
 NHWAHeader.propTypes = {
     classes: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    baseUrl: PropTypes.string.isRequired,
     title: PropTypes.string,
 };
 

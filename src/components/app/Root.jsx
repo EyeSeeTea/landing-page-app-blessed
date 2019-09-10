@@ -2,7 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 
-import { GenericLandingPage, HepatitisLandingPage, NHWALandingPage, HepatitisFormPage, CacheCleanerPage } from "../pages";
+import {
+    GenericLandingPage,
+    HepatitisLandingPage,
+    NHWALandingPage,
+    HepatitisFormPage,
+    CacheCleanerPage,
+} from "../pages";
 import { defaultData, hepatitisData, nhwaData } from "../../models";
 
 const Root = ({ baseUrl }) => {

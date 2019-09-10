@@ -21,20 +21,32 @@ const LandingPage = ({ classes, history, baseUrl, items }) => {
     };
 
     const menuItems = items.map(
-        ({ key, title, description, icon, iconDescription, action, enableBottomLine, rowLength, size = "large" }) => (
+        ({
+            key,
+            title,
+            description,
+            icon,
+            iconDescription,
+            action,
+            enableBottomLine,
+            rowLength,
+            size = "large",
+        }) => (
             <Grid
                 item
                 xs={12 / rowLength}
                 className={action ? classes.item : classes.separator}
                 key={key}
-                onClick={() => action ? visitPage(action) : {}}
+                onClick={() => (action ? visitPage(action) : {})}
             >
-                {title && (<Typography
-                    className={action ? classes.title : classes.separatorTitle}
-                    variant={size === "small" ? "h6" : "h5"}
-                >
-                    {title}
-                </Typography>)}
+                {title && (
+                    <Typography
+                        className={action ? classes.title : classes.separatorTitle}
+                        variant={size === "small" ? "h6" : "h5"}
+                    >
+                        {title}
+                    </Typography>
+                )}
                 {enableBottomLine && !action && <hr className={classes.bottomLine} />}
                 {icon && (
                     <div className={classes.iconContainer}>
@@ -43,7 +55,9 @@ const LandingPage = ({ classes, history, baseUrl, items }) => {
                             alt={title}
                             src={icon}
                         ></img>
-                        <small><p>{iconDescription}</p></small>
+                        <small>
+                            <p>{iconDescription}</p>
+                        </small>
                     </div>
                 )}
                 {description &&
@@ -60,7 +74,7 @@ const LandingPage = ({ classes, history, baseUrl, items }) => {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={16} className={classes.container}>
+            <Grid container spacing={0} className={classes.container}>
                 {menuItems}
             </Grid>
         </div>

@@ -8,7 +8,9 @@ export const nhwaData = [
     },
     {
         key: "maturity-assessment-link",
-        iconDescription: i18n.t("NHWA maturity assessment enables countries to assess their national information system and its capacity to address the NHWA indicators."),
+        iconDescription: i18n.t(
+            "NHWA maturity assessment enables countries to assess their national information system and its capacity to address the NHWA indicators."
+        ),
         rowLength: 1,
         icon: "img/dhis-web-dataentry.png",
         size: "small",
@@ -24,7 +26,9 @@ export const nhwaData = [
     },
     {
         key: "validate-baseline-data-link",
-        iconDescription: i18n.t("The validation exercise enables countries to view existing data and undertake necessary action of data correction/update as required."),
+        iconDescription: i18n.t(
+            "The validation exercise enables countries to view existing data and undertake necessary action of data correction/update as required."
+        ),
         rowLength: 1,
         icon: "img/dhis-web-reporting.png",
         size: "small",
@@ -36,7 +40,9 @@ export const nhwaData = [
     {
         key: "nhwa-data-entry-title",
         title: i18n.t("NHWA data entry"),
-        description: i18n.t("Data entry into the system can be done (i) directly through the system interface or (ii) as batch upload through excel sheets."),
+        description: i18n.t(
+            "Data entry into the system can be done (i) directly through the system interface or (ii) as batch upload through excel sheets."
+        ),
         size: "small",
         rowLength: 1,
     },
@@ -65,7 +71,9 @@ export const nhwaData = [
     {
         key: "visualize-data-title",
         title: i18n.t("Visualise data"),
-        description: i18n.t("Access programmed data infographics or create customised data visualisation with the existing data."),
+        description: i18n.t(
+            "Access programmed data infographics or create customised data visualisation with the existing data."
+        ),
         size: "small",
         rowLength: 1,
     },
@@ -84,7 +92,9 @@ export const nhwaData = [
     {
         key: "data-visualizer-link",
         iconDescription: i18n.t("Data Visualizer"),
-        description: i18n.t("Enables users to easily create dynamic data analysis and visualizations through charts and data tables."),
+        description: i18n.t(
+            "Enables users to easily create dynamic data analysis and visualizations through charts and data tables."
+        ),
         rowLength: 3,
         icon: "img/dhis-web-visualizer.png",
         size: "small",
@@ -106,18 +116,6 @@ export const nhwaData = [
         },
     },
     {
-        key: "nhwa-reports-link",
-        iconDescription: i18n.t("NHWA Reports"),
-        description: i18n.t("Access to the NHWA reports"),
-        rowLength: 3,
-        icon: "img/dhis-web-reporting.png",
-        size: "small",
-        action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-reporting/displayViewReportForm.action",
-        },
-    },
-    {
         key: "dashboard-link",
         iconDescription: i18n.t("Dashboard"),
         description: i18n.t("Access pre populated data infographics based on existing data"),
@@ -127,6 +125,18 @@ export const nhwaData = [
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-dashboard/index.html",
+        },
+    },
+    {
+        key: "nhwa-reports-link",
+        iconDescription: i18n.t("NHWA Reports"),
+        description: i18n.t("Access to the NHWA reports"),
+        rowLength: 3,
+        icon: "img/dhis-web-reporting.png",
+        size: "small",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-reporting/displayViewReportForm.action",
         },
     },
     {
@@ -150,7 +160,9 @@ export const nhwaData = [
     {
         key: "data-quality-link",
         iconDescription: i18n.t("Data Quality"),
-        description: i18n.t("Enables the users to run data quality checks such as validation and Std dev outlier analysis."),
+        description: i18n.t(
+            "Enables the users to run data quality checks such as validation and Std dev outlier analysis."
+        ),
         rowLength: 3,
         size: "small",
         icon: "img/dhis-web-data-quality.png",

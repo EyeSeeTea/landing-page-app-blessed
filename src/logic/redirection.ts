@@ -28,18 +28,23 @@ export const handleRedirection = async (baseUrl: string) => {
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
 
-    if (shouldRedirect(userGroupIds, USER_GROUPS_NHWA)) {
+    if (process.env.NODE_ENV !== "production") {
+        return {
+            title: "Landing Page Development",
+            backUrl: "/",
+        };
+    } else if (shouldRedirect(userGroupIds, USER_GROUPS_NHWA)) {
         if (window.location.hash === "#/") window.location.hash = "/nhwa";
         return {
             backUrl: "/nhwa",
-            header: nhwaHeader
+            header: nhwaHeader,
         };
     } else if (shouldRedirect(userGroupIds, USER_GROUPS_HEPATITIS)) {
         if (window.location.hash === "#/") window.location.hash = "/hepatitis";
         return {
             title: "Home page for the Global Reporting System for Hepatitis",
             backUrl: "/hepatitis",
-            header: whoHeader
+            header: whoHeader,
         };
     } else if (
         shouldRedirect(userGroupIds, [...USER_GROUPS_NTD, ...USER_GROUPS_NHWA]) &&
@@ -47,13 +52,8 @@ export const handleRedirection = async (baseUrl: string) => {
     ) {
         goToDhis2Url(baseUrl, "/api/apps/Landing-Page/index.html");
         return null;
-    } else if (process.env.NODE_ENV === "production") {
+    } else {
         goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
         return null;
-    } else {
-        return {
-            title: "Landing Page Development",
-            backUrl: "/",
-        };
     }
 };

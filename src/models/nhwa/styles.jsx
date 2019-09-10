@@ -1,11 +1,22 @@
-export const styles = _theme => ({
+export const styles = theme => ({
     root: {
         display: "flex",
         justifyContent: "center",
+        backgroundColor: "#fff",
     },
     container: {
-        width: "100%",
-        padding: 25,
+        marginRight: "auto",
+        marginLeft: "auto",
+        width: "95%",
+        [theme.breakpoints.up("sm")]: {
+            width: "90%",
+        },
+        [theme.breakpoints.up("md")]: {
+            width: "75%",
+        },
+        [theme.breakpoints.up("lg")]: {
+            width: "55%",
+        },
     },
     item: {
         textAlign: "left",
@@ -26,7 +37,7 @@ export const styles = _theme => ({
         color: "#00762e",
         backgroundColor: "#c2d69b",
         padding: "7px",
-        marginBottom: "7px"
+        marginBottom: "7px",
     },
     title: {
         color: "#000000",

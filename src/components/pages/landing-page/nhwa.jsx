@@ -5,7 +5,7 @@ import LandingPage from "./generic";
 import { styles } from "../../../models/nhwa/styles";
 
 const NHWALandingPage = ({ ...props }) => {
-    return (<LandingPage { ...props } />);
+    return <LandingPage {...props} />;
 };
 
 export default withStyles(styles)(NHWALandingPage);
