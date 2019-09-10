@@ -5,7 +5,7 @@ import { withStyles, Typography, Chip } from "@material-ui/core";
 import { Home, ExitToApp } from "@material-ui/icons";
 
 import { styles } from "./styles";
-import { goToExternalUrl, goToDhis2Url } from "../../utils";
+import { goToExternalUrl, goToDhis2Url } from "../../../utils";
 
 const WHOHeader = ({ classes, history, baseUrl, title, backUrl }) => {
     const actionWHO = () => goToExternalUrl("https://who.int");

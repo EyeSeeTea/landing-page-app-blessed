@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
-import { styles } from "./styles";
+import { styles } from "../../../models/hepatitis/styles";
 import { goToDhis2Url } from "../../../utils";
 
 const LandingPage = ({ classes, history, baseUrl, items }) => {
@@ -21,35 +21,38 @@ const LandingPage = ({ classes, history, baseUrl, items }) => {
     };
 
     const menuItems = items.map(
-        ({ key, title, description, icon, action, rowLength, size = "large" }) => (
+        ({ key, title, description, icon, iconDescription, action, enableBottomLine, rowLength, size = "large" }) => (
             <Grid
                 item
                 xs={12 / rowLength}
                 className={action ? classes.item : classes.separator}
                 key={key}
-                onClick={() => visitPage(action)}
+                onClick={() => action ? visitPage(action) : {}}
             >
-                <Typography
+                {title && (<Typography
                     className={action ? classes.title : classes.separatorTitle}
                     variant={size === "small" ? "h6" : "h5"}
                 >
                     {title}
-                </Typography>
-                {!action && <hr className={classes.bottomLine} />}
+                </Typography>)}
+                {enableBottomLine && !action && <hr className={classes.bottomLine} />}
                 {icon && (
-                    <img
-                        className={size === "small" ? classes.smallIcon : classes.icon}
-                        alt={title}
-                        src={icon}
-                    ></img>
+                    <div className={classes.iconContainer}>
+                        <img
+                            className={size === "small" ? classes.smallIcon : classes.icon}
+                            alt={title}
+                            src={icon}
+                        ></img>
+                        <small><p>{iconDescription}</p></small>
+                    </div>
                 )}
                 {description &&
                     (size === "small" ? (
                         <small>
-                            <p>{description}</p>
+                            <p className={classes.description}>{description}</p>
                         </small>
                     ) : (
-                        <p>{description}</p>
+                        <p className={classes.description}>{description}</p>
                     ))}
             </Grid>
         )

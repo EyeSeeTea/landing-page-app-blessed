@@ -118,6 +118,7 @@ export const hepatitisData = [
         key: "title-data",
         title: i18n.t("Data"),
         rowLength: 1,
+        enableBottomLine: true,
     },
     {
         key: "data-entry",
@@ -157,6 +158,7 @@ export const hepatitisData = [
         title: i18n.t("Other Useful Features"),
         rowLength: 1,
         size: "small",
+        enableBottomLine: true,
     },
     {
         key: "cache-cleaner",

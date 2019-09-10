@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 
-import { LandingPage, HepatitisFormPage, CacheCleanerPage } from "../pages";
-import { defaultData } from "../../models/default";
-import { hepatitisData } from "../../models/hepatitis";
+import { GenericLandingPage, HepatitisLandingPage, NHWALandingPage, HepatitisFormPage, CacheCleanerPage } from "../pages";
+import { defaultData, hepatitisData, nhwaData } from "../../models";
 
 const Root = ({ baseUrl }) => {
     return (
@@ -16,12 +15,17 @@ const Root = ({ baseUrl }) => {
 
             <Route
                 path="/hepatitis"
-                render={() => <LandingPage baseUrl={baseUrl} items={hepatitisData} />}
+                render={() => <HepatitisLandingPage baseUrl={baseUrl} items={hepatitisData} />}
+            />
+
+            <Route
+                path="/nhwa"
+                render={() => <NHWALandingPage baseUrl={baseUrl} items={nhwaData} />}
             />
 
             <Route path={"/cache-cleaner"} render={() => <CacheCleanerPage baseUrl={baseUrl} />} />
 
-            <Route render={() => <LandingPage baseUrl={baseUrl} items={defaultData} />} />
+            <Route render={() => <GenericLandingPage baseUrl={baseUrl} items={defaultData} />} />
         </Switch>
     );
 };

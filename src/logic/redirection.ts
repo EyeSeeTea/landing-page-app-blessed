@@ -1,6 +1,8 @@
 import axios from "axios";
 import _ from "lodash";
 import { goToDhis2Url, existsDhis2Url } from "../utils";
+import whoHeader from "../components/headers/who-header";
+import nhwaHeader from "../components/headers/nhwa-header";
 
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
 const HEP_POLICY_UPTAKE_DATA_ENTRY = "uMCylDhyzRr";
@@ -26,11 +28,18 @@ export const handleRedirection = async (baseUrl: string) => {
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
 
-    if (shouldRedirect(userGroupIds, USER_GROUPS_HEPATITIS)) {
+    if (shouldRedirect(userGroupIds, USER_GROUPS_NHWA)) {
+        if (window.location.hash === "#/") window.location.hash = "/nhwa";
+        return {
+            backUrl: "/nhwa",
+            header: nhwaHeader
+        };
+    } else if (shouldRedirect(userGroupIds, USER_GROUPS_HEPATITIS)) {
         if (window.location.hash === "#/") window.location.hash = "/hepatitis";
         return {
             title: "Home page for the Global Reporting System for Hepatitis",
             backUrl: "/hepatitis",
+            header: whoHeader
         };
     } else if (
         shouldRedirect(userGroupIds, [...USER_GROUPS_NTD, ...USER_GROUPS_NHWA]) &&

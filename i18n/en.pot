@@ -5,13 +5,16 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-08-07T14:26:49.235Z\n"
-"PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
+"POT-Creation-Date: 2019-09-10T08:55:36.835Z\n"
+"PO-Revision-Date: 2019-09-10T08:55:36.835Z\n"
 
 msgid "World Health Organization"
 msgstr ""
 
 msgid "Hepatitis"
+msgstr ""
+
+msgid "NHWA"
 msgstr ""
 
 msgid "DHIS2"
@@ -51,4 +54,45 @@ msgid "User profile"
 msgstr ""
 
 msgid "Allows the users to edit account credentials and public profile"
+msgstr ""
+
+msgid "NHWA maturity assessment"
+msgstr ""
+
+msgid ""
+"NHWA maturity assessment enables countries to assess their national "
+"information system and its capacity to address the NHWA indicators."
+msgstr ""
+
+msgid "Validate existing baseline data"
+msgstr ""
+
+msgid ""
+"The validation exercise enables countries to view existing data and "
+"undertake necessary action of data correction/update as required."
+msgstr ""
+
+msgid "NHWA data entry"
+msgstr ""
+
+msgid ""
+"Data entry into the system can be done (i) directly through the system "
+"interface or (ii) as batch upload through excel sheets."
+msgstr ""
+
+msgid "Data entry through the system interface"
+msgstr ""
+
+msgid "Batch upload through excel sheets"
+msgstr ""
+
+msgid "Visualise data"
+msgstr ""
+
+msgid ""
+"Access programmed data infographics or create customised data visualisation "
+"with the existing data."
+msgstr ""
+
+msgid "Other Useful features"
 msgstr ""

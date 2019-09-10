@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { createGenerateClassName, MuiThemeProvider } from "@material-ui/core/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import OldMuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { createGenerateClassName } from "@material-ui/styles";
 import JssProvider from "react-jss/lib/JssProvider";
+import { HeaderBar } from "@dhis2/ui-widgets";
 
 import Root from "./Root";
-import WHOHeader from "../who-header";
 import WHOLoading from "../who-loading";
 import { muiTheme } from "./themes/dhis2.theme";
 import muiThemeLegacy from "./themes/dhis2-legacy.theme";
@@ -31,6 +32,8 @@ const App = ({ d2 }) => {
         });
     }, [baseUrl, loading, updateHeader]);
 
+    const Header = headerOptions.header || HeaderBar;
+
     return (
         <JssProvider generateClassName={generateClassName}>
             <MuiThemeProvider theme={muiTheme}>
@@ -40,7 +43,7 @@ const App = ({ d2 }) => {
                             <WHOLoading />
                         ) : (
                             <div id="app" className="content">
-                                <WHOHeader baseUrl={baseUrl} {...headerOptions} />
+                                <Header baseUrl={baseUrl} {...headerOptions} />
                                 <Root baseUrl={baseUrl} />
                             </div>
                         )}

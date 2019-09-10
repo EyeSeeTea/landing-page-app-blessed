@@ -9,7 +9,7 @@ export const defaultData = [
     {
         key: "hepatitis",
         title: i18n.t("Hepatitis"),
-        rowLength: 2,
+        rowLength: 3,
         icon: "img/hepatitis.png",
         action: {
             type: "page",
@@ -17,9 +17,19 @@ export const defaultData = [
         },
     },
     {
+        key: "nhwa",
+        title: i18n.t("NHWA"),
+        rowLength: 3,
+        icon: "img/dhis-web-data-approval.png",
+        action: {
+            type: "page",
+            value: "nhwa",
+        },
+    },
+    {
         key: "dhis2",
         title: i18n.t("DHIS2"),
-        rowLength: 2,
+        rowLength: 3,
         icon: "img/dhis2.png",
         action: {
             type: "dhisRedirect",
