@@ -5,13 +5,13 @@ import { Route, Switch } from "react-router-dom";
 import { GenericLandingPage, HepatitisFormPage, CacheCleanerPage } from "../pages";
 import { defaultData } from "../../models";
 
-const Root = ({ baseUrl, page, key, data }) => {
+const Root = ({ baseUrl, page, programme, data }) => {
     const LandingPageComponent = page || GenericLandingPage;
     return (
         <Switch>
             <Route path={"/cache-cleaner"} render={() => <CacheCleanerPage baseUrl={baseUrl} />} />
 
-            {key === "hepatitis" && (
+            {programme === "hepatitis" && (
                 <Route
                     path={"/hepatitis/:type(dataSet|program)/:element"}
                     render={() => <HepatitisFormPage baseUrl={baseUrl} />}

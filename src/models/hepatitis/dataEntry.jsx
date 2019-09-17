@@ -84,6 +84,7 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
         `${baseUrl}/api/dataSets/${element}.json`,
         {
             params: { fields: "organisationUnits" },
+            withCredentials: true,
         }
     )).data;
 

@@ -25,7 +25,7 @@ const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
 
 const configuration = [
     {
-        key: "hepatitis",
+        programme: "hepatitis",
         title: "Home page for the Global Reporting System for Hepatitis",
         userGroupIds: [HEP_CASCADE_CURE_DATA_ENTRY, HEP_POLICY_UPTAKE_DATA_ENTRY],
         page: HepatitisLandingPage,
@@ -33,7 +33,7 @@ const configuration = [
         data: hepatitisData,
     },
     {
-        key: "nhwa-managers",
+        programme: "nhwa-managers",
         title: "National Health Workforce Accounts Online Data Platform",
         userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
         page: NHWALandingPage,
@@ -41,7 +41,7 @@ const configuration = [
         data: nhwaData,
     },
     {
-        key: "nhwa-data-clerks",
+        programme: "nhwa-data-clerks",
         title: "National Health Workforce Accounts Online Data Platform",
         userGroupIds: [NHWA_DATA_CLERKS],
         page: NHWALandingPage,
@@ -49,7 +49,7 @@ const configuration = [
         data: nhwaClerkData,
     },
     {
-        key: "nhwa-managers-viewers",
+        programme: "nhwa-managers-viewers",
         title: "National Health Workforce Accounts Online Data Platform",
         userGroupIds: NHWA_DATA_VIEWERS,
         page: NHWALandingPage,
