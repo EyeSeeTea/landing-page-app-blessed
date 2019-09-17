@@ -65,4 +65,24 @@ export const styles = theme => ({
         textAlign: "right",
         padding: "10px",
     },
+    welcomeRow: {
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: -10,
+        marginBottom: -10,
+        display: "flex",
+        justifyContent: "space-between",
+    },
+    welcomeMessage: {
+        fontWeight: 700,
+        fontSize: "18px",
+        lineHeight: "1.1",
+    },
+    welcomeButtons: {
+        display: "flex",
+        alignItems: "center",
+    },
+    welcomeButton: {
+        margin: "5px",
+    },
 });

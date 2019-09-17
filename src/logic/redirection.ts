@@ -62,20 +62,18 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
 export const handleRedirection = async (baseUrl: string) => {
-    const url = `${baseUrl}/api/me.json?fields=userGroups[id]`;
-    const { userGroups } = (await axios.get(url, {
+    const url = `${baseUrl}/api/me.json?fields=name,userGroups[id]`;
+    const { name, userGroups } = (await axios.get(url, {
         withCredentials: true,
-    })).data as { userGroups: Array<{ id: string }> };
+    })).data as { name: string; userGroups: Array<{ id: string }> };
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
-
     const userConfig = configuration.find(config =>
         shouldRedirect(userGroupIds, config.userGroupIds)
     );
-    console.log("userConfig", userConfig);
 
     if (userConfig) {
-        return userConfig;
+        return { username: name, ...userConfig };
     } else if (
         shouldRedirect(userGroupIds, [NTD_LSH_LandingPage_KEN]) &&
         (await existsDhis2Url(baseUrl, "/api/apps/Landing-Page/index.html"))

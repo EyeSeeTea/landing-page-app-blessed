@@ -43,8 +43,8 @@ const App = ({ d2 }) => {
                             <WHOLoading />
                         ) : (
                             <div id="app" className="content">
-                                <Header baseUrl={baseUrl} title={config.title} />
-                                <Root baseUrl={baseUrl} config={config} />
+                                <Header baseUrl={baseUrl} {...config} />
+                                <Root baseUrl={baseUrl} {...config} />
                             </div>
                         )}
                     </React.Fragment>
