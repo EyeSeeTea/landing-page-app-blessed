@@ -14,7 +14,7 @@ const NHWAHeader = ({ classes, title }) => {
                 <div className={classes.box}>
                     <nav className={classes.navbar}>
                         <div className={classes.containerFluid}></div>
-                        <h4 className={classes.title}>{title}</h4>
+                        <h4 className={classes.title}>{title.toUpperCase()}</h4>
                     </nav>
                 </div>
             </div>
@@ -29,7 +29,6 @@ NHWAHeader.propTypes = {
 
 NHWAHeader.defaultProps = {
     title: "NATIONAL HEALTH WORKFORCE ACCOUNTS ONLINE DATA PLATFORM",
-    backUrl: "/",
 };
 
 export default withStyles(styles)(NHWAHeader);

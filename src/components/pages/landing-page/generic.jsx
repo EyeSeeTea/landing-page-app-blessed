@@ -55,19 +55,18 @@ const LandingPage = ({ classes, history, baseUrl, items }) => {
                             alt={title}
                             src={icon}
                         ></img>
-                        <small>
-                            <p>{iconDescription}</p>
-                        </small>
+                        <p className={classes.small}>{iconDescription}</p>
                     </div>
                 )}
-                {description &&
-                    (size === "small" ? (
-                        <small>
-                            <p className={classes.description}>{description}</p>
-                        </small>
-                    ) : (
-                        <p className={classes.description}>{description}</p>
-                    ))}
+                {description && (
+                    <p
+                        className={`${classes.description} ${
+                            size === "small" ? classes.small : ""
+                        }`}
+                    >
+                        {description}
+                    </p>
+                )}
             </Grid>
         )
     );

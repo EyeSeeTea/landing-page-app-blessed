@@ -1,4 +1,5 @@
 import i18n from "@dhis2/d2-i18n";
+import _ from "lodash";
 
 export const nhwaData = [
     {
@@ -196,3 +197,16 @@ export const nhwaData = [
         },
     },
 ];
+
+export const nhwaClerkData = _.filter(nhwaData, ({ key }) => !["data-approval-link"].includes(key));
+
+export const nhwaViewerData = _.filter(
+    nhwaData,
+    ({ key }) =>
+        ![
+            "data-approval-link",
+            "data-quality-link",
+            "nhwa-data-entry-title",
+            "nhwa-data-entry-link",
+        ].includes(key)
+);

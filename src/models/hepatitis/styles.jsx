@@ -38,6 +38,9 @@ export const styles = _theme => ({
         height: "35px",
     },
     description: {},
+    small: {
+        fontSize: "smaller",
+    },
     bottomLine: {
         marginTop: "20px",
         border: 0,

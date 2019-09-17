@@ -7,26 +7,6 @@ export const defaultData = [
         rowLength: 1,
     },
     {
-        key: "hepatitis",
-        title: i18n.t("Hepatitis"),
-        rowLength: 3,
-        icon: "img/hepatitis.png",
-        action: {
-            type: "page",
-            value: "hepatitis",
-        },
-    },
-    {
-        key: "nhwa",
-        title: i18n.t("NHWA"),
-        rowLength: 3,
-        icon: "img/dhis-web-data-approval.png",
-        action: {
-            type: "page",
-            value: "nhwa",
-        },
-    },
-    {
         key: "dhis2",
         title: i18n.t("DHIS2"),
         rowLength: 3,
@@ -34,6 +14,30 @@ export const defaultData = [
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-dashboard/index.action",
+        },
+    },
+    {
+        key: "cache-cleaner",
+        title: i18n.t("Browser cache cleaner"),
+        description: i18n.t("Enables the users to clear the browser cache"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/dhis-web-cache-cleaner.png",
+        action: {
+            type: "page",
+            value: "/cache-cleaner",
+        },
+    },
+    {
+        key: "profile",
+        title: i18n.t("User profile"),
+        description: i18n.t("Allows the users to edit account credentials and public profile"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/dhis-web-profile.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-user-profile/#/profile",
         },
     },
 ];
