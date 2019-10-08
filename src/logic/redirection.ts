@@ -13,13 +13,7 @@ const HEP_POLICY_UPTAKE_DATA_ENTRY = "uMCylDhyzRr";
 const NHWA_ADMINS = "EX00r2JNlQo";
 const NHWA_DATA_CLERKS = "DWWxlpQi9M8";
 const NHWA_DATA_MANAGERS = "xcDZeClzdse";
-const NHWA_DATA_VIEWERS = [
-    "gucuWTSL91y",
-    "qas5p6OQu1F",
-    "D7hWY1YuAy5",
-    "vP9XN5kQOUS",
-    "cXTWPVpochS",
-];
+const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
 
 const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
 
@@ -51,7 +45,7 @@ const configuration = [
     {
         programme: "nhwa-managers-viewers",
         title: "National Health Workforce Accounts Online Data Platform",
-        userGroupIds: NHWA_DATA_VIEWERS,
+        userGroupIds: [NHWA_DATA_VIEWERS],
         page: NHWALandingPage,
         header: nhwaHeader,
         data: nhwaViewerData,
