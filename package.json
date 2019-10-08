@@ -78,8 +78,8 @@
     "typescript": "3.4.5"
   },
   "manifest.webapp": {
-    "name": "EST Landing Page",
-    "description": "EyeSeeTea Landing Page for WHO",
+    "name": "Home Page",
+    "description": "WHO Home Page",
     "icons": {
       "48": "icon.png"
     },

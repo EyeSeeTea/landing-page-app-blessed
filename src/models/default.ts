@@ -1,9 +1,30 @@
 import i18n from "@dhis2/d2-i18n";
 
-export const defaultData = [
+export const defaultData = (
+    availableConfigurations: {
+        programme: string;
+        description: string;
+        icon: string
+    }[]
+) => [
     {
         key: "title-data",
-        title: i18n.t("World Health Organization"),
+        title: i18n.t("Available landing pages"),
+        rowLength: 1,
+    },
+    ...availableConfigurations.map(({ programme, description, icon }) => ({
+        key: programme,
+        title: description,
+        icon,
+        rowLength: 3,
+        action: {
+            type: "page",
+            value: `/${programme}`,
+        },
+    })),
+    {
+        key: "title-utilities",
+        title: i18n.t("DHIS2 Utilities"),
         rowLength: 1,
     },
     {

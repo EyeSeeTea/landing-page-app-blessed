@@ -2,11 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
+import { HeaderBar } from "@dhis2/ui-widgets";
 
 import { styles } from "../../../models/hepatitis/styles";
 import { goToDhis2Url } from "../../../utils";
 
-const LandingPage = ({ classes, history, baseUrl, items }) => {
+const LandingPage = ({ classes, history, baseUrl, items, header, title, username }) => {
+    const HeaderComponent = header || HeaderBar;
+
     const visitPage = ({ type, value }) => {
         switch (type) {
             case "page":
@@ -72,11 +75,14 @@ const LandingPage = ({ classes, history, baseUrl, items }) => {
     );
 
     return (
-        <div className={classes.root}>
-            <Grid container spacing={0} className={classes.container}>
-                {menuItems}
-            </Grid>
-        </div>
+        <React.Fragment>
+            <HeaderComponent baseUrl={baseUrl} title={title} username={username} />
+            <div className={classes.root}>
+                <Grid container spacing={0} className={classes.container}>
+                    {menuItems}
+                </Grid>
+            </div>
+        </React.Fragment>
     );
 };
 

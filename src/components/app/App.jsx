@@ -4,7 +4,6 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import OldMuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { createGenerateClassName } from "@material-ui/styles";
 import JssProvider from "react-jss/lib/JssProvider";
-import { HeaderBar } from "@dhis2/ui-widgets";
 
 import Root from "./Root";
 import WHOLoading from "../who-loading";
@@ -32,8 +31,6 @@ const App = ({ d2 }) => {
         });
     }, [baseUrl, loading, updateConfig]);
 
-    const Header = config.header || HeaderBar;
-
     return (
         <JssProvider generateClassName={generateClassName}>
             <MuiThemeProvider theme={muiTheme}>
@@ -43,7 +40,6 @@ const App = ({ d2 }) => {
                             <WHOLoading />
                         ) : (
                             <div id="app" className="content">
-                                <Header baseUrl={baseUrl} {...config} />
                                 <Root baseUrl={baseUrl} {...config} />
                             </div>
                         )}

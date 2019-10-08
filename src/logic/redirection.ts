@@ -17,38 +17,46 @@ const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
 
 const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
 
-const configuration = [
-    {
-        programme: "hepatitis",
-        title: "Home page for the Global Reporting System for Hepatitis",
-        userGroupIds: [HEP_CASCADE_CURE_DATA_ENTRY, HEP_POLICY_UPTAKE_DATA_ENTRY],
-        page: HepatitisLandingPage,
-        header: whoHeader,
-        data: hepatitisData,
-    },
+export const availableConfigurations = [
     {
         programme: "nhwa-managers",
         title: "National Health Workforce Accounts Online Data Platform",
+        description: "NHWA Data Managers and NHWA Admins",
         userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
         page: NHWALandingPage,
         header: nhwaHeader,
         data: nhwaData,
+        icon: "img/icon.png",
     },
     {
         programme: "nhwa-data-clerks",
         title: "National Health Workforce Accounts Online Data Platform",
+        description: "NHWA Data Clerks",
         userGroupIds: [NHWA_DATA_CLERKS],
         page: NHWALandingPage,
         header: nhwaHeader,
         data: nhwaClerkData,
+        icon: "img/icon.png",
     },
     {
         programme: "nhwa-managers-viewers",
         title: "National Health Workforce Accounts Online Data Platform",
+        description: "NHWA Data Viewers",
         userGroupIds: [NHWA_DATA_VIEWERS],
         page: NHWALandingPage,
         header: nhwaHeader,
         data: nhwaViewerData,
+        icon: "img/icon.png",
+    },
+    {
+        programme: "hepatitis",
+        title: "Home page for the Global Reporting System for Hepatitis",
+        description: "Hepatitis",
+        userGroupIds: [HEP_CASCADE_CURE_DATA_ENTRY, HEP_POLICY_UPTAKE_DATA_ENTRY],
+        page: HepatitisLandingPage,
+        header: whoHeader,
+        data: hepatitisData,
+        icon: "img/hepatitis.png",
     },
 ];
 
@@ -62,12 +70,12 @@ export const handleRedirection = async (baseUrl: string) => {
     })).data as { name: string; userGroups: Array<{ id: string }> };
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
-    const userConfig = configuration.find(config =>
+    const configurations = availableConfigurations.filter(config =>
         shouldRedirect(userGroupIds, config.userGroupIds)
     );
 
-    if (userConfig) {
-        return { username: name, ...userConfig };
+    if (configurations.length > 0) {
+        return { username: name, configurations };
     } else if (
         shouldRedirect(userGroupIds, [NTD_LSH_LandingPage_KEN]) &&
         (await existsDhis2Url(baseUrl, "/api/apps/Landing-Page/index.html"))
