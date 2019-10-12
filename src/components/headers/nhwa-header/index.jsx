@@ -4,12 +4,12 @@ import { withStyles } from "@material-ui/core";
 import { Button } from "@dhis2/ui-core";
 import i18n from "@dhis2/d2-i18n";
 
-import { goToDhis2Url } from "../../../utils";
+import { goToDhis2Url, goToDhis2InNewTab } from "../../../utils";
 import { styles } from "./styles";
 
 const NHWAHeader = ({ classes, baseUrl, title, username }) => {
     const logoutAction = () => goToDhis2Url(baseUrl, "/dhis-web-commons-security/logout.action");
-    const userGuideAction = () => goToDhis2Url(baseUrl, "/api/documents/p70dgNzx7KX/data");
+    const userGuideAction = () => goToDhis2InNewTab(baseUrl, "/api/documents/p70dgNzx7KX/data");
 
     return (
         <div className={classes.container}>

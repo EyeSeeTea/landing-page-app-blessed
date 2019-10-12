@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-09-17T15:37:25.336Z\n"
-"PO-Revision-Date: 2019-09-17T15:37:25.336Z\n"
+"POT-Creation-Date: 2019-10-08T10:10:14.224Z\n"
+"PO-Revision-Date: 2019-10-08T10:10:14.224Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -17,7 +17,10 @@ msgstr ""
 msgid "LOG OUT"
 msgstr ""
 
-msgid "World Health Organization"
+msgid "Available landing pages"
+msgstr ""
+
+msgid "DHIS2 Utilities"
 msgstr ""
 
 msgid "DHIS2"
