@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2019-08-07T14:26:49.235Z\n"
+"PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
+
+msgid "World Health Organization"
+msgstr "Organização Mundial da Saúde"
+
+msgid "Hepatitis"
+msgstr "Hepatite"
+
+msgid "DHIS2"
+msgstr "DHIS2"
+
+msgid "Data"
+msgstr "Dados"
+
+msgid "Cascade of care / cure"
+msgstr "Cascata de cuidados / cura"
+
+msgid "Enter data on the cascade of care / cure"
+msgstr "Inserir dados na cascata de cuidados / cura"
+
+msgid "Policy uptake"
+msgstr "Adopção de políticas"
+
+msgid "Report your situation with respect to policy uptake"
+msgstr "Relate sua situação com relação à adoção de políticas"
+
+msgid "Dashboard"
+msgstr "Painel de controle"
+
+msgid "Access a dashboard visualizing the data that you entered before"
+msgstr "Acesse um painel visualizando os dados inseridos antes"
+
+msgid "Other Useful Features"
+msgstr "Outros recursos úteis"
+
+msgid "Browser cache cleaner"
+msgstr "Limpador de cache do navegador"
+
+msgid "Enables the users to clear the browser cache"
+msgstr "Permite que os usuários limpem o cache do navegador"
+
+msgid "User profile"
+msgstr "Perfil de usuário"
+
+msgid "Allows the users to edit account credentials and public profile"
+msgstr "Permite que os usuários editem credenciais da conta e perfil público"
+

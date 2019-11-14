@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2019-08-07T14:26:49.235Z\n"
+"PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
+
+msgid "World Health Organization"
+msgstr "Всемирная организация здравоохранения"
+
+msgid "Hepatitis"
+msgstr "гепатит"
+
+msgid "DHIS2"
+msgstr "DHIS2"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Cascade of care / cure"
+msgstr "Каскад ухода / излечения"
+
+msgid "Enter data on the cascade of care / cure"
+msgstr "Введите данные каскада лечения / лечения"
+
+msgid "Policy uptake"
+msgstr "Внедрение политики"
+
+msgid "Report your situation with respect to policy uptake"
+msgstr "Сообщите о вашей ситуации в отношении принятия политики"
+
+msgid "Dashboard"
+msgstr "Приборная доска"
+
+msgid "Access a dashboard visualizing the data that you entered before"
+msgstr "Доступ к панели инструментов, визуализирующей данные, которые вы вводили ранее"
+
+msgid "Other Useful Features"
+msgstr "Другие полезные функции"
+
+msgid "Browser cache cleaner"
+msgstr "Очиститель кэша браузера"
+
+msgid "Enables the users to clear the browser cache"
+msgstr "Позволяет пользователям очищать кеш браузера"
+
+msgid "User profile"
+msgstr "Профиль пользователя"
+
+msgid "Allows the users to edit account credentials and public profile"
+msgstr "Позволяет пользователям редактировать учетные данные и общедоступный профиль"
+

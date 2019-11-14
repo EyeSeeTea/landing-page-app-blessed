@@ -1,0 +1,52 @@
+"Project-Id-Version: i18next-conv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2019-08-07T14:26:49.235Z\n"
+"PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
+
+msgid "World Health Organization"
+msgstr "Organisation Mondial de la Santé"
+
+msgid "Hepatitis"
+msgstr "Hepatite"
+
+msgid "DHIS2"
+msgstr "DHIS2"
+
+msgid "Data"
+msgstr "Données"
+
+msgid "Cascade of care / cure"
+msgstr "Cascade de Cure / soins"
+
+msgid "Enter data on the cascade of care / cure"
+msgstr "Entrer des données pour la cascade de cure / soins"
+
+msgid "Policy uptake"
+msgstr "Adoption de la politique"
+
+msgid "Report your situation with respect to policy uptake"
+msgstr "Faire un rapport de la situation en adoption de la politique"
+
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+msgid "Access a dashboard visualizing the data that you entered before"
+msgstr "Accès au tableau de bord pour visualiser des données vous avez entré avant"
+
+msgid "Other Useful Features"
+msgstr "Autres outils"
+
+msgid "Browser cache cleaner"
+msgstr "Netoyage de la cache"
+
+msgid "Enables the users to clear the browser cache"
+msgstr "Ceci permet l'utilisateur de netoyer la cache du navigateur"
+
+msgid "User profile"
+msgstr "Profil de l'utilisateur"
+
+msgid "Allows the users to edit account credentials and public profile"
+msgstr "Ceci permet les utilisateurs de modifier leur credentials et profil public"
