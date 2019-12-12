@@ -1,13 +1,13 @@
+import i18n from "@dhis2/d2-i18n";
 import axios from "axios";
 import _ from "lodash";
-import { goToDhis2Url, existsDhis2Url } from "../utils";
-import whoHeader from "../components/headers/who-header";
 import nhwaHeader from "../components/headers/nhwa-header";
+import whoHeader from "../components/headers/who-header";
 import { hepatitisData, nhwaData } from "../models";
-import { HepatitisLandingPage, NHWALandingPage } from "../pages";
-import { nhwaViewerData, nhwaClerkData } from "../models/nhwa";
+import { nhwaClerkData, nhwaViewerData } from "../models/nhwa";
 import { rabiesData } from "../models/rabies";
-import i18n from "../locales";
+import { HepatitisLandingPage, NHWALandingPage } from "../pages";
+import { existsDhis2Url, goToDhis2Url } from "../utils";
 
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
 const HEP_POLICY_UPTAKE_DATA_ENTRY = "uMCylDhyzRr";
