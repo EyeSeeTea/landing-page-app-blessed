@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import IFrame from "../../iframe";
-import { hideSelector, selector, sleep } from "../../../utils";
+import IFrame from "../../components/iframe";
+import { hideSelector, selector, sleep } from "../../utils";
 
 export const customize = async iframe => {
     const { contentWindow, contentDocument } = iframe;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import _ from "lodash";
 
 export const goToExternalUrl = externalUrl => {
     if (externalUrl) window.location = externalUrl;
@@ -16,7 +17,7 @@ export const goToDhis2Url = (baseUrl, path) => {
 };
 
 export const goToDhis2InNewTab = (baseUrl, path) => {
-    var win = window.open(cleanDhis2Url(baseUrl, path), '_blank');
+    const win = window.open(cleanDhis2Url(baseUrl, path), "_blank");
     win.focus();
 };
 
@@ -40,7 +41,7 @@ const waitForElement = async (document, selector, maxRetries = 15, retry = 0) =>
     return waitForElement(document, selector, maxRetries, retry + 1);
 };
 
-export const selector = (document, id, action = () => {}) =>
+export const selector = (document, id, action = _.noop) =>
     document.querySelectorAll(id).forEach(result => action(result));
 
 export const selectorWait = async (document, id, action) => {
@@ -64,7 +65,7 @@ const waitForText = async (document, text, retry = 0) => {
     return waitForText(document, text, retry + 1);
 };
 
-export const textSelector = async (document, text, action = () => {}) => {
+export const textSelector = async (document, text, action = _.noop) => {
     const element = await waitForText(document, text);
     if (element) action(element);
     return element;

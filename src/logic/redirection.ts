@@ -4,7 +4,7 @@ import { goToDhis2Url, existsDhis2Url } from "../utils";
 import whoHeader from "../components/headers/who-header";
 import nhwaHeader from "../components/headers/nhwa-header";
 import { hepatitisData, nhwaData } from "../models";
-import { HepatitisLandingPage, NHWALandingPage } from "../components/pages";
+import { HepatitisLandingPage, NHWALandingPage } from "../pages";
 import { nhwaViewerData, nhwaClerkData } from "../models/nhwa";
 
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -65,9 +65,11 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
 
 export const handleRedirection = async (baseUrl: string) => {
     const url = `${baseUrl}/api/me.json?fields=name,userGroups[id]`;
-    const { name, userGroups } = (await axios.get(url, {
-        withCredentials: true,
-    })).data as { name: string; userGroups: Array<{ id: string }> };
+    const { name, userGroups } = (
+        await axios.get(url, {
+            withCredentials: true,
+        })
+    ).data as { name: string; userGroups: Array<{ id: string }> };
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
     const configurations = availableConfigurations.filter(config =>

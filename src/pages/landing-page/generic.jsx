@@ -4,8 +4,8 @@ import { Grid, Typography, withStyles } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import { HeaderBar } from "@dhis2/ui-widgets";
 
-import { styles } from "../../../models/hepatitis/styles";
-import { goToDhis2Url } from "../../../utils";
+import { styles } from "../../models/hepatitis/styles";
+import { goToDhis2Url } from "../../utils";
 
 const LandingPage = ({ classes, history, baseUrl, items, header, title, username }) => {
     const HeaderComponent = header || HeaderBar;

@@ -2,10 +2,10 @@ import React from "react";
 import { withStyles } from "@material-ui/core";
 
 import LandingPage from "./generic";
-import { styles } from "../../../models/hepatitis/styles";
+import { styles } from "../../models/nhwa/styles";
 
-const HepatitisLandingPage = props => {
+const NHWALandingPage = props => {
     return <LandingPage {...props} />;
 };
 
-export default withStyles(styles)(HepatitisLandingPage);
+export default withStyles(styles)(NHWALandingPage);

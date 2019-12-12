@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { filterOrgUnits } from "../../components/pages/hepatitis-form-page/common";
+import { filterOrgUnits } from "../../pages/hepatitis-form-page/common";
 import {
     selectorWait,
     selector,
@@ -86,13 +86,12 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
         if (!isAdmin) e.style.pointerEvents = "none";
     });
 
-    const { organisationUnits: visibleOrganisationUnits } = (await axios.get(
-        `${baseUrl}/api/programs/${element}.json`,
-        {
+    const { organisationUnits: visibleOrganisationUnits } = (
+        await axios.get(`${baseUrl}/api/programs/${element}.json`, {
             params: { fields: "organisationUnits" },
             withCredentials: true,
-        }
-    )).data;
+        })
+    ).data;
 
     selectorWait(document, "#orgUnitTree", e => {
         e.addEventListener("click", event => {

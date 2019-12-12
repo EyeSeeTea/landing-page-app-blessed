@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { filterOrgUnits } from "../../components/pages/hepatitis-form-page/common";
+import { filterOrgUnits } from "../../pages/hepatitis-form-page/common";
 import { selectorWait, selector, hideSelector, sleep } from "../../utils";
 
 const selectDataset = (document, contentWindow, dataset) =>
@@ -80,13 +80,12 @@ export const dataEntryStyling = async (iframe, { organisationUnit, element, peri
         selectPeriod(document, contentWindow, period);
     }
 
-    const { organisationUnits: visibleOrganisationUnits } = (await axios.get(
-        `${baseUrl}/api/dataSets/${element}.json`,
-        {
+    const { organisationUnits: visibleOrganisationUnits } = (
+        await axios.get(`${baseUrl}/api/dataSets/${element}.json`, {
             params: { fields: "organisationUnits" },
             withCredentials: true,
-        }
-    )).data;
+        })
+    ).data;
 
     await selectorWait(document, "#orgUnitTree", e => {
         e.addEventListener("click", event => {
