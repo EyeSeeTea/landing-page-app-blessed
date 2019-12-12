@@ -90,6 +90,7 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
         `${baseUrl}/api/programs/${element}.json`,
         {
             params: { fields: "organisationUnits" },
+            withCredentials: true,
         }
     )).data;
 

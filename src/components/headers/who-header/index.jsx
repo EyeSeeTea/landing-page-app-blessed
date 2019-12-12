@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { withStyles, Typography, Chip } from "@material-ui/core";
 import { Home, ExitToApp } from "@material-ui/icons";
+import i18n from "@dhis2/d2-i18n";
 
 import { styles } from "./styles";
-import { goToExternalUrl, goToDhis2Url } from "../../utils";
+import { goToExternalUrl, goToDhis2Url } from "../../../utils";
 
 const WHOHeader = ({ classes, history, baseUrl, title, backUrl }) => {
     const actionWHO = () => goToExternalUrl("https://who.int");
@@ -24,7 +25,7 @@ const WHOHeader = ({ classes, history, baseUrl, title, backUrl }) => {
 
             <Chip
                 icon={<ExitToApp />}
-                label="LOG OUT"
+                label={i18n.t("LOG OUT")}
                 className={classes.logout}
                 onClick={actionLogout}
             />

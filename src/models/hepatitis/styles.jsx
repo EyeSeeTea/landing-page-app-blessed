@@ -28,6 +28,7 @@ export const styles = _theme => ({
         margin: 15,
         color: "#000000",
     },
+    iconContainer: {},
     icon: {
         margin: 15,
         height: "60px",
@@ -35,6 +36,10 @@ export const styles = _theme => ({
     smallIcon: {
         margin: 15,
         height: "35px",
+    },
+    description: {},
+    small: {
+        fontSize: "smaller",
     },
     bottomLine: {
         marginTop: "20px",

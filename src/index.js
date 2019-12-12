@@ -8,6 +8,7 @@ import { DataProvider } from "@dhis2/app-runtime";
 import "font-awesome/css/font-awesome.min.css";
 
 import App from "./components/app/App";
+import * as serviceWorker from "./serviceWorker";
 import "./locales";
 
 function isLangRTL(code) {
@@ -76,3 +77,6 @@ async function main() {
 }
 
 main();
+
+// Enable service worker for caching
+serviceWorker.unregister();

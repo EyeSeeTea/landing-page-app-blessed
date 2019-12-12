@@ -1,50 +1,89 @@
 import axios from "axios";
 import _ from "lodash";
 import { goToDhis2Url, existsDhis2Url } from "../utils";
+import whoHeader from "../components/headers/who-header";
+import nhwaHeader from "../components/headers/nhwa-header";
+import { hepatitisData, nhwaData } from "../models";
+import { HepatitisLandingPage, NHWALandingPage } from "../components/pages";
+import { nhwaViewerData, nhwaClerkData } from "../models/nhwa";
 
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
 const HEP_POLICY_UPTAKE_DATA_ENTRY = "uMCylDhyzRr";
-const NHWA_TEAM = "fxyLXZ10TXC";
+
+const NHWA_ADMINS = "EX00r2JNlQo";
+const NHWA_DATA_CLERKS = "DWWxlpQi9M8";
+const NHWA_DATA_MANAGERS = "xcDZeClzdse";
+const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
+
 const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
 
-const USER_GROUPS_HEPATITIS = [HEP_CASCADE_CURE_DATA_ENTRY, HEP_POLICY_UPTAKE_DATA_ENTRY];
-const USER_GROUPS_NHWA = [NHWA_TEAM];
-const USER_GROUPS_NTD = [NTD_LSH_LandingPage_KEN];
+export const availableConfigurations = [
+    {
+        programme: "nhwa-managers",
+        title: "National Health Workforce Accounts Online Data Platform",
+        description: "NHWA Data Managers and NHWA Admins",
+        userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
+        page: NHWALandingPage,
+        header: nhwaHeader,
+        data: nhwaData,
+        icon: "img/icon.png",
+    },
+    {
+        programme: "nhwa-data-clerks",
+        title: "National Health Workforce Accounts Online Data Platform",
+        description: "NHWA Data Clerks",
+        userGroupIds: [NHWA_DATA_CLERKS],
+        page: NHWALandingPage,
+        header: nhwaHeader,
+        data: nhwaClerkData,
+        icon: "img/icon.png",
+    },
+    {
+        programme: "nhwa-managers-viewers",
+        title: "National Health Workforce Accounts Online Data Platform",
+        description: "NHWA Data Viewers",
+        userGroupIds: [NHWA_DATA_VIEWERS],
+        page: NHWALandingPage,
+        header: nhwaHeader,
+        data: nhwaViewerData,
+        icon: "img/icon.png",
+    },
+    {
+        programme: "hepatitis",
+        title: "Home page for the Global Reporting System for Hepatitis",
+        description: "Hepatitis",
+        userGroupIds: [HEP_CASCADE_CURE_DATA_ENTRY, HEP_POLICY_UPTAKE_DATA_ENTRY],
+        page: HepatitisLandingPage,
+        header: whoHeader,
+        data: hepatitisData,
+        icon: "img/hepatitis.png",
+    },
+];
 
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
-interface Response {
-    userGroups: Array<{ id: string }>;
-}
-
 export const handleRedirection = async (baseUrl: string) => {
-    const url = `${baseUrl}/api/me.json?fields=userGroups[id]`;
-    const { userGroups } = (await axios.get(url, {
+    const url = `${baseUrl}/api/me.json?fields=name,userGroups[id]`;
+    const { name, userGroups } = (await axios.get(url, {
         withCredentials: true,
-    })).data as Response;
+    })).data as { name: string; userGroups: Array<{ id: string }> };
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
+    const configurations = availableConfigurations.filter(config =>
+        shouldRedirect(userGroupIds, config.userGroupIds)
+    );
 
-    if (shouldRedirect(userGroupIds, USER_GROUPS_HEPATITIS)) {
-        if (window.location.hash === "#/") window.location.hash = "/hepatitis";
-        return {
-            title: "Home page for the Global Reporting System for Hepatitis",
-            backUrl: "/hepatitis",
-        };
+    if (configurations.length > 0) {
+        return { username: name, configurations };
     } else if (
-        shouldRedirect(userGroupIds, [...USER_GROUPS_NTD, ...USER_GROUPS_NHWA]) &&
+        shouldRedirect(userGroupIds, [NTD_LSH_LandingPage_KEN]) &&
         (await existsDhis2Url(baseUrl, "/api/apps/Landing-Page/index.html"))
     ) {
         goToDhis2Url(baseUrl, "/api/apps/Landing-Page/index.html");
         return null;
-    } else if (process.env.NODE_ENV === "production") {
+    } else {
         goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
         return null;
-    } else {
-        return {
-            title: "Landing Page Development",
-            backUrl: "/",
-        };
     }
 };

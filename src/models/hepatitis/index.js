@@ -7,12 +7,14 @@ const actionCascadeCare = async (baseUrl, cb) => {
 
     const { dataInputPeriods } = (await axios.get(`${baseUrl}/api/dataSets/${dataSet}.json`, {
         params: { fields: "dataInputPeriods" },
+        withCredentials: true,
     })).data;
 
     const period = _.max(dataInputPeriods.map(dip => parseInt(dip.period.id)));
 
     const { organisationUnits } = (await axios.get(`${baseUrl}/api/me.json`, {
         params: { fields: "organisationUnits[id,dataSets]" },
+        withCredentials: true,
     })).data;
 
     // TODO: Edge case not controlled (multiple valid OUs)
@@ -43,6 +45,7 @@ const actionPolicyUptake = async (baseUrl, cb) => {
                 fields: "programStages,categoryCombo[id,categories[categoryOptions[id,code]]]",
                 paging: false,
             },
+            withCredentials: true,
         }
     )).data;
 
@@ -56,6 +59,7 @@ const actionPolicyUptake = async (baseUrl, cb) => {
 
     const { organisationUnits } = (await axios.get(`${baseUrl}/api/me.json`, {
         params: { fields: "organisationUnits[id,programs]" },
+        withCredentials: true,
     })).data;
 
     // TODO: Edge case not controlled (multiple valid OUs)
@@ -73,6 +77,7 @@ const actionPolicyUptake = async (baseUrl, cb) => {
                 attributeCos: categoryOption.id,
                 paging: false,
             },
+            withCredentials: true,
         })).data;
 
         const existsEvent = !!events[0];
@@ -92,12 +97,18 @@ const actionPolicyUptake = async (baseUrl, cb) => {
             // TODO: Edge case not controlled (multiple events already recorded)
             const event = existsEvent
                 ? events[0].event
-                : (await axios.post(`${baseUrl}/api/events`, {
-                      program,
-                      orgUnit: organisationUnit.id,
-                      attributeCategoryOptions: categoryOption.id,
-                      eventDate: new Date(),
-                  })).data.response.importSummaries[0].reference;
+                : (await axios.post(
+                      `${baseUrl}/api/events`,
+                      {
+                          program,
+                          orgUnit: organisationUnit.id,
+                          attributeCategoryOptions: categoryOption.id,
+                          eventDate: new Date(),
+                      },
+                      {
+                          withCredentials: true,
+                      }
+                  )).data.response.importSummaries[0].reference;
 
             cb({
                 type: "page",
@@ -118,6 +129,7 @@ export const hepatitisData = [
         key: "title-data",
         title: i18n.t("Data"),
         rowLength: 1,
+        enableBottomLine: true,
     },
     {
         key: "data-entry",
@@ -157,6 +169,7 @@ export const hepatitisData = [
         title: i18n.t("Other Useful Features"),
         rowLength: 1,
         size: "small",
+        enableBottomLine: true,
     },
     {
         key: "cache-cleaner",

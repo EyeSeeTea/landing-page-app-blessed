@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { createGenerateClassName, MuiThemeProvider } from "@material-ui/core/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import OldMuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { createGenerateClassName } from "@material-ui/styles";
 import JssProvider from "react-jss/lib/JssProvider";
 
 import Root from "./Root";
-import WHOHeader from "../who-header";
 import WHOLoading from "../who-loading";
 import { muiTheme } from "./themes/dhis2.theme";
 import muiThemeLegacy from "./themes/dhis2-legacy.theme";
@@ -20,16 +20,16 @@ const generateClassName = createGenerateClassName({
 
 const App = ({ d2 }) => {
     const baseUrl = d2.system.systemInfo.contextPath;
-    const [headerOptions, updateHeader] = useState({});
+    const [config, updateConfig] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         handleRedirection(baseUrl).then(options => {
-            updateHeader(options);
+            updateConfig(options);
             if (options.title) document.title = options.title;
             sleep(1000).then(() => setLoading(false));
         });
-    }, [baseUrl, loading, updateHeader]);
+    }, [baseUrl, loading, updateConfig]);
 
     return (
         <JssProvider generateClassName={generateClassName}>
@@ -40,8 +40,7 @@ const App = ({ d2 }) => {
                             <WHOLoading />
                         ) : (
                             <div id="app" className="content">
-                                <WHOHeader baseUrl={baseUrl} {...headerOptions} />
-                                <Root baseUrl={baseUrl} />
+                                <Root baseUrl={baseUrl} {...config} />
                             </div>
                         )}
                     </React.Fragment>

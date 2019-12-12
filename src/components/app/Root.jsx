@@ -2,26 +2,43 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 
-import { LandingPage, HepatitisFormPage, CacheCleanerPage } from "../pages";
-import { defaultData } from "../../models/default";
-import { hepatitisData } from "../../models/hepatitis";
+import { GenericLandingPage, HepatitisFormPage, CacheCleanerPage } from "../pages";
+import { defaultData } from "../../models";
 
-const Root = ({ baseUrl }) => {
+const Root = ({ baseUrl, username, configurations }) => {
     return (
         <Switch>
-            <Route
-                path={"/hepatitis/:type(dataSet|program)/:element"}
-                render={() => <HepatitisFormPage baseUrl={baseUrl} />}
-            />
-
-            <Route
-                path="/hepatitis"
-                render={() => <LandingPage baseUrl={baseUrl} items={hepatitisData} />}
-            />
-
             <Route path={"/cache-cleaner"} render={() => <CacheCleanerPage baseUrl={baseUrl} />} />
 
-            <Route render={() => <LandingPage baseUrl={baseUrl} items={defaultData} />} />
+            {configurations.find(({ programme }) => programme === "hepatitis") && (
+                <Route
+                    path={"/hepatitis/:type(dataSet|program)/:element"}
+                    render={() => <HepatitisFormPage baseUrl={baseUrl} />}
+                />
+            )}
+
+            {configurations.map(({ programme, page: PageComponent, data, header }) => (
+                <Route
+                    key={programme}
+                    path={configurations.length > 1 ? `/${programme}` : "/"}
+                    render={() => (
+                        <PageComponent
+                            header={header}
+                            baseUrl={baseUrl}
+                            username={username}
+                            items={data}
+                        />
+                    )}
+                />
+            ))}
+
+            {configurations.length !== 1 && (
+                <Route
+                    render={() => (
+                        <GenericLandingPage items={defaultData(configurations)} baseUrl={baseUrl} />
+                    )}
+                />
+            )}
         </Switch>
     );
 };

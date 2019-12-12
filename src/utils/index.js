@@ -15,6 +15,11 @@ export const goToDhis2Url = (baseUrl, path) => {
     if (baseUrl && path) window.location = cleanDhis2Url(baseUrl, path);
 };
 
+export const goToDhis2InNewTab = (baseUrl, path) => {
+    var win = window.open(cleanDhis2Url(baseUrl, path), '_blank');
+    win.focus();
+};
+
 export const existsDhis2Url = async (baseUrl, path) => {
     try {
         await axios.get(cleanDhis2Url(baseUrl, path));
