@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { filterOrgUnits } from "../../pages/hepatitis-form-page/common";
+import { filterOrgUnits } from "../../pages/entry-capture-page/common";
 import {
     selectorWait,
     selector,
@@ -60,7 +60,7 @@ const recurrentTasks = document => {
     });
 };
 
-export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) => {
+export const policyUptakeStyling = async (iframe, { baseUrl, element, event }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document } = contentWindow || contentDocument;
     const isAdmin = !event;

@@ -33,7 +33,7 @@ const recurrentTasks = (document, isAdmin) => {
         });
 };
 
-export const cascadeStyling = async (iframe, { organisationUnit, element, period, baseUrl }) => {
+export const rabiesStyling = async (iframe, { organisationUnit, element, period, baseUrl }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document, selection } = contentWindow || contentDocument;
     const isAdmin = !organisationUnit;

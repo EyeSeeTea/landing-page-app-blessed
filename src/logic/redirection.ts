@@ -6,6 +6,8 @@ import nhwaHeader from "../components/headers/nhwa-header";
 import { hepatitisData, nhwaData } from "../models";
 import { HepatitisLandingPage, NHWALandingPage } from "../pages";
 import { nhwaViewerData, nhwaClerkData } from "../models/nhwa";
+import { rabiesData } from "../models/rabies";
+import i18n from "../locales";
 
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
 const HEP_POLICY_UPTAKE_DATA_ENTRY = "uMCylDhyzRr";
@@ -16,12 +18,13 @@ const NHWA_DATA_MANAGERS = "xcDZeClzdse";
 const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
 
 const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
+const NTD_RAB_WHO_Official = "Zr1fdsbkiAR";
 
 export const availableConfigurations = [
     {
         programme: "nhwa-managers",
-        title: "National Health Workforce Accounts Online Data Platform",
-        description: "NHWA Data Managers and NHWA Admins",
+        title: i18n.t("National Health Workforce Accounts Online Data Platform"),
+        description: i18n.t("NHWA Data Managers and NHWA Admins"),
         userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
         page: NHWALandingPage,
         header: nhwaHeader,
@@ -30,8 +33,8 @@ export const availableConfigurations = [
     },
     {
         programme: "nhwa-data-clerks",
-        title: "National Health Workforce Accounts Online Data Platform",
-        description: "NHWA Data Clerks",
+        title: i18n.t("National Health Workforce Accounts Online Data Platform"),
+        description: i18n.t("NHWA Data Clerks"),
         userGroupIds: [NHWA_DATA_CLERKS],
         page: NHWALandingPage,
         header: nhwaHeader,
@@ -40,8 +43,8 @@ export const availableConfigurations = [
     },
     {
         programme: "nhwa-managers-viewers",
-        title: "National Health Workforce Accounts Online Data Platform",
-        description: "NHWA Data Viewers",
+        title: i18n.t("National Health Workforce Accounts Online Data Platform"),
+        description: i18n.t("NHWA Data Viewers"),
         userGroupIds: [NHWA_DATA_VIEWERS],
         page: NHWALandingPage,
         header: nhwaHeader,
@@ -50,13 +53,23 @@ export const availableConfigurations = [
     },
     {
         programme: "hepatitis",
-        title: "Home page for the Global Reporting System for Hepatitis",
-        description: "Hepatitis",
+        title: i18n.t("Home page for the Global Reporting System for Hepatitis"),
+        description: i18n.t("Hepatitis"),
         userGroupIds: [HEP_CASCADE_CURE_DATA_ENTRY, HEP_POLICY_UPTAKE_DATA_ENTRY],
         page: HepatitisLandingPage,
         header: whoHeader,
         data: hepatitisData,
         icon: "img/hepatitis.png",
+    },
+    {
+        programme: "rabies",
+        title: i18n.t("Home page for the Rabies module"),
+        description: i18n.t("Rabies"),
+        userGroupIds: [NTD_RAB_WHO_Official],
+        page: HepatitisLandingPage,
+        header: whoHeader,
+        data: rabiesData,
+        icon: "img/rabies-dog.svg",
     },
 ];
 

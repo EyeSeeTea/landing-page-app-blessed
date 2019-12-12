@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-10-08T10:10:14.224Z\n"
-"PO-Revision-Date: 2019-10-08T10:10:14.224Z\n"
+"POT-Creation-Date: 2019-12-12T16:52:28.645Z\n"
+"PO-Revision-Date: 2019-12-12T16:52:28.645Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -15,6 +15,33 @@ msgid "Logout"
 msgstr ""
 
 msgid "LOG OUT"
+msgstr ""
+
+msgid "World Health Organization"
+msgstr ""
+
+msgid "National Health Workforce Accounts Online Data Platform"
+msgstr ""
+
+msgid "NHWA Data Managers and NHWA Admins"
+msgstr ""
+
+msgid "NHWA Data Clerks"
+msgstr ""
+
+msgid "NHWA Data Viewers"
+msgstr ""
+
+msgid "Home page for the Global Reporting System for Hepatitis"
+msgstr ""
+
+msgid "Hepatitis"
+msgstr ""
+
+msgid "Home page for the Rabies module"
+msgstr ""
+
+msgid "Rabies"
 msgstr ""
 
 msgid "Available landing pages"
@@ -129,9 +156,6 @@ msgstr ""
 msgid "Access to the NHWA reports"
 msgstr ""
 
-msgid "Other Useful features"
-msgstr ""
-
 msgid "Data Quality"
 msgstr ""
 
@@ -144,4 +168,19 @@ msgid "Approval"
 msgstr ""
 
 msgid "Enables the users to approves the data submitted in the system"
+msgstr ""
+
+msgid "Rabies data"
+msgstr ""
+
+msgid "Human rabies data entry"
+msgstr ""
+
+msgid "Enter data on the human rabies data entry"
+msgstr ""
+
+msgid "Animal rabies data entry"
+msgstr ""
+
+msgid "Enter data on the animal rabies data entry"
 msgstr ""
