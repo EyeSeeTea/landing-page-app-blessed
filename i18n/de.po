@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2019-08-07T14:26:49.235Z\n"
+"PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
+
+msgid "World Health Organization"
+msgstr "Weltgesundheitsorganisation"
+
+msgid "Hepatitis"
+msgstr "Hepatitis"
+
+msgid "DHIS2"
+msgstr "DHIS2"
+
+msgid "Data"
+msgstr "Daten"
+
+msgid "Cascade of care / cure"
+msgstr "Kaskade der Pflege / Heilung"
+
+msgid "Enter data on the cascade of care / cure"
+msgstr "Geben Sie Daten zur Kaskade von Pflege / Heilung ein"
+
+msgid "Policy uptake"
+msgstr "Policenübernahme"
+
+msgid "Report your situation with respect to policy uptake"
+msgstr "Berichten Sie über Ihre Situation in Bezug auf die Inanspruchnahme von Richtlinien"
+
+msgid "Dashboard"
+msgstr "Instrumententafel"
+
+msgid "Access a dashboard visualizing the data that you entered before"
+msgstr "Greifen Sie auf ein Dashboard zu, in dem die zuvor eingegebenen Daten angezeigt werden"
+
+msgid "Other Useful Features"
+msgstr "Andere nützliche Funktionen"
+
+msgid "Browser cache cleaner"
+msgstr "Browser Cache Cleaner"
+
+msgid "Enables the users to clear the browser cache"
+msgstr "Ermöglicht den Benutzern, den Browser-Cache zu löschen"
+
+msgid "User profile"
+msgstr "Benutzerprofil"
+
+msgid "Allows the users to edit account credentials and public profile"
+msgstr "Ermöglicht den Benutzern das Bearbeiten von Kontoanmeldeinformationen und des öffentlichen Profils"
+
