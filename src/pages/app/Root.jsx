@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { HashRouter, Route, Switch } from "react-router-dom";
+import { HeaderBar } from "@dhis2/ui-widgets";
 
 import { GenericLandingPage, EntryCapturePage, CacheCleanerPage } from "..";
 import { defaultData } from "../../models";
@@ -9,12 +10,11 @@ const Root = ({ baseUrl, username, configurations }) => {
     return (
         <HashRouter>
             <Switch>
-                <Route
-                    path={"/cache-cleaner"}
-                    render={() => <CacheCleanerPage baseUrl={baseUrl} />}
-                />
-
                 {configurations.map(({ programme, page: PageComponent, data, header }) => [
+                    <Route
+                        path={`/${programme}/cache-cleaner`}
+                        render={() => <CacheCleanerPage header={header} baseUrl={baseUrl} />}
+                    />,
                     <Route
                         path={`/${programme}/:type(dataSet|program)/:element`}
                         render={() => <EntryCapturePage header={header} baseUrl={baseUrl} />}
@@ -33,7 +33,11 @@ const Root = ({ baseUrl, username, configurations }) => {
                     />,
                 ])}
 
-                {configurations.length !== 1 && (
+                {configurations.length !== 1 && [
+                    <Route
+                        path={`/cache-cleaner`}
+                        render={() => <CacheCleanerPage header={HeaderBar} baseUrl={baseUrl} />}
+                    />,
                     <Route
                         render={() => (
                             <GenericLandingPage
@@ -41,8 +45,8 @@ const Root = ({ baseUrl, username, configurations }) => {
                                 baseUrl={baseUrl}
                             />
                         )}
-                    />
-                )}
+                    />,
+                ]}
             </Switch>
         </HashRouter>
     );

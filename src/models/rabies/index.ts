@@ -9,8 +9,28 @@ const actionHumanRabiesDataEntry = async (baseUrl: string, cb: Function) =>
 const actionAnimalRabiesDataEntry = async (baseUrl: string, cb: Function) =>
     actionRabiesDataEntry(baseUrl, cb, "animal");
 
-const actionRabiesDataEntry = async (baseUrl: string, cb: Function, type: "animal" | "human") => {
+const attributesByUserRole: {
+    [id: string]: string[];
+} = {
+    foOXWD4beuA: ["pvLXvZvAtZV", "Os3X3EgDGn0", "rZePNSA78l8", "FYtmoLvrfbh"],
+    K7VPSVrAYeV: ["rZePNSA78l8"],
+};
+
+const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal" | "human") => {
     const dataSet = "S1UMweeoPsi";
+
+    const { userGroups } = (
+        await axios.get(`${baseUrl}/api/me.json`, {
+            params: { fields: "userGroups" },
+            withCredentials: true,
+        })
+    ).data;
+
+    const attributes = _(userGroups)
+        .map(({ id }) => attributesByUserRole[id] ?? [])
+        .flatten()
+        .uniq()
+        .value();
 
     const { dataInputPeriods } = (
         await axios.get(`${baseUrl}/api/dataSets/${dataSet}.json`, {
@@ -19,29 +39,34 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, type: "anima
         })
     ).data;
 
-    const period = _.max(dataInputPeriods.map((dip: { period: Ref }) => parseInt(dip.period.id)));
+    const period =
+        _.max(dataInputPeriods.map((dip: { period: Ref }) => parseInt(dip.period.id))) ??
+        new Date().getFullYear() - 1;
 
     const { organisationUnits } = (
         await axios.get(`${baseUrl}/api/me.json`, {
-            params: { fields: "organisationUnits[id,dataSets]" },
+            params: { fields: "organisationUnits[id,dataSets,level]" },
             withCredentials: true,
         })
     ).data;
 
-    // TODO: Edge case not controlled (multiple valid OUs)
-    const organisationUnit = _.find(organisationUnits, ou =>
+    const organisationUnit = _.filter(organisationUnits, ou =>
         ou.dataSets.map((ds: Ref) => ds.id).includes(dataSet)
     );
 
-    if (organisationUnit) {
+    if (organisationUnit.length === 1 && organisationUnit[0].level > 1) {
         cb({
             type: "page",
-            value: `rabies/dataSet/${dataSet}?period=${period}&tab=${type}&organisationUnit=${organisationUnit.id}`,
+            value: `rabies/dataSet/${dataSet}?period=${period}&tab=${tab}&attributes=${attributes.join(
+                ","
+            )}&organisationUnit=${organisationUnit[0].id}`,
         });
     } else {
         cb({
             type: "page",
-            value: `rabies/dataSet/${dataSet}?period=${period}&tab=${type}`,
+            value: `rabies/dataSet/${dataSet}?period=${period}&tab=${tab}&attributes=${attributes.join(
+                ","
+            )}`,
         });
     }
 };
@@ -83,7 +108,7 @@ export const rabiesData = [
         icon: "img/dhis-web-dashboard.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-dashboard/index.action",
+            value: "/dhis-web-dashboard/#/J4smYtbckhv",
         },
     },
     {
@@ -102,7 +127,7 @@ export const rabiesData = [
         icon: "img/dhis-web-cache-cleaner.png",
         action: {
             type: "page",
-            value: "/cache-cleaner",
+            value: "/rabies/cache-cleaner",
         },
     },
     {
