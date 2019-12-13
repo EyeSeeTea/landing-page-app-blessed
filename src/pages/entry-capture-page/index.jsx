@@ -21,25 +21,27 @@ const config = {
 
 const EntryCapturePage = ({ match, location, baseUrl, header: Header }) => {
     const { type, element } = match.params;
-    const { event, period, organisationUnit, tab } = qs.parse(location.search, {
+    const params = qs.parse(location.search, {
         ignoreQueryPrefix: true,
     });
 
     const isDataSet = type === "dataSet";
     const dataSetUrl = `${baseUrl}/dhis-web-dataentry/index.action`;
-    const programUrl = event
-        ? `${baseUrl}/dhis-web-event-capture/index.html#/?event=${event}`
+    const programUrl = params.event
+        ? `${baseUrl}/dhis-web-event-capture/index.html#/?event=${params.event}`
         : `${baseUrl}/dhis-web-event-capture/index.html`;
     const { styling = isDataSet ? cascadeStyling : policyUptakeStyling } = config[element];
 
-    return [
-        <Header />,
-        <IFrame
-            src={isDataSet ? dataSetUrl : programUrl}
-            customize={styling}
-            builder={{ baseUrl, element, event, period, organisationUnit, tab }}
-        />,
-    ];
+    return (
+        <React.Fragment>
+            <Header baseUrl={baseUrl} />
+            <IFrame
+                src={isDataSet ? dataSetUrl : programUrl}
+                customize={styling}
+                builder={{ baseUrl, element, ...params }}
+            />
+        </React.Fragment>
+    );
 };
 
 EntryCapturePage.propTypes = {
