@@ -2,6 +2,7 @@ import i18n from "@dhis2/d2-i18n";
 import axios from "axios";
 import _ from "lodash";
 import { Ref } from "d2-api";
+import { NTD_NZD_admin, NTD_RAB_Estimates, NTD_RAB_WHO_Official } from "../../logic/redirection";
 
 const actionHumanRabiesDataEntry = async (baseUrl: string, cb: Function) =>
     actionRabiesDataEntry(baseUrl, cb, "human");
@@ -9,11 +10,17 @@ const actionHumanRabiesDataEntry = async (baseUrl: string, cb: Function) =>
 const actionAnimalRabiesDataEntry = async (baseUrl: string, cb: Function) =>
     actionRabiesDataEntry(baseUrl, cb, "animal");
 
+const SOURCE_A = "pvLXvZvAtZV";
+const SOURCE_B = "Os3X3EgDGn0";
+const SOURCE_C = "rZePNSA78l8";
+const SOURCE_D = "FYtmoLvrfbh";
+
 const attributesByUserRole: {
     [id: string]: string[];
 } = {
-    foOXWD4beuA: ["pvLXvZvAtZV", "Os3X3EgDGn0", "rZePNSA78l8", "FYtmoLvrfbh"],
-    K7VPSVrAYeV: ["rZePNSA78l8"],
+    [NTD_NZD_admin]: [SOURCE_A, SOURCE_B, SOURCE_C, SOURCE_D],
+    [NTD_RAB_Estimates]: [SOURCE_C],
+    [NTD_RAB_WHO_Official]: [SOURCE_A],
 };
 
 const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal" | "human") => {
@@ -105,6 +112,57 @@ export const rabiesData = [
         title: i18n.t("Dashboard"),
         description: i18n.t("Access a dashboard visualizing the data that you entered before"),
         rowLength: 3,
+        icon: "img/dhis-web-dashboard.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-dashboard/#/J4smYtbckhv",
+        },
+    },
+    {
+        key: "title-other",
+        title: i18n.t("Other Useful Features"),
+        rowLength: 1,
+        size: "small",
+        enableBottomLine: true,
+    },
+    {
+        key: "cache-cleaner",
+        title: i18n.t("Browser cache cleaner"),
+        description: i18n.t("Enables the users to clear the browser cache"),
+        rowLength: 2,
+        size: "small",
+        icon: "img/dhis-web-cache-cleaner.png",
+        action: {
+            type: "page",
+            value: "/rabies/cache-cleaner",
+        },
+    },
+    {
+        key: "profile",
+        title: i18n.t("User profile"),
+        description: i18n.t("Allows the users to edit account credentials and public profile"),
+        rowLength: 2,
+        size: "small",
+        icon: "img/dhis-web-profile.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-user-profile/#/profile",
+        },
+    },
+];
+
+export const simpleRabiesData = [
+    {
+        key: "title-data",
+        title: i18n.t("Rabies data"),
+        rowLength: 1,
+        enableBottomLine: true,
+    },
+    {
+        key: "dashboard",
+        title: i18n.t("Dashboard"),
+        description: i18n.t("Access a dashboard visualizing the data that you entered before"),
+        rowLength: 1,
         icon: "img/dhis-web-dashboard.png",
         action: {
             type: "dhisRedirect",
