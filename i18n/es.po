@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2019-12-12T16:52:28.645Z\n"
+"POT-Creation-Date: 2019-12-13T06:28:07.165Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Hepatitis"
 msgstr "Hepatitis"
 
-msgid "Home page for the Rabies module"
+msgid "WHO Rabies Webpage"
 msgstr ""
 
 msgid "Rabies"
