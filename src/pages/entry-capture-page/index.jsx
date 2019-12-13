@@ -19,7 +19,7 @@ const config = {
     },
 };
 
-const EntryCapturePage = ({ match, location, baseUrl, header: Header }) => {
+const EntryCapturePage = ({ match, location, baseUrl, title, header: Header }) => {
     const { type, element } = match.params;
     const params = qs.parse(location.search, {
         ignoreQueryPrefix: true,
@@ -34,7 +34,7 @@ const EntryCapturePage = ({ match, location, baseUrl, header: Header }) => {
 
     return (
         <React.Fragment>
-            <Header baseUrl={baseUrl} />
+            <Header baseUrl={baseUrl} title={title} />
             <IFrame
                 src={isDataSet ? dataSetUrl : programUrl}
                 customize={styling}

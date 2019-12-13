@@ -10,20 +10,21 @@ const Root = ({ baseUrl, username, configurations }) => {
     return (
         <HashRouter>
             <Switch>
-                {configurations.map(({ programme, page: PageComponent, data, header }) => [
+                {configurations.map(({ programme, page: PageComponent, data, header, title }) => [
                     <Route
                         path={`/${programme}/cache-cleaner`}
-                        render={() => <CacheCleanerPage header={header} baseUrl={baseUrl} />}
+                        render={() => <CacheCleanerPage title={title} header={header} baseUrl={baseUrl} />}
                     />,
                     <Route
                         path={`/${programme}/:type(dataSet|program)/:element`}
-                        render={() => <EntryCapturePage header={header} baseUrl={baseUrl} />}
+                        render={() => <EntryCapturePage title={title} header={header} baseUrl={baseUrl} />}
                     />,
                     <Route
                         key={programme}
                         path={configurations.length > 1 ? `/${programme}` : "/"}
                         render={() => (
                             <PageComponent
+                                title={title}
                                 header={header}
                                 baseUrl={baseUrl}
                                 username={username}

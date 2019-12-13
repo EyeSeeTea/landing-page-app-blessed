@@ -63,7 +63,7 @@ export const availableConfigurations = [
     },
     {
         programme: "rabies",
-        title: i18n.t("Home page for the Rabies module"),
+        title: i18n.t("WHO Rabies Webpage"),
         description: i18n.t("Rabies"),
         userGroupIds: [NTD_RAB_WHO_Official],
         page: HepatitisLandingPage,
