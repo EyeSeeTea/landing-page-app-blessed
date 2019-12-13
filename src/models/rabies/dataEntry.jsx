@@ -88,6 +88,15 @@ export const rabiesStyling = async (
         });
     });
 
+    await selectorWait(document, "#selectedPeriodId", e => {
+        e.addEventListener("change", event => {
+            filterOrgUnits(document, visibleOrganisationUnits);
+            selectDataset(document, contentWindow, element);
+            selectPeriod(document, contentWindow, period);
+            selectAttribute(document, contentWindow, attributes);
+        });
+    });
+
     await sleep(1500);
 
     await filterOrgUnits(document, visibleOrganisationUnits);
