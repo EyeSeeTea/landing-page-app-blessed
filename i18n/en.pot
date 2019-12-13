@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-12-13T06:28:07.165Z\n"
-"PO-Revision-Date: 2019-12-13T06:28:07.165Z\n"
+"POT-Creation-Date: 2019-12-13T06:44:20.527Z\n"
+"PO-Revision-Date: 2019-12-13T06:44:20.527Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -42,6 +42,9 @@ msgid "WHO Rabies Webpage"
 msgstr ""
 
 msgid "Rabies"
+msgstr ""
+
+msgid "Rabies (no data entry)"
 msgstr ""
 
 msgid "Available landing pages"

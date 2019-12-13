@@ -1,7 +1,8 @@
 import i18n from "@dhis2/d2-i18n";
 import axios from "axios";
-import _ from "lodash";
 import { Ref } from "d2-api";
+import _ from "lodash";
+import qs from "qs";
 import { NTD_NZD_admin, NTD_RAB_Estimates, NTD_RAB_WHO_Official } from "../../logic/redirection";
 
 const actionHumanRabiesDataEntry = async (baseUrl: string, cb: Function) =>
@@ -15,14 +16,6 @@ const SOURCE_B = "Os3X3EgDGn0";
 const SOURCE_C = "rZePNSA78l8";
 const SOURCE_D = "FYtmoLvrfbh";
 
-const attributesByUserRole: {
-    [id: string]: string[];
-} = {
-    [NTD_NZD_admin]: [SOURCE_A, SOURCE_B, SOURCE_C, SOURCE_D],
-    [NTD_RAB_Estimates]: [SOURCE_C],
-    [NTD_RAB_WHO_Official]: [SOURCE_A],
-};
-
 const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal" | "human") => {
     const dataSet = "S1UMweeoPsi";
 
@@ -32,6 +25,14 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
             withCredentials: true,
         })
     ).data;
+
+    const attributesByUserRole: {
+        [id: string]: string[];
+    } = {
+        [NTD_NZD_admin]: [SOURCE_A, SOURCE_B, SOURCE_C, SOURCE_D],
+        [NTD_RAB_Estimates]: [SOURCE_C],
+        [NTD_RAB_WHO_Official]: [SOURCE_A],
+    };
 
     const attributes = _(userGroups)
         .map(({ id }) => attributesByUserRole[id] ?? [])
@@ -50,32 +51,28 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
         _.max(dataInputPeriods.map((dip: { period: Ref }) => parseInt(dip.period.id))) ??
         new Date().getFullYear() - 1;
 
-    const { organisationUnits } = (
+    const { organisationUnits: allOrgUnits } = (
         await axios.get(`${baseUrl}/api/me.json`, {
             params: { fields: "organisationUnits[id,dataSets,level]" },
             withCredentials: true,
         })
     ).data;
 
-    const organisationUnit = _.filter(organisationUnits, ou =>
+    const organisationUnits = _.filter(allOrgUnits, ou =>
         ou.dataSets.map((ds: Ref) => ds.id).includes(dataSet)
     );
 
-    if (organisationUnit.length === 1 && organisationUnit[0].level > 1) {
-        cb({
-            type: "page",
-            value: `rabies/dataSet/${dataSet}?period=${period}&tab=${tab}&attributes=${attributes.join(
-                ","
-            )}&organisationUnit=${organisationUnit[0].id}`,
-        });
-    } else {
-        cb({
-            type: "page",
-            value: `rabies/dataSet/${dataSet}?period=${period}&tab=${tab}&attributes=${attributes.join(
-                ","
-            )}`,
-        });
-    }
+    const organisationUnit = organisationUnits.length === 1 && organisationUnits[0].level > 1 ? organisationUnits[0].id : undefined;
+
+    cb({
+        type: "page",
+        value: `rabies/dataSet/${dataSet}?${qs.stringify({
+            period,
+            tab,
+            attributes: attributes.length > 0 ? attributes : undefined,
+            organisationUnit,
+        }, { arrayFormat: 'comma' })}`,
+    });
 };
 
 export const rabiesData = [
