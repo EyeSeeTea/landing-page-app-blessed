@@ -15,7 +15,7 @@ const selectPeriod = (document, contentWindow, period) =>
         contentWindow.periodSelected();
     });
 
-const selectAttribute = (document, contentWindow, attributeString) => {
+const selectAttribute = (document, contentWindow, attributeString, selectFirst = true) => {
     const attributes = attributeString?.split(",") ?? [
         "pvLXvZvAtZV",
         "Os3X3EgDGn0",
@@ -25,7 +25,7 @@ const selectAttribute = (document, contentWindow, attributeString) => {
 
     selectorWait(document, `#category-MUgypnOT60u > option`, e => {
         e.disabled = e.value !== -1 && !attributes.find(s => s === e.value);
-        if (e.value === attributes[0]) {
+        if (selectFirst && e.value === attributes[0]) {
             e.selected = true;
             contentWindow.dhis2.de.attributeSelected("MUgypnOT60u");
         }
@@ -84,7 +84,7 @@ export const rabiesStyling = async (
             filterOrgUnits(document, visibleOrganisationUnits);
             selectDataset(document, contentWindow, element);
             selectPeriod(document, contentWindow, period);
-            selectAttribute(document, contentWindow, attributes);
+            selectAttribute(document, contentWindow, attributes, false);
         });
     });
 
@@ -92,8 +92,7 @@ export const rabiesStyling = async (
         e.addEventListener("change", event => {
             filterOrgUnits(document, visibleOrganisationUnits);
             selectDataset(document, contentWindow, element);
-            selectPeriod(document, contentWindow, period);
-            selectAttribute(document, contentWindow, attributes);
+            selectAttribute(document, contentWindow, attributes, false);
         });
     });
 
