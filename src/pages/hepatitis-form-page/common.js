@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { selectorWait } from "../../../utils";
+import { selectorWait } from "../../utils";
 
 export const filterOrgUnits = async (document, visibleOrganisationUnits) => {
     await selectorWait(document, "#orgUnitTree a", a => {

@@ -4,7 +4,7 @@ export const defaultData = (
     availableConfigurations: {
         programme: string;
         description: string;
-        icon: string
+        icon: string;
     }[]
 ) => [
     {
