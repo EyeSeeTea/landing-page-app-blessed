@@ -23,6 +23,7 @@ export const NTD_NZD_admin = "foOXWD4beuA";
 export const NTD_RAB_OIE = "pbZna7luFaM";
 export const NTD_RAB_Estimates = "K7VPSVrAYeV";
 export const NTD_RAB_WHO_Official = "Zr1fdsbkiAR";
+export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
@@ -75,6 +76,7 @@ export const availableConfigurations = [
             NTD_NZD_admin,
             NTD_RAB_Estimates,
             NTD_RAB_WHO_Official,
+            NTD_RAB_WHO_RO,
             SS_NTD_RAB_AggData_Entry,
         ],
         page: RabiesLandingPage,

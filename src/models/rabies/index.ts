@@ -7,6 +7,7 @@ import {
     NTD_NZD_admin,
     NTD_RAB_Estimates,
     NTD_RAB_WHO_Official,
+    NTD_RAB_WHO_RO,
     SS_NTD_RAB_AggData_Entry,
 } from "../../logic/redirection";
 
@@ -37,6 +38,7 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
         [NTD_NZD_admin]: [SOURCE_A, SOURCE_B, SOURCE_C, SOURCE_D],
         [NTD_RAB_Estimates]: [SOURCE_C],
         [NTD_RAB_WHO_Official]: [SOURCE_A],
+        [NTD_RAB_WHO_RO]: [SOURCE_B, SOURCE_A],
         [SS_NTD_RAB_AggData_Entry]: [SOURCE_A, SOURCE_B, SOURCE_C, SOURCE_D],
     };
 
