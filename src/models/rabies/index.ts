@@ -3,7 +3,7 @@ import axios from "axios";
 import { Ref } from "d2-api";
 import _ from "lodash";
 import qs from "qs";
-import { NTD_NZD_admin, NTD_RAB_Estimates, NTD_RAB_WHO_Official } from "../../logic/redirection";
+import { NTD_NZD_admin, NTD_RAB_Estimates, NTD_RAB_WHO_Official, SS_NTD_RAB_AggData_Entry } from "../../logic/redirection";
 
 const actionHumanRabiesDataEntry = async (baseUrl: string, cb: Function) =>
     actionRabiesDataEntry(baseUrl, cb, "human");
@@ -32,6 +32,7 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
         [NTD_NZD_admin]: [SOURCE_A, SOURCE_B, SOURCE_C, SOURCE_D],
         [NTD_RAB_Estimates]: [SOURCE_C],
         [NTD_RAB_WHO_Official]: [SOURCE_A],
+        [SS_NTD_RAB_AggData_Entry]: [SOURCE_A, SOURCE_B, SOURCE_C, SOURCE_D]
     };
 
     const attributes = _(userGroups)

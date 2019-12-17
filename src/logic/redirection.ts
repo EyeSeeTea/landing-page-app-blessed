@@ -23,6 +23,8 @@ export const NTD_NZD_admin = "foOXWD4beuA";
 export const NTD_RAB_OIE = "pbZna7luFaM";
 export const NTD_RAB_Estimates = "K7VPSVrAYeV";
 export const NTD_RAB_WHO_Official = "Zr1fdsbkiAR";
+export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
+export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v"
 
 export const availableConfigurations = [
     {
@@ -69,7 +71,7 @@ export const availableConfigurations = [
         programme: "rabies",
         title: i18n.t("WHO Rabies Webpage"),
         description: i18n.t("Rabies"),
-        userGroupIds: [NTD_NZD_admin, NTD_RAB_Estimates, NTD_RAB_WHO_Official],
+        userGroupIds: [NTD_NZD_admin, NTD_RAB_Estimates, NTD_RAB_WHO_Official, SS_NTD_RAB_AggData_Entry],
         page: HepatitisLandingPage,
         header: whoHeader,
         data: rabiesData,
@@ -79,7 +81,7 @@ export const availableConfigurations = [
         programme: "rabies-no-data-entry",
         title: i18n.t("WHO Rabies Webpage"),
         description: i18n.t("Rabies (no data entry)"),
-        userGroupIds: [NTD_RAB_OIE],
+        userGroupIds: [NTD_RAB_OIE, SS_NTD_RAB_AggData_View],
         page: HepatitisLandingPage,
         header: whoHeader,
         data: simpleRabiesData,
