@@ -6,7 +6,7 @@ import whoHeader from "../components/headers/who-header";
 import { hepatitisData, nhwaData } from "../models";
 import { nhwaClerkData, nhwaViewerData } from "../models/nhwa";
 import { rabiesData, simpleRabiesData } from "../models/rabies";
-import { HepatitisLandingPage, NHWALandingPage } from "../pages";
+import { HepatitisLandingPage, NHWALandingPage, RabiesLandingPage } from "../pages";
 import { existsDhis2Url, goToDhis2Url } from "../utils";
 
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -24,7 +24,7 @@ export const NTD_RAB_OIE = "pbZna7luFaM";
 export const NTD_RAB_Estimates = "K7VPSVrAYeV";
 export const NTD_RAB_WHO_Official = "Zr1fdsbkiAR";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
-export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v"
+export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
 export const availableConfigurations = [
     {
@@ -71,8 +71,13 @@ export const availableConfigurations = [
         programme: "rabies",
         title: i18n.t("WHO Rabies Webpage"),
         description: i18n.t("Rabies"),
-        userGroupIds: [NTD_NZD_admin, NTD_RAB_Estimates, NTD_RAB_WHO_Official, SS_NTD_RAB_AggData_Entry],
-        page: HepatitisLandingPage,
+        userGroupIds: [
+            NTD_NZD_admin,
+            NTD_RAB_Estimates,
+            NTD_RAB_WHO_Official,
+            SS_NTD_RAB_AggData_Entry,
+        ],
+        page: RabiesLandingPage,
         header: whoHeader,
         data: rabiesData,
         icon: "img/rabies-dog.svg",
@@ -82,7 +87,7 @@ export const availableConfigurations = [
         title: i18n.t("WHO Rabies Webpage"),
         description: i18n.t("Rabies (no data entry)"),
         userGroupIds: [NTD_RAB_OIE, SS_NTD_RAB_AggData_View],
-        page: HepatitisLandingPage,
+        page: RabiesLandingPage,
         header: whoHeader,
         data: simpleRabiesData,
         icon: "img/rabies-dog.svg",

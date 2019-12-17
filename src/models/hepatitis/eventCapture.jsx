@@ -39,14 +39,19 @@ const recurrentTasks = (document, isAdmin) => {
     textSelector(document, "Update", field => {
         field.textContent = "Submit or update your report";
         field.parentNode.addEventListener("click", event => {
-            textSelector(document, "OK", field => {
-                field.parentNode.addEventListener("click", event => {
+            textSelector(
+                document,
+                "OK",
+                field => {
+                    field.parentNode.addEventListener("click", event => {
+                        window.alert("Thank you for your report on the policy situation");
+                        if (!isAdmin) goToHashUrl("/hepatitis");
+                    });
+                },
+                field => {
                     window.alert("Thank you for your report on the policy situation");
-                    if (!isAdmin) goToHashUrl("/hepatitis");
-                });
-            }, field => {
-                    window.alert("Thank you for your report on the policy situation");
-            });
+                }
+            );
         });
     });
 
