@@ -45,7 +45,6 @@ const recurrentTasks = (document, isAdmin) => {
                 field => {
                     field.parentNode.addEventListener("click", event => {
                         window.alert("Thank you for your report on the policy situation");
-                        if (!isAdmin) goToHashUrl("/hepatitis");
                     });
                 },
                 field => {
