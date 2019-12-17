@@ -62,16 +62,22 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
         ou.dataSets.map((ds: Ref) => ds.id).includes(dataSet)
     );
 
-    const organisationUnit = organisationUnits.length === 1 && organisationUnits[0].level > 1 ? organisationUnits[0].id : undefined;
+    const organisationUnit =
+        organisationUnits.length === 1 && organisationUnits[0].level > 1
+            ? organisationUnits[0].id
+            : undefined;
 
     cb({
         type: "page",
-        value: `rabies/dataSet/${dataSet}?${qs.stringify({
-            period,
-            tab,
-            attributes: attributes.length > 0 ? attributes : undefined,
-            organisationUnit,
-        }, { arrayFormat: 'comma' })}`,
+        value: `rabies/dataSet/${dataSet}?${qs.stringify(
+            {
+                period,
+                tab,
+                attributes: attributes.length > 0 ? attributes : undefined,
+                organisationUnit,
+            },
+            { arrayFormat: "comma" }
+        )}`,
     });
 };
 
