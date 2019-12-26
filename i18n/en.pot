@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2019-12-26T11:24:42.475Z\n"
-"PO-Revision-Date: 2019-12-26T11:24:42.475Z\n"
+"POT-Creation-Date: 2019-12-26T18:20:06.550Z\n"
+"PO-Revision-Date: 2019-12-26T18:20:06.550Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Hepatitis"
 msgstr ""
 
-msgid "WIDP Rabies Webpage"
+msgid "WHO Rabies Webpage"
 msgstr ""
 
 msgid "Rabies"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "DHIS2 Utilities"
 msgstr ""
 
-msgid "DHIS2"
+msgid "WIDP"
 msgstr ""
 
 msgid "Browser cache cleaner"

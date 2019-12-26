@@ -29,9 +29,9 @@ export const defaultData = (
     },
     {
         key: "dhis2",
-        title: i18n.t("DHIS2"),
+        title: i18n.t("WIDP"),
         rowLength: 3,
-        icon: "img/dhis2.png",
+        icon: "img/who-icon.svg",
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-dashboard/index.action",
