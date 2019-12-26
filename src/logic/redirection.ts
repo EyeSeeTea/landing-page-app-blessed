@@ -70,7 +70,7 @@ export const availableConfigurations = [
     },
     {
         programme: "rabies",
-        title: i18n.t("WHO Rabies Webpage"),
+        title: i18n.t("WIDP Rabies Webpage"),
         description: i18n.t("Rabies"),
         userGroupIds: [
             NTD_NZD_admin,
@@ -86,7 +86,7 @@ export const availableConfigurations = [
     },
     {
         programme: "rabies-no-data-entry",
-        title: i18n.t("WHO Rabies Webpage"),
+        title: i18n.t("WIDP Rabies Webpage"),
         description: i18n.t("Rabies (no data entry)"),
         userGroupIds: [NTD_RAB_OIE, SS_NTD_RAB_AggData_View],
         page: RabiesLandingPage,
