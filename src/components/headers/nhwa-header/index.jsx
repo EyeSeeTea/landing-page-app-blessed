@@ -1,15 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core";
-import { Button } from "@dhis2/ui-core";
 import i18n from "@dhis2/d2-i18n";
-
-import { goToDhis2Url, goToDhis2InNewTab } from "../../../utils";
+import { Button } from "@dhis2/ui-core";
+import { withStyles } from "@material-ui/core";
+import { useD2Api } from "d2-api";
+import _ from "lodash";
+import PropTypes from "prop-types";
+import React from "react";
+import { goToDhis2InNewTab, goToDhis2Url } from "../../../utils";
 import { styles } from "./styles";
 
 const NHWAHeader = ({ classes, baseUrl, title, username }) => {
+    const api = useD2Api();
     const logoutAction = () => goToDhis2Url(baseUrl, "/dhis-web-commons-security/logout.action");
-    const userGuideAction = () => goToDhis2InNewTab(baseUrl, "/api/documents/p70dgNzx7KX/data");
+    const userGuideAction = () => {
+        api.models.documents
+            .get({
+                fields: {
+                    id: true,
+                },
+                filter: {
+                    name: {
+                        token: "NHWA,User,Guide",
+                    },
+                },
+            })
+            .getData()
+            .then(({ objects }) => _.first(objects) || {})
+            .then(({ id }) => !!id && goToDhis2InNewTab(baseUrl, `/api/documents/${id}/data`));
+    };
 
     return (
         <div className={classes.container}>
