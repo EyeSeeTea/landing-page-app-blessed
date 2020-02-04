@@ -1,42 +1,48 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { HashRouter, Route, Switch } from "react-router-dom";
+import { HeaderBar } from "@dhis2/ui-widgets";
 
-import { GenericLandingPage, HepatitisFormPage, CacheCleanerPage } from "..";
+import { GenericLandingPage, EntryCapturePage, CacheCleanerPage } from "..";
 import { defaultData } from "../../models";
 
 const Root = ({ baseUrl, username, configurations }) => {
     return (
         <HashRouter>
             <Switch>
-                <Route
-                    path={"/cache-cleaner"}
-                    render={() => <CacheCleanerPage baseUrl={baseUrl} />}
-                />
-
-                {configurations.find(({ programme }) => programme === "hepatitis") && (
+                {configurations.map(({ programme, page: PageComponent, data, header, title }) => [
                     <Route
-                        path={"/hepatitis/:type(dataSet|program)/:element"}
-                        render={() => <HepatitisFormPage baseUrl={baseUrl} />}
-                    />
-                )}
-
-                {configurations.map(({ programme, page: PageComponent, data, header }) => (
+                        path={`/${programme}/cache-cleaner`}
+                        render={() => (
+                            <CacheCleanerPage title={title} header={header} baseUrl={baseUrl} />
+                        )}
+                    />,
+                    <Route
+                        path={`/${programme}/:type(dataSet|program)/:element`}
+                        render={() => (
+                            <EntryCapturePage title={title} header={header} baseUrl={baseUrl} />
+                        )}
+                    />,
                     <Route
                         key={programme}
                         path={configurations.length > 1 ? `/${programme}` : "/"}
                         render={() => (
                             <PageComponent
+                                title={title}
                                 header={header}
                                 baseUrl={baseUrl}
                                 username={username}
                                 items={data}
                             />
                         )}
-                    />
-                ))}
+                    />,
+                ])}
 
-                {configurations.length !== 1 && (
+                {configurations.length !== 1 && [
+                    <Route
+                        path={`/cache-cleaner`}
+                        render={() => <CacheCleanerPage header={HeaderBar} baseUrl={baseUrl} />}
+                    />,
                     <Route
                         render={() => (
                             <GenericLandingPage
@@ -44,8 +50,8 @@ const Root = ({ baseUrl, username, configurations }) => {
                                 baseUrl={baseUrl}
                             />
                         )}
-                    />
-                )}
+                    />,
+                ]}
             </Switch>
         </HashRouter>
     );

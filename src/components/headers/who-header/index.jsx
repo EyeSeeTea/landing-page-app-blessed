@@ -42,7 +42,7 @@ WHOHeader.propTypes = {
 };
 
 WHOHeader.defaultProps = {
-    title: "World Health Organization",
+    title: i18n.t("World Health Organization"),
     backUrl: "/",
 };
 

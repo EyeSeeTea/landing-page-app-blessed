@@ -19,11 +19,17 @@ export const customize = async iframe => {
     await sleep(1000);
 };
 
-const CacheCleanerPage = ({ baseUrl }) => {
-    return <IFrame src={`${baseUrl}/dhis-web-cache-cleaner/index.action`} customize={customize} />;
+const CacheCleanerPage = ({ header: Header, baseUrl, title }) => {
+    return (
+        <React.Fragment>
+            <Header baseUrl={baseUrl} title={title} />
+            <IFrame src={`${baseUrl}/dhis-web-cache-cleaner/index.action`} customize={customize} />
+        </React.Fragment>
+    );
 };
 
 CacheCleanerPage.propTypes = {
+    header: PropTypes.func.isRequired,
     baseUrl: PropTypes.string.isRequired,
 };
 

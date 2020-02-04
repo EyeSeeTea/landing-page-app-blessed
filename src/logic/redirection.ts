@@ -1,11 +1,13 @@
+import i18n from "@dhis2/d2-i18n";
 import axios from "axios";
 import _ from "lodash";
-import { goToDhis2Url, existsDhis2Url } from "../utils";
-import whoHeader from "../components/headers/who-header";
 import nhwaHeader from "../components/headers/nhwa-header";
+import whoHeader from "../components/headers/who-header";
 import { hepatitisData, nhwaData } from "../models";
-import { HepatitisLandingPage, NHWALandingPage } from "../pages";
-import { nhwaViewerData, nhwaClerkData } from "../models/nhwa";
+import { nhwaClerkData, nhwaViewerData } from "../models/nhwa";
+import { rabiesData, simpleRabiesData } from "../models/rabies";
+import { HepatitisLandingPage, NHWALandingPage, RabiesLandingPage } from "../pages";
+import { existsDhis2Url, goToDhis2Url } from "../utils";
 
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
 const HEP_POLICY_UPTAKE_DATA_ENTRY = "uMCylDhyzRr";
@@ -17,11 +19,19 @@ const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
 
 const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
 
+export const NTD_NZD_admin = "foOXWD4beuA";
+export const NTD_RAB_OIE = "pbZna7luFaM";
+export const NTD_RAB_Estimates = "K7VPSVrAYeV";
+export const NTD_RAB_WHO_Official = "Zr1fdsbkiAR";
+export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
+export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
+export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
+
 export const availableConfigurations = [
     {
         programme: "nhwa-managers",
-        title: "National Health Workforce Accounts Online Data Platform",
-        description: "NHWA Data Managers and NHWA Admins",
+        title: i18n.t("National Health Workforce Accounts Online Data Platform"),
+        description: i18n.t("NHWA Data Managers and NHWA Admins"),
         userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
         page: NHWALandingPage,
         header: nhwaHeader,
@@ -30,8 +40,8 @@ export const availableConfigurations = [
     },
     {
         programme: "nhwa-data-clerks",
-        title: "National Health Workforce Accounts Online Data Platform",
-        description: "NHWA Data Clerks",
+        title: i18n.t("National Health Workforce Accounts Online Data Platform"),
+        description: i18n.t("NHWA Data Clerks"),
         userGroupIds: [NHWA_DATA_CLERKS],
         page: NHWALandingPage,
         header: nhwaHeader,
@@ -40,8 +50,8 @@ export const availableConfigurations = [
     },
     {
         programme: "nhwa-managers-viewers",
-        title: "National Health Workforce Accounts Online Data Platform",
-        description: "NHWA Data Viewers",
+        title: i18n.t("National Health Workforce Accounts Online Data Platform"),
+        description: i18n.t("NHWA Data Viewers"),
         userGroupIds: [NHWA_DATA_VIEWERS],
         page: NHWALandingPage,
         header: nhwaHeader,
@@ -50,13 +60,39 @@ export const availableConfigurations = [
     },
     {
         programme: "hepatitis",
-        title: "Home page for the Global Reporting System for Hepatitis",
-        description: "Hepatitis",
+        title: i18n.t("Home page for the Global Reporting System for Hepatitis"),
+        description: i18n.t("Hepatitis"),
         userGroupIds: [HEP_CASCADE_CURE_DATA_ENTRY, HEP_POLICY_UPTAKE_DATA_ENTRY],
         page: HepatitisLandingPage,
         header: whoHeader,
         data: hepatitisData,
         icon: "img/hepatitis.png",
+    },
+    {
+        programme: "rabies",
+        title: i18n.t("WHO Rabies Webpage"),
+        description: i18n.t("Rabies"),
+        userGroupIds: [
+            NTD_NZD_admin,
+            NTD_RAB_Estimates,
+            NTD_RAB_WHO_Official,
+            NTD_RAB_WHO_RO,
+            SS_NTD_RAB_AggData_Entry,
+        ],
+        page: RabiesLandingPage,
+        header: whoHeader,
+        data: rabiesData,
+        icon: "img/rabies-dog.svg",
+    },
+    {
+        programme: "rabies-no-data-entry",
+        title: i18n.t("WHO Rabies Webpage"),
+        description: i18n.t("Rabies (no data entry)"),
+        userGroupIds: [NTD_RAB_OIE, SS_NTD_RAB_AggData_View],
+        page: RabiesLandingPage,
+        header: whoHeader,
+        data: simpleRabiesData,
+        icon: "img/rabies-dog.svg",
     },
 ];
 

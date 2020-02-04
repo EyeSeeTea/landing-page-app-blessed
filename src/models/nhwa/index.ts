@@ -142,7 +142,7 @@ export const nhwaData = [
     },
     {
         key: "other-features-title",
-        title: i18n.t("Other Useful features"),
+        title: i18n.t("Other Useful Features"),
         size: "small",
         rowLength: 1,
     },
