@@ -1,0 +1,192 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2019-12-13T06:44:20.527Z\n"
+"PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid "User guide"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "LOG OUT"
+msgstr ""
+
+msgid "World Health Organization"
+msgstr "Всемирная организация здравоохранения"
+
+msgid "National Health Workforce Accounts Online Data Platform"
+msgstr ""
+
+msgid "NHWA Data Managers and NHWA Admins"
+msgstr ""
+
+msgid "NHWA Data Clerks"
+msgstr ""
+
+msgid "NHWA Data Viewers"
+msgstr ""
+
+msgid "Home page for the Global Reporting System for Hepatitis"
+msgstr ""
+
+msgid "Hepatitis"
+msgstr "гепатит"
+
+msgid "WHO Rabies Webpage"
+msgstr ""
+
+msgid "Rabies"
+msgstr ""
+
+msgid "Rabies (no data entry)"
+msgstr ""
+
+msgid "Available landing pages"
+msgstr ""
+
+msgid "DHIS2 Utilities"
+msgstr ""
+
+msgid "DHIS2"
+msgstr "DHIS2"
+
+msgid "Browser cache cleaner"
+msgstr "Очиститель кэша браузера"
+
+msgid "Enables the users to clear the browser cache"
+msgstr "Позволяет пользователям очищать кеш браузера"
+
+msgid "User profile"
+msgstr "Профиль пользователя"
+
+msgid "Allows the users to edit account credentials and public profile"
+msgstr ""
+"Позволяет пользователям редактировать учетные данные и общедоступный профиль"
+
+msgid "Data"
+msgstr "Данные"
+
+msgid "Cascade of care / cure"
+msgstr "Каскад ухода / излечения"
+
+msgid "Enter data on the cascade of care / cure"
+msgstr "Введите данные каскада лечения / лечения"
+
+msgid "Policy uptake"
+msgstr "Внедрение политики"
+
+msgid "Report your situation with respect to policy uptake"
+msgstr "Сообщите о вашей ситуации в отношении принятия политики"
+
+msgid "Dashboard"
+msgstr "Приборная доска"
+
+msgid "Access a dashboard visualizing the data that you entered before"
+msgstr ""
+"Доступ к панели инструментов, визуализирующей данные, которые вы вводили "
+"ранее"
+
+msgid "Other Useful Features"
+msgstr "Другие полезные функции"
+
+msgid "NHWA maturity assessment"
+msgstr ""
+
+msgid ""
+"NHWA maturity assessment enables countries to assess their national "
+"information system and its capacity to address the NHWA indicators."
+msgstr ""
+
+msgid "Validate existing baseline data"
+msgstr ""
+
+msgid ""
+"The validation exercise enables countries to view existing data and "
+"undertake necessary action of data correction/update as required."
+msgstr ""
+
+msgid "NHWA data entry"
+msgstr ""
+
+msgid ""
+"Data entry into the system can be done (i) directly through the system "
+"interface or (ii) as batch upload through excel sheets."
+msgstr ""
+
+msgid "Data entry through the system interface"
+msgstr ""
+
+msgid "Batch upload through excel sheets"
+msgstr ""
+
+msgid "Visualise data"
+msgstr ""
+
+msgid ""
+"Access programmed data infographics or create customised data visualisation "
+"with the existing data."
+msgstr ""
+
+msgid "Pivot table"
+msgstr ""
+
+msgid "Enables users to create pivot tables, using available data"
+msgstr ""
+
+msgid "Data Visualizer"
+msgstr ""
+
+msgid ""
+"Enables users to easily create dynamic data analysis and visualizations "
+"through charts and data tables."
+msgstr ""
+
+msgid "GIS"
+msgstr ""
+
+msgid "Enables users to visualize data in Geographical location system."
+msgstr ""
+
+msgid "Access pre populated data infographics based on existing data"
+msgstr ""
+
+msgid "NHWA Reports"
+msgstr ""
+
+msgid "Access to the NHWA reports"
+msgstr ""
+
+msgid "Data Quality"
+msgstr ""
+
+msgid ""
+"Enables the users to run data quality checks such as validation and Std dev "
+"outlier analysis."
+msgstr ""
+
+msgid "Approval"
+msgstr ""
+
+msgid "Enables the users to approves the data submitted in the system"
+msgstr ""
+
+msgid "Rabies data"
+msgstr ""
+
+msgid "Human rabies data entry"
+msgstr ""
+
+msgid "Enter data on the human rabies data entry"
+msgstr ""
+
+msgid "Animal rabies data entry"
+msgstr ""
+
+msgid "Enter data on the animal rabies data entry"
+msgstr ""
