@@ -13,7 +13,7 @@ export const snakebiteData = [
         title: i18n.t("Snake bite data entry"),
         description: i18n.t("Enter data on the snakebite data entry"),
         rowLength: 2,
-        icon: "img/dhis-web-dataentry.png",
+        icon: "img/snakebite-dataentry.svg",
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-dataentry/index.action",

@@ -107,7 +107,7 @@ export const availableConfigurations = [
         page: SnakebiteLandingPage,
         header: whoHeader,
         data: snakebiteData,
-        icon: "img/dhis-web-dataentry.png",
+        icon: "img/snakebite-main.svg",
     },
 ];
 
