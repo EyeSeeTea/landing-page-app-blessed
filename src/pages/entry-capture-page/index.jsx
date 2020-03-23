@@ -7,6 +7,7 @@ import { cascadeStyling } from "../../models/hepatitis/dataEntry";
 import { policyUptakeStyling } from "../../models/hepatitis/eventCapture";
 import { rabiesStyling } from "../../models/rabies/dataEntry";
 
+//TODO: Add snakebitestyling to config
 const config = {
     S1UMweeoPsi: {
         styling: rabiesStyling,

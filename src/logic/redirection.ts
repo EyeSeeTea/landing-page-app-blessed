@@ -6,9 +6,10 @@ import whoHeader from "../components/headers/who-header";
 import { hepatitisData, nhwaData } from "../models";
 import { nhwaClerkData, nhwaViewerData } from "../models/nhwa";
 import { rabiesData, simpleRabiesData } from "../models/rabies";
-import { HepatitisLandingPage, NHWALandingPage, RabiesLandingPage } from "../pages";
+import { snakebiteData } from "../models/snakebite";
+import { HepatitisLandingPage, NHWALandingPage, RabiesLandingPage, SnakebiteLandingPage } from "../pages";
 import { existsDhis2Url, goToDhis2Url } from "../utils";
-
+//TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
 const HEP_POLICY_UPTAKE_DATA_ENTRY = "uMCylDhyzRr";
 
@@ -18,6 +19,8 @@ const NHWA_DATA_MANAGERS = "xcDZeClzdse";
 const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
 
 const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
+
+const NTD_SB = "JusJWdDa1LM"
 
 export const NTD_NZD_admin = "foOXWD4beuA";
 export const NTD_RAB_OIE = "pbZna7luFaM";
@@ -93,6 +96,18 @@ export const availableConfigurations = [
         header: whoHeader,
         data: simpleRabiesData,
         icon: "img/rabies-dog.svg",
+    },
+    {
+        programme: "snakebite",
+        title: i18n.t("WHO Snakebite Webpage"),
+        description: i18n.t("Snakebite"),
+        userGroupIds: [
+            NTD_SB,
+        ],
+        page: SnakebiteLandingPage,
+        header: whoHeader,
+        data: snakebiteData,
+        icon: "img/snakebite-main.svg",
     },
 ];
 
