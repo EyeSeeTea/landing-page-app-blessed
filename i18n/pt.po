@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2019-12-13T06:44:20.527Z\n"
+"PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-03-07T16:43:14.849Z\n"
-"PO-Revision-Date: 2020-03-07T16:43:14.849Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -18,7 +18,7 @@ msgid "LOG OUT"
 msgstr ""
 
 msgid "World Health Organization"
-msgstr ""
+msgstr "Organização Mundial da Saúde"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -36,7 +36,7 @@ msgid "Home page for the Global Reporting System for Hepatitis"
 msgstr ""
 
 msgid "Hepatitis"
-msgstr ""
+msgstr "Hepatite"
 
 msgid "WHO Rabies Webpage"
 msgstr ""
@@ -47,56 +47,50 @@ msgstr ""
 msgid "Rabies (no data entry)"
 msgstr ""
 
-msgid "WHO Snakebite Webpage"
-msgstr ""
-
-msgid "Snakebite"
-msgstr ""
-
 msgid "Available landing pages"
 msgstr ""
 
 msgid "DHIS2 Utilities"
 msgstr ""
 
-msgid "WIDP"
-msgstr ""
+msgid "DHIS2"
+msgstr "DHIS2"
 
 msgid "Browser cache cleaner"
-msgstr ""
+msgstr "Limpador de cache do navegador"
 
 msgid "Enables the users to clear the browser cache"
-msgstr ""
+msgstr "Permite que os usuários limpem o cache do navegador"
 
 msgid "User profile"
-msgstr ""
+msgstr "Perfil de usuário"
 
 msgid "Allows the users to edit account credentials and public profile"
-msgstr ""
+msgstr "Permite que os usuários editem credenciais da conta e perfil público"
 
 msgid "Data"
-msgstr ""
+msgstr "Dados"
 
 msgid "Cascade of care / cure"
-msgstr ""
+msgstr "Cascata de cuidados / cura"
 
 msgid "Enter data on the cascade of care / cure"
-msgstr ""
+msgstr "Inserir dados na cascata de cuidados / cura"
 
 msgid "Policy uptake"
-msgstr ""
+msgstr "Adopção de políticas"
 
 msgid "Report your situation with respect to policy uptake"
-msgstr ""
+msgstr "Relate sua situação com relação à adoção de políticas"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "Painel de controle"
 
 msgid "Access a dashboard visualizing the data that you entered before"
-msgstr ""
+msgstr "Acesse um painel visualizando os dados inseridos antes"
 
 msgid "Other Useful Features"
-msgstr ""
+msgstr "Outros recursos úteis"
 
 msgid "NHWA maturity assessment"
 msgstr ""
@@ -192,13 +186,4 @@ msgid "Animal rabies data entry"
 msgstr ""
 
 msgid "Enter data on the animal rabies data entry"
-msgstr ""
-
-msgid "Snakebite data"
-msgstr ""
-
-msgid "Snake bite data entry"
-msgstr ""
-
-msgid "Enter data on the snakebite data entry"
 msgstr ""

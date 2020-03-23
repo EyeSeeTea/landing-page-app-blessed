@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { filterOrgUnits } from "../../components/pages/hepatitis-form-page/common";
+import { filterOrgUnits } from "../../pages/entry-capture-page/common";
 import {
     selectorWait,
     selector,
@@ -10,7 +10,7 @@ import {
     goToHashUrl,
 } from "../../utils";
 
-const recurrentTasks = document => {
+const recurrentTasks = (document, isAdmin) => {
     selectorWait(document, ".bordered-div", e => {
         e.parentNode.style.width = "100%";
         e.style.marginTop = "15px";
@@ -39,15 +39,25 @@ const recurrentTasks = document => {
     textSelector(document, "Update", field => {
         field.textContent = "Submit or update your report";
         field.parentNode.addEventListener("click", event => {
-            window.alert("Thank you for your report on the policy situation");
-            goToHashUrl("/hepatitis");
+            textSelector(
+                document,
+                "OK",
+                field => {
+                    field.parentNode.addEventListener("click", event => {
+                        window.alert("Thank you for your report on the policy situation");
+                    });
+                },
+                field => {
+                    window.alert("Thank you for your report on the policy situation");
+                }
+            );
         });
     });
 
     textSelector(document, "Cancel", field => {
         field.textContent = "Go back to home page";
         field.parentNode.addEventListener("click", event => {
-            goToHashUrl("/hepatitis");
+            if (!isAdmin) goToHashUrl("/hepatitis");
         });
     });
 
@@ -60,7 +70,7 @@ const recurrentTasks = document => {
     });
 };
 
-export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) => {
+export const policyUptakeStyling = async (iframe, { baseUrl, element, event }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document } = contentWindow || contentDocument;
     const isAdmin = !event;
@@ -86,12 +96,12 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
         if (!isAdmin) e.style.pointerEvents = "none";
     });
 
-    const { organisationUnits: visibleOrganisationUnits } = (await axios.get(
-        `${baseUrl}/api/programs/${element}.json`,
-        {
+    const { organisationUnits: visibleOrganisationUnits } = (
+        await axios.get(`${baseUrl}/api/programs/${element}.json`, {
             params: { fields: "organisationUnits" },
-        }
-    )).data;
+            withCredentials: true,
+        })
+    ).data;
 
     selectorWait(document, "#orgUnitTree", e => {
         e.addEventListener("click", event => {
@@ -100,12 +110,12 @@ export const eventCaptureStyling = async (iframe, { baseUrl, element, event }) =
     });
 
     document.addEventListener("click", event => {
-        recurrentTasks(document);
+        recurrentTasks(document, isAdmin);
     });
 
     await sleep(2500);
 
     filterOrgUnits(document, visibleOrganisationUnits);
 
-    recurrentTasks(document);
+    recurrentTasks(document, isAdmin);
 };

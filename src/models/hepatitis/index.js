@@ -5,15 +5,21 @@ import i18n from "@dhis2/d2-i18n";
 const actionCascadeCare = async (baseUrl, cb) => {
     const dataSet = "jfawDJZ5fOX";
 
-    const { dataInputPeriods } = (await axios.get(`${baseUrl}/api/dataSets/${dataSet}.json`, {
-        params: { fields: "dataInputPeriods" },
-    })).data;
+    const { dataInputPeriods } = (
+        await axios.get(`${baseUrl}/api/dataSets/${dataSet}.json`, {
+            params: { fields: "dataInputPeriods" },
+            withCredentials: true,
+        })
+    ).data;
 
     const period = _.max(dataInputPeriods.map(dip => parseInt(dip.period.id)));
 
-    const { organisationUnits } = (await axios.get(`${baseUrl}/api/me.json`, {
-        params: { fields: "organisationUnits[id,dataSets]" },
-    })).data;
+    const { organisationUnits } = (
+        await axios.get(`${baseUrl}/api/me.json`, {
+            params: { fields: "organisationUnits[id,dataSets]" },
+            withCredentials: true,
+        })
+    ).data;
 
     // TODO: Edge case not controlled (multiple valid OUs)
     const organisationUnit = _.find(organisationUnits, ou =>
@@ -36,15 +42,15 @@ const actionCascadeCare = async (baseUrl, cb) => {
 const actionPolicyUptake = async (baseUrl, cb) => {
     const program = "cTzRXZGNvqz";
 
-    const { categoryCombo, programStages } = (await axios.get(
-        `${baseUrl}/api/programs/${program}.json`,
-        {
+    const { categoryCombo, programStages } = (
+        await axios.get(`${baseUrl}/api/programs/${program}.json`, {
             params: {
                 fields: "programStages,categoryCombo[id,categories[categoryOptions[id,code]]]",
                 paging: false,
             },
-        }
-    )).data;
+            withCredentials: true,
+        })
+    ).data;
 
     const categoryOption = _.maxBy(
         categoryCombo.categories[0].categoryOptions.map(({ id, code }) => ({
@@ -54,9 +60,12 @@ const actionPolicyUptake = async (baseUrl, cb) => {
         "code"
     );
 
-    const { organisationUnits } = (await axios.get(`${baseUrl}/api/me.json`, {
-        params: { fields: "organisationUnits[id,programs]" },
-    })).data;
+    const { organisationUnits } = (
+        await axios.get(`${baseUrl}/api/me.json`, {
+            params: { fields: "organisationUnits[id,programs]" },
+            withCredentials: true,
+        })
+    ).data;
 
     // TODO: Edge case not controlled (multiple valid OUs)
     const organisationUnit =
@@ -64,16 +73,19 @@ const actionPolicyUptake = async (baseUrl, cb) => {
         organisationUnits[0];
 
     try {
-        const { events } = (await axios.get(`${baseUrl}/api/events.json`, {
-            params: {
-                fields: "event,dataValues",
-                orgUnit: organisationUnit.id,
-                programStage: programStages[0].id,
-                attributeCc: categoryCombo.id,
-                attributeCos: categoryOption.id,
-                paging: false,
-            },
-        })).data;
+        const { events } = (
+            await axios.get(`${baseUrl}/api/events.json`, {
+                params: {
+                    fields: "event,dataValues",
+                    orgUnit: organisationUnit.id,
+                    programStage: programStages[0].id,
+                    attributeCc: categoryCombo.id,
+                    attributeCos: categoryOption.id,
+                    paging: false,
+                },
+                withCredentials: true,
+            })
+        ).data;
 
         const existsEvent = !!events[0];
         const eventHasData = existsEvent && events[0].dataValues.length > 0;
@@ -92,12 +104,20 @@ const actionPolicyUptake = async (baseUrl, cb) => {
             // TODO: Edge case not controlled (multiple events already recorded)
             const event = existsEvent
                 ? events[0].event
-                : (await axios.post(`${baseUrl}/api/events`, {
-                      program,
-                      orgUnit: organisationUnit.id,
-                      attributeCategoryOptions: categoryOption.id,
-                      eventDate: new Date(),
-                  })).data.response.importSummaries[0].reference;
+                : (
+                      await axios.post(
+                          `${baseUrl}/api/events`,
+                          {
+                              program,
+                              orgUnit: organisationUnit.id,
+                              attributeCategoryOptions: categoryOption.id,
+                              eventDate: new Date(),
+                          },
+                          {
+                              withCredentials: true,
+                          }
+                      )
+                  ).data.response.importSummaries[0].reference;
 
             cb({
                 type: "page",
@@ -118,6 +138,7 @@ export const hepatitisData = [
         key: "title-data",
         title: i18n.t("Data"),
         rowLength: 1,
+        enableBottomLine: true,
     },
     {
         key: "data-entry",
@@ -157,6 +178,7 @@ export const hepatitisData = [
         title: i18n.t("Other Useful Features"),
         rowLength: 1,
         size: "small",
+        enableBottomLine: true,
     },
     {
         key: "cache-cleaner",
@@ -167,7 +189,7 @@ export const hepatitisData = [
         icon: "img/dhis-web-cache-cleaner.png",
         action: {
             type: "page",
-            value: "/cache-cleaner",
+            value: "/hepatitis/cache-cleaner",
         },
     },
     {

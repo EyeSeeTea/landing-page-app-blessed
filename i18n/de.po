@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
+"POT-Creation-Date: 2019-12-13T06:44:20.527Z\n"
+"PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-03-07T16:43:14.849Z\n"
-"PO-Revision-Date: 2020-03-07T16:43:14.849Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -18,7 +18,7 @@ msgid "LOG OUT"
 msgstr ""
 
 msgid "World Health Organization"
-msgstr ""
+msgstr "Weltgesundheitsorganisation"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -36,7 +36,7 @@ msgid "Home page for the Global Reporting System for Hepatitis"
 msgstr ""
 
 msgid "Hepatitis"
-msgstr ""
+msgstr "Hepatitis"
 
 msgid "WHO Rabies Webpage"
 msgstr ""
@@ -47,56 +47,56 @@ msgstr ""
 msgid "Rabies (no data entry)"
 msgstr ""
 
-msgid "WHO Snakebite Webpage"
-msgstr ""
-
-msgid "Snakebite"
-msgstr ""
-
 msgid "Available landing pages"
 msgstr ""
 
 msgid "DHIS2 Utilities"
 msgstr ""
 
-msgid "WIDP"
-msgstr ""
+msgid "DHIS2"
+msgstr "DHIS2"
 
 msgid "Browser cache cleaner"
-msgstr ""
+msgstr "Browser Cache Cleaner"
 
 msgid "Enables the users to clear the browser cache"
-msgstr ""
+msgstr "Ermöglicht den Benutzern, den Browser-Cache zu löschen"
 
 msgid "User profile"
-msgstr ""
+msgstr "Benutzerprofil"
 
 msgid "Allows the users to edit account credentials and public profile"
 msgstr ""
+"Ermöglicht den Benutzern das Bearbeiten von Kontoanmeldeinformationen und "
+"des öffentlichen Profils"
 
 msgid "Data"
-msgstr ""
+msgstr "Daten"
 
 msgid "Cascade of care / cure"
-msgstr ""
+msgstr "Kaskade der Pflege / Heilung"
 
 msgid "Enter data on the cascade of care / cure"
-msgstr ""
+msgstr "Geben Sie Daten zur Kaskade von Pflege / Heilung ein"
 
 msgid "Policy uptake"
-msgstr ""
+msgstr "Policenübernahme"
 
 msgid "Report your situation with respect to policy uptake"
 msgstr ""
+"Berichten Sie über Ihre Situation in Bezug auf die Inanspruchnahme von "
+"Richtlinien"
 
 msgid "Dashboard"
-msgstr ""
+msgstr "Instrumententafel"
 
 msgid "Access a dashboard visualizing the data that you entered before"
 msgstr ""
+"Greifen Sie auf ein Dashboard zu, in dem die zuvor eingegebenen Daten "
+"angezeigt werden"
 
 msgid "Other Useful Features"
-msgstr ""
+msgstr "Andere nützliche Funktionen"
 
 msgid "NHWA maturity assessment"
 msgstr ""
@@ -192,13 +192,4 @@ msgid "Animal rabies data entry"
 msgstr ""
 
 msgid "Enter data on the animal rabies data entry"
-msgstr ""
-
-msgid "Snakebite data"
-msgstr ""
-
-msgid "Snake bite data entry"
-msgstr ""
-
-msgid "Enter data on the snakebite data entry"
 msgstr ""
