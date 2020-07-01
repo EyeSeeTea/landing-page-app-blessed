@@ -27,13 +27,6 @@ const isLangRTL = code => {
 
 const configI18n = ({ keyUiLocale }) => {
     i18n.changeLanguage(keyUiLocale);
-    console.log({
-        keyUiLocale,
-        i18n,
-        default: i18n.options.defaultNs,
-        ns: i18n.options.ns,
-        test: i18n.t("World Health Organization"),
-    });
     document.documentElement.setAttribute("dir", isLangRTL(keyUiLocale) ? "rtl" : "ltr");
 };
 

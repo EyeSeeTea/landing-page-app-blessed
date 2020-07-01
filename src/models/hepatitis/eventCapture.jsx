@@ -36,9 +36,9 @@ const recurrentTasks = (document, isAdmin) => {
         field.textContent = "Reporting date";
     });
 
-    textSelector(document, "Update", field => {
-        field.textContent = "Submit or update your report";
-        field.parentNode.addEventListener("click", () => {
+    selectorWait(document, `button[ng-click="updateEvent()"]`, e => {
+        e.textContent = "Submit or update your report";
+        e.addEventListener("click", () => {
             textSelector(
                 document,
                 "OK",
@@ -54,16 +54,20 @@ const recurrentTasks = (document, isAdmin) => {
         });
     });
 
-    textSelector(document, "Cancel", field => {
-        field.textContent = "Go back to home page";
-        field.parentNode.addEventListener("click", () => {
+    selectorWait(document, `button[ng-click="cancel()"]`, e => {
+        e.textContent = "Go back to home page";
+        e.addEventListener("click", () => {
             if (!isAdmin) goToHashUrl("/hepatitis");
         });
     });
 
-    textSelector(document, "Section", field => {
-        field.parentNode.parentNode.hidden = true;
-    });
+    selectorWait(
+        document,
+        `div[ng-if="selectedProgramStage && selectedProgramStage.programStageSections.length  && eventRegistration || editingEventInFull"]`,
+        e => {
+            e.hidden = true;
+        }
+    );
 
     textSelector(document, "Program", field => {
         field.textContent = "Programme";
