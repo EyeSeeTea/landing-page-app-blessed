@@ -24,7 +24,7 @@ msgid "Please wait"
 msgstr ""
 
 msgid "Getting ready, Please wait"
-msgstr ""
+msgstr "Se preparando, aguarde"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -39,7 +39,7 @@ msgid "NHWA Data Viewers"
 msgstr ""
 
 msgid "Home page for the Global Reporting System for Hepatitis"
-msgstr ""
+msgstr "Página inicial do Sistema Global de Relatório de Hepatite"
 
 msgid "Hepatitis"
 msgstr "Hepatite"
