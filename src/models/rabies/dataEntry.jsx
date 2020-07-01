@@ -80,7 +80,7 @@ export const rabiesStyling = async (
     ).data;
 
     await selectorWait(document, "#orgUnitTree", e => {
-        e.addEventListener("click", event => {
+        e.addEventListener("click", () => {
             filterOrgUnits(document, visibleOrganisationUnits);
             selectDataset(document, contentWindow, element);
             selectPeriod(document, contentWindow, period);
@@ -89,7 +89,7 @@ export const rabiesStyling = async (
     });
 
     await selectorWait(document, "#selectedPeriodId", e => {
-        e.addEventListener("change", event => {
+        e.addEventListener("change", () => {
             filterOrgUnits(document, visibleOrganisationUnits);
             selectDataset(document, contentWindow, element);
             selectAttribute(document, contentWindow, attributes, false);

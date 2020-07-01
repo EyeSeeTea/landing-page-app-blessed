@@ -8,7 +8,6 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "prettier/@typescript-eslint",
         "plugin:prettier/recommended",
-        "plugin:cypress/recommended",
     ],
     rules: {
         "no-console": "off",
@@ -25,10 +24,10 @@ module.exports = {
         "@typescript-eslint/no-empty-interface": "off",
         "@typescript-eslint/ban-ts-ignore": "off",
         "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/ban-types": "off",
         "react-hooks/exhaustive-deps": "error",
     },
-    plugins: ["cypress"],
-    env: { "cypress/globals": true },
     settings: {
         react: {
             pragma: "React",

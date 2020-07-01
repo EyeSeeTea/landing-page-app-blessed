@@ -12,12 +12,14 @@ const Root = ({ baseUrl, username, configurations }) => {
             <Switch>
                 {configurations.map(({ programme, page: PageComponent, data, header, title }) => [
                     <Route
+                        key={"cache-cleaner"}
                         path={`/${programme}/cache-cleaner`}
                         render={() => (
                             <CacheCleanerPage title={title} header={header} baseUrl={baseUrl} />
                         )}
                     />,
                     <Route
+                        key={"entry-capture"}
                         path={`/${programme}/:type(dataSet|program)/:element`}
                         render={() => (
                             <EntryCapturePage title={title} header={header} baseUrl={baseUrl} />

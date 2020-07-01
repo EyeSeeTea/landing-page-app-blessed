@@ -38,16 +38,16 @@ const recurrentTasks = (document, isAdmin) => {
 
     textSelector(document, "Update", field => {
         field.textContent = "Submit or update your report";
-        field.parentNode.addEventListener("click", event => {
+        field.parentNode.addEventListener("click", () => {
             textSelector(
                 document,
                 "OK",
                 field => {
-                    field.parentNode.addEventListener("click", event => {
+                    field.parentNode.addEventListener("click", () => {
                         window.alert("Thank you for your report on the policy situation");
                     });
                 },
-                field => {
+                () => {
                     window.alert("Thank you for your report on the policy situation");
                 }
             );
@@ -56,7 +56,7 @@ const recurrentTasks = (document, isAdmin) => {
 
     textSelector(document, "Cancel", field => {
         field.textContent = "Go back to home page";
-        field.parentNode.addEventListener("click", event => {
+        field.parentNode.addEventListener("click", () => {
             if (!isAdmin) goToHashUrl("/hepatitis");
         });
     });
@@ -104,12 +104,12 @@ export const policyUptakeStyling = async (iframe, { baseUrl, element, event }) =
     ).data;
 
     selectorWait(document, "#orgUnitTree", e => {
-        e.addEventListener("click", event => {
+        e.addEventListener("click", () => {
             filterOrgUnits(document, visibleOrganisationUnits);
         });
     });
 
-    document.addEventListener("click", event => {
+    document.addEventListener("click", () => {
         recurrentTasks(document, isAdmin);
     });
 
