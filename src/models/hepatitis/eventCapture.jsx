@@ -1,13 +1,13 @@
 import axios from "axios";
-
+import i18n from "../../locales";
 import { filterOrgUnits } from "../../pages/entry-capture-page/common";
 import {
-    selectorWait,
-    selector,
-    hideSelector,
-    textSelector,
-    sleep,
     goToHashUrl,
+    hideSelector,
+    selector,
+    selectorWait,
+    sleep,
+    textSelector,
 } from "../../utils";
 
 const recurrentTasks = (document, isAdmin) => {
@@ -25,37 +25,37 @@ const recurrentTasks = (document, isAdmin) => {
     hideSelector(document, ".div-bottom-container");
 
     textSelector(document, "Event capture", field => {
-        field.textContent = "Report of the policy situation for:";
+        field.textContent = i18n.t("Report of the policy situation for:");
     });
 
     textSelector(document, "Event details", field => {
-        field.textContent = "Details of the report";
+        field.textContent = i18n.t("Details of the report");
     });
 
     textSelector(document, "Event date", field => {
-        field.textContent = "Reporting date";
+        field.textContent = i18n.t("Reporting date");
     });
 
     selectorWait(document, `button[ng-click="updateEvent()"]`, e => {
-        e.textContent = "Submit or update your report";
+        e.textContent = i18n.t("Submit or update your report");
         e.addEventListener("click", () => {
             textSelector(
                 document,
                 "OK",
                 field => {
                     field.parentNode.addEventListener("click", () => {
-                        window.alert("Thank you for your report on the policy situation");
+                        window.alert(i18n.t("Thank you for your report on the policy situation"));
                     });
                 },
                 () => {
-                    window.alert("Thank you for your report on the policy situation");
+                    window.alert(i18n.t("Thank you for your report on the policy situation"));
                 }
             );
         });
     });
 
     selectorWait(document, `button[ng-click="cancel()"]`, e => {
-        e.textContent = "Go back to home page";
+        e.textContent = i18n.t("Go back to home page");
         e.addEventListener("click", () => {
             if (!isAdmin) goToHashUrl("/hepatitis");
         });
@@ -70,7 +70,7 @@ const recurrentTasks = (document, isAdmin) => {
     );
 
     textSelector(document, "Program", field => {
-        field.textContent = "Programme";
+        field.textContent = i18n.t("Programme");
     });
 };
 

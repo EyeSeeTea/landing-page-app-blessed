@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-07-01T07:40:43.018Z\n"
-"PO-Revision-Date: 2020-07-01T07:40:43.018Z\n"
+"POT-Creation-Date: 2020-07-01T15:57:25.609Z\n"
+"PO-Revision-Date: 2020-07-01T15:57:25.609Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -78,6 +78,24 @@ msgid "User profile"
 msgstr ""
 
 msgid "Allows the users to edit account credentials and public profile"
+msgstr ""
+
+msgid "Details of the report"
+msgstr ""
+
+msgid "Reporting date"
+msgstr ""
+
+msgid "Submit or update your report"
+msgstr ""
+
+msgid "Thank you for your report on the policy situation"
+msgstr ""
+
+msgid "Go back to home page"
+msgstr ""
+
+msgid "Programme"
 msgstr ""
 
 msgid "Data"

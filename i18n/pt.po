@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-07-01T07:40:43.018Z\n"
+"POT-Creation-Date: 2020-07-01T15:57:25.609Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,6 +79,24 @@ msgstr "Perfil de usuário"
 
 msgid "Allows the users to edit account credentials and public profile"
 msgstr "Permite que os usuários editem credenciais da conta e perfil público"
+
+msgid "Details of the report"
+msgstr "Detalhes do relatório"
+
+msgid "Reporting date"
+msgstr "Data do relatório"
+
+msgid "Submit or update your report"
+msgstr "Envie ou atualize seu relatório"
+
+msgid "Thank you for your report on the policy situation"
+msgstr "Obrigado pelo seu relatório sobre a situação política"
+
+msgid "Go back to home page"
+msgstr "Voltar à página inicial"
+
+msgid "Programme"
+msgstr "Programa"
 
 msgid "Data"
 msgstr "Dados"
