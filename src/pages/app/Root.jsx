@@ -40,10 +40,12 @@ const Root = ({ baseUrl, username, configurations }) => {
 
                 {configurations.length !== 1 && [
                     <Route
+                        key={"cache-cleaner"}
                         path={`/cache-cleaner`}
                         render={() => <CacheCleanerPage header={HeaderBar} baseUrl={baseUrl} />}
                     />,
                     <Route
+                        key={"default"}
                         render={() => (
                             <GenericLandingPage
                                 items={defaultData(configurations)}

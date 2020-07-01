@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-03-07T16:43:14.849Z\n"
-"PO-Revision-Date: 2020-03-07T16:43:14.849Z\n"
+"POT-Creation-Date: 2020-07-01T07:40:43.018Z\n"
+"PO-Revision-Date: 2020-07-01T07:40:43.018Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -18,6 +18,12 @@ msgid "LOG OUT"
 msgstr ""
 
 msgid "World Health Organization"
+msgstr ""
+
+msgid "Please wait"
+msgstr ""
+
+msgid "Getting ready, Please wait"
 msgstr ""
 
 msgid "National Health Workforce Accounts Online Data Platform"

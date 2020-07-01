@@ -1,8 +1,8 @@
-import i18n from "@dhis2/d2-i18n";
 import axios from "axios";
 import { Ref } from "d2-api";
 import _ from "lodash";
 import qs from "qs";
+import i18n from "../../locales";
 import {
     NTD_NZD_admin,
     NTD_RAB_Estimates,

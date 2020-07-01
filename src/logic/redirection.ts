@@ -1,14 +1,20 @@
-import i18n from "@dhis2/d2-i18n";
 import axios from "axios";
 import _ from "lodash";
 import nhwaHeader from "../components/headers/nhwa-header";
 import whoHeader from "../components/headers/who-header";
-import { hepatitisData, nhwaData } from "../models";
+import i18n from "../locales";
+import { buildHepatitisData, nhwaData } from "../models";
 import { nhwaClerkData, nhwaViewerData } from "../models/nhwa";
 import { rabiesData, simpleRabiesData } from "../models/rabies";
 import { snakebiteData } from "../models/snakebite";
-import { HepatitisLandingPage, NHWALandingPage, RabiesLandingPage, SnakebiteLandingPage } from "../pages";
+import {
+    HepatitisLandingPage,
+    NHWALandingPage,
+    RabiesLandingPage,
+    SnakebiteLandingPage,
+} from "../pages";
 import { existsDhis2Url, goToDhis2Url } from "../utils";
+
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
 const HEP_POLICY_UPTAKE_DATA_ENTRY = "uMCylDhyzRr";
@@ -20,7 +26,7 @@ const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
 
 const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
 
-const NTD_SB = "JusJWdDa1LM"
+const NTD_SB = "JusJWdDa1LM";
 
 export const NTD_NZD_admin = "foOXWD4beuA";
 export const NTD_RAB_OIE = "pbZna7luFaM";
@@ -30,7 +36,7 @@ export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
-export const availableConfigurations = [
+export const buildAvailableConfigurations = () => [
     {
         programme: "nhwa-managers",
         title: i18n.t("National Health Workforce Accounts Online Data Platform"),
@@ -68,7 +74,7 @@ export const availableConfigurations = [
         userGroupIds: [HEP_CASCADE_CURE_DATA_ENTRY, HEP_POLICY_UPTAKE_DATA_ENTRY],
         page: HepatitisLandingPage,
         header: whoHeader,
-        data: hepatitisData,
+        data: buildHepatitisData(),
         icon: "img/hepatitis.png",
     },
     {
@@ -101,9 +107,7 @@ export const availableConfigurations = [
         programme: "snakebite",
         title: i18n.t("WHO Snakebite Webpage"),
         description: i18n.t("Snakebite"),
-        userGroupIds: [
-            NTD_SB,
-        ],
+        userGroupIds: [NTD_SB],
         page: SnakebiteLandingPage,
         header: whoHeader,
         data: snakebiteData,
@@ -123,7 +127,7 @@ export const handleRedirection = async (baseUrl: string) => {
     ).data as { name: string; userGroups: Array<{ id: string }> };
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
-    const configurations = availableConfigurations.filter(config =>
+    const configurations = buildAvailableConfigurations().filter(config =>
         shouldRedirect(userGroupIds, config.userGroupIds)
     );
 
