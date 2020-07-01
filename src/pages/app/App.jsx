@@ -1,7 +1,6 @@
 import { useConfig } from "@dhis2/app-runtime";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { createGenerateClassName, StylesProvider } from "@material-ui/styles";
-import { ApiContext, useD2Api } from "d2-api";
 import { LoadingProvider, SnackbarProvider } from "d2-ui-components";
 import OldMuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import React, { useEffect, useState } from "react";
@@ -19,7 +18,6 @@ const generateClassName = createGenerateClassName({
 
 const App = () => {
     const { baseUrl } = useConfig();
-    const { d2, api } = useD2Api();
     const [config, updateConfig] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -41,9 +39,7 @@ const App = () => {
                         <LoadingProvider>
                             <SnackbarProvider>
                                 <div id="app" className="content">
-                                    <ApiContext.Provider value={{ d2, api }}>
-                                        <Root baseUrl={baseUrl} {...config} />
-                                    </ApiContext.Provider>{" "}
+                                    <Root baseUrl={baseUrl} {...config} />
                                 </div>
                             </SnackbarProvider>
                         </LoadingProvider>
