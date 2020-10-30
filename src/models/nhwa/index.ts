@@ -59,17 +59,6 @@ export const nhwaData = [
         },
     },
     {
-        key: "excel-importer-link",
-        iconDescription: i18n.t("Batch upload through excel sheets"),
-        rowLength: 3,
-        icon: "img/excel-importer.png",
-        size: "small",
-        action: {
-            type: "dhisRedirect",
-            value: "/api/apps/NHWA-Data-Importer/index.html",
-        },
-    },
-    {
         key: "visualize-data-title",
         title: i18n.t("Visualise data"),
         description: i18n.t(
