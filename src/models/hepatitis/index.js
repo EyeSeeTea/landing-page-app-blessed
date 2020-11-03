@@ -1,6 +1,6 @@
-import _ from "lodash";
 import axios from "axios";
-import i18n from "@dhis2/d2-i18n";
+import _ from "lodash";
+import i18n from "../../locales";
 
 const actionCascadeCare = async (baseUrl, cb) => {
     const dataSet = "jfawDJZ5fOX";
@@ -133,7 +133,7 @@ const actionPolicyUptake = async (baseUrl, cb) => {
     }
 };
 
-export const hepatitisData = [
+export const buildHepatitisData = () => [
     {
         key: "title-data",
         title: i18n.t("Data"),
