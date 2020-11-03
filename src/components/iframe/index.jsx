@@ -19,7 +19,7 @@ const IFrame = ({ src, customize, builder }) => {
         } else loading.hide();
     }, [customize, builder, loading]);
 
-    return [<iframe ref={ref} src={src} title={"IFrame"} style={styles.iframe} />];
+    return [<iframe key={"iframe"} ref={ref} src={src} title={"IFrame"} style={styles.iframe} />];
 };
 
 IFrame.propTypes = {

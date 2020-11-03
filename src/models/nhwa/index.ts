@@ -1,5 +1,5 @@
-import i18n from "@dhis2/d2-i18n";
 import _ from "lodash";
+import i18n from "../../locales";
 
 export const nhwaData = [
     {
@@ -56,17 +56,6 @@ export const nhwaData = [
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-dataentry/index.action",
-        },
-    },
-    {
-        key: "excel-importer-link",
-        iconDescription: i18n.t("Batch upload through excel sheets"),
-        rowLength: 3,
-        icon: "img/excel-importer.png",
-        size: "small",
-        action: {
-            type: "dhisRedirect",
-            value: "/api/apps/NHWA-Data-Importer/index.html",
         },
     },
     {

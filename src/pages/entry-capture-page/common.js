@@ -8,6 +8,7 @@ export const filterOrgUnits = async (document, visibleOrganisationUnits) => {
         const id = parent.getAttribute("id").replace("orgUnit", "");
 
         if (!_.find(visibleOrganisationUnits, ["id", id])) {
+            // eslint-disable-next-line
             a.setAttribute("href", "javascript:;");
         } else a.style.fontWeight = "bold";
     });

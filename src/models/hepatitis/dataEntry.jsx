@@ -18,7 +18,7 @@ const selectPeriod = (document, contentWindow, period) =>
 const recurrentTasks = (document, isAdmin) => {
     // Exclusive checkboxes
     selector(document, ".checkbox", e => {
-        e.addEventListener("change", event => {
+        e.addEventListener("change", () => {
             if (e.checked) {
                 selector(document, `input[name=${e.name}]`, o => {
                     if (o.id !== e.id && o.checked) o.click();
@@ -88,14 +88,14 @@ export const cascadeStyling = async (iframe, { organisationUnit, element, period
     ).data;
 
     await selectorWait(document, "#orgUnitTree", e => {
-        e.addEventListener("click", event => {
+        e.addEventListener("click", () => {
             filterOrgUnits(document, visibleOrganisationUnits);
             selectDataset(document, contentWindow, element);
             selectPeriod(document, contentWindow, period);
         });
     });
 
-    document.addEventListener("click", event => {
+    document.addEventListener("click", () => {
         recurrentTasks(document, isAdmin);
     });
 

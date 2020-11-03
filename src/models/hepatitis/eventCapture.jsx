@@ -1,13 +1,13 @@
 import axios from "axios";
-
+import i18n from "../../locales";
 import { filterOrgUnits } from "../../pages/entry-capture-page/common";
 import {
-    selectorWait,
-    selector,
-    hideSelector,
-    textSelector,
-    sleep,
     goToHashUrl,
+    hideSelector,
+    selector,
+    selectorWait,
+    sleep,
+    textSelector,
 } from "../../utils";
 
 const recurrentTasks = (document, isAdmin) => {
@@ -25,48 +25,52 @@ const recurrentTasks = (document, isAdmin) => {
     hideSelector(document, ".div-bottom-container");
 
     textSelector(document, "Event capture", field => {
-        field.textContent = "Report of the policy situation for:";
+        field.textContent = i18n.t("Report of the policy situation for:");
     });
 
     textSelector(document, "Event details", field => {
-        field.textContent = "Details of the report";
+        field.textContent = i18n.t("Details of the report");
     });
 
     textSelector(document, "Event date", field => {
-        field.textContent = "Reporting date";
+        field.textContent = i18n.t("Reporting date");
     });
 
-    textSelector(document, "Update", field => {
-        field.textContent = "Submit or update your report";
-        field.parentNode.addEventListener("click", event => {
+    selectorWait(document, `button[ng-click="updateEvent()"]`, e => {
+        e.textContent = i18n.t("Submit or update your report");
+        e.addEventListener("click", () => {
             textSelector(
                 document,
                 "OK",
                 field => {
-                    field.parentNode.addEventListener("click", event => {
-                        window.alert("Thank you for your report on the policy situation");
+                    field.parentNode.addEventListener("click", () => {
+                        window.alert(i18n.t("Thank you for your report on the policy situation"));
                     });
                 },
-                field => {
-                    window.alert("Thank you for your report on the policy situation");
+                () => {
+                    window.alert(i18n.t("Thank you for your report on the policy situation"));
                 }
             );
         });
     });
 
-    textSelector(document, "Cancel", field => {
-        field.textContent = "Go back to home page";
-        field.parentNode.addEventListener("click", event => {
+    selectorWait(document, `button[ng-click="cancel()"]`, e => {
+        e.textContent = i18n.t("Go back to home page");
+        e.addEventListener("click", () => {
             if (!isAdmin) goToHashUrl("/hepatitis");
         });
     });
 
-    textSelector(document, "Section", field => {
-        field.parentNode.parentNode.hidden = true;
-    });
+    selectorWait(
+        document,
+        `div[ng-if="selectedProgramStage && selectedProgramStage.programStageSections.length  && eventRegistration || editingEventInFull"]`,
+        e => {
+            e.hidden = true;
+        }
+    );
 
     textSelector(document, "Program", field => {
-        field.textContent = "Programme";
+        field.textContent = i18n.t("Programme");
     });
 };
 
@@ -104,12 +108,12 @@ export const policyUptakeStyling = async (iframe, { baseUrl, element, event }) =
     ).data;
 
     selectorWait(document, "#orgUnitTree", e => {
-        e.addEventListener("click", event => {
+        e.addEventListener("click", () => {
             filterOrgUnits(document, visibleOrganisationUnits);
         });
     });
 
-    document.addEventListener("click", event => {
+    document.addEventListener("click", () => {
         recurrentTasks(document, isAdmin);
     });
 
