@@ -1,12 +1,11 @@
-import React from "react";
+import { Chip, Typography, withStyles } from "@material-ui/core";
+import { ExitToApp, Home } from "@material-ui/icons";
 import PropTypes from "prop-types";
+import React from "react";
 import { withRouter } from "react-router-dom";
-import { withStyles, Typography, Chip } from "@material-ui/core";
-import { Home, ExitToApp } from "@material-ui/icons";
-import i18n from "@dhis2/d2-i18n";
-
+import i18n from "../../../locales";
+import { goToDhis2Url, goToExternalUrl } from "../../../utils";
 import { styles } from "./styles";
-import { goToExternalUrl, goToDhis2Url } from "../../../utils";
 
 const WHOHeader = ({ classes, history, baseUrl, title, backUrl }) => {
     const actionWHO = () => goToExternalUrl("https://who.int");

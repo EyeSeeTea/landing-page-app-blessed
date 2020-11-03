@@ -1,10 +1,10 @@
-import i18n from "@dhis2/d2-i18n";
 import { Button } from "@dhis2/ui-core";
 import { withStyles } from "@material-ui/core";
 import { useD2Api } from "d2-api";
 import _ from "lodash";
 import PropTypes from "prop-types";
 import React from "react";
+import i18n from "../../../locales";
 import { goToDhis2InNewTab, goToDhis2Url } from "../../../utils";
 import { styles } from "./styles";
 
