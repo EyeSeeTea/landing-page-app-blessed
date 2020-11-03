@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-07-01T15:57:25.609Z\n"
-"PO-Revision-Date: 2020-07-01T15:57:25.609Z\n"
+"POT-Creation-Date: 2020-11-03T08:19:02.213Z\n"
+"PO-Revision-Date: 2020-11-03T08:19:02.213Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -147,9 +147,6 @@ msgid ""
 msgstr ""
 
 msgid "Data entry through the system interface"
-msgstr ""
-
-msgid "Batch upload through excel sheets"
 msgstr ""
 
 msgid "Visualise data"
