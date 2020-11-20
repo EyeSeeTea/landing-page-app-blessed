@@ -42,7 +42,7 @@
     "prestart": "yarn localize && d2-manifest package.json manifest.webapp",
     "start": "react-scripts start",
     "prebuild": "yarn localize",
-    "build": "rm -rf build/ && d2-manifest package.json manifest.webapp && react-scripts build && yarn run manifest && cp -r i18n icon.png build",
+    "build": "npx rimraf build/ && d2-manifest package.json manifest.webapp && react-scripts build && yarn run manifest && cp -r i18n icon.png build",
     "build-webapp": "yarn build && rm -f $npm_package_name.zip && cd build && zip -r ../$npm_package_name.zip *",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "eject": "react-scripts eject",
@@ -79,6 +79,7 @@
     "eslint-plugin-react-hooks": "4.0.5",
     "prettier": "2.0.5",
     "prop-types": "15.7.2",
+    "rimraf": "3.0.2",
     "typescript": "3.9.5"
   },
   "manifest.webapp": {
