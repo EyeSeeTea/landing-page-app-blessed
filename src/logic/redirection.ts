@@ -13,7 +13,7 @@ import {
     NHWALandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
-    NtdLeishKenyaLandingPage,
+    NTDLeishKenyaLandingPage,
 } from "../pages";
 import { goToDhis2Url } from "../utils";
 
@@ -26,7 +26,7 @@ const NHWA_DATA_CLERKS = "DWWxlpQi9M8";
 const NHWA_DATA_MANAGERS = "xcDZeClzdse";
 const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
 
-const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
+const NTD_Leish_LandingPage_KEN = "aQt4ynXtBOS";
 
 const NTD_SB = "JusJWdDa1LM";
 
@@ -119,8 +119,8 @@ export const buildAvailableConfigurations = () => [
         programme: "ntd-leish-kenya",
         title: i18n.t("National Leishmaniasis Control Programme for Kenya"),
         description: i18n.t("Landing Page for MoH Kenya"),
-        userGroupIds: [NTD_LSH_LandingPage_KEN],
-        page: NtdLeishKenyaLandingPage,
+        userGroupIds: [NTD_Leish_LandingPage_KEN],
+        page: NTDLeishKenyaLandingPage,
         header: whoHeader,
         data: ntdLeishKenyaData,
         icon: "img/kenya.png",
