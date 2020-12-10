@@ -5,6 +5,7 @@ import HepatitisLandingPage from "./landing-page/hepatitis";
 import NHWALandingPage from "./landing-page/nhwa";
 import RabiesLandingPage from "./landing-page/rabies";
 import SnakebiteLandingPage from "./landing-page/snakebite";
+import NtdLeishKenyaLandingPage from "./landing-page/ntdLeishKenya";
 
 export {
     CacheCleanerPage,
@@ -14,4 +15,5 @@ export {
     NHWALandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
+    NtdLeishKenyaLandingPage
 };
