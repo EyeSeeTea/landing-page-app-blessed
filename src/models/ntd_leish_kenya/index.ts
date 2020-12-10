@@ -1,6 +1,5 @@
 import i18n from "@dhis2/d2-i18n";
 
-
 export const ntdLeishKenyaData = [
     {
         key: "title-data",
@@ -11,7 +10,9 @@ export const ntdLeishKenyaData = [
     {
         key: "data-entry",
         title: i18n.t("Stock management"),
-        description: i18n.t("Data Entry module enables health facilities to enter their monthly stock status"),
+        description: i18n.t(
+            "Data Entry module enables health facilities to enter their monthly stock status"
+        ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-dataentry.png",
         action: {
@@ -22,7 +23,9 @@ export const ntdLeishKenyaData = [
     {
         key: "event-entry",
         title: i18n.t("Case Management & Lab LOG"),
-        description: i18n.t("Case Management & Lab LOG enables health facilities to enter individual cases"),
+        description: i18n.t(
+            "Case Management & Lab LOG enables health facilities to enter individual cases"
+        ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-event-capture.png",
         action: {
@@ -72,7 +75,9 @@ export const ntdLeishKenyaData = [
     {
         key: "pivot-table",
         title: i18n.t("Pivot Table"),
-        description: i18n.t("Enables users to create pivot tables, using available aggregated data"),
+        description: i18n.t(
+            "Enables users to create pivot tables, using available aggregated data"
+        ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-pivot.png",
         action: {
@@ -83,7 +88,9 @@ export const ntdLeishKenyaData = [
     {
         key: "data-visualizer",
         title: i18n.t("Data Visualizer"),
-        description: i18n.t("Enables users to easily create dynamic aggregated data analysis and visualizations through charts and data tables"),
+        description: i18n.t(
+            "Enables users to easily create dynamic aggregated data analysis and visualizations through charts and data tables"
+        ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-visualizer.png",
         action: {
@@ -94,7 +101,9 @@ export const ntdLeishKenyaData = [
     {
         key: "event-reports",
         title: i18n.t("Event Reports"),
-        description: i18n.t("Enables users to create pivot tables, using available individual data"),
+        description: i18n.t(
+            "Enables users to create pivot tables, using available individual data"
+        ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-event-reports.png",
         action: {
@@ -105,7 +114,9 @@ export const ntdLeishKenyaData = [
     {
         key: "event-visualizer",
         title: i18n.t("Event Visualizer"),
-        description: i18n.t("Enables users to easily create dynamic individual data analysis and visualizations through charts and data tables"),
+        description: i18n.t(
+            "Enables users to easily create dynamic individual data analysis and visualizations through charts and data tables"
+        ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-event-visualizer.png",
         action: {

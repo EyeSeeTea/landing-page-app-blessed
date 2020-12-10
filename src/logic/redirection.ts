@@ -13,7 +13,7 @@ import {
     NHWALandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
-    NtdLeishKenyaLandingPage
+    NtdLeishKenyaLandingPage,
 } from "../pages";
 import { goToDhis2Url } from "../utils";
 
@@ -119,14 +119,12 @@ export const buildAvailableConfigurations = () => [
         programme: "ntd-leish-kenya",
         title: i18n.t("National Leishmaniasis Control Programme for Kenya"),
         description: i18n.t("Landing Page for MoH Kenya"),
-        userGroupIds: [
-            NTD_LSH_LandingPage_KEN,
-        ],
+        userGroupIds: [NTD_LSH_LandingPage_KEN],
         page: NtdLeishKenyaLandingPage,
         header: whoHeader,
         data: ntdLeishKenyaData,
         icon: "img/kenya.png",
-    }
+    },
 ];
 
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>

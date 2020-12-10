@@ -15,5 +15,5 @@ export {
     NHWALandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
-    NtdLeishKenyaLandingPage
+    NtdLeishKenyaLandingPage,
 };

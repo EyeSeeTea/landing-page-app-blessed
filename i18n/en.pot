@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-11-03T08:19:02.213Z\n"
-"PO-Revision-Date: 2020-11-03T08:19:02.213Z\n"
+"POT-Creation-Date: 2020-12-10T09:30:41.090Z\n"
+"PO-Revision-Date: 2020-12-10T09:30:41.090Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -57,6 +57,12 @@ msgid "WHO Snakebite Webpage"
 msgstr ""
 
 msgid "Snakebite"
+msgstr ""
+
+msgid "National Leishmaniasis Control Programme for Kenya"
+msgstr ""
+
+msgid "Landing Page for MoH Kenya"
 msgstr ""
 
 msgid "Available landing pages"
@@ -198,6 +204,65 @@ msgid "Approval"
 msgstr ""
 
 msgid "Enables the users to approves the data submitted in the system"
+msgstr ""
+
+msgid "Enter data"
+msgstr ""
+
+msgid "Stock management"
+msgstr ""
+
+msgid ""
+"Data Entry module enables health facilities to enter their monthly stock "
+"status"
+msgstr ""
+
+msgid "Case Management & Lab LOG"
+msgstr ""
+
+msgid ""
+"Case Management & Lab LOG enables health facilities to enter individual "
+"cases"
+msgstr ""
+
+msgid "Visualize Data"
+msgstr ""
+
+msgid "Reports"
+msgstr ""
+
+msgid "Access to the reports"
+msgstr ""
+
+msgid "Maps"
+msgstr ""
+
+msgid "Enables users to visualize data in Geographical location system"
+msgstr ""
+
+msgid "Pivot Table"
+msgstr ""
+
+msgid "Enables users to create pivot tables, using available aggregated data"
+msgstr ""
+
+msgid ""
+"Enables users to easily create dynamic aggregated data analysis and "
+"visualizations through charts and data tables"
+msgstr ""
+
+msgid "Event Reports"
+msgstr ""
+
+msgid "Enables users to create pivot tables, using available individual data"
+msgstr ""
+
+msgid "Event Visualizer"
+msgstr ""
+
+msgid ""
+"Enables users to easily create dynamic individual data analysis and "
+"visualizations through charts and data tables"
 msgstr ""
 
 msgid "Rabies data"
