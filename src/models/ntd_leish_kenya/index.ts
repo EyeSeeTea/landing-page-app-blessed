@@ -30,7 +30,7 @@ export const ntdLeishKenyaData = [
         icon: "../../../icons/dhis-web-capture.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-capture/index.action"
+            value: "/dhis-web-capture/index.action",
         },
     },
     {
@@ -84,8 +84,8 @@ export const ntdLeishKenyaData = [
         icon: "../../../icons/dhis-web-data-visualizer.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-data-visualizer/index.action"
-        }
+            value: "/dhis-web-data-visualizer/index.action",
+        },
     },
     {
         key: "event-reports",
@@ -110,7 +110,7 @@ export const ntdLeishKenyaData = [
         icon: "../../../icons/dhis-web-event-visualizer.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-event-visualizer/index.action"
+            value: "/dhis-web-event-visualizer/index.action",
         },
     },
     {
@@ -127,7 +127,7 @@ export const ntdLeishKenyaData = [
         icon: "../../../icons/dhis-web-cache-cleaner.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-cache-cleaner/index.action"
+            value: "/dhis-web-cache-cleaner/index.action",
         },
     },
     {

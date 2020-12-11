@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-10T09:30:41.090Z\n"
+"POT-Creation-Date: 2020-12-11T11:22:02.194Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,13 +230,6 @@ msgstr ""
 msgid "Visualize Data"
 msgstr ""
 
-msgid "Reports"
-msgstr ""
-
-#, fuzzy
-msgid "Access to the reports"
-msgstr "Dettagli del rapporto"
-
 msgid "Maps"
 msgstr ""
 
@@ -289,9 +282,5 @@ msgstr ""
 msgid "Snake bite data entry"
 msgstr ""
 
-#, fuzzy
 msgid "Enter data on the snakebite data entry"
-msgstr "Immettere i dati sulla cascata di rimedio / cure"
-
-#~ msgid "DHIS2"
-#~ msgstr "DHIS2"
+msgstr ""
