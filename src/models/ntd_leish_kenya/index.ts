@@ -27,10 +27,10 @@ export const ntdLeishKenyaData = [
             "Case Management & Lab LOG enables health facilities to enter individual cases"
         ),
         rowLength: 2,
-        icon: "../../../icons/dhis-web-event-capture.png",
+        icon: "../../../icons/dhis-web-capture.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-event-capture/index.action",
+            value: "/dhis-web-capture/index.action"
         },
     },
     {
@@ -43,7 +43,7 @@ export const ntdLeishKenyaData = [
         key: "dashboard",
         title: i18n.t("Dashboard"),
         description: i18n.t("Access a dashboard visualizing the data that you entered before"),
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/dhis-web-dashboard.png",
         action: {
             type: "dhisRedirect",
@@ -51,21 +51,10 @@ export const ntdLeishKenyaData = [
         },
     },
     {
-        key: "reports",
-        title: i18n.t("Reports"),
-        description: i18n.t("Access to the reports"),
-        rowLength: 3,
-        icon: "../../../icons/dhis-web-reporting.png",
-        action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-reporting/displayViewReportForm.action",
-        },
-    },
-    {
         key: "maps",
         title: i18n.t("Maps"),
         description: i18n.t("Enables users to visualize data in Geographical location system"),
-        rowLength: 3,
+        rowLength: 2,
         icon: "../../../icons/dhis-web-maps.png",
         action: {
             type: "dhisRedirect",
@@ -92,11 +81,11 @@ export const ntdLeishKenyaData = [
             "Enables users to easily create dynamic aggregated data analysis and visualizations through charts and data tables"
         ),
         rowLength: 2,
-        icon: "../../../icons/dhis-web-visualizer.png",
+        icon: "../../../icons/dhis-web-data-visualizer.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-visualizer/index.action",
-        },
+            value: "/dhis-web-data-visualizer/index.action"
+        }
     },
     {
         key: "event-reports",
@@ -121,14 +110,13 @@ export const ntdLeishKenyaData = [
         icon: "../../../icons/dhis-web-event-visualizer.png",
         action: {
             type: "dhisRedirect",
-            value: "../../../dhis-web-event-visualizer/index.action",
+            value: "/dhis-web-event-visualizer/index.action"
         },
     },
     {
         key: "title-other",
         title: i18n.t("Other Useful Features"),
         rowLength: 1,
-        size: "small",
         enableBottomLine: true,
     },
     {
@@ -136,11 +124,10 @@ export const ntdLeishKenyaData = [
         title: i18n.t("Browser cache cleaner"),
         description: i18n.t("Enables the users to clear the browser cache"),
         rowLength: 2,
-        size: "small",
-        icon: "img/dhis-web-cache-cleaner.png",
+        icon: "../../../icons/dhis-web-cache-cleaner.png",
         action: {
-            type: "page",
-            value: "/snakebite/cache-cleaner",
+            type: "dhisRedirect",
+            value: "/dhis-web-cache-cleaner/index.action"
         },
     },
     {
@@ -148,7 +135,6 @@ export const ntdLeishKenyaData = [
         title: i18n.t("User profile"),
         description: i18n.t("Allows the users to edit account credentials and public profile"),
         rowLength: 2,
-        size: "small",
         icon: "img/dhis-web-profile.png",
         action: {
             type: "dhisRedirect",
