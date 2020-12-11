@@ -17,17 +17,17 @@ const generateClassName = createGenerateClassName({
 });
 
 const App = () => {
-    const { baseUrl } = useConfig();
+    const { baseUrl, apiVersion } = useConfig();
     const [config, updateConfig] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        handleRedirection(baseUrl).then(options => {
+        handleRedirection(baseUrl, apiVersion).then(options => {
             updateConfig(options);
             if (options.title) document.title = options.title;
             sleep(1000).then(() => setLoading(false));
         });
-    }, [baseUrl]);
+    }, [baseUrl, apiVersion]);
 
     if (loading) {
         return <WHOLoading />;

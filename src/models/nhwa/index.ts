@@ -1,9 +1,7 @@
-import axios from "axios";
 import _ from "lodash";
 import i18n from "../../locales";
-import { getMajorVersion } from "../../utils/d2-api";
 
-export const nhwaData = [
+export const nhwaData = (version: number) => [
     {
         key: "maturity-assessment-title",
         title: i18n.t("NHWA maturity assessment"),
@@ -128,24 +126,13 @@ export const nhwaData = [
         size: "small",
         action: {
             type: "method",
-            value: async (baseUrl: string, cb: Function) => {
-                const { version } = (
-                    await axios.get(`${baseUrl}/api/system/info.json`, {
-                        withCredentials: true,
-                    })
-                ).data;
-
-                if (getMajorVersion(version) < 33) {
-                    cb({
-                        type: "dhisRedirect",
-                        value: "/dhis-web-reporting/displayViewReportForm.action",
-                    });
-                } else {
-                    cb({
-                        type: "dhisRedirect",
-                        value: "/dhis-web-reports/index.html",
-                    });
-                }
+            value: async (_baseUrl: string, cb: Function) => {
+                cb({
+                    type: "dhisRedirect",
+                    value: version < 33
+                        ? "/dhis-web-reporting/displayViewReportForm.action"
+                        : "/dhis-web-reports/index.html",
+                });
             },
         },
     },
