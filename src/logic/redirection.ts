@@ -7,13 +7,15 @@ import { buildHepatitisData, nhwaData } from "../models";
 import { nhwaClerkData, nhwaViewerData } from "../models/nhwa";
 import { rabiesData, simpleRabiesData } from "../models/rabies";
 import { snakebiteData } from "../models/snakebite";
+import { ntdLeishKenyaData } from "../models/ntd_leish_kenya";
 import {
     HepatitisLandingPage,
     NHWALandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
+    NTDLeishKenyaLandingPage,
 } from "../pages";
-import { existsDhis2Url, goToDhis2Url } from "../utils";
+import { goToDhis2Url } from "../utils";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -24,7 +26,7 @@ const NHWA_DATA_CLERKS = "DWWxlpQi9M8";
 const NHWA_DATA_MANAGERS = "xcDZeClzdse";
 const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
 
-const NTD_LSH_LandingPage_KEN = "aQt4ynXtBOS";
+const NTD_Leish_LandingPage_KEN = "aQt4ynXtBOS";
 
 const NTD_SB = "JusJWdDa1LM";
 
@@ -113,6 +115,16 @@ export const buildAvailableConfigurations = () => [
         data: snakebiteData,
         icon: "img/snakebite-main.svg",
     },
+    {
+        programme: "ntd-leish-kenya",
+        title: i18n.t("National Leishmaniasis Control Programme for Kenya"),
+        description: i18n.t("Landing Page for MoH Kenya"),
+        userGroupIds: [NTD_Leish_LandingPage_KEN],
+        page: NTDLeishKenyaLandingPage,
+        header: whoHeader,
+        data: ntdLeishKenyaData,
+        icon: "img/kenya.png",
+    },
 ];
 
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
@@ -133,12 +145,6 @@ export const handleRedirection = async (baseUrl: string) => {
 
     if (configurations.length > 0) {
         return { username: name, configurations };
-    } else if (
-        shouldRedirect(userGroupIds, [NTD_LSH_LandingPage_KEN]) &&
-        (await existsDhis2Url(baseUrl, "/api/apps/Landing-Page/index.html"))
-    ) {
-        goToDhis2Url(baseUrl, "/api/apps/Landing-Page/index.html");
-        return null;
     } else {
         goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
         return null;
