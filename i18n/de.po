@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2020-12-11T11:22:02.194Z\n"
+"POT-Creation-Date: 2020-12-14T11:53:36.254Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -215,53 +215,59 @@ msgstr ""
 msgid "Enter data"
 msgstr ""
 
-msgid "Stock management"
+msgid "Stock management form"
 msgstr ""
 
-msgid ""
-"Data Entry module enables health facilities to enter their monthly stock "
-"status"
+msgid "Update the monthly stock status data."
 msgstr ""
 
-msgid "Case Management & Lab LOG"
+msgid "Case Management & Lab LOG forms"
 msgstr ""
 
-msgid ""
-"Case Management & Lab LOG enables health facilities to enter individual cases"
+msgid "Enter individual cases for the Case Management and Lab LOG forms."
 msgstr ""
 
 msgid "Visualize Data"
 msgstr ""
 
+msgid ""
+"Visualize existing dashboards or create new ones with existing tables, "
+"charts or maps."
+msgstr ""
+
 msgid "Maps"
 msgstr ""
 
-msgid "Enables users to visualize data in Geographical location system"
+msgid "Create or update aggregated or individual data maps."
 msgstr ""
 
 msgid "Pivot Table"
 msgstr ""
 
-msgid "Enables users to create pivot tables, using available aggregated data"
+msgid "Create or update aggregated data tables."
 msgstr ""
 
-msgid ""
-"Enables users to easily create dynamic aggregated data analysis and "
-"visualizations through charts and data tables"
+msgid "Create or update aggregated data charts."
 msgstr ""
 
 msgid "Event Reports"
 msgstr ""
 
-msgid "Enables users to create pivot tables, using available individual data"
+msgid "Create or update individual data tables."
 msgstr ""
 
 msgid "Event Visualizer"
 msgstr ""
 
+msgid "Create or update individual data charts."
+msgstr ""
+
 msgid ""
-"Enables users to easily create dynamic individual data analysis and "
-"visualizations through charts and data tables"
+"Clean old cache when DHIS2 does not behave as expected. Typically when a "
+"module has been updated."
+msgstr ""
+
+msgid "Edit your account credentials and your public profile."
 msgstr ""
 
 msgid "Rabies data"

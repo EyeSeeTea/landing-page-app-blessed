@@ -10,9 +10,7 @@ export const ntdLeishKenyaData = [
     {
         key: "data-entry",
         title: i18n.t("Stock management form"),
-        description: i18n.t(
-            "Update the monthly stock status data."
-        ),
+        description: i18n.t("Update the monthly stock status data."),
         rowLength: 2,
         icon: "../../../icons/dhis-web-dataentry.png",
         action: {
@@ -23,9 +21,7 @@ export const ntdLeishKenyaData = [
     {
         key: "event-entry",
         title: i18n.t("Case Management & Lab LOG forms"),
-        description: i18n.t(
-            "Enter individual cases for the Case Management and Lab LOG forms."
-        ),
+        description: i18n.t("Enter individual cases for the Case Management and Lab LOG forms."),
         rowLength: 2,
         icon: "../../../icons/dhis-web-capture.png",
         action: {
@@ -42,7 +38,9 @@ export const ntdLeishKenyaData = [
     {
         key: "dashboard",
         title: i18n.t("Dashboard"),
-        description: i18n.t("Visualize existing dashboards or create new ones with existing tables, charts or maps."),
+        description: i18n.t(
+            "Visualize existing dashboards or create new ones with existing tables, charts or maps."
+        ),
         rowLength: 2,
         icon: "img/dhis-web-dashboard.png",
         action: {
@@ -64,9 +62,7 @@ export const ntdLeishKenyaData = [
     {
         key: "pivot-table",
         title: i18n.t("Pivot Table"),
-        description: i18n.t(
-            "Create or update aggregated data tables."
-        ),
+        description: i18n.t("Create or update aggregated data tables."),
         rowLength: 2,
         icon: "../../../icons/dhis-web-pivot.png",
         action: {
@@ -77,9 +73,7 @@ export const ntdLeishKenyaData = [
     {
         key: "data-visualizer",
         title: i18n.t("Data Visualizer"),
-        description: i18n.t(
-            "Create or update aggregated data charts."
-        ),
+        description: i18n.t("Create or update aggregated data charts."),
         rowLength: 2,
         icon: "../../../icons/dhis-web-data-visualizer.png",
         action: {
@@ -90,9 +84,7 @@ export const ntdLeishKenyaData = [
     {
         key: "event-reports",
         title: i18n.t("Event Reports"),
-        description: i18n.t(
-            "Create or update individual data tables."
-        ),
+        description: i18n.t("Create or update individual data tables."),
         rowLength: 2,
         icon: "../../../icons/dhis-web-event-reports.png",
         action: {
@@ -103,9 +95,7 @@ export const ntdLeishKenyaData = [
     {
         key: "event-visualizer",
         title: i18n.t("Event Visualizer"),
-        description: i18n.t(
-            "Create or update individual data charts."
-        ),
+        description: i18n.t("Create or update individual data charts."),
         rowLength: 2,
         icon: "../../../icons/dhis-web-event-visualizer.png",
         action: {
@@ -122,7 +112,9 @@ export const ntdLeishKenyaData = [
     {
         key: "cache-cleaner",
         title: i18n.t("Browser cache cleaner"),
-        description: i18n.t("Clean old cache when DHIS2 does not behave as expected. Typically when a module has been updated."),
+        description: i18n.t(
+            "Clean old cache when DHIS2 does not behave as expected. Typically when a module has been updated."
+        ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-cache-cleaner.png",
         action: {
