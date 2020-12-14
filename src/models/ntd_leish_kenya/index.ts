@@ -9,9 +9,9 @@ export const ntdLeishKenyaData = [
     },
     {
         key: "data-entry",
-        title: i18n.t("Stock management"),
+        title: i18n.t("Stock management form"),
         description: i18n.t(
-            "Data Entry module enables health facilities to enter their monthly stock status"
+            "Update the monthly stock status data."
         ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-dataentry.png",
@@ -22,9 +22,9 @@ export const ntdLeishKenyaData = [
     },
     {
         key: "event-entry",
-        title: i18n.t("Case Management & Lab LOG"),
+        title: i18n.t("Case Management & Lab LOG forms"),
         description: i18n.t(
-            "Case Management & Lab LOG enables health facilities to enter individual cases"
+            "Enter individual cases for the Case Management and Lab LOG forms."
         ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-capture.png",
@@ -42,7 +42,7 @@ export const ntdLeishKenyaData = [
     {
         key: "dashboard",
         title: i18n.t("Dashboard"),
-        description: i18n.t("Access a dashboard visualizing the data that you entered before"),
+        description: i18n.t("Visualize existing dashboards or create new ones with existing tables, charts or maps."),
         rowLength: 2,
         icon: "img/dhis-web-dashboard.png",
         action: {
@@ -53,7 +53,7 @@ export const ntdLeishKenyaData = [
     {
         key: "maps",
         title: i18n.t("Maps"),
-        description: i18n.t("Enables users to visualize data in Geographical location system"),
+        description: i18n.t("Create or update aggregated or individual data maps."),
         rowLength: 2,
         icon: "../../../icons/dhis-web-maps.png",
         action: {
@@ -65,7 +65,7 @@ export const ntdLeishKenyaData = [
         key: "pivot-table",
         title: i18n.t("Pivot Table"),
         description: i18n.t(
-            "Enables users to create pivot tables, using available aggregated data"
+            "Create or update aggregated data tables."
         ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-pivot.png",
@@ -78,7 +78,7 @@ export const ntdLeishKenyaData = [
         key: "data-visualizer",
         title: i18n.t("Data Visualizer"),
         description: i18n.t(
-            "Enables users to easily create dynamic aggregated data analysis and visualizations through charts and data tables"
+            "Create or update aggregated data charts."
         ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-data-visualizer.png",
@@ -91,7 +91,7 @@ export const ntdLeishKenyaData = [
         key: "event-reports",
         title: i18n.t("Event Reports"),
         description: i18n.t(
-            "Enables users to create pivot tables, using available individual data"
+            "Create or update individual data tables."
         ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-event-reports.png",
@@ -104,7 +104,7 @@ export const ntdLeishKenyaData = [
         key: "event-visualizer",
         title: i18n.t("Event Visualizer"),
         description: i18n.t(
-            "Enables users to easily create dynamic individual data analysis and visualizations through charts and data tables"
+            "Create or update individual data charts."
         ),
         rowLength: 2,
         icon: "../../../icons/dhis-web-event-visualizer.png",
@@ -122,7 +122,7 @@ export const ntdLeishKenyaData = [
     {
         key: "cache-cleaner",
         title: i18n.t("Browser cache cleaner"),
-        description: i18n.t("Enables the users to clear the browser cache"),
+        description: i18n.t("Clean old cache when DHIS2 does not behave as expected. Typically when a module has been updated."),
         rowLength: 2,
         icon: "../../../icons/dhis-web-cache-cleaner.png",
         action: {
@@ -133,7 +133,7 @@ export const ntdLeishKenyaData = [
     {
         key: "profile",
         title: i18n.t("User profile"),
-        description: i18n.t("Allows the users to edit account credentials and public profile"),
+        description: i18n.t("Edit your account credentials and your public profile."),
         rowLength: 2,
         icon: "img/dhis-web-profile.png",
         action: {
