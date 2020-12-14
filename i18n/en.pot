@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-11-03T08:19:02.213Z\n"
-"PO-Revision-Date: 2020-11-03T08:19:02.213Z\n"
+"POT-Creation-Date: 2020-12-14T11:53:36.254Z\n"
+"PO-Revision-Date: 2020-12-14T11:53:36.254Z\n"
 
 msgid "User guide"
 msgstr ""
@@ -57,6 +57,12 @@ msgid "WHO Snakebite Webpage"
 msgstr ""
 
 msgid "Snakebite"
+msgstr ""
+
+msgid "National Leishmaniasis Control Programme for Kenya"
+msgstr ""
+
+msgid "Landing Page for MoH Kenya"
 msgstr ""
 
 msgid "Available landing pages"
@@ -198,6 +204,64 @@ msgid "Approval"
 msgstr ""
 
 msgid "Enables the users to approves the data submitted in the system"
+msgstr ""
+
+msgid "Enter data"
+msgstr ""
+
+msgid "Stock management form"
+msgstr ""
+
+msgid "Update the monthly stock status data."
+msgstr ""
+
+msgid "Case Management & Lab LOG forms"
+msgstr ""
+
+msgid "Enter individual cases for the Case Management and Lab LOG forms."
+msgstr ""
+
+msgid "Visualize Data"
+msgstr ""
+
+msgid ""
+"Visualize existing dashboards or create new ones with existing tables, "
+"charts or maps."
+msgstr ""
+
+msgid "Maps"
+msgstr ""
+
+msgid "Create or update aggregated or individual data maps."
+msgstr ""
+
+msgid "Pivot Table"
+msgstr ""
+
+msgid "Create or update aggregated data tables."
+msgstr ""
+
+msgid "Create or update aggregated data charts."
+msgstr ""
+
+msgid "Event Reports"
+msgstr ""
+
+msgid "Create or update individual data tables."
+msgstr ""
+
+msgid "Event Visualizer"
+msgstr ""
+
+msgid "Create or update individual data charts."
+msgstr ""
+
+msgid ""
+"Clean old cache when DHIS2 does not behave as expected. Typically when a "
+"module has been updated."
+msgstr ""
+
+msgid "Edit your account credentials and your public profile."
 msgstr ""
 
 msgid "Rabies data"
