@@ -129,9 +129,10 @@ export const nhwaData = (version: number) => [
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value: version < 33
-                        ? "/dhis-web-reporting/displayViewReportForm.action"
-                        : "/dhis-web-reports/index.html",
+                    value:
+                        version < 33
+                            ? "/dhis-web-reporting/displayViewReportForm.action"
+                            : "/dhis-web-reports/index.html",
                 });
             },
         },
