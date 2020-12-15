@@ -1,12 +1,14 @@
 import { useConfig } from "@dhis2/app-runtime";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { createGenerateClassName, StylesProvider } from "@material-ui/styles";
+import axios from "axios";
 import { LoadingProvider, SnackbarProvider } from "d2-ui-components";
 import OldMuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import React, { useEffect, useState } from "react";
 import WHOLoading from "../../components/who-loading";
 import { handleRedirection } from "../../logic/redirection";
 import { sleep } from "../../utils";
+import { getMajorVersion } from "../../utils/d2-api";
 import "./App.css";
 import Root from "./Root";
 import muiThemeLegacy from "./themes/dhis2-legacy.theme";
@@ -17,17 +19,23 @@ const generateClassName = createGenerateClassName({
 });
 
 const App = () => {
-    const { baseUrl, apiVersion } = useConfig();
+    const { baseUrl } = useConfig();
     const [config, updateConfig] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        handleRedirection(baseUrl, apiVersion).then(options => {
-            updateConfig(options);
-            if (options.title) document.title = options.title;
-            sleep(1000).then(() => setLoading(false));
-        });
-    }, [baseUrl, apiVersion]);
+        axios
+            .get(`${baseUrl}/api/system/info.json`, {
+                withCredentials: true,
+            })
+            .then(({ data: { version } }) => {
+                handleRedirection(baseUrl, getMajorVersion(version)).then(options => {
+                    updateConfig(options);
+                    if (options.title) document.title = options.title;
+                    sleep(1000).then(() => setLoading(false));
+                });
+            });
+    }, [baseUrl]);
 
     if (loading) {
         return <WHOLoading />;
