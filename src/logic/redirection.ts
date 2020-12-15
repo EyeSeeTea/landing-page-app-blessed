@@ -56,7 +56,7 @@ export const buildAvailableConfigurations = (version: number) => [
         userGroupIds: [NHWA_DATA_CLERKS],
         page: NHWALandingPage,
         header: nhwaHeader,
-        data: nhwaClerkData,
+        data: nhwaClerkData(version),
         icon: "img/icon.png",
     },
     {
@@ -66,7 +66,7 @@ export const buildAvailableConfigurations = (version: number) => [
         userGroupIds: [NHWA_DATA_VIEWERS],
         page: NHWALandingPage,
         header: nhwaHeader,
-        data: nhwaViewerData,
+        data: nhwaViewerData(version),
         icon: "img/icon.png",
     },
     {

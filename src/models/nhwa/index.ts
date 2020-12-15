@@ -230,15 +230,17 @@ export const nhwaData = (version: number) => [
     },
 ];
 
-export const nhwaClerkData = _.filter(nhwaData, ({ key }) => !["data-approval-link"].includes(key));
+export const nhwaClerkData = (version: number) =>
+    _.filter(nhwaData(version), ({ key }) => !["data-approval-link"].includes(key));
 
-export const nhwaViewerData = _.filter(
-    nhwaData,
-    ({ key }) =>
-        ![
-            "data-approval-link",
-            "data-quality-link",
-            "nhwa-data-entry-title",
-            "nhwa-data-entry-link",
-        ].includes(key)
-);
+export const nhwaViewerData = (version: number) =>
+    _.filter(
+        nhwaData(version),
+        ({ key }) =>
+            ![
+                "data-approval-link",
+                "data-quality-link",
+                "nhwa-data-entry-title",
+                "nhwa-data-entry-link",
+            ].includes(key)
+    );
