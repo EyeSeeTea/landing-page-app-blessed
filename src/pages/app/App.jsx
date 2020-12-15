@@ -28,13 +28,16 @@ const App = () => {
             .get(`${baseUrl}/api/system/info.json`, {
                 withCredentials: true,
             })
-            .then(({ data: { version } }) => {
-                handleRedirection(baseUrl, getMajorVersion(version)).then(options => {
-                    updateConfig(options);
-                    if (options.title) document.title = options.title;
-                    sleep(1000).then(() => setLoading(false));
-                });
-            });
+            .then(({ data }) => {
+                const apiVersion = getMajorVersion(data.version);
+                return handleRedirection(baseUrl, apiVersion);
+            })
+            .then(options => {
+                updateConfig(options);
+                if (options.title) document.title = options.title;
+                return sleep(1000);
+            })
+            .then(() => setLoading(false));
     }, [baseUrl]);
 
     if (loading) {
