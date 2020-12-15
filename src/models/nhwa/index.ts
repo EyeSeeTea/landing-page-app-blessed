@@ -100,8 +100,16 @@ export const nhwaData = (version: number) => [
         icon: "img/dhis-web-visualizer.png",
         size: "small",
         action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-visualizer/index.action",
+            type: "method",
+            value: async (_baseUrl: string, cb: Function) => {
+                cb({
+                    type: "dhisRedirect",
+                    value:
+                        version < 34
+                            ? "/dhis-web-visualizer/index.action"
+                            : "/dhis-web-data-visualizer/index.html",
+                });
+            },
         },
     },
     {
@@ -112,8 +120,16 @@ export const nhwaData = (version: number) => [
         icon: "img/dhis-web-mapping.png",
         size: "small",
         action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-mapping/index.action",
+            type: "method",
+            value: async (_baseUrl: string, cb: Function) => {
+                cb({
+                    type: "dhisRedirect",
+                    value:
+                        version < 34
+                            ? "/dhis-web-mapping/index.action"
+                            : "/dhis-web-maps/index.html",
+                });
+            },
         },
     },
     {
@@ -143,7 +159,7 @@ export const nhwaData = (version: number) => [
                     value:
                         version < 33
                             ? "/dhis-web-reporting/displayViewReportForm.action"
-                            : "/dhis-web-reports/index.html",
+                            : "/dhis-web-reports/index.html#/standard-report",
                 });
             },
         },
@@ -188,8 +204,16 @@ export const nhwaData = (version: number) => [
         size: "small",
         icon: "img/dhis-web-data-approval.png",
         action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-reporting/showDataApprovalForm.action",
+            type: "method",
+            value: async (_baseUrl: string, cb: Function) => {
+                cb({
+                    type: "dhisRedirect",
+                    value:
+                        version < 34
+                            ? "/dhis-web-reporting/showDataApprovalForm.action"
+                            : "/dhis-web-approval/index.action",
+                });
+            },
         },
     },
     {
