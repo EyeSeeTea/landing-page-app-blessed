@@ -62,11 +62,11 @@ export const nhwaData = (version: number) => [
         key: "excel-importer-link",
         iconDescription: i18n.t("Batch upload through excel sheets"),
         rowLength: 3,
-        icon: "img/excel-importer.png",
+        icon: "img/bulk-load.png",
         size: "small",
         action: {
             type: "dhisRedirect",
-            value: "/api/apps/NHWA-Data-Importer/index.html",
+            value: "/api/apps/Bulk-Load/index.html",
         },
     },
     {
