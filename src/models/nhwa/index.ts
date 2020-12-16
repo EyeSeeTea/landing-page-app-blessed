@@ -1,9 +1,7 @@
-import axios from "axios";
 import _ from "lodash";
 import i18n from "../../locales";
-import { getMajorVersion } from "../../utils/d2-api";
 
-export const nhwaData = [
+export const nhwaData = (version: number) => [
     {
         key: "maturity-assessment-title",
         title: i18n.t("NHWA maturity assessment"),
@@ -61,6 +59,17 @@ export const nhwaData = [
         },
     },
     {
+        key: "excel-importer-link",
+        iconDescription: i18n.t("Batch upload through excel sheets"),
+        rowLength: 3,
+        icon: "img/bulk-load.png",
+        size: "small",
+        action: {
+            type: "dhisRedirect",
+            value: "/api/apps/Bulk-Load/index.html",
+        },
+    },
+    {
         key: "visualize-data-title",
         title: i18n.t("Visualise data"),
         description: i18n.t(
@@ -91,8 +100,16 @@ export const nhwaData = [
         icon: "img/dhis-web-visualizer.png",
         size: "small",
         action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-visualizer/index.action",
+            type: "method",
+            value: async (_baseUrl: string, cb: Function) => {
+                cb({
+                    type: "dhisRedirect",
+                    value:
+                        version < 34
+                            ? "/dhis-web-visualizer/index.action"
+                            : "/dhis-web-data-visualizer/index.html",
+                });
+            },
         },
     },
     {
@@ -103,8 +120,16 @@ export const nhwaData = [
         icon: "img/dhis-web-mapping.png",
         size: "small",
         action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-mapping/index.action",
+            type: "method",
+            value: async (_baseUrl: string, cb: Function) => {
+                cb({
+                    type: "dhisRedirect",
+                    value:
+                        version < 34
+                            ? "/dhis-web-mapping/index.action"
+                            : "/dhis-web-maps/index.html",
+                });
+            },
         },
     },
     {
@@ -128,24 +153,14 @@ export const nhwaData = [
         size: "small",
         action: {
             type: "method",
-            value: async (baseUrl: string, cb: Function) => {
-                const { version } = (
-                    await axios.get(`${baseUrl}/api/system/info.json`, {
-                        withCredentials: true,
-                    })
-                ).data;
-
-                if (getMajorVersion(version) < 33) {
-                    cb({
-                        type: "dhisRedirect",
-                        value: "/dhis-web-reporting/displayViewReportForm.action",
-                    });
-                } else {
-                    cb({
-                        type: "dhisRedirect",
-                        value: "/dhis-web-reports/index.html",
-                    });
-                }
+            value: async (_baseUrl: string, cb: Function) => {
+                cb({
+                    type: "dhisRedirect",
+                    value:
+                        version < 33
+                            ? "/dhis-web-reporting/displayViewReportForm.action"
+                            : "/dhis-web-reports/index.html#/standard-report",
+                });
             },
         },
     },
@@ -189,8 +204,16 @@ export const nhwaData = [
         size: "small",
         icon: "img/dhis-web-data-approval.png",
         action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-reporting/showDataApprovalForm.action",
+            type: "method",
+            value: async (_baseUrl: string, cb: Function) => {
+                cb({
+                    type: "dhisRedirect",
+                    value:
+                        version < 34
+                            ? "/dhis-web-reporting/showDataApprovalForm.action"
+                            : "/dhis-web-approval/index.action",
+                });
+            },
         },
     },
     {
@@ -207,15 +230,17 @@ export const nhwaData = [
     },
 ];
 
-export const nhwaClerkData = _.filter(nhwaData, ({ key }) => !["data-approval-link"].includes(key));
+export const nhwaClerkData = (version: number) =>
+    _.filter(nhwaData(version), ({ key }) => !["data-approval-link"].includes(key));
 
-export const nhwaViewerData = _.filter(
-    nhwaData,
-    ({ key }) =>
-        ![
-            "data-approval-link",
-            "data-quality-link",
-            "nhwa-data-entry-title",
-            "nhwa-data-entry-link",
-        ].includes(key)
-);
+export const nhwaViewerData = (version: number) =>
+    _.filter(
+        nhwaData(version),
+        ({ key }) =>
+            ![
+                "data-approval-link",
+                "data-quality-link",
+                "nhwa-data-entry-title",
+                "nhwa-data-entry-link",
+            ].includes(key)
+    );

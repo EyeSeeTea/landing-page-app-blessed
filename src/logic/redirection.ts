@@ -38,7 +38,7 @@ export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
-export const buildAvailableConfigurations = () => [
+export const buildAvailableConfigurations = (version: number) => [
     {
         programme: "nhwa-managers",
         title: i18n.t("National Health Workforce Accounts Online Data Platform"),
@@ -46,7 +46,7 @@ export const buildAvailableConfigurations = () => [
         userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
         page: NHWALandingPage,
         header: nhwaHeader,
-        data: nhwaData,
+        data: nhwaData(version),
         icon: "img/icon.png",
     },
     {
@@ -56,7 +56,7 @@ export const buildAvailableConfigurations = () => [
         userGroupIds: [NHWA_DATA_CLERKS],
         page: NHWALandingPage,
         header: nhwaHeader,
-        data: nhwaClerkData,
+        data: nhwaClerkData(version),
         icon: "img/icon.png",
     },
     {
@@ -66,7 +66,7 @@ export const buildAvailableConfigurations = () => [
         userGroupIds: [NHWA_DATA_VIEWERS],
         page: NHWALandingPage,
         header: nhwaHeader,
-        data: nhwaViewerData,
+        data: nhwaViewerData(version),
         icon: "img/icon.png",
     },
     {
@@ -130,7 +130,7 @@ export const buildAvailableConfigurations = () => [
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
-export const handleRedirection = async (baseUrl: string) => {
+export const handleRedirection = async (baseUrl: string, version: number) => {
     const url = `${baseUrl}/api/me.json?fields=name,userGroups[id]`;
     const { name, userGroups } = (
         await axios.get(url, {
@@ -139,7 +139,7 @@ export const handleRedirection = async (baseUrl: string) => {
     ).data as { name: string; userGroups: Array<{ id: string }> };
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
-    const configurations = buildAvailableConfigurations().filter(config =>
+    const configurations = buildAvailableConfigurations(version).filter(config =>
         shouldRedirect(userGroupIds, config.userGroupIds)
     );
 
