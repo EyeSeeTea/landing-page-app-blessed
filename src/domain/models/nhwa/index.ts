@@ -104,10 +104,7 @@ export const nhwaData = (version: number) => [
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value:
-                        version < 34
-                            ? "/dhis-web-visualizer/index.action"
-                            : "/dhis-web-data-visualizer/index.html",
+                    value: version < 34 ? "/dhis-web-visualizer/index.action" : "/dhis-web-data-visualizer/index.html",
                 });
             },
         },
@@ -124,10 +121,7 @@ export const nhwaData = (version: number) => [
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value:
-                        version < 34
-                            ? "/dhis-web-mapping/index.action"
-                            : "/dhis-web-maps/index.html",
+                    value: version < 34 ? "/dhis-web-mapping/index.action" : "/dhis-web-maps/index.html",
                 });
             },
         },
@@ -237,10 +231,5 @@ export const nhwaViewerData = (version: number) =>
     _.filter(
         nhwaData(version),
         ({ key }) =>
-            ![
-                "data-approval-link",
-                "data-quality-link",
-                "nhwa-data-entry-title",
-                "nhwa-data-entry-link",
-            ].includes(key)
+            !["data-approval-link", "data-quality-link", "nhwa-data-entry-title", "nhwa-data-entry-link"].includes(key)
     );

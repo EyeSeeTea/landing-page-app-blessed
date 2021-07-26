@@ -1,14 +1,7 @@
 import axios from "axios";
 import i18n from "../../../locales";
 import { filterOrgUnits } from "../../../webapp/pages/entry-capture-page/common";
-import {
-    goToHashUrl,
-    hideSelector,
-    selector,
-    selectorWait,
-    sleep,
-    textSelector,
-} from "../../../utils";
+import { goToHashUrl, hideSelector, selector, selectorWait, sleep, textSelector } from "../../../utils";
 
 const recurrentTasks = (document, isAdmin) => {
     selectorWait(document, ".bordered-div", e => {

@@ -18,12 +18,7 @@ const LoadingMask = ({ classes, message, progress }) => {
                     thickness={1.5}
                 />
                 <Divider className={classes.divider} variant="middle" hidden={hideMessage} />
-                <Typography
-                    className={classes.message}
-                    variant="h6"
-                    hidden={hideMessage}
-                    gutterBottom
-                >
+                <Typography className={classes.message} variant="h6" hidden={hideMessage} gutterBottom>
                     {message}
                 </Typography>
             </div>

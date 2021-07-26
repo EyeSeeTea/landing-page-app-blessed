@@ -38,9 +38,7 @@ export const ntdLeishKenyaData = [
     {
         key: "dashboard",
         title: i18n.t("Dashboard"),
-        description: i18n.t(
-            "Visualize existing dashboards or create new ones with existing tables, charts or maps."
-        ),
+        description: i18n.t("Visualize existing dashboards or create new ones with existing tables, charts or maps."),
         rowLength: 2,
         icon: "img/dhis-web-dashboard.png",
         action: {

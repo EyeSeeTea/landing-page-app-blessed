@@ -11,8 +11,10 @@ import nhwaHeader from "../../webapp/components/headers/nhwa-header";
 import whoHeader from "../../webapp/components/headers/who-header";
 import {
     HepatitisLandingPage,
-    NHWALandingPage, NTDLeishKenyaLandingPage, RabiesLandingPage,
-    SnakebiteLandingPage
+    NHWALandingPage,
+    NTDLeishKenyaLandingPage,
+    RabiesLandingPage,
+    SnakebiteLandingPage,
 } from "../../webapp/pages";
 
 //TODO: Ask if we need a simple snakebite data or not

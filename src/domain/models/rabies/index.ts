@@ -11,8 +11,7 @@ import {
     SS_NTD_RAB_AggData_Entry,
 } from "../../../data/logic/redirection";
 
-const actionHumanRabiesDataEntry = async (baseUrl: string, cb: Function) =>
-    actionRabiesDataEntry(baseUrl, cb, "human");
+const actionHumanRabiesDataEntry = async (baseUrl: string, cb: Function) => actionRabiesDataEntry(baseUrl, cb, "human");
 
 const actionAnimalRabiesDataEntry = async (baseUrl: string, cb: Function) =>
     actionRabiesDataEntry(baseUrl, cb, "animal");
@@ -56,8 +55,7 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
     ).data;
 
     const period =
-        _.max(dataInputPeriods.map((dip: { period: Ref }) => parseInt(dip.period.id))) ??
-        new Date().getFullYear() - 1;
+        _.max(dataInputPeriods.map((dip: { period: Ref }) => parseInt(dip.period.id))) ?? new Date().getFullYear() - 1;
 
     const { organisationUnits: allOrgUnits } = (
         await axios.get(`${baseUrl}/api/me.json`, {
@@ -66,14 +64,10 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
         })
     ).data;
 
-    const organisationUnits = _.filter(allOrgUnits, ou =>
-        ou.dataSets.map((ds: Ref) => ds.id).includes(dataSet)
-    );
+    const organisationUnits = _.filter(allOrgUnits, ou => ou.dataSets.map((ds: Ref) => ds.id).includes(dataSet));
 
     const organisationUnit =
-        organisationUnits.length === 1 && organisationUnits[0].level > 1
-            ? organisationUnits[0].id
-            : undefined;
+        organisationUnits.length === 1 && organisationUnits[0].level > 1 ? organisationUnits[0].id : undefined;
 
     cb({
         type: "page",

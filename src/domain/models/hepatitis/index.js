@@ -22,9 +22,7 @@ const actionCascadeCare = async (baseUrl, cb) => {
     ).data;
 
     // TODO: Edge case not controlled (multiple valid OUs)
-    const organisationUnit = _.find(organisationUnits, ou =>
-        ou.dataSets.map(ds => ds.id).includes(dataSet)
-    );
+    const organisationUnit = _.find(organisationUnits, ou => ou.dataSets.map(ds => ds.id).includes(dataSet));
 
     if (organisationUnit) {
         cb({
@@ -69,8 +67,7 @@ const actionPolicyUptake = async (baseUrl, cb) => {
 
     // TODO: Edge case not controlled (multiple valid OUs)
     const organisationUnit =
-        _.find(organisationUnits, ou => ou.programs.map(ds => ds.id).includes(program)) ||
-        organisationUnits[0];
+        _.find(organisationUnits, ou => ou.programs.map(ds => ds.id).includes(program)) || organisationUnits[0];
 
     try {
         const { events } = (

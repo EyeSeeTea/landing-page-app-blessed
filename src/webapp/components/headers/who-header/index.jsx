@@ -22,12 +22,7 @@ const WHOHeader = ({ classes, history, baseUrl, title, backUrl }) => {
                 </Typography>
             </div>
 
-            <Chip
-                icon={<ExitToApp />}
-                label={i18n.t("LOG OUT")}
-                className={classes.logout}
-                onClick={actionLogout}
-            />
+            <Chip icon={<ExitToApp />} label={i18n.t("LOG OUT")} className={classes.logout} onClick={actionLogout} />
         </header>
     );
 };

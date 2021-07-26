@@ -9,8 +9,7 @@ export const goToHashUrl = hash => {
     if (hash) window.location.hash = hash;
 };
 
-const cleanDhis2Url = (baseUrl, path) =>
-    [baseUrl.replace(/\/$/, ""), path.replace(/^\//, "")].join("/");
+const cleanDhis2Url = (baseUrl, path) => [baseUrl.replace(/\/$/, ""), path.replace(/^\//, "")].join("/");
 
 export const goToDhis2Url = (baseUrl, path) => {
     if (baseUrl && path) window.location = cleanDhis2Url(baseUrl, path);
@@ -55,8 +54,7 @@ export const hideSelector = (document, id, condition = true) =>
     });
 
 const findXPath = (document, xpath) =>
-    document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)
-        .singleNodeValue;
+    document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
 const waitForText = async (document, text, retry = 0) => {
     const element = findXPath(document, `//text()[contains(.,'${text}')]`);

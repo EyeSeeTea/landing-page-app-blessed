@@ -24,17 +24,7 @@ const LandingPage = ({ classes, history, baseUrl, items, header, title, username
     };
 
     const menuItems = items.map(
-        ({
-            key,
-            title,
-            description,
-            icon,
-            iconDescription,
-            action,
-            enableBottomLine,
-            rowLength,
-            size = "large",
-        }) => (
+        ({ key, title, description, icon, iconDescription, action, enableBottomLine, rowLength, size = "large" }) => (
             <Grid
                 item
                 xs={12 / rowLength}
@@ -62,13 +52,7 @@ const LandingPage = ({ classes, history, baseUrl, items, header, title, username
                     </div>
                 )}
                 {description && (
-                    <p
-                        className={`${classes.description} ${
-                            size === "small" ? classes.small : ""
-                        }`}
-                    >
-                        {description}
-                    </p>
+                    <p className={`${classes.description} ${size === "small" ? classes.small : ""}`}>{description}</p>
                 )}
             </Grid>
         )

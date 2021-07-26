@@ -40,10 +40,8 @@ export const useLoading = initialProps => {
 
     const value = useMemo(
         () => ({
-            update: ({ isLoading, progress, message }) =>
-                updateProps({ isLoading, progress, message }),
-            show: (isLoading = true, message, progress) =>
-                updateProps({ isLoading, message, progress }),
+            update: ({ isLoading, progress, message }) => updateProps({ isLoading, progress, message }),
+            show: (isLoading = true, message, progress) => updateProps({ isLoading, message, progress }),
             hide: () => updateProps({ isLoading: false }),
             reset: () => updateProps(defaultProps),
             updateMessage: message => updateProps({ message }),

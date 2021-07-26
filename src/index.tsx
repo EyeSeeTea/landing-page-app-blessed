@@ -37,7 +37,7 @@ async function main() {
         const api = getD2APiFromInstance({ type: "local", url: baseUrl });
         Object.assign(window, { d2, api });
 
-        const userSettings = await api.get < { keyUiLocale: string } > ("/userSettings").getData();
+        const userSettings = await api.get<{ keyUiLocale: string }>("/userSettings").getData();
         configI18n(userSettings);
 
         ReactDOM.render(

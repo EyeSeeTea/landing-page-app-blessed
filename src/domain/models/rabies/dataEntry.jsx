@@ -16,12 +16,7 @@ const selectPeriod = (document, contentWindow, period) =>
     });
 
 const selectAttribute = (document, contentWindow, attributeString, selectFirst = true) => {
-    const attributes = attributeString?.split(",") ?? [
-        "pvLXvZvAtZV",
-        "Os3X3EgDGn0",
-        "rZePNSA78l8",
-        "FYtmoLvrfbh",
-    ];
+    const attributes = attributeString?.split(",") ?? ["pvLXvZvAtZV", "Os3X3EgDGn0", "rZePNSA78l8", "FYtmoLvrfbh"];
 
     selectorWait(document, `#category-MUgypnOT60u > option`, e => {
         e.disabled = e.value !== -1 && !attributes.find(s => s === e.value);
@@ -34,10 +29,7 @@ const selectAttribute = (document, contentWindow, attributeString, selectFirst =
 
 const selectTab = (contentWindow, tab) => (contentWindow.location.hash = tab);
 
-export const rabiesStyling = async (
-    iframe,
-    { organisationUnit, element, period, baseUrl, tab, attributes }
-) => {
+export const rabiesStyling = async (iframe, { organisationUnit, element, period, baseUrl, tab, attributes }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document, selection } = contentWindow || contentDocument;
     const isAdmin = !organisationUnit;
