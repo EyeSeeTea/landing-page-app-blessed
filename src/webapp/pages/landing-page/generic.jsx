@@ -1,14 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, withStyles } from "@material-ui/core";
+import { ConfirmationDialog } from "@eyeseetea/d2-ui-components";
 import { withRouter } from "react-router-dom";
 import { HeaderBar } from "@dhis2/ui-widgets";
-
+import { useAppContext } from "../../contexts/app-context";
 import { styles } from "../../../domain/models/hepatitis/styles";
 import { goToDhis2Url } from "../../../utils";
+import i18n from "../../../locales";
 
 const LandingPage = ({ classes, history, baseUrl, items, header, title, username }) => {
     const HeaderComponent = header || HeaderBar;
+
+    const { notifications, compositionRoot } = useAppContext();
+    const [open, setOpen] = React.useState(notifications.length === 0 ? false : true);
+
+    const save = React.useCallback(async () => {
+        await compositionRoot.usecases.notifications.update(notifications)
+        setOpen(false);
+    }, [compositionRoot, notifications]);
 
     const visitPage = ({ type, value }) => {
         switch (type) {
@@ -61,6 +71,17 @@ const LandingPage = ({ classes, history, baseUrl, items, header, title, username
     return (
         <React.Fragment>
             <HeaderComponent baseUrl={baseUrl} title={title} username={username} />
+            <ConfirmationDialog
+                    title={i18n.t("Notifications")}
+                    open={open}
+                    onSave={save}
+                    onCancel={() => setOpen(false)}
+                    maxWidth={"md"}
+                    fullWidth={true}
+                >
+                        {notifications.map(notification => 
+                            <div key={notification.id}>{notification.content}</div>)}
+                </ConfirmationDialog> 
             <div className={classes.root}>
                 <Grid container spacing={0} className={classes.container}>
                     {menuItems}
@@ -76,7 +97,10 @@ LandingPage.propTypes = {
     baseUrl: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
 };
-
+/*const Container = styled.div`
+    display: flex;
+    flex-flow: column;
+`;*/
 LandingPage.defaultProps = {};
 
 export default withRouter(withStyles(styles)(LandingPage));

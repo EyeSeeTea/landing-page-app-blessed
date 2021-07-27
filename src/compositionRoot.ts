@@ -1,6 +1,19 @@
+import { Dhis2ConfigRepository } from "./data/repositories/Dhis2ConfigRepository";
+import { NotificationsDefaultRepository } from "./data/repositories/NotificationsDefaultRepository";
+import { ListNotificationsUseCase } from "./domain/usecases/ListNotificationsUseCase";
+import { UpdateNotificationUseCase } from "./domain/usecases/UpdateNotificationUseCase";
+
 export function getCompositionRoot(_baseUrl: string) {
+    const configRepository = new Dhis2ConfigRepository(_baseUrl);
+    const notificationsRepository = new NotificationsDefaultRepository(configRepository);
+
     return {
-        test: getExecute({}),
+        usecases: {
+            notifications: getExecute({
+                list: new ListNotificationsUseCase(notificationsRepository),
+                update: new UpdateNotificationUseCase(notificationsRepository)
+            })
+        }    
     };
 }
 

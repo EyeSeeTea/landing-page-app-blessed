@@ -43,7 +43,9 @@ const App = ({ api }: { api: D2Api }) => {
                 })
                 .then(() => setLoading(false));
 
-            setAppContext({ api, compositionRoot });
+            const notifications = await compositionRoot.usecases.notifications.list();
+
+            setAppContext({ api, compositionRoot, notifications });
         }
         setup();
     }, [baseUrl, api]);
