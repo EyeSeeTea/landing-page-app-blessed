@@ -97,10 +97,7 @@ LandingPage.propTypes = {
     baseUrl: PropTypes.string.isRequired,
     items: PropTypes.array.isRequired,
 };
-/*const Container = styled.div`
-    display: flex;
-    flex-flow: column;
-`;*/
+
 LandingPage.defaultProps = {};
 
 export default withRouter(withStyles(styles)(LandingPage));
