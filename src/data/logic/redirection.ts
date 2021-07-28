@@ -15,6 +15,7 @@ import {
     NTDLeishKenyaLandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
+    //NotificationsPage
 } from "../../webapp/pages";
 
 //TODO: Ask if we need a simple snakebite data or not
@@ -48,7 +49,18 @@ export interface Configuration {
     data: any;
     icon: string;
 }
-
+/*
+    {
+        programme: "admin-list-create-notifs",
+        title: i18n.t("Notifications"),
+        description: i18n.t("List and create notifications"),
+        userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
+        page: NotificationsPage,
+        header: nhwaHeader,
+        data: nhwaData(version),
+        icon: "img/icon.png",
+    },
+*/
 export const buildAvailableConfigurations = (version: number): Configuration[] => [
     {
         programme: "nhwa-managers",

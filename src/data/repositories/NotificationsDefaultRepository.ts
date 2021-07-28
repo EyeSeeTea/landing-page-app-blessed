@@ -33,6 +33,18 @@ export class NotificationsDefaultRepository implements NotificationsRepository {
             return [];
         }
     }
+
+    public async listAll(): Promise<Notification[]> {
+        try {
+            return await this.storageClient.listObjectsInCollection<Notification>(
+                Namespaces.NOTIFICATIONS
+            );            
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    }
+    
     public async update(notifications: Notification[]): Promise<void> {
         const currentUser = await this.config.getUser();
         const date = new Date();

@@ -12,13 +12,13 @@ import i18n from "../../../locales";
 const LandingPage = ({ classes, history, baseUrl, items, header, title, username }) => {
     const HeaderComponent = header || HeaderBar;
 
-    const { notifications, compositionRoot } = useAppContext();
-    const [open, setOpen] = React.useState(notifications.length === 0 ? false : true);
+    const { userNotifications, compositionRoot } = useAppContext();
+    const [open, setOpen] = React.useState(userNotifications.length === 0 ? false : true);
 
     const save = React.useCallback(async () => {
-        await compositionRoot.usecases.notifications.update(notifications)
+        await compositionRoot.usecases.notifications.update(userNotifications)
         setOpen(false);
-    }, [compositionRoot, notifications]);
+    }, [compositionRoot, userNotifications]);
 
     const visitPage = ({ type, value }) => {
         switch (type) {
@@ -79,7 +79,7 @@ const LandingPage = ({ classes, history, baseUrl, items, header, title, username
                     maxWidth={"md"}
                     fullWidth={true}
                 >
-                        {notifications.map(notification => 
+                        {userNotifications.map(notification => 
                             <div key={notification.id}>{notification.content}</div>)}
                 </ConfirmationDialog> 
             <div className={classes.root}>

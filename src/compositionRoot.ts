@@ -1,6 +1,8 @@
 import { Dhis2ConfigRepository } from "./data/repositories/Dhis2ConfigRepository";
 import { NotificationsDefaultRepository } from "./data/repositories/NotificationsDefaultRepository";
-import { ListNotificationsUseCase } from "./domain/usecases/ListNotificationsUseCase";
+import { ListUserNotificationsUseCase } from "./domain/usecases/ListUserNotificationsUseCase";
+import { ListAllNotificationsUseCase } from "./domain/usecases/ListAllNotificationsUseCase";
+
 import { UpdateNotificationsUseCase } from "./domain/usecases/UpdateNotificationsUseCase";
 
 export function getCompositionRoot(_baseUrl: string) {
@@ -10,7 +12,8 @@ export function getCompositionRoot(_baseUrl: string) {
     return {
         usecases: {
             notifications: getExecute({
-                list: new ListNotificationsUseCase(notificationsRepository),
+                list: new ListUserNotificationsUseCase(notificationsRepository),
+                listAll: new ListAllNotificationsUseCase(notificationsRepository),
                 update: new UpdateNotificationsUseCase(notificationsRepository)
             })
         }    

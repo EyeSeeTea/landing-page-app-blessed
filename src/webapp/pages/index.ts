@@ -6,8 +6,10 @@ import NHWALandingPage from "./landing-page/nhwa";
 import RabiesLandingPage from "./landing-page/rabies";
 import SnakebiteLandingPage from "./landing-page/snakebite";
 import NTDLeishKenyaLandingPage from "./landing-page/ntd-leish-kenya";
+import { NotificationsPage } from "./notifications-page";
 
 export {
+    NotificationsPage,
     CacheCleanerPage,
     EntryCapturePage,
     GenericLandingPage,

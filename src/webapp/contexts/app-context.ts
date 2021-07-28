@@ -6,7 +6,8 @@ import { Notification } from "../../domain/entities/Notification";
 export interface AppContextState {
     api: D2Api;
     compositionRoot: CompositionRoot;
-    notifications: Notification[];
+    userNotifications: Notification[];
+    allNotifications: Notification[];
 }
 
 export const AppContext = React.createContext<AppContextState | null>(null);
