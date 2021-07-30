@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppContext } from "../../contexts/app-context";
-import { ConfirmationDialog, ObjectsTable, TableColumn } from "@eyeseetea/d2-ui-components"; //, Sharing
+import { ConfirmationDialog, ObjectsTable, TableColumn, Sharing, SharingRule, ShareUpdate } from "@eyeseetea/d2-ui-components";  //, Sharing
 import { Button, TextField, FormControl, FormLabel, Theme } from "@material-ui/core";
 
 import i18n from "../../../locales";
@@ -19,15 +19,30 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 );
 export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: Header, baseUrl, title }) => {
-    const { allNotifications } = useAppContext();
+    const { allNotifications, compositionRoot } = useAppContext();
     const [open, setOpen] = React.useState(false);
+    const [content, setContent] = React.useState<string>("");
+    const [notificationUsers, updateNotificationUsers] = React.useState<{
+        users: SharingRule[];
+        userGroups: SharingRule[];
+    }>({ users: [], userGroups: [] });
 
-    console.log(allNotifications)
-    // Read by: {notification.readBy}
-    /*const save = React.useCallback(async () => {
-        await compositionRoot.usecases.notifications.update(userNotifications)
+    const save = React.useCallback(async () => {
+        const totalRecipients = notificationUsers.users.concat(notificationUsers.userGroups)
+        await compositionRoot.usecases.notifications.create(content, totalRecipients.map(user => user.id));
         setOpen(false);
-    }, [compositionRoot, userNotifications]);*/
+        window.location.reload()
+    }, [compositionRoot, content, notificationUsers]);
+
+    const search = React.useCallback((query: string) => compositionRoot.usecases.instance.searchUsers(query), [compositionRoot]);
+
+    const onSharingChanged = React.useCallback(async (updatedAttributes: ShareUpdate) => {
+        updateNotificationUsers(({ users, userGroups }) => {
+            const { userAccesses = users, userGroupAccesses = userGroups } = updatedAttributes;
+            return { users: userAccesses, userGroups: userGroupAccesses };
+        });
+    }, []);
+
     const columns: TableColumn<Notification>[] = React.useMemo(
         () => [
             {
@@ -46,32 +61,15 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
                 text: "Recipients",
                 getValue: item => item.recipients.join(),
             },
+            {
+                name: "createdAt",
+                text: "Created At",
+                getValue: item => item.createdAt,
+            },
         ],
         []
     );
-    /*
-        <Sharing
-                meta={{
-                    meta: { allowPublicAccess: true, allowExternalAccess: false },
-                    object: {
-                        id: module.id,
-                        displayName: module.name.referenceValue,
-                        publicAccess: module.publicAccess,
-                        userAccesses: mapSharingRules(module.userAccesses),
-                        userGroupAccesses: mapSharingRules(module.userGroupAccesses),
-                    },
-                }}
-                showOptions={{
-                    title: false,
-                    dataSharing: false,
-                    publicSharing: true,
-                    externalSharing: false,
-                    permissionPicker: true,
-                }}
-                onSearch={search}
-                onChange={setModuleSharing}
-            />
-    */
+
     const classes = useStyles({});
     return (
         <React.Fragment>
@@ -79,7 +77,7 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
             <ConfirmationDialog
                     title={i18n.t("Create new notification")}
                     open={open}
-                    onSave={() => setOpen(false)}
+                    onSave={save}
                     onCancel={() => setOpen(false)}
                     maxWidth={"md"}
                     fullWidth={true}
@@ -94,10 +92,29 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
                     />
-
-                <FormLabel component="legend">{i18n.t("Send notification to: (select users or user groups)")}</FormLabel>
-
+                    <Sharing
+                meta={{
+                    meta: { allowPublicAccess: true, allowExternalAccess: false },
+                    object: {
+                        id: "",
+                        displayName: "",
+                        userAccesses: notificationUsers.users,
+                        userGroupAccesses: notificationUsers.userGroups
+                    },
+                }}
+                showOptions={{
+                    title: false,
+                    dataSharing: false,
+                    publicSharing: true,
+                    externalSharing: false,
+                    permissionPicker: false,
+                }}
+                onSearch={search}
+                onChange={onSharingChanged}
+            />
                 
                 </FormControl>
 

@@ -54,7 +54,7 @@ const App = ({ api }: { api: D2Api }) => {
     if (loading) {
         return <WHOLoading />;
     }
-
+    
     return (
         <MuiThemeProvider theme={muiTheme}>
             <OldMuiThemeProvider muiTheme={muiThemeLegacy}>

@@ -6,7 +6,6 @@ import { Configuration } from "../../../data/logic/redirection";
 import { defaultData } from "../../../domain/models";
 
 export const Router: React.FC<RouterProps> = ({ baseUrl, username, configurations }) => {
-    console.log(configurations)
     return (
         <HashRouter>
             <Switch>
@@ -26,7 +25,7 @@ export const Router: React.FC<RouterProps> = ({ baseUrl, username, configuration
                     key={"admin-list-create-notifs"}
                     path={`/notifications`}
                     //@ts-ignore
-                    render={() => <NotificationsPage title={title} header={header} baseUrl={baseUrl} />}
+                    render={() => <NotificationsPage title={title} baseUrl={baseUrl} />}
                 />,
                     <Route
                         key={programme}

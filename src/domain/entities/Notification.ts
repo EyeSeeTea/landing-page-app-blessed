@@ -3,6 +3,7 @@ export interface Notification {
     content: string;
     recipients: string[];
     readBy: ReadBy[];
+    createdAt: Date;
 } 
 interface ReadBy {
     id: string;

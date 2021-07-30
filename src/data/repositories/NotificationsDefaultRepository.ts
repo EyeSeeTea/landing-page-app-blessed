@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { Notification } from "../../domain/entities/Notification";
 import { ConfigRepository } from "../../domain/repositories/ConfigRepository";
+import { generateUid } from "../utils/uid";
 
 import { DataStoreStorageClient } from "../clients/storage/DataStoreStorageClient";
 import { Namespaces } from "../clients/storage/Namespaces";
@@ -44,12 +45,23 @@ export class NotificationsDefaultRepository implements NotificationsRepository {
             return [];
         }
     }
-    
+
     public async update(notifications: Notification[]): Promise<void> {
         const currentUser = await this.config.getUser();
         const date = new Date();
         const user = { id: currentUser.id, date };
         const updatedNotifications = notifications.map(notification => ({...notification, readBy: [...notification.readBy, user] }))
         await this.storageClient.saveObjectsInCollection<Notification>(Namespaces.NOTIFICATIONS, updatedNotifications)
+        }
+
+    public async create(content: string, recipients: string[]): Promise<void> {
+        const newNotification: Notification = {
+            id: generateUid(),
+            content,
+            recipients,
+            readBy: [],
+            createdAt: new Date()
+        }
+        await this.storageClient.saveObjectInCollection<Notification>(Namespaces.NOTIFICATIONS, newNotification)
         }
     }

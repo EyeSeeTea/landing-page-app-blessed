@@ -5,8 +5,14 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2021-07-28T10:28:34.663Z\n"
-"PO-Revision-Date: 2021-07-28T10:28:34.663Z\n"
+"POT-Creation-Date: 2021-07-28T17:41:59.333Z\n"
+"PO-Revision-Date: 2021-07-28T17:41:59.333Z\n"
+
+msgid "Notifications"
+msgstr ""
+
+msgid "List and create notifications"
+msgstr ""
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -45,6 +51,9 @@ msgid "National Leishmaniasis Control Programme for Kenya"
 msgstr ""
 
 msgid "Landing Page for MoH Kenya"
+msgstr ""
+
+msgid "See/create notifications"
 msgstr ""
 
 msgid "Available landing pages"
@@ -291,5 +300,8 @@ msgstr ""
 msgid "Getting ready, Please wait"
 msgstr ""
 
-msgid "Notifications"
+msgid "Create new notification"
+msgstr ""
+
+msgid "Message"
 msgstr ""

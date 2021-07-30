@@ -15,8 +15,11 @@ import {
     NTDLeishKenyaLandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
-    //NotificationsPage
+    NotificationsPage
 } from "../../webapp/pages";
+
+//this is a userRole ID 
+export const AUTHORITY_ALL = "LvNmqTiRq7u";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -44,24 +47,28 @@ export interface Configuration {
     title: string;
     description: string;
     userGroupIds: string[];
+    userRoleIds?: string[];
     page: any;
-    header: any;
-    data: any;
+    header?: any;
+    data?: any;
     icon: string;
 }
-/*
+
+interface userCredentials { 
+    userRoles: Array<{ id: string }>;
+}
+
+export const buildAvailableConfigurations = (version: number): Configuration[] => [
     {
         programme: "admin-list-create-notifs",
-        title: i18n.t("Notifications"),
-        description: i18n.t("List and create notifications"),
-        userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
+        title: i18n.t("ADMIN: See/create notifications"),
+        description: i18n.t("ADMIN: See/create notifications"),
+        userGroupIds: [],
+        userRoleIds: [AUTHORITY_ALL],
         page: NotificationsPage,
-        header: nhwaHeader,
-        data: nhwaData(version),
+        header: whoHeader,
         icon: "img/icon.png",
     },
-*/
-export const buildAvailableConfigurations = (version: number): Configuration[] => [
     {
         programme: "nhwa-managers",
         title: i18n.t("National Health Workforce Accounts Online Data Platform"),
@@ -154,17 +161,19 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
 export const handleRedirection = async (baseUrl: string, version: number) => {
-    const url = `${baseUrl}/api/me.json?fields=name,userGroups[id]`;
-    const { name, userGroups } = (
+    const url = `${baseUrl}/api/me.json?fields=name,userGroups[id],userCredentials[userRoles]`;
+    const { name, userGroups, userCredentials } = (
         await axios.get(url, {
             withCredentials: true,
         })
-    ).data as { name: string; userGroups: Array<{ id: string }> };
+    ).data as { name: string; userGroups: Array<{ id: string }>, userCredentials: userCredentials };
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
+    const userRoleIds = userCredentials.userRoles.map(userRole => userRole.id)
+
     const configurations = buildAvailableConfigurations(version).filter(config =>
-        shouldRedirect(userGroupIds, config.userGroupIds)
-    );
+        shouldRedirect(userGroupIds.concat(userRoleIds), config.userGroupIds.concat(config.userRoleIds || []))
+        );
 
     if (configurations.length > 0) {
         return { username: name, configurations };

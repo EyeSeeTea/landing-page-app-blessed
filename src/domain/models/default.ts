@@ -8,15 +8,6 @@ export const defaultData = (
     }[]
 ) => [
     {
-        key: "admin-list-create-notifs",
-        title: i18n.t("See/create notifications"),
-        rowLength: 1,
-        action: {
-            type: "page",
-            value: `/notifications`,
-        },
-    },
-    {
         key: "title-data",
         title: i18n.t("Available landing pages"),
         rowLength: 1,
