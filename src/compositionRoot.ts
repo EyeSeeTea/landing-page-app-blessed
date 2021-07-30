@@ -20,14 +20,12 @@ export function getCompositionRoot(_baseUrl: string) {
                 list: new ListUserNotificationsUseCase(notificationsRepository),
                 listAll: new ListAllNotificationsUseCase(notificationsRepository),
                 update: new UpdateNotificationsUseCase(notificationsRepository),
-                create: new CreateNotificationUseCase(notificationsRepository)
-
+                create: new CreateNotificationUseCase(notificationsRepository),
             }),
             instance: getExecute({
                 searchUsers: new SearchUsersUseCase(instanceRepository),
-            })
+            }),
         },
-       
     };
 }
 

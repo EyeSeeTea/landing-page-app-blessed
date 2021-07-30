@@ -1,6 +1,13 @@
 import React from "react";
 import { useAppContext } from "../../contexts/app-context";
-import { ConfirmationDialog, ObjectsTable, TableColumn, Sharing, SharingRule, ShareUpdate } from "@eyeseetea/d2-ui-components";  //, Sharing
+import {
+    ConfirmationDialog,
+    ObjectsTable,
+    TableColumn,
+    Sharing,
+    SharingRule,
+    ShareUpdate,
+} from "@eyeseetea/d2-ui-components"; //, Sharing
 import { Button, TextField, FormControl, FormLabel, Theme } from "@material-ui/core";
 
 import i18n from "../../../locales";
@@ -28,13 +35,19 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
     }>({ users: [], userGroups: [] });
 
     const save = React.useCallback(async () => {
-        const totalRecipients = notificationUsers.users.concat(notificationUsers.userGroups)
-        await compositionRoot.usecases.notifications.create(content, totalRecipients.map(user => user.id));
+        const totalRecipients = notificationUsers.users.concat(notificationUsers.userGroups);
+        await compositionRoot.usecases.notifications.create(
+            content,
+            totalRecipients.map(user => user.id)
+        );
         setOpen(false);
-        window.location.reload()
+        window.location.reload();
     }, [compositionRoot, content, notificationUsers]);
 
-    const search = React.useCallback((query: string) => compositionRoot.usecases.instance.searchUsers(query), [compositionRoot]);
+    const search = React.useCallback(
+        (query: string) => compositionRoot.usecases.instance.searchUsers(query),
+        [compositionRoot]
+    );
 
     const onSharingChanged = React.useCallback(async (updatedAttributes: ShareUpdate) => {
         updateNotificationUsers(({ users, userGroups }) => {
@@ -75,16 +88,15 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
         <React.Fragment>
             <Header baseUrl={baseUrl} title={title} />
             <ConfirmationDialog
-                    title={i18n.t("Create new notification")}
-                    open={open}
-                    onSave={save}
-                    onCancel={() => setOpen(false)}
-                    maxWidth={"md"}
-                    fullWidth={true}
-                >
-
+                title={i18n.t("Create new notification")}
+                open={open}
+                onSave={save}
+                onCancel={() => setOpen(false)}
+                maxWidth={"md"}
+                fullWidth={true}
+            >
                 <FormControl fullWidth className={classes.formControl}>
-                        <FormLabel component="legend">{i18n.t("Message")}</FormLabel>
+                    <FormLabel component="legend">{i18n.t("Message")}</FormLabel>
 
                     <TextField
                         multiline
@@ -93,42 +105,45 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
                             shrink: true,
                         }}
                         value={content}
-                        onChange={(e) => setContent(e.target.value)}
+                        onChange={e => setContent(e.target.value)}
                     />
                     <Sharing
-                meta={{
-                    meta: { allowPublicAccess: true, allowExternalAccess: false },
-                    object: {
-                        id: "",
-                        displayName: "",
-                        userAccesses: notificationUsers.users,
-                        userGroupAccesses: notificationUsers.userGroups
-                    },
-                }}
-                showOptions={{
-                    title: false,
-                    dataSharing: false,
-                    publicSharing: true,
-                    externalSharing: false,
-                    permissionPicker: false,
-                }}
-                onSearch={search}
-                onChange={onSharingChanged}
-            />
-                
+                        meta={{
+                            meta: { allowPublicAccess: true, allowExternalAccess: false },
+                            object: {
+                                id: "",
+                                displayName: "",
+                                userAccesses: notificationUsers.users,
+                                userGroupAccesses: notificationUsers.userGroups,
+                            },
+                        }}
+                        showOptions={{
+                            title: false,
+                            dataSharing: false,
+                            publicSharing: true,
+                            externalSharing: false,
+                            permissionPicker: false,
+                        }}
+                        onSearch={search}
+                        onChange={onSharingChanged}
+                    />
                 </FormControl>
-
-                </ConfirmationDialog> 
-                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", flexWrap: "nowrap"}}>
-            <h1>All notifications:</h1>
-            <Button onClick={() => setOpen(true)} variant="contained">Create notification</Button>
-
+            </ConfirmationDialog>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flexWrap: "nowrap",
+                }}
+            >
+                <h1>All notifications:</h1>
+                <Button onClick={() => setOpen(true)} variant="contained">
+                    Create notification
+                </Button>
             </div>
-            <ObjectsTable<Notification>
-                    rows={allNotifications}
-                    columns={columns}
-                    childrenKeys={["children"]}
-                />
+            <ObjectsTable<Notification> rows={allNotifications} columns={columns} childrenKeys={["children"]} />
         </React.Fragment>
     );
 };

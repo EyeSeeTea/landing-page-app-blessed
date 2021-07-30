@@ -8,7 +8,6 @@ import { Namespaces } from "../clients/storage/Namespaces";
 import { StorageClient } from "../clients/storage/StorageClient";
 import { NotificationsRepository } from "../../domain/repositories/NotificationsRepository";
 
-
 export class NotificationsDefaultRepository implements NotificationsRepository {
     private storageClient: StorageClient;
 
@@ -23,12 +22,12 @@ export class NotificationsDefaultRepository implements NotificationsRepository {
                 Namespaces.NOTIFICATIONS
             );
             const userNotifs = notifications
-                                .filter(notification => notification.recipients.includes(currentUser.id))
-                               .filter(userNotif => 
-                                {   const readByUsers = userNotif.readBy.map(user => user.id)
-                                    return !readByUsers.includes(currentUser.id)
-                                });
-            return userNotifs
+                .filter(notification => notification.recipients.includes(currentUser.id))
+                .filter(userNotif => {
+                    const readByUsers = userNotif.readBy.map(user => user.id);
+                    return !readByUsers.includes(currentUser.id);
+                });
+            return userNotifs;
         } catch (error) {
             console.error(error);
             return [];
@@ -37,9 +36,7 @@ export class NotificationsDefaultRepository implements NotificationsRepository {
 
     public async listAll(): Promise<Notification[]> {
         try {
-            return await this.storageClient.listObjectsInCollection<Notification>(
-                Namespaces.NOTIFICATIONS
-            );            
+            return await this.storageClient.listObjectsInCollection<Notification>(Namespaces.NOTIFICATIONS);
         } catch (error) {
             console.error(error);
             return [];
@@ -50,9 +47,12 @@ export class NotificationsDefaultRepository implements NotificationsRepository {
         const currentUser = await this.config.getUser();
         const date = new Date();
         const user = { id: currentUser.id, date };
-        const updatedNotifications = notifications.map(notification => ({...notification, readBy: [...notification.readBy, user] }))
-        await this.storageClient.saveObjectsInCollection<Notification>(Namespaces.NOTIFICATIONS, updatedNotifications)
-        }
+        const updatedNotifications = notifications.map(notification => ({
+            ...notification,
+            readBy: [...notification.readBy, user],
+        }));
+        await this.storageClient.saveObjectsInCollection<Notification>(Namespaces.NOTIFICATIONS, updatedNotifications);
+    }
 
     public async create(content: string, recipients: string[]): Promise<void> {
         const newNotification: Notification = {
@@ -60,8 +60,8 @@ export class NotificationsDefaultRepository implements NotificationsRepository {
             content,
             recipients,
             readBy: [],
-            createdAt: new Date()
-        }
-        await this.storageClient.saveObjectInCollection<Notification>(Namespaces.NOTIFICATIONS, newNotification)
-        }
+            createdAt: new Date(),
+        };
+        await this.storageClient.saveObjectInCollection<Notification>(Namespaces.NOTIFICATIONS, newNotification);
     }
+}

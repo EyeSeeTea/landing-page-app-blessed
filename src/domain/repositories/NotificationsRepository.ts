@@ -5,5 +5,4 @@ export interface NotificationsRepository {
     listAll(): Promise<Notification[]>;
     update(notifications: Notification[]): Promise<void>;
     create(content: string, recipients: string[]): Promise<void>;
-
 }

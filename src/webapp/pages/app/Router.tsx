@@ -22,11 +22,11 @@ export const Router: React.FC<RouterProps> = ({ baseUrl, username, configuration
                         render={() => <EntryCapturePage title={title} header={header} baseUrl={baseUrl} />}
                     />,
                     <Route
-                    key={"admin-list-create-notifs"}
-                    path={`/notifications`}
-                    //@ts-ignore
-                    render={() => <NotificationsPage title={title} baseUrl={baseUrl} />}
-                />,
+                        key={"admin-list-create-notifs"}
+                        path={`/notifications`}
+                        //@ts-ignore
+                        render={() => <NotificationsPage title={title} baseUrl={baseUrl} />}
+                    />,
                     <Route
                         key={programme}
                         path={configurations.length > 1 ? `/${programme}` : "/"}

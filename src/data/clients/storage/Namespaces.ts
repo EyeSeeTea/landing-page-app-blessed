@@ -11,5 +11,5 @@ export const Namespaces = {
 
 export const NamespaceProperties: Record<Namespace, string[]> = {
     [Namespaces.NOTIFICATIONS]: [],
-    [Namespaces.CONFIG]: []
+    [Namespaces.CONFIG]: [],
 };

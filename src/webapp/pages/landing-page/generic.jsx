@@ -16,7 +16,7 @@ const LandingPage = ({ classes, history, baseUrl, items, header, title, username
     const [open, setOpen] = React.useState(userNotifications.length === 0 ? false : true);
 
     const save = React.useCallback(async () => {
-        await compositionRoot.usecases.notifications.update(userNotifications)
+        await compositionRoot.usecases.notifications.update(userNotifications);
         setOpen(false);
     }, [compositionRoot, userNotifications]);
 
@@ -72,16 +72,17 @@ const LandingPage = ({ classes, history, baseUrl, items, header, title, username
         <React.Fragment>
             <HeaderComponent baseUrl={baseUrl} title={title} username={username} />
             <ConfirmationDialog
-                    title={i18n.t("Notifications")}
-                    open={open}
-                    onSave={save}
-                    onCancel={() => setOpen(false)}
-                    maxWidth={"md"}
-                    fullWidth={true}
-                >
-                        {userNotifications.map(notification => 
-                            <div key={notification.id}>{notification.content}</div>)}
-                </ConfirmationDialog> 
+                title={i18n.t("Notifications")}
+                open={open}
+                onSave={save}
+                onCancel={() => setOpen(false)}
+                maxWidth={"md"}
+                fullWidth={true}
+            >
+                {userNotifications.map(notification => (
+                    <div key={notification.id}>{notification.content}</div>
+                ))}
+            </ConfirmationDialog>
             <div className={classes.root}>
                 <Grid container spacing={0} className={classes.container}>
                     {menuItems}

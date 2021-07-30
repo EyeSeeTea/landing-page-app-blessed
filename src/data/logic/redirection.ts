@@ -15,10 +15,10 @@ import {
     NTDLeishKenyaLandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
-    NotificationsPage
+    NotificationsPage,
 } from "../../webapp/pages";
 
-//this is a userRole ID 
+//this is a userRole ID
 export const AUTHORITY_ALL = "LvNmqTiRq7u";
 
 //TODO: Ask if we need a simple snakebite data or not
@@ -54,7 +54,7 @@ export interface Configuration {
     icon: string;
 }
 
-interface userCredentials { 
+interface userCredentials {
     userRoles: Array<{ id: string }>;
 }
 
@@ -166,14 +166,14 @@ export const handleRedirection = async (baseUrl: string, version: number) => {
         await axios.get(url, {
             withCredentials: true,
         })
-    ).data as { name: string; userGroups: Array<{ id: string }>, userCredentials: userCredentials };
+    ).data as { name: string; userGroups: Array<{ id: string }>; userCredentials: userCredentials };
 
     const userGroupIds = userGroups.map(userGroup => userGroup.id);
-    const userRoleIds = userCredentials.userRoles.map(userRole => userRole.id)
+    const userRoleIds = userCredentials.userRoles.map(userRole => userRole.id);
 
     const configurations = buildAvailableConfigurations(version).filter(config =>
         shouldRedirect(userGroupIds.concat(userRoleIds), config.userGroupIds.concat(config.userRoleIds || []))
-        );
+    );
 
     if (configurations.length > 0) {
         return { username: name, configurations };
