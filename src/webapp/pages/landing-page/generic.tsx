@@ -16,7 +16,7 @@ const LandingPage: React.FC<any> = ({ classes, history, baseUrl, items, header, 
     const [open, setOpen] = useState(userNotifications.length === 0 ? false : true);
 
     const save = useCallback(async () => {
-        await compositionRoot.usecases.notifications.update(userNotifications);
+        await compositionRoot.usecases.notifications.save(userNotifications);
         setOpen(false);
     }, [compositionRoot, userNotifications]);
 

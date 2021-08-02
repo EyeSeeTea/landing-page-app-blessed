@@ -1,11 +1,11 @@
-import { Notification } from "../../domain/entities/Notification";
+import _ from "lodash";
+import { Instance } from "../../domain/entities/Instance";
+import { AppNotification } from "../../domain/entities/Notification";
 import { InstanceRepository } from "../../domain/repositories/InstanceRepository";
 import { NotificationsRepository } from "../../domain/repositories/NotificationsRepository";
-import { generateUid } from "../../utils/uid";
 import { DataStoreStorageClient } from "../clients/storage/DataStoreStorageClient";
 import { Namespaces } from "../clients/storage/Namespaces";
 import { StorageClient } from "../clients/storage/StorageClient";
-import { Instance } from "../../domain/entities/Instance";
 
 export class NotificationsD2ApiRepository implements NotificationsRepository {
     private storageClient: StorageClient;
@@ -14,18 +14,22 @@ export class NotificationsD2ApiRepository implements NotificationsRepository {
         this.storageClient = new DataStoreStorageClient("global", instance);
     }
 
-    public async list(): Promise<Notification[]> {
+    public async list(): Promise<AppNotification[]> {
         try {
             const currentUser = await this.instanceRepository.getCurrentUser();
-            const notifications = await this.storageClient.listObjectsInCollection<Notification>(
+            const notifications = await this.storageClient.listObjectsInCollection<AppNotification>(
                 Namespaces.NOTIFICATIONS
             );
             const userNotifs = notifications
-                .filter(notification => notification.recipients.includes(currentUser.id))
-                .filter(userNotif => {
-                    const readByUsers = userNotif.readBy.map(user => user.id);
-                    return !readByUsers.includes(currentUser.id);
-                });
+                .filter(notification => {
+                    const isForUser = notification.recipients.users.find(({ id }) => id === currentUser.id);
+                    const isForGroup = notification.recipients.userGroups.find(({ id }) =>
+                        currentUser.userGroups.find(group => id === group.id)
+                    );
+
+                    return isForUser || isForGroup;
+                })
+                .filter(notification => !notification.readBy.find(({ id }) => id === currentUser.id));
             return userNotifs;
         } catch (error) {
             console.error(error);
@@ -33,34 +37,25 @@ export class NotificationsD2ApiRepository implements NotificationsRepository {
         }
     }
 
-    public async listAll(): Promise<Notification[]> {
+    public async listAll(): Promise<AppNotification[]> {
         try {
-            return await this.storageClient.listObjectsInCollection<Notification>(Namespaces.NOTIFICATIONS);
+            return await this.storageClient.listObjectsInCollection<AppNotification>(Namespaces.NOTIFICATIONS);
         } catch (error) {
             console.error(error);
             return [];
         }
     }
 
-    public async update(notifications: Notification[]): Promise<void> {
+    public async save(notifications: AppNotification[]): Promise<void> {
         const currentUser = await this.instanceRepository.getCurrentUser();
-        const date = new Date();
-        const user = { id: currentUser.id, date };
         const updatedNotifications = notifications.map(notification => ({
             ...notification,
-            readBy: [...notification.readBy, user],
+            readBy: _.uniqBy([...notification.readBy, { id: currentUser.id, date: new Date() }], ({ id }) => id),
         }));
-        await this.storageClient.saveObjectsInCollection<Notification>(Namespaces.NOTIFICATIONS, updatedNotifications);
-    }
 
-    public async create(content: string, recipients: string[]): Promise<void> {
-        const newNotification: Notification = {
-            id: generateUid(),
-            content,
-            recipients,
-            readBy: [],
-            createdAt: new Date(),
-        };
-        await this.storageClient.saveObjectInCollection<Notification>(Namespaces.NOTIFICATIONS, newNotification);
+        await this.storageClient.saveObjectsInCollection<AppNotification>(
+            Namespaces.NOTIFICATIONS,
+            updatedNotifications
+        );
     }
 }

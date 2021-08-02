@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { CompositionRoot } from "../../compositionRoot";
+import { AppNotification } from "../../domain/entities/Notification";
 import { D2Api } from "../../types/d2-api";
-import { Notification } from "../../domain/entities/Notification";
 
 export interface AppContextState {
     api: D2Api;
     compositionRoot: CompositionRoot;
-    userNotifications: Notification[];
+    userNotifications: AppNotification[];
 }
 
 export const AppContext = React.createContext<AppContextState | null>(null);

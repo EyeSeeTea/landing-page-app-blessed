@@ -1,13 +1,12 @@
-import { Instance } from "./domain/entities/Instance";
 import { InstanceD2ApiRepository } from "./data/repositories/InstanceD2ApiRepository";
 import { NotificationsD2ApiRepository } from "./data/repositories/NotificationsD2ApiRepository";
-import { CreateNotificationUseCase } from "./domain/usecases/CreateNotificationUseCase";
+import { Instance } from "./domain/entities/Instance";
 import { GetCurrentUserUseCase } from "./domain/usecases/GetCurrentUserUseCase";
 import { GetInstanceVersionUseCase } from "./domain/usecases/GetInstanceVersionUseCase";
 import { ListAllNotificationsUseCase } from "./domain/usecases/ListAllNotificationsUseCase";
 import { ListUserNotificationsUseCase } from "./domain/usecases/ListUserNotificationsUseCase";
+import { SaveNotificationsUseCase } from "./domain/usecases/SaveNotificationsUseCase";
 import { SearchUsersUseCase } from "./domain/usecases/SearchUsersUseCase";
-import { UpdateNotificationsUseCase } from "./domain/usecases/UpdateNotificationsUseCase";
 
 export function getCompositionRoot(instance: Instance) {
     const instanceRepository = new InstanceD2ApiRepository(instance);
@@ -18,8 +17,7 @@ export function getCompositionRoot(instance: Instance) {
             notifications: getExecute({
                 list: new ListUserNotificationsUseCase(notificationsRepository),
                 listAll: new ListAllNotificationsUseCase(notificationsRepository),
-                update: new UpdateNotificationsUseCase(notificationsRepository),
-                create: new CreateNotificationUseCase(notificationsRepository),
+                save: new SaveNotificationsUseCase(notificationsRepository),
             }),
             instance: getExecute({
                 getCurrentUser: new GetCurrentUserUseCase(instanceRepository),

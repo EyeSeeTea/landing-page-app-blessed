@@ -1,9 +1,16 @@
-export interface Notification {
+import { NamedRef } from "./Ref";
+
+export interface AppNotification {
     id: string;
     content: string;
-    recipients: string[];
+    recipients: NotificationRecipients;
     readBy: UserReadNotification[];
     createdAt: Date;
+}
+
+interface NotificationRecipients {
+    users: NamedRef[];
+    userGroups: NamedRef[];
 }
 
 interface UserReadNotification {
