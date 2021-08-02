@@ -9,9 +9,9 @@ import { getCompositionRoot } from "../../../compositionRoot";
 import { Instance } from "../../../data/entities/Instance";
 import { handleRedirection } from "../../../data/logic/redirection";
 import { D2Api } from "../../../types/d2-api";
-import { sleep } from "../../../utils";
+import { sleep } from "../../../utils/utils";
 import { getMajorVersion } from "../../../utils/d2-api";
-import WHOLoading from "../../components/who-loading";
+import WHOLoading from "../../components/who-loading/WHOLoading";
 import { AppContext, AppContextState } from "../../contexts/app-context";
 import "./App.css";
 import { Router, RouterProps } from "./Router";
@@ -28,13 +28,14 @@ const App = ({ api }: { api: D2Api }) => {
         async function setup() {
             const instance = new Instance({ url: baseUrl });
             const compositionRoot = getCompositionRoot(instance);
+            const user = await compositionRoot.usecases.instance.getCurrentUser();
             axios
                 .get(`${baseUrl}/api/system/info.json`, {
                     withCredentials: true,
                 })
                 .then(({ data }) => {
                     const apiVersion = getMajorVersion(data.version);
-                    return handleRedirection(baseUrl, apiVersion);
+                    return handleRedirection(baseUrl, apiVersion, user);
                 })
                 .then(options => {
                     if (options) {
@@ -46,9 +47,8 @@ const App = ({ api }: { api: D2Api }) => {
                 .then(() => setLoading(false));
 
             const userNotifications = await compositionRoot.usecases.notifications.list();
-            const allNotifications = await compositionRoot.usecases.notifications.listAll();
 
-            setAppContext({ api, compositionRoot, userNotifications, allNotifications });
+            setAppContext({ api, compositionRoot, userNotifications });
         }
         setup();
     }, [baseUrl, api]);

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2021-08-02T06:23:44.829Z\n"
+"POT-Creation-Date: 2021-08-02T07:15:15.301Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,23 +69,8 @@ msgid "Allows the users to edit account credentials and public profile"
 msgstr ""
 "Permite a los usuarios editar sus credenciales de cuenta y perfil público"
 
-msgid "Details of the report"
-msgstr "Detalles del informe"
-
-msgid "Reporting date"
-msgstr "Fecha de reporte"
-
-msgid "Submit or update your report"
-msgstr "Enviar o actualizar su informe"
-
-msgid "Thank you for your report on the policy situation"
-msgstr "Gracias por su informe sobre la adopción de políticas."
-
-msgid "Go back to home page"
-msgstr "Volver a la página principal"
-
-msgid "Programme"
-msgstr "Programa"
+msgid "Manage notifications"
+msgstr ""
 
 msgid "Data"
 msgstr "Datos"
@@ -110,6 +95,24 @@ msgstr "Acceda a un tablero que visualiza los datos que ingresó anteriormente"
 
 msgid "Other Useful Features"
 msgstr "Otras características útiles"
+
+msgid "Details of the report"
+msgstr "Detalles del informe"
+
+msgid "Reporting date"
+msgstr "Fecha de reporte"
+
+msgid "Submit or update your report"
+msgstr "Enviar o actualizar su informe"
+
+msgid "Thank you for your report on the policy situation"
+msgstr "Gracias por su informe sobre la adopción de políticas."
+
+msgid "Go back to home page"
+msgstr "Volver a la página principal"
+
+msgid "Programme"
+msgstr "Programa"
 
 msgid "NHWA maturity assessment"
 msgstr ""

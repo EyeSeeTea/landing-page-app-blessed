@@ -1,8 +1,7 @@
-import React from "react";
 import { withStyles } from "@material-ui/core";
-
-import LandingPage from "./generic";
+import React from "react";
 import { styles } from "../../../domain/models/hepatitis/styles";
+import LandingPage from "./generic";
 
 // Rabies department, re-uses the styles from hepatitis
 const RabiesLandingPage = props => {

@@ -1,24 +1,22 @@
-import _ from "lodash";
 import { Notification } from "../../domain/entities/Notification";
-import { ConfigRepository } from "../../domain/repositories/ConfigRepository";
-import { generateUid } from "../utils/uid";
-
+import { InstanceRepository } from "../../domain/repositories/InstanceRepository";
+import { NotificationsRepository } from "../../domain/repositories/NotificationsRepository";
 import { DataStoreStorageClient } from "../clients/storage/DataStoreStorageClient";
 import { Namespaces } from "../clients/storage/Namespaces";
 import { StorageClient } from "../clients/storage/StorageClient";
-import { NotificationsRepository } from "../../domain/repositories/NotificationsRepository";
 import { Instance } from "../entities/Instance";
+import { generateUid } from "../utils/uid";
 
 export class NotificationsDefaultRepository implements NotificationsRepository {
     private storageClient: StorageClient;
 
-    constructor(instance: Instance, private config: ConfigRepository) {
+    constructor(instance: Instance, private instanceRepository: InstanceRepository) {
         this.storageClient = new DataStoreStorageClient("global", instance);
     }
 
     public async list(): Promise<Notification[]> {
         try {
-            const currentUser = await this.config.getUser();
+            const currentUser = await this.instanceRepository.getCurrentUser();
             const notifications = await this.storageClient.listObjectsInCollection<Notification>(
                 Namespaces.NOTIFICATIONS
             );
@@ -45,7 +43,7 @@ export class NotificationsDefaultRepository implements NotificationsRepository {
     }
 
     public async update(notifications: Notification[]): Promise<void> {
-        const currentUser = await this.config.getUser();
+        const currentUser = await this.instanceRepository.getCurrentUser();
         const date = new Date();
         const user = { id: currentUser.id, date };
         const updatedNotifications = notifications.map(notification => ({

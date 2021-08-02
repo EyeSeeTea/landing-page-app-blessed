@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { HeaderBar } from "@dhis2/ui";
 import { useAppContext } from "../../contexts/app-context";
 import { styles } from "../../../domain/models/hepatitis/styles";
-import { goToDhis2Url } from "../../../utils";
+import { goToDhis2Url } from "../../../utils/utils";
 import i18n from "../../../locales";
 
 const LandingPage: React.FC<any> = ({ classes, history, baseUrl, items, header, title, username }) => {

@@ -7,7 +7,6 @@ export interface AppContextState {
     api: D2Api;
     compositionRoot: CompositionRoot;
     userNotifications: Notification[];
-    allNotifications: Notification[];
 }
 
 export const AppContext = React.createContext<AppContextState | null>(null);

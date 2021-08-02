@@ -1,39 +1,30 @@
-import React, { useCallback, useMemo, useState } from "react";
-import { useAppContext } from "../../contexts/app-context";
+import { HeaderBar } from "@dhis2/ui";
 import {
     ConfirmationDialog,
     ObjectsTable,
-    TableColumn,
+    ShareUpdate,
     Sharing,
     SharingRule,
-    ShareUpdate,
-} from "@eyeseetea/d2-ui-components"; //, Sharing
-import { Button, TextField, FormControl, FormLabel, Theme } from "@material-ui/core";
-
-import i18n from "../../../locales";
+    TableColumn,
+} from "@eyeseetea/d2-ui-components";
+import { FormControl, FormLabel, TextField } from "@material-ui/core";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Notification } from "../../../domain/entities/Notification";
-import { createStyles, makeStyles } from "@material-ui/styles";
 import { NamedRef } from "../../../domain/entities/Ref";
+import i18n from "../../../locales";
+import { useAppContext } from "../../contexts/app-context";
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: theme.spacing(1, 0),
-        },
-        paper: {
-            padding: "24px",
-            overflow: "unset",
-        },
-    })
-);
-export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: Header, baseUrl, title }) => {
-    const { allNotifications, compositionRoot } = useAppContext();
-    const [open, setOpen] = useState(false);
+export const NotificationsPage: React.FC = () => {
+    const { compositionRoot } = useAppContext();
+
+    const [isCreateDialogOpen, setCreateDialogOpen] = useState(false);
     const [content, setContent] = useState<string>("");
     const [notificationUsers, updateNotificationUsers] = useState<{
         users: SharingRule[];
         userGroups: SharingRule[];
     }>({ users: [], userGroups: [] });
+
+    const [notifications, setNotifications] = useState<Notification[]>([]);
 
     const save = useCallback(async () => {
         const totalRecipients = notificationUsers.users.concat(notificationUsers.userGroups);
@@ -41,7 +32,7 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
             content,
             totalRecipients.map(user => user.id)
         );
-        setOpen(false);
+        setCreateDialogOpen(false);
         window.location.reload();
     }, [compositionRoot, content, notificationUsers]);
 
@@ -87,19 +78,23 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
         []
     );
 
-    const classes = useStyles({});
+    useEffect(() => {
+        compositionRoot.usecases.notifications.listAll().then(notifications => setNotifications(notifications));
+    }, [compositionRoot]);
+
     return (
         <React.Fragment>
-            <Header baseUrl={baseUrl} title={title} />
+            <HeaderBar />
+
             <ConfirmationDialog
                 title={i18n.t("Create new notification")}
-                open={open}
+                open={isCreateDialogOpen}
                 onSave={save}
-                onCancel={() => setOpen(false)}
+                onCancel={() => setCreateDialogOpen(false)}
                 maxWidth={"md"}
                 fullWidth={true}
             >
-                <FormControl fullWidth className={classes.formControl}>
+                <FormControl fullWidth>
                     <FormLabel component="legend">{i18n.t("Message")}</FormLabel>
 
                     <TextField
@@ -133,30 +128,16 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
                     />
                 </FormControl>
             </ConfirmationDialog>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    flexWrap: "nowrap",
-                }}
-            >
-                <h1>All notifications:</h1>
-                <Button onClick={() => setOpen(true)} variant="contained">
-                    Create notification
-                </Button>
-            </div>
-            <ObjectsTable<Notification> rows={allNotifications} columns={columns} childrenKeys={["children"]} />
+
+            <ObjectsTable<Notification>
+                rows={notifications}
+                columns={columns}
+                childrenKeys={["children"]}
+                onActionButtonClick={() => setCreateDialogOpen(true)}
+            />
         </React.Fragment>
     );
 };
-
-export interface NotificationsPageProps {
-    header: any;
-    baseUrl: string;
-    title?: string;
-}
 
 function mapDisplayName(array: NamedRef[]) {
     return array.map(({ id, name }) => ({ id, displayName: name }));

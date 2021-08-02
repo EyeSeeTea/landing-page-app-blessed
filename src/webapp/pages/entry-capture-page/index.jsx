@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import qs from "qs";
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { cascadeStyling } from "../../../domain/models/hepatitis/dataEntry";
-import { policyUptakeStyling } from "../../../domain/models/hepatitis/eventCapture";
-import { rabiesStyling } from "../../../domain/models/rabies/dataEntry";
-import { IFrame } from "../../components/iframe";
+import { cascadeStyling } from "../../../domain/models/hepatitis/HepatitisDataEntry";
+import { policyUptakeStyling } from "../../../domain/models/hepatitis/HepatitisEventCapture";
+import { rabiesStyling } from "../../../domain/models/rabies/RabiesDataEntry";
+import { IFrame } from "../../components/iframe/IFrame";
 
 //TODO: Add snakebitestyling to config
 const config = {

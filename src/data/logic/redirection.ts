@@ -1,12 +1,11 @@
-import axios from "axios";
 import _ from "lodash";
 import { buildHepatitisData, nhwaData } from "../../domain/models";
-import { nhwaClerkData, nhwaViewerData } from "../../domain/models/nhwa";
-import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya";
-import { rabiesData, simpleRabiesData } from "../../domain/models/rabies";
-import { snakebiteData } from "../../domain/models/snakebite";
+import { nhwaClerkData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
+import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
+import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
+import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
 import i18n from "../../locales";
-import { goToDhis2Url } from "../../utils";
+import { goToDhis2Url } from "../../utils/utils";
 import nhwaHeader from "../../webapp/components/headers/nhwa-header";
 import whoHeader from "../../webapp/components/headers/who-header";
 import {
@@ -15,11 +14,8 @@ import {
     NTDLeishKenyaLandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
-    NotificationsPage,
 } from "../../webapp/pages";
-
-//this is a userRole ID
-export const AUTHORITY_ALL = "LvNmqTiRq7u";
+import { isSuperAdmin, User } from "../entities/User";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -47,28 +43,13 @@ export interface Configuration {
     title: string;
     description: string;
     userGroupIds: string[];
-    userRoleIds?: string[];
     page: any;
     header?: any;
     data?: any;
     icon: string;
 }
 
-interface userCredentials {
-    userRoles: Array<{ id: string }>;
-}
-
 export const buildAvailableConfigurations = (version: number): Configuration[] => [
-    {
-        programme: "admin-list-create-notifs",
-        title: i18n.t("ADMIN: See/create notifications"),
-        description: i18n.t("ADMIN: See/create notifications"),
-        userGroupIds: [],
-        userRoleIds: [AUTHORITY_ALL],
-        page: NotificationsPage,
-        header: whoHeader,
-        icon: "img/icon.png",
-    },
     {
         programme: "nhwa-managers",
         title: i18n.t("National Health Workforce Accounts Online Data Platform"),
@@ -160,23 +141,16 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
-export const handleRedirection = async (baseUrl: string, version: number) => {
-    const url = `${baseUrl}/api/me.json?fields=name,userGroups[id],userCredentials[userRoles]`;
-    const { name, userGroups, userCredentials } = (
-        await axios.get(url, {
-            withCredentials: true,
-        })
-    ).data as { name: string; userGroups: Array<{ id: string }>; userCredentials: userCredentials };
+export const handleRedirection = async (baseUrl: string, version: number, user: User) => {
+    const isAdmin = isSuperAdmin(user);
 
-    const userGroupIds = userGroups.map(userGroup => userGroup.id);
-    const userRoleIds = userCredentials.userRoles.map(userRole => userRole.id);
-
-    const configurations = buildAvailableConfigurations(version).filter(config =>
-        shouldRedirect(userGroupIds.concat(userRoleIds), config.userGroupIds.concat(config.userRoleIds || []))
+    const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
+    const configurations = buildAvailableConfigurations(version).filter(
+        config => isAdmin || shouldRedirect(userGroupIds, config.userGroupIds)
     );
 
     if (configurations.length > 0) {
-        return { username: name, configurations };
+        return { username: user.name, configurations };
     } else {
         goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
         return null;

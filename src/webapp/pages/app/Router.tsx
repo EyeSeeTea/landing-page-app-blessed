@@ -24,8 +24,7 @@ export const Router: React.FC<RouterProps> = ({ baseUrl, username, configuration
                     <Route
                         key={"admin-list-create-notifs"}
                         path={`/notifications`}
-                        //@ts-ignore
-                        render={() => <NotificationsPage title={title} baseUrl={baseUrl} />}
+                        render={() => <NotificationsPage />}
                     />,
                     <Route
                         key={programme}

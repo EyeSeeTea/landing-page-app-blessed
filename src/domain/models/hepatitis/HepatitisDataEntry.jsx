@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { filterOrgUnits } from "../../../webapp/pages/entry-capture-page/common";
-import { selectorWait, selector, hideSelector, sleep } from "../../../utils";
+import { selectorWait, selector, hideSelector, sleep } from "../../../utils/utils";
 
 const selectDataset = (document, contentWindow, dataset) =>
     selectorWait(document, `#selectedDataSetId > option[value="${dataset}"]`, e => {
@@ -15,21 +15,25 @@ const selectPeriod = (document, contentWindow, period) =>
         contentWindow.periodSelected();
     });
 
-const selectAttribute = (document, contentWindow, attributeString, selectFirst = true) => {
-    const attributes = attributeString?.split(",") ?? ["pvLXvZvAtZV", "Os3X3EgDGn0", "rZePNSA78l8", "FYtmoLvrfbh"];
-
-    selectorWait(document, `#category-MUgypnOT60u > option`, e => {
-        e.disabled = e.value !== -1 && !attributes.find(s => s === e.value);
-        if (selectFirst && e.value === attributes[0]) {
-            e.selected = true;
-            contentWindow.dhis2.de.attributeSelected("MUgypnOT60u");
-        }
+const recurrentTasks = (document, isAdmin) => {
+    // Exclusive checkboxes
+    selector(document, ".checkbox", e => {
+        e.addEventListener("change", () => {
+            if (e.checked) {
+                selector(document, `input[name=${e.name}]`, o => {
+                    if (o.id !== e.id && o.checked) o.click();
+                });
+            }
+        });
     });
+
+    if (!isAdmin)
+        selectorWait(document, "#completenessDivCustom", e => {
+            e.remove();
+        });
 };
 
-const selectTab = (contentWindow, tab) => (contentWindow.location.hash = tab);
-
-export const rabiesStyling = async (iframe, { organisationUnit, element, period, baseUrl, tab, attributes }) => {
+export const cascadeStyling = async (iframe, { organisationUnit, element, period, baseUrl }) => {
     const { contentWindow, contentDocument } = iframe;
     const { document, selection } = contentWindow || contentDocument;
     const isAdmin = !organisationUnit;
@@ -41,6 +45,18 @@ export const rabiesStyling = async (iframe, { organisationUnit, element, period,
     hideSelector(document, "#currentSelection");
     hideSelector(document, "#validationButton");
     if (!isAdmin) hideSelector(document, "#leftBar");
+
+    // Rename components
+    selector(document, "input[value='Print form']", field => {
+        field.value = "Print the data you entered";
+        field.style.width = "240px";
+        field.parentNode.style.width = "240px";
+    });
+    selector(document, "input[value='Print blank form']", field => {
+        field.value = "Print a blank version of the data form";
+        field.style.width = "240px";
+        field.parentNode.style.width = "240px";
+    });
 
     // Scale body to be centered
     selector(document, "body", e => {
@@ -76,16 +92,11 @@ export const rabiesStyling = async (iframe, { organisationUnit, element, period,
             filterOrgUnits(document, visibleOrganisationUnits);
             selectDataset(document, contentWindow, element);
             selectPeriod(document, contentWindow, period);
-            selectAttribute(document, contentWindow, attributes, false);
         });
     });
 
-    await selectorWait(document, "#selectedPeriodId", e => {
-        e.addEventListener("change", () => {
-            filterOrgUnits(document, visibleOrganisationUnits);
-            selectDataset(document, contentWindow, element);
-            selectAttribute(document, contentWindow, attributes, false);
-        });
+    document.addEventListener("click", () => {
+        recurrentTasks(document, isAdmin);
     });
 
     await sleep(1500);
@@ -93,6 +104,8 @@ export const rabiesStyling = async (iframe, { organisationUnit, element, period,
     await filterOrgUnits(document, visibleOrganisationUnits);
     selectDataset(document, contentWindow, element);
     selectPeriod(document, contentWindow, period);
-    selectAttribute(document, contentWindow, attributes);
-    selectTab(contentWindow, tab);
+
+    await sleep(500);
+
+    recurrentTasks(document, isAdmin);
 };
