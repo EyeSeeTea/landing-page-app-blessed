@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useAppContext } from "../../contexts/app-context";
 import {
     ConfirmationDialog,
@@ -13,6 +13,7 @@ import { Button, TextField, FormControl, FormLabel, Theme } from "@material-ui/c
 import i18n from "../../../locales";
 import { Notification } from "../../../domain/entities/Notification";
 import { createStyles, makeStyles } from "@material-ui/styles";
+import { NamedRef } from "../../../domain/entities/Ref";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -27,14 +28,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: Header, baseUrl, title }) => {
     const { allNotifications, compositionRoot } = useAppContext();
-    const [open, setOpen] = React.useState(false);
-    const [content, setContent] = React.useState<string>("");
-    const [notificationUsers, updateNotificationUsers] = React.useState<{
+    const [open, setOpen] = useState(false);
+    const [content, setContent] = useState<string>("");
+    const [notificationUsers, updateNotificationUsers] = useState<{
         users: SharingRule[];
         userGroups: SharingRule[];
     }>({ users: [], userGroups: [] });
 
-    const save = React.useCallback(async () => {
+    const save = useCallback(async () => {
         const totalRecipients = notificationUsers.users.concat(notificationUsers.userGroups);
         await compositionRoot.usecases.notifications.create(
             content,
@@ -44,19 +45,22 @@ export const NotificationsPage: React.FC<NotificationsPageProps> = ({ header: He
         window.location.reload();
     }, [compositionRoot, content, notificationUsers]);
 
-    const search = React.useCallback(
-        (query: string) => compositionRoot.usecases.instance.searchUsers(query),
+    const search = useCallback(
+        async (query: string) => {
+            const results = await compositionRoot.usecases.instance.searchUsers(query);
+            return { users: mapDisplayName(results.users), userGroups: mapDisplayName(results.userGroups) };
+        },
         [compositionRoot]
     );
 
-    const onSharingChanged = React.useCallback(async (updatedAttributes: ShareUpdate) => {
+    const onSharingChanged = useCallback(async (updatedAttributes: ShareUpdate) => {
         updateNotificationUsers(({ users, userGroups }) => {
             const { userAccesses = users, userGroupAccesses = userGroups } = updatedAttributes;
             return { users: userAccesses, userGroups: userGroupAccesses };
         });
     }, []);
 
-    const columns: TableColumn<Notification>[] = React.useMemo(
+    const columns: TableColumn<Notification>[] = useMemo(
         () => [
             {
                 name: "id",
@@ -152,4 +156,8 @@ export interface NotificationsPageProps {
     header: any;
     baseUrl: string;
     title?: string;
+}
+
+function mapDisplayName(array: NamedRef[]) {
+    return array.map(({ id, name }) => ({ id, displayName: name }));
 }

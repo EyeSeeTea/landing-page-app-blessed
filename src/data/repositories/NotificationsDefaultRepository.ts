@@ -7,12 +7,13 @@ import { DataStoreStorageClient } from "../clients/storage/DataStoreStorageClien
 import { Namespaces } from "../clients/storage/Namespaces";
 import { StorageClient } from "../clients/storage/StorageClient";
 import { NotificationsRepository } from "../../domain/repositories/NotificationsRepository";
+import { Instance } from "../entities/Instance";
 
 export class NotificationsDefaultRepository implements NotificationsRepository {
     private storageClient: StorageClient;
 
-    constructor(private config: ConfigRepository) {
-        this.storageClient = new DataStoreStorageClient("global", config.getInstance());
+    constructor(instance: Instance, private config: ConfigRepository) {
+        this.storageClient = new DataStoreStorageClient("global", instance);
     }
 
     public async list(): Promise<Notification[]> {

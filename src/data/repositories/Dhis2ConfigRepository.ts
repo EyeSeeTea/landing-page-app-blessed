@@ -1,24 +1,15 @@
-import { Permission } from "../../domain/entities/Permission";
 import { ConfigRepository } from "../../domain/repositories/ConfigRepository";
 import { D2Api } from "../../types/d2-api";
 import { cache } from "../../utils/cache";
-import { DataStoreStorageClient } from "../clients/storage/DataStoreStorageClient";
-import { Namespaces } from "../clients/storage/Namespaces";
-import { StorageClient } from "../clients/storage/StorageClient";
 import { Instance } from "../entities/Instance";
-import { PersistedConfig } from "../entities/PersistedConfig";
 import { User } from "../entities/User";
-import { getD2APiFromInstance, getMajorVersion } from "../utils/d2-api";
+import { getD2APiFromInstance } from "../utils/d2-api";
 
 export class Dhis2ConfigRepository implements ConfigRepository {
-    private instance: Instance;
     private api: D2Api;
-    private storageClient: StorageClient;
 
-    constructor(baseUrl: string) {
-        this.instance = new Instance({ url: baseUrl });
+    constructor(private instance: Instance) {
         this.api = getD2APiFromInstance(this.instance);
-        this.storageClient = new DataStoreStorageClient("global", this.instance);
     }
 
     @cache()
@@ -44,43 +35,5 @@ export class Dhis2ConfigRepository implements ConfigRepository {
             userGroups: d2User.userGroups,
             ...d2User.userCredentials,
         };
-    }
-
-    public async getUiLocale(d2User: { settings: { keyUiLocale: string; keyDbLocale: string } }): Promise<string> {
-        const version = getMajorVersion(await this.api.getVersion());
-        if (version > 30 && d2User.settings.keyUiLocale) {
-            return d2User.settings.keyUiLocale;
-        }
-
-        const settings = await this.api.get<{ keyUiLocale: string }>("/userSettings").getData();
-        return settings.keyUiLocale ?? "en";
-    }
-
-    public getInstance(): Instance {
-        return this.instance;
-    }
-
-    public async getSettingsPermissions(): Promise<Permission> {
-        const config = await this.getConfig();
-        const { users = [], userGroups = [] } = config.settingsPermissions ?? {};
-        return { users, userGroups };
-    }
-
-    public async updateSettingsPermissions(update: Partial<Permission>): Promise<void> {
-        const config = await this.getConfig();
-        const { users = [], userGroups = [] } = config.settingsPermissions ?? {};
-
-        await this.storageClient.saveObject<PersistedConfig>(Namespaces.CONFIG, {
-            ...config,
-            settingsPermissions: {
-                users: update.users ?? users,
-                userGroups: update.userGroups ?? userGroups,
-            },
-        });
-    }
-
-    private async getConfig(): Promise<PersistedConfig> {
-        const config = await this.storageClient.getObject<PersistedConfig>(Namespaces.CONFIG);
-        return config ?? {};
     }
 }

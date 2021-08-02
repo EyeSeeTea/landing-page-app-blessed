@@ -6,6 +6,7 @@ import axios from "axios";
 import OldMuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import React, { useEffect, useState } from "react";
 import { getCompositionRoot } from "../../../compositionRoot";
+import { Instance } from "../../../data/entities/Instance";
 import { handleRedirection } from "../../../data/logic/redirection";
 import { D2Api } from "../../../types/d2-api";
 import { sleep } from "../../../utils";
@@ -25,7 +26,8 @@ const App = ({ api }: { api: D2Api }) => {
 
     useEffect(() => {
         async function setup() {
-            const compositionRoot = getCompositionRoot(baseUrl);
+            const instance = new Instance({ url: baseUrl });
+            const compositionRoot = getCompositionRoot(instance);
             axios
                 .get(`${baseUrl}/api/system/info.json`, {
                     withCredentials: true,

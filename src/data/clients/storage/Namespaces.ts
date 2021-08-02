@@ -1,5 +1,4 @@
 export const dataStoreNamespace = "landing-page-app";
-export const userNamespace = "user";
 export const constantPrefix = "Landing Page App Storage";
 
 export type Namespace = typeof Namespaces[keyof typeof Namespaces];

@@ -1,42 +1,53 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 import { ConfirmationDialog } from "@eyeseetea/d2-ui-components";
 import { withRouter } from "react-router-dom";
-import { HeaderBar } from "@dhis2/ui-widgets";
+import { HeaderBar } from "@dhis2/ui";
 import { useAppContext } from "../../contexts/app-context";
 import { styles } from "../../../domain/models/hepatitis/styles";
 import { goToDhis2Url } from "../../../utils";
 import i18n from "../../../locales";
 
-const LandingPage = ({ classes, history, baseUrl, items, header, title, username }) => {
+const LandingPage: React.FC<any> = ({ classes, history, baseUrl, items, header, title, username }) => {
     const HeaderComponent = header || HeaderBar;
 
     const { userNotifications, compositionRoot } = useAppContext();
-    const [open, setOpen] = React.useState(userNotifications.length === 0 ? false : true);
+    const [open, setOpen] = useState(userNotifications.length === 0 ? false : true);
 
-    const save = React.useCallback(async () => {
+    const save = useCallback(async () => {
         await compositionRoot.usecases.notifications.update(userNotifications);
         setOpen(false);
     }, [compositionRoot, userNotifications]);
 
-    const visitPage = ({ type, value }) => {
+    const visitPage = ({ type, value }: any) => {
         switch (type) {
             case "page":
                 return history.push(value);
             case "dhisRedirect":
                 return goToDhis2Url(baseUrl, value);
             case "method":
-                return value(baseUrl, action => visitPage(action));
+                return value(baseUrl, (action: any) => visitPage(action));
             default:
                 break;
         }
     };
 
     const menuItems = items.map(
-        ({ key, title, description, icon, iconDescription, action, enableBottomLine, rowLength, size = "large" }) => (
+        ({
+            key,
+            title,
+            description,
+            icon,
+            iconDescription,
+            action,
+            enableBottomLine,
+            rowLength,
+            size = "large",
+        }: any) => (
             <Grid
                 item
+                //@ts-ignore
                 xs={12 / rowLength}
                 className={action ? classes.item : classes.separator}
                 key={key}
@@ -101,4 +112,5 @@ LandingPage.propTypes = {
 
 LandingPage.defaultProps = {};
 
+//@ts-ignore
 export default withRouter(withStyles(styles)(LandingPage));
