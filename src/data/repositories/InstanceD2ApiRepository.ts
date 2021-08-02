@@ -6,7 +6,7 @@ import { UserSearch } from "../entities/SearchUser";
 import { User } from "../entities/User";
 import { getD2APiFromInstance } from "../utils/d2-api";
 
-export class InstanceDhis2Repository implements InstanceRepository {
+export class InstanceD2ApiRepository implements InstanceRepository {
     private api: D2Api;
 
     constructor(instance: Instance) {
@@ -44,6 +44,12 @@ export class InstanceDhis2Repository implements InstanceRepository {
             userGroups: d2User.userGroups,
             ...d2User.userCredentials,
         };
+    }
+
+    @cache()
+    public async getInstanceVersion(): Promise<string> {
+        const { version } = await this.api.system.info.getData();
+        return version;
     }
 }
 

@@ -1,7 +1,6 @@
 import { useConfig } from "@dhis2/app-runtime";
 import { SnackbarProvider } from "@eyeseetea/d2-ui-components";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import axios from "axios";
 //@ts-ignore
 import OldMuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import React, { useEffect, useState } from "react";
@@ -9,8 +8,8 @@ import { getCompositionRoot } from "../../../compositionRoot";
 import { Instance } from "../../../data/entities/Instance";
 import { handleRedirection } from "../../../data/logic/redirection";
 import { D2Api } from "../../../types/d2-api";
-import { sleep } from "../../../utils/utils";
 import { getMajorVersion } from "../../../utils/d2-api";
+import { sleep } from "../../../utils/utils";
 import WHOLoading from "../../components/who-loading/WHOLoading";
 import { AppContext, AppContextState } from "../../contexts/app-context";
 import "./App.css";
@@ -28,27 +27,17 @@ const App = ({ api }: { api: D2Api }) => {
         async function setup() {
             const instance = new Instance({ url: baseUrl });
             const compositionRoot = getCompositionRoot(instance);
-            const user = await compositionRoot.usecases.instance.getCurrentUser();
-            axios
-                .get(`${baseUrl}/api/system/info.json`, {
-                    withCredentials: true,
-                })
-                .then(({ data }) => {
-                    const apiVersion = getMajorVersion(data.version);
-                    return handleRedirection(baseUrl, apiVersion, user);
-                })
-                .then(options => {
-                    if (options) {
-                        setRouterProps({ ...options, baseUrl });
-                    }
-
-                    return sleep(1000);
-                })
-                .then(() => setLoading(false));
-
             const userNotifications = await compositionRoot.usecases.notifications.list();
-
             setAppContext({ api, compositionRoot, userNotifications });
+
+            const user = await compositionRoot.usecases.instance.getCurrentUser();
+            const version = await compositionRoot.usecases.instance.getVersion();
+            const apiVersion = getMajorVersion(version);
+            const options = await handleRedirection(baseUrl, apiVersion, user);
+            if (options) setRouterProps({ ...options, baseUrl });
+
+            await sleep(1000);
+            setLoading(false);
         }
         setup();
     }, [baseUrl, api]);

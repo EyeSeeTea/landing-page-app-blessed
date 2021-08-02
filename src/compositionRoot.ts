@@ -1,16 +1,17 @@
 import { Instance } from "./data/entities/Instance";
-import { InstanceDhis2Repository } from "./data/repositories/InstanceDhis2Repository";
-import { NotificationsDefaultRepository } from "./data/repositories/NotificationsDefaultRepository";
+import { InstanceD2ApiRepository } from "./data/repositories/InstanceD2ApiRepository";
+import { NotificationsD2ApiRepository } from "./data/repositories/NotificationsD2ApiRepository";
 import { CreateNotificationUseCase } from "./domain/usecases/CreateNotificationUseCase";
 import { GetCurrentUserUseCase } from "./domain/usecases/GetCurrentUserUseCase";
+import { GetInstanceVersionUseCase } from "./domain/usecases/GetInstanceVersionUseCase";
 import { ListAllNotificationsUseCase } from "./domain/usecases/ListAllNotificationsUseCase";
 import { ListUserNotificationsUseCase } from "./domain/usecases/ListUserNotificationsUseCase";
 import { SearchUsersUseCase } from "./domain/usecases/SearchUsersUseCase";
 import { UpdateNotificationsUseCase } from "./domain/usecases/UpdateNotificationsUseCase";
 
 export function getCompositionRoot(instance: Instance) {
-    const instanceRepository = new InstanceDhis2Repository(instance);
-    const notificationsRepository = new NotificationsDefaultRepository(instance, instanceRepository);
+    const instanceRepository = new InstanceD2ApiRepository(instance);
+    const notificationsRepository = new NotificationsD2ApiRepository(instance, instanceRepository);
 
     return {
         usecases: {
@@ -23,6 +24,7 @@ export function getCompositionRoot(instance: Instance) {
             instance: getExecute({
                 getCurrentUser: new GetCurrentUserUseCase(instanceRepository),
                 searchUsers: new SearchUsersUseCase(instanceRepository),
+                getVersion: new GetInstanceVersionUseCase(instanceRepository),
             }),
         },
     };

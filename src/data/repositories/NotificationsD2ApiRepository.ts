@@ -7,7 +7,7 @@ import { StorageClient } from "../clients/storage/StorageClient";
 import { Instance } from "../entities/Instance";
 import { generateUid } from "../utils/uid";
 
-export class NotificationsDefaultRepository implements NotificationsRepository {
+export class NotificationsD2ApiRepository implements NotificationsRepository {
     private storageClient: StorageClient;
 
     constructor(instance: Instance, private instanceRepository: InstanceRepository) {
