@@ -5,7 +5,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import OldMuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import React, { useEffect, useState } from "react";
 import { getCompositionRoot } from "../../../compositionRoot";
-import { Instance } from "../../../data/entities/Instance";
+import { Instance } from "../../../domain/entities/Instance";
 import { handleRedirection } from "../../../data/logic/redirection";
 import { D2Api } from "../../../types/d2-api";
 import { getMajorVersion } from "../../../utils/d2-api";

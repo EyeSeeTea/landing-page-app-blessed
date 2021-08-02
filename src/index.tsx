@@ -4,9 +4,9 @@ import axios from "axios";
 import { init } from "d2";
 import _ from "lodash";
 import ReactDOM from "react-dom";
-import App from "./webapp/pages/app/App";
+import { Instance } from "./domain/entities/Instance";
 import { getD2APiFromInstance } from "./utils/d2-api";
-import { Instance } from "./data/entities/Instance";
+import App from "./webapp/pages/app/App";
 
 async function getBaseUrl() {
     if (process.env.NODE_ENV === "development") {

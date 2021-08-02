@@ -2,10 +2,11 @@ export interface Notification {
     id: string;
     content: string;
     recipients: string[];
-    readBy: ReadBy[];
+    readBy: UserReadNotification[];
     createdAt: Date;
 }
-interface ReadBy {
+
+interface UserReadNotification {
     id: string;
     date: Date;
 }

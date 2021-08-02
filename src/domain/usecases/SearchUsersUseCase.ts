@@ -1,6 +1,6 @@
 import { UseCase } from "../../compositionRoot";
+import { UserSearch } from "../entities/SearchUser";
 import { InstanceRepository } from "../repositories/InstanceRepository";
-import { UserSearch } from "../../data/entities/SearchUser";
 
 export class SearchUsersUseCase implements UseCase {
     constructor(private instanceRepository: InstanceRepository) {}

@@ -5,7 +5,7 @@ import { generateUid } from "../../utils/uid";
 import { DataStoreStorageClient } from "../clients/storage/DataStoreStorageClient";
 import { Namespaces } from "../clients/storage/Namespaces";
 import { StorageClient } from "../clients/storage/StorageClient";
-import { Instance } from "../entities/Instance";
+import { Instance } from "../../domain/entities/Instance";
 
 export class NotificationsD2ApiRepository implements NotificationsRepository {
     private storageClient: StorageClient;

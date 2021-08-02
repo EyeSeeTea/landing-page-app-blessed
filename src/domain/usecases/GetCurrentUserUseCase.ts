@@ -1,5 +1,5 @@
 import { UseCase } from "../../compositionRoot";
-import { User } from "../../data/entities/User";
+import { User } from "../entities/User";
 import { InstanceRepository } from "../repositories/InstanceRepository";
 
 export class GetCurrentUserUseCase implements UseCase {

@@ -1,6 +1,6 @@
 import _ from "lodash";
+import { Instance } from "../domain/entities/Instance";
 import { D2Api } from "../types/d2-api";
-import { Instance } from "../data/entities/Instance";
 
 export function getMajorVersion(version: string): number {
     const apiVersion = _.get(version.split("."), 1);

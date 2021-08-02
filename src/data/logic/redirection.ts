@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { isSuperAdmin, User } from "../../domain/entities/User";
 import { buildHepatitisData, nhwaData } from "../../domain/models";
 import { nhwaClerkData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
 import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
@@ -15,7 +16,6 @@ import {
     RabiesLandingPage,
     SnakebiteLandingPage,
 } from "../../webapp/pages";
-import { isSuperAdmin, User } from "../entities/User";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";

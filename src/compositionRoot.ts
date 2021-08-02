@@ -1,4 +1,4 @@
-import { Instance } from "./data/entities/Instance";
+import { Instance } from "./domain/entities/Instance";
 import { InstanceD2ApiRepository } from "./data/repositories/InstanceD2ApiRepository";
 import { NotificationsD2ApiRepository } from "./data/repositories/NotificationsD2ApiRepository";
 import { CreateNotificationUseCase } from "./domain/usecases/CreateNotificationUseCase";
