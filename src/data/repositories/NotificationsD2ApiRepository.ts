@@ -20,7 +20,8 @@ export class NotificationsD2ApiRepository implements NotificationsRepository {
             const notifications = await this.storageClient.listObjectsInCollection<AppNotification>(
                 Namespaces.NOTIFICATIONS
             );
-            const userNotifs = notifications
+
+            return notifications
                 .filter(notification => {
                     const isForUser = notification.recipients.users.find(({ id }) => id === currentUser.id);
                     const isForGroup = notification.recipients.userGroups.find(({ id }) =>
@@ -30,7 +31,6 @@ export class NotificationsD2ApiRepository implements NotificationsRepository {
                     return isForUser || isForGroup;
                 })
                 .filter(notification => !notification.readBy.find(({ id }) => id === currentUser.id));
-            return userNotifs;
         } catch (error) {
             console.error(error);
             return [];
