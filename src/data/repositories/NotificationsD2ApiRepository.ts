@@ -1,11 +1,11 @@
 import { Notification } from "../../domain/entities/Notification";
 import { InstanceRepository } from "../../domain/repositories/InstanceRepository";
 import { NotificationsRepository } from "../../domain/repositories/NotificationsRepository";
+import { generateUid } from "../../utils/uid";
 import { DataStoreStorageClient } from "../clients/storage/DataStoreStorageClient";
 import { Namespaces } from "../clients/storage/Namespaces";
 import { StorageClient } from "../clients/storage/StorageClient";
 import { Instance } from "../entities/Instance";
-import { generateUid } from "../utils/uid";
 
 export class NotificationsD2ApiRepository implements NotificationsRepository {
     private storageClient: StorageClient;

@@ -1,10 +1,10 @@
 import { InstanceRepository } from "../../domain/repositories/InstanceRepository";
 import { D2Api } from "../../types/d2-api";
 import { cache } from "../../utils/cache";
+import { getD2APiFromInstance } from "../../utils/d2-api";
 import { Instance } from "../entities/Instance";
 import { UserSearch } from "../entities/SearchUser";
 import { User } from "../entities/User";
-import { getD2APiFromInstance } from "../utils/d2-api";
 
 export class InstanceD2ApiRepository implements InstanceRepository {
     private api: D2Api;
