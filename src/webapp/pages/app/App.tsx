@@ -1,15 +1,19 @@
 import { useConfig } from "@dhis2/app-runtime";
-import { SnackbarProvider } from "@eyeseetea/d2-ui-components";
+import { LoadingProvider, SnackbarProvider } from "@eyeseetea/d2-ui-components";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 //@ts-ignore
 import OldMuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import React, { useEffect, useState } from "react";
 import { getCompositionRoot } from "../../../compositionRoot";
-import { Instance } from "../../../domain/entities/Instance";
 import { handleRedirection } from "../../../data/logic/redirection";
+import { Instance } from "../../../domain/entities/Instance";
 import { D2Api } from "../../../types/d2-api";
 import { getMajorVersion } from "../../../utils/d2-api";
 import { sleep } from "../../../utils/utils";
+import {
+    UserNotificationDialog,
+    UserNotificationDialogProps,
+} from "../../components/user-notification-dialog/UserNotificationDialog";
 import WHOLoading from "../../components/who-loading/WHOLoading";
 import { AppContext, AppContextState } from "../../contexts/app-context";
 import "./App.css";
@@ -22,13 +26,24 @@ const App = ({ api }: { api: D2Api }) => {
     const [loading, setLoading] = useState(true);
     const [appContext, setAppContext] = useState<AppContextState | null>(null);
     const [routerProps, setRouterProps] = useState<RouterProps>();
+    const [userDialogProps, setUserDialogProps] = useState<UserNotificationDialogProps>();
 
     useEffect(() => {
         async function setup() {
             const instance = new Instance({ url: baseUrl });
             const compositionRoot = getCompositionRoot(instance);
-            const userNotifications = await compositionRoot.usecases.notifications.list();
-            setAppContext({ api, compositionRoot, userNotifications });
+            setAppContext({ api, compositionRoot });
+
+            const notifications = await compositionRoot.usecases.notifications.list();
+            if (notifications.length > 0) {
+                setUserDialogProps({
+                    notifications,
+                    onClose: async () => {
+                        await compositionRoot.usecases.notifications.save(notifications);
+                        setUserDialogProps(undefined);
+                    },
+                });
+            }
 
             const user = await compositionRoot.usecases.instance.getCurrentUser();
             const version = await compositionRoot.usecases.instance.getVersion();
@@ -46,15 +61,21 @@ const App = ({ api }: { api: D2Api }) => {
         return <WHOLoading />;
     }
 
+    if (userDialogProps) {
+        return <UserNotificationDialog {...userDialogProps} />;
+    }
+
     return (
         <MuiThemeProvider theme={muiTheme}>
             <OldMuiThemeProvider muiTheme={muiThemeLegacy}>
                 <SnackbarProvider>
-                    <div id="app" className="content">
-                        <AppContext.Provider value={appContext}>
-                            {routerProps ? <Router {...routerProps} /> : null}
-                        </AppContext.Provider>
-                    </div>
+                    <LoadingProvider>
+                        <div id="app" className="content">
+                            <AppContext.Provider value={appContext}>
+                                {routerProps ? <Router {...routerProps} /> : null}
+                            </AppContext.Provider>
+                        </div>
+                    </LoadingProvider>
                 </SnackbarProvider>
             </OldMuiThemeProvider>
         </MuiThemeProvider>

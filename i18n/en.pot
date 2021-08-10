@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2021-08-02T09:14:17.651Z\n"
-"PO-Revision-Date: 2021-08-02T09:14:17.651Z\n"
+"POT-Creation-Date: 2021-08-10T07:30:54.104Z\n"
+"PO-Revision-Date: 2021-08-10T07:30:54.104Z\n"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -294,13 +294,16 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+msgid "Notifications"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
 msgid "Please wait"
 msgstr ""
 
 msgid "Getting ready, Please wait"
-msgstr ""
-
-msgid "Notifications"
 msgstr ""
 
 msgid "Create new notification"
@@ -312,8 +315,17 @@ msgstr ""
 msgid "Recipients"
 msgstr ""
 
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
 msgid "Content"
 msgstr ""
 
 msgid "Created At"
+msgstr ""
+
+msgid "Read by"
 msgstr ""

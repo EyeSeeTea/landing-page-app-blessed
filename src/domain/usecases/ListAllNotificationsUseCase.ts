@@ -5,7 +5,7 @@ import { NotificationsRepository } from "../repositories/NotificationsRepository
 export class ListAllNotificationsUseCase implements UseCase {
     constructor(private notificationsRepository: NotificationsRepository) {}
 
-    public async execute(): Promise<AppNotification[]> {
+    public execute(): Promise<AppNotification[]> {
         return this.notificationsRepository.listAll();
     }
 }

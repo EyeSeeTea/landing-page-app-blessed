@@ -50,12 +50,19 @@ export class NotificationsD2ApiRepository implements NotificationsRepository {
         const currentUser = await this.instanceRepository.getCurrentUser();
         const updatedNotifications = notifications.map(notification => ({
             ...notification,
-            readBy: _.uniqBy([...notification.readBy, { id: currentUser.id, date: new Date() }], ({ id }) => id),
+            readBy: _.uniqBy(
+                [...notification.readBy, { id: currentUser.id, name: currentUser.name, date: new Date() }],
+                ({ id }) => id
+            ),
         }));
 
         await this.storageClient.saveObjectsInCollection<AppNotification>(
             Namespaces.NOTIFICATIONS,
             updatedNotifications
         );
+    }
+
+    public async delete(notifications: string[]): Promise<void> {
+        await this.storageClient.removeObjectsInCollection(Namespaces.NOTIFICATIONS, notifications);
     }
 }

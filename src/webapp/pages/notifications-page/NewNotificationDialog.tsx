@@ -14,7 +14,9 @@ export const NewNotificationDialog: React.FC<NewNotificationDialogProps> = ({
 }) => {
     const { compositionRoot } = useAppContext();
 
-    const [notification, updateNotification] = useState<AppNotification>(initialNotification ?? defaultNotification);
+    const [notification, updateNotification] = useState<AppNotification>(
+        () => initialNotification ?? buildDefaultNotification()
+    );
 
     const save = useCallback(async () => {
         await onSave(notification);
@@ -63,7 +65,7 @@ export const NewNotificationDialog: React.FC<NewNotificationDialogProps> = ({
                 <TextField
                     multiline
                     minRows={3}
-                    rowsMax={5}
+                    maxRows={5}
                     InputLabelProps={{ shrink: true }}
                     value={notification.content}
                     onChange={onContentChanged}
@@ -72,7 +74,7 @@ export const NewNotificationDialog: React.FC<NewNotificationDialogProps> = ({
                 <Sharing
                     subtitle={i18n.t("Recipients")}
                     meta={{
-                        meta: { allowPublicAccess: true, allowExternalAccess: false },
+                        meta: { allowPublicAccess: false, allowExternalAccess: false },
                         object: {
                             id: "",
                             displayName: "",
@@ -103,18 +105,20 @@ function mapToNamedRef(array: SharingRule[]): NamedRef[] {
     return array.map(({ id, displayName }) => ({ id, name: displayName }));
 }
 
-const defaultNotification: AppNotification = {
-    id: generateUid(),
-    content: "",
-    recipients: { users: [], userGroups: [] },
-    readBy: [],
-    createdAt: new Date(),
-};
+function buildDefaultNotification(): AppNotification {
+    return {
+        id: generateUid(),
+        content: "",
+        recipients: { users: [], userGroups: [] },
+        readBy: [],
+        createdAt: new Date(),
+    };
+}
 
 const sharingOptions = {
     title: false,
     dataSharing: false,
-    publicSharing: true,
+    publicSharing: false,
     externalSharing: false,
     permissionPicker: false,
 };

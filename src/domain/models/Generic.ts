@@ -66,7 +66,7 @@ export const defaultData = (
         title: i18n.t("Manage notifications"),
         rowLength: 3,
         size: "small",
-        icon: "img/icon.png",
+        icon: "img/notification.png",
         action: {
             type: "page",
             value: "/notifications",

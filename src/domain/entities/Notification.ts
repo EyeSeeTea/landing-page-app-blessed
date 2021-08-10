@@ -15,5 +15,6 @@ interface NotificationRecipients {
 
 interface UserReadNotification {
     id: string;
+    name: string;
     date: Date;
 }

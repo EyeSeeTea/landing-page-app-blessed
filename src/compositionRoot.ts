@@ -1,6 +1,7 @@
 import { InstanceD2ApiRepository } from "./data/repositories/InstanceD2ApiRepository";
 import { NotificationsD2ApiRepository } from "./data/repositories/NotificationsD2ApiRepository";
 import { Instance } from "./domain/entities/Instance";
+import { DeleteNotificationsUseCase } from "./domain/usecases/DeleteNotificationsUseCase";
 import { GetCurrentUserUseCase } from "./domain/usecases/GetCurrentUserUseCase";
 import { GetInstanceVersionUseCase } from "./domain/usecases/GetInstanceVersionUseCase";
 import { ListAllNotificationsUseCase } from "./domain/usecases/ListAllNotificationsUseCase";
@@ -18,6 +19,7 @@ export function getCompositionRoot(instance: Instance) {
                 list: new ListUserNotificationsUseCase(notificationsRepository),
                 listAll: new ListAllNotificationsUseCase(notificationsRepository),
                 save: new SaveNotificationsUseCase(notificationsRepository),
+                delete: new DeleteNotificationsUseCase(notificationsRepository),
             }),
             instance: getExecute({
                 getCurrentUser: new GetCurrentUserUseCase(instanceRepository),

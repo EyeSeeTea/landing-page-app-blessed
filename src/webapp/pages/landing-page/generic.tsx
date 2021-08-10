@@ -1,24 +1,12 @@
-import React, { useCallback, useState } from "react";
-import PropTypes from "prop-types";
-import { Grid, Typography, withStyles } from "@material-ui/core";
-import { ConfirmationDialog } from "@eyeseetea/d2-ui-components";
-import { withRouter } from "react-router-dom";
 import { HeaderBar } from "@dhis2/ui";
-import { useAppContext } from "../../contexts/app-context";
+import { Grid, Typography, withStyles } from "@material-ui/core";
+import React from "react";
+import { withRouter } from "react-router-dom";
 import { styles } from "../../../domain/models/hepatitis/styles";
 import { goToDhis2Url } from "../../../utils/utils";
-import i18n from "../../../locales";
 
-const LandingPage: React.FC<any> = ({ classes, history, baseUrl, items, header, title, username }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ classes, history, baseUrl, items, header, title, username }) => {
     const HeaderComponent = header || HeaderBar;
-
-    const { userNotifications, compositionRoot } = useAppContext();
-    const [open, setOpen] = useState(userNotifications.length === 0 ? false : true);
-
-    const save = useCallback(async () => {
-        await compositionRoot.usecases.notifications.save(userNotifications);
-        setOpen(false);
-    }, [compositionRoot, userNotifications]);
 
     const visitPage = ({ type, value }: any) => {
         switch (type) {
@@ -82,18 +70,7 @@ const LandingPage: React.FC<any> = ({ classes, history, baseUrl, items, header, 
     return (
         <React.Fragment>
             <HeaderComponent baseUrl={baseUrl} title={title} username={username} />
-            <ConfirmationDialog
-                title={i18n.t("Notifications")}
-                open={open}
-                onSave={save}
-                onCancel={() => setOpen(false)}
-                maxWidth={"md"}
-                fullWidth={true}
-            >
-                {userNotifications.map(notification => (
-                    <div key={notification.id}>{notification.content}</div>
-                ))}
-            </ConfirmationDialog>
+
             <div className={classes.root}>
                 <Grid container spacing={0} className={classes.container}>
                     {menuItems}
@@ -103,14 +80,15 @@ const LandingPage: React.FC<any> = ({ classes, history, baseUrl, items, header, 
     );
 };
 
-LandingPage.propTypes = {
-    classes: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    baseUrl: PropTypes.string.isRequired,
-    items: PropTypes.array.isRequired,
-};
-
-LandingPage.defaultProps = {};
+interface LandingPageProps {
+    classes: any;
+    history: any;
+    baseUrl: string;
+    items: any[];
+    header: any;
+    title: string;
+    username: string;
+}
 
 //@ts-ignore
 export default withRouter(withStyles(styles)(LandingPage));
