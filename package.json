@@ -1,101 +1,99 @@
 {
-  "name": "est-landing-page",
-  "description": "EyeSeeTea Landing Page for WHO",
-  "version": "0.3.1",
-  "license": "GPL-3.0",
-  "author": "EyeSeeTea team",
-  "homepage": ".",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EyeSeeTea/landing-page-app.git"
-  },
-  "dependencies": {
-    "@dhis2/app-runtime": "2.2.2",
-    "@dhis2/d2-i18n": "1.0.6",
-    "@dhis2/d2-i18n-extract": "1.0.8",
-    "@dhis2/d2-i18n-generate": "1.2.0",
-    "@dhis2/d2-ui-core": "7.0.4",
-    "@dhis2/d2-ui-forms": "7.0.4",
-    "@dhis2/ui-core": "4.21.1",
-    "@dhis2/ui-widgets": "2.1.0",
-    "@material-ui/core": "4.11.0",
-    "@material-ui/icons": "4.9.1",
-    "@material-ui/styles": "4.10.0",
-    "@typescript-eslint/parser": "3.5.0",
-    "axios": "0.19.2",
-    "d2": "31.8.1",
-    "d2-api": "0.2.3",
-    "d2-manifest": "1.0.0",
-    "d2-ui-components": "1.4.2",
-    "font-awesome": "4.7.0",
-    "husky": "4.2.5",
-    "lodash": "4.17.15",
-    "material-ui": "0.20.2",
-    "qs": "6.9.4",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-router-dom": "5.2.0",
-    "react-scripts": "3.4.1",
-    "styled-jsx": "3.3.0"
-  },
-  "scripts": {
-    "prestart": "yarn localize && d2-manifest package.json manifest.webapp",
-    "start": "react-scripts start",
-    "prebuild": "yarn localize",
-    "build": "npx rimraf build/ && d2-manifest package.json manifest.webapp && react-scripts build && yarn run manifest && cp -r i18n icon.png build",
-    "build-webapp": "yarn build && rm -f $npm_package_name.zip && cd build && zip -r ../$npm_package_name.zip *",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "eject": "react-scripts eject",
-    "prettify": "prettier \"{src,config}/**/*.{js,jsx,ts,tsx,json,css}\" --write",
-    "extract-pot": "yarn d2-i18n-extract -p src/ -o i18n/",
-    "localize": "yarn update-po && d2-i18n-generate -n landing-page -p ./i18n/ -o ./src/locales/",
-    "update-po": "yarn extract-pot && for pofile in i18n/*.po; do msgmerge --backup=off -U $pofile i18n/en.pot; done",
-    "manifest": "d2-manifest package.json build/manifest.webapp"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn prettify && yarn lint && yarn extract-pot"
-    }
-  },
-  "devDependencies": {
-    "@babel/core": "7.10.4",
-    "@babel/plugin-syntax-typescript": "7.10.4",
-    "@babel/preset-typescript": "7.10.4",
-    "@types/lodash": "4.14.157",
-    "@types/node": "14.0.14",
-    "@types/react": "16.9.41",
-    "@types/react-dom": "16.9.8",
-    "@typescript-eslint/eslint-plugin": "3.5.0",
-    "babel-core": "6.26.3",
-    "babel-eslint": "10.1.0",
-    "eslint": "7.3.1",
-    "eslint-config-prettier": "6.11.0",
-    "eslint-config-react-app": "5.2.1",
-    "eslint-plugin-flowtype": "5.2.0",
-    "eslint-plugin-import": "2.22.0",
-    "eslint-plugin-jsx-a11y": "6.3.1",
-    "eslint-plugin-prettier": "3.1.4",
-    "eslint-plugin-react": "7.20.3",
-    "eslint-plugin-react-hooks": "4.0.5",
-    "prettier": "2.0.5",
-    "prop-types": "15.7.2",
-    "rimraf": "3.0.2",
-    "typescript": "3.9.5"
-  },
-  "manifest.webapp": {
-    "name": "Home Page",
-    "description": "WHO Home Page",
-    "icons": {
-      "48": "icon.png"
+    "name": "est-landing-page",
+    "description": "EyeSeeTea Landing Page for WHO",
+    "version": "0.4.0",
+    "license": "GPL-3.0",
+    "author": "EyeSeeTea team",
+    "homepage": ".",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/EyeSeeTea/landing-page-app.git"
     },
-    "developer": {
-      "url": "https://www.eyeseetea.com/",
-      "name": "EyeSeeTea team"
+    "dependencies": {
+        "@dhis2/app-runtime": "2.8.0",
+        "@dhis2/d2-i18n": "1.1.0",
+        "@dhis2/d2-i18n-extract": "1.0.8",
+        "@dhis2/d2-i18n-generate": "1.2.0",
+        "@dhis2/ui": "6.12.0",
+        "@eyeseetea/d2-api": "1.8.5",
+        "@eyeseetea/d2-ui-components": "2.6.6",
+        "@material-ui/core": "4.12.2",
+        "@material-ui/icons": "4.11.2",
+        "@material-ui/styles": "4.11.4",
+        "@typescript-eslint/parser": "4.28.4",
+        "axios": "0.21.1",
+        "d2": "31.10.0",
+        "d2-manifest": "1.0.0",
+        "font-awesome": "4.7.0",
+        "husky": "7.0.1",
+        "lodash": "4.17.21",
+        "material-ui": "0.20.2",
+        "qs": "6.10.1",
+        "react": "17.0.2",
+        "react-dom": "17.0.2",
+        "react-router-dom": "5.2.0",
+        "react-scripts": "4.0.3",
+        "styled-jsx": "3.4.4"
     },
-    "activities": {
-      "dhis": {
-        "href": "*"
-      }
+    "scripts": {
+        "prestart": "yarn localize && d2-manifest package.json manifest.webapp",
+        "start": "react-scripts start",
+        "prebuild": "yarn localize",
+        "build": "npx rimraf build/ && d2-manifest package.json manifest.webapp && react-scripts build && yarn run manifest && cp -r i18n icon.png build",
+        "build-webapp": "yarn build && rm -f $npm_package_name.zip && cd build && zip -r ../$npm_package_name.zip *",
+        "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+        "eject": "react-scripts eject",
+        "prettify": "prettier \"{src,config}/**/*.{js,jsx,ts,tsx,json,css}\" --write",
+        "extract-pot": "yarn d2-i18n-extract -p src/ -o i18n/",
+        "localize": "yarn update-po && d2-i18n-generate -n landing-page -p ./i18n/ -o ./src/locales/",
+        "update-po": "yarn extract-pot && for pofile in i18n/*.po; do msgmerge --backup=off -U $pofile i18n/en.pot; done",
+        "manifest": "d2-manifest package.json build/manifest.webapp"
+    },
+    "husky": {
+        "hooks": {
+            "pre-push": "yarn prettify && yarn lint && yarn extract-pot"
+        }
+    },
+    "devDependencies": {
+        "@babel/core": "7.14.6",
+        "@babel/preset-typescript": "7.14.5",
+        "@types/lodash": "4.14.171",
+        "@types/node": "16.4.3",
+        "@types/react": "17.0.15",
+        "@types/react-dom": "17.0.9",
+        "@types/react-router-dom": "5.1.8",
+        "@typescript-eslint/eslint-plugin": "4.28.4",
+        "babel-core": "6.26.3",
+        "babel-eslint": "10.1.0",
+        "eslint": "7.31.0",
+        "eslint-config-prettier": "8.3.0",
+        "eslint-config-react-app": "6.0.0",
+        "eslint-plugin-flowtype": "5.8.1",
+        "eslint-plugin-import": "2.23.4",
+        "eslint-plugin-jsx-a11y": "6.4.1",
+        "eslint-plugin-prettier": "3.4.0",
+        "eslint-plugin-react": "7.24.0",
+        "eslint-plugin-react-hooks": "4.2.0",
+        "prettier": "2.3.2",
+        "prop-types": "15.7.2",
+        "rimraf": "3.0.2",
+        "typescript": "4.3.5",
+        "wait-on": "5.3.0"
+    },
+    "manifest.webapp": {
+        "name": "Home Page",
+        "description": "WHO Home Page",
+        "icons": {
+            "48": "icon.png"
+        },
+        "developer": {
+            "url": "https://www.eyeseetea.com/",
+            "name": "EyeSeeTea team"
+        },
+        "activities": {
+            "dhis": {
+                "href": "*"
+            }
+        }
     }
-  }
 }
