@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2021-08-10T07:30:54.104Z\n"
-"PO-Revision-Date: 2021-08-10T07:30:54.104Z\n"
+"POT-Creation-Date: 2021-08-12T06:18:08.594Z\n"
+"PO-Revision-Date: 2021-08-12T06:18:08.594Z\n"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -307,9 +307,6 @@ msgid "Getting ready, Please wait"
 msgstr ""
 
 msgid "Create new notification"
-msgstr ""
-
-msgid "Message"
 msgstr ""
 
 msgid "Recipients"

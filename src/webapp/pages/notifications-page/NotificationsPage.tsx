@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { AppNotification } from "../../../domain/entities/Notification";
 import i18n from "../../../locales";
 import PageHeader from "../../components/page-header/PageHeader";
+import { NotificationContent } from "../../components/user-notification-dialog/NotificationContent";
 import { useAppContext } from "../../contexts/app-context";
 import { useReload } from "../../hooks/useReload";
 import { NewNotificationDialog, NewNotificationDialogProps } from "./NewNotificationDialog";
@@ -94,7 +95,7 @@ export const NotificationsPage: React.FC = () => {
 };
 
 const columns: TableColumn<AppNotification>[] = [
-    { name: "content", text: i18n.t("Content") },
+    { name: "content", text: i18n.t("Content"), getValue: item => <NotificationContent content={item.content} /> },
     {
         name: "recipients",
         text: i18n.t("Recipients"),
