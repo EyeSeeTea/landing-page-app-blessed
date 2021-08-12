@@ -61,4 +61,15 @@ export const defaultData = (
             value: "/dhis-web-user-profile/#/profile",
         },
     },
+    {
+        key: "admin-notifications",
+        title: i18n.t("Manage notifications"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/notification.png",
+        action: {
+            type: "page",
+            value: "/notifications",
+        },
+    },
 ];

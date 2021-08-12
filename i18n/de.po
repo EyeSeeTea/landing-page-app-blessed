@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2021-07-26T05:57:19.841Z\n"
+"POT-Creation-Date: 2021-08-10T07:30:54.104Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,23 +70,8 @@ msgstr ""
 "Ermöglicht den Benutzern das Bearbeiten von Kontoanmeldeinformationen und "
 "des öffentlichen Profils"
 
-msgid "Details of the report"
-msgstr "Details des Berichts"
-
-msgid "Reporting date"
-msgstr "Stichtag"
-
-msgid "Submit or update your report"
-msgstr "Senden oder aktualisieren Sie Ihren Bericht"
-
-msgid "Thank you for your report on the policy situation"
-msgstr "Vielen Dank für Ihren Bericht über die politische Situation"
-
-msgid "Go back to home page"
-msgstr "Gehen Sie zurück zur Startseite"
-
-msgid "Programme"
-msgstr "Programm"
+msgid "Manage notifications"
+msgstr ""
 
 msgid "Data"
 msgstr "Daten"
@@ -115,6 +100,24 @@ msgstr ""
 
 msgid "Other Useful Features"
 msgstr "Andere nützliche Funktionen"
+
+msgid "Details of the report"
+msgstr "Details des Berichts"
+
+msgid "Reporting date"
+msgstr "Stichtag"
+
+msgid "Submit or update your report"
+msgstr "Senden oder aktualisieren Sie Ihren Bericht"
+
+msgid "Thank you for your report on the policy situation"
+msgstr "Vielen Dank für Ihren Bericht über die politische Situation"
+
+msgid "Go back to home page"
+msgstr "Gehen Sie zurück zur Startseite"
+
+msgid "Programme"
+msgstr "Programm"
 
 msgid "NHWA maturity assessment"
 msgstr ""
@@ -291,8 +294,44 @@ msgstr ""
 msgid "World Health Organization"
 msgstr "Weltgesundheitsorganisation"
 
+msgid "Back"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Notifications"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
 msgid "Please wait"
 msgstr ""
 
 msgid "Getting ready, Please wait"
 msgstr "Machen Sie sich bereit, bitte warten Sie"
+
+msgid "Create new notification"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Recipients"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Created At"
+msgstr ""
+
+msgid "Read by"
+msgstr ""

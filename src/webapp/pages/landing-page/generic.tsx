@@ -1,32 +1,41 @@
-import React from "react";
-import PropTypes from "prop-types";
+import { HeaderBar } from "@dhis2/ui";
 import { Grid, Typography, withStyles } from "@material-ui/core";
+import React from "react";
 import { withRouter } from "react-router-dom";
-import { HeaderBar } from "@dhis2/ui-widgets";
-
 import { styles } from "../../../domain/models/hepatitis/styles";
-import { goToDhis2Url } from "../../../utils";
+import { goToDhis2Url } from "../../../utils/utils";
 
-const LandingPage = ({ classes, history, baseUrl, items, header, title, username }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ classes, history, baseUrl, items, header, title, username }) => {
     const HeaderComponent = header || HeaderBar;
 
-    const visitPage = ({ type, value }) => {
+    const visitPage = ({ type, value }: any) => {
         switch (type) {
             case "page":
                 return history.push(value);
             case "dhisRedirect":
                 return goToDhis2Url(baseUrl, value);
             case "method":
-                return value(baseUrl, action => visitPage(action));
+                return value(baseUrl, (action: any) => visitPage(action));
             default:
                 break;
         }
     };
 
     const menuItems = items.map(
-        ({ key, title, description, icon, iconDescription, action, enableBottomLine, rowLength, size = "large" }) => (
+        ({
+            key,
+            title,
+            description,
+            icon,
+            iconDescription,
+            action,
+            enableBottomLine,
+            rowLength,
+            size = "large",
+        }: any) => (
             <Grid
                 item
+                //@ts-ignore
                 xs={12 / rowLength}
                 className={action ? classes.item : classes.separator}
                 key={key}
@@ -61,6 +70,7 @@ const LandingPage = ({ classes, history, baseUrl, items, header, title, username
     return (
         <React.Fragment>
             <HeaderComponent baseUrl={baseUrl} title={title} username={username} />
+
             <div className={classes.root}>
                 <Grid container spacing={0} className={classes.container}>
                     {menuItems}
@@ -70,13 +80,15 @@ const LandingPage = ({ classes, history, baseUrl, items, header, title, username
     );
 };
 
-LandingPage.propTypes = {
-    classes: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    baseUrl: PropTypes.string.isRequired,
-    items: PropTypes.array.isRequired,
-};
+interface LandingPageProps {
+    classes: any;
+    history: any;
+    baseUrl: string;
+    items: any[];
+    header: any;
+    title: string;
+    username: string;
+}
 
-LandingPage.defaultProps = {};
-
+//@ts-ignore
 export default withRouter(withStyles(styles)(LandingPage));

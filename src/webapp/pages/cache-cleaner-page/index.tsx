@@ -1,6 +1,6 @@
 import React from "react";
-import { hideSelector, selector, sleep } from "../../../utils";
-import { IFrame } from "../../components/iframe";
+import { hideSelector, selector, sleep } from "../../../utils/utils";
+import { IFrame } from "../../components/iframe/IFrame";
 
 export const customize = async (iframe: HTMLIFrameElement | null) => {
     if (!iframe) return undefined;

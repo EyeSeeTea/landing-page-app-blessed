@@ -1,7 +1,7 @@
 import { HeaderBar } from "@dhis2/ui";
 import React from "react";
 import { HashRouter, Route, Switch } from "react-router-dom";
-import { CacheCleanerPage, EntryCapturePage, GenericLandingPage } from "..";
+import { CacheCleanerPage, EntryCapturePage, GenericLandingPage, NotificationsPage } from "..";
 import { Configuration } from "../../../data/logic/redirection";
 import { defaultData } from "../../../domain/models";
 
@@ -20,6 +20,11 @@ export const Router: React.FC<RouterProps> = ({ baseUrl, username, configuration
                         path={`/${programme}/:type(dataSet|program)/:element`}
                         //@ts-ignore
                         render={() => <EntryCapturePage title={title} header={header} baseUrl={baseUrl} />}
+                    />,
+                    <Route
+                        key={"admin-list-create-notifs"}
+                        path={`/notifications`}
+                        render={() => <NotificationsPage />}
                     />,
                     <Route
                         key={programme}

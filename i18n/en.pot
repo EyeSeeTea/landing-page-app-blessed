@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2021-07-26T05:57:19.841Z\n"
-"PO-Revision-Date: 2021-07-26T05:57:19.841Z\n"
+"POT-Creation-Date: 2021-08-10T07:30:54.104Z\n"
+"PO-Revision-Date: 2021-08-10T07:30:54.104Z\n"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -68,22 +68,7 @@ msgstr ""
 msgid "Allows the users to edit account credentials and public profile"
 msgstr ""
 
-msgid "Details of the report"
-msgstr ""
-
-msgid "Reporting date"
-msgstr ""
-
-msgid "Submit or update your report"
-msgstr ""
-
-msgid "Thank you for your report on the policy situation"
-msgstr ""
-
-msgid "Go back to home page"
-msgstr ""
-
-msgid "Programme"
+msgid "Manage notifications"
 msgstr ""
 
 msgid "Data"
@@ -108,6 +93,24 @@ msgid "Access a dashboard visualizing the data that you entered before"
 msgstr ""
 
 msgid "Other Useful Features"
+msgstr ""
+
+msgid "Details of the report"
+msgstr ""
+
+msgid "Reporting date"
+msgstr ""
+
+msgid "Submit or update your report"
+msgstr ""
+
+msgid "Thank you for your report on the policy situation"
+msgstr ""
+
+msgid "Go back to home page"
+msgstr ""
+
+msgid "Programme"
 msgstr ""
 
 msgid "NHWA maturity assessment"
@@ -285,8 +288,44 @@ msgstr ""
 msgid "World Health Organization"
 msgstr ""
 
+msgid "Back"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Notifications"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
 msgid "Please wait"
 msgstr ""
 
 msgid "Getting ready, Please wait"
+msgstr ""
+
+msgid "Create new notification"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Recipients"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Created At"
+msgstr ""
+
+msgid "Read by"
 msgstr ""

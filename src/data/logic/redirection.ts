@@ -1,12 +1,12 @@
-import axios from "axios";
 import _ from "lodash";
+import { isSuperAdmin, User } from "../../domain/entities/User";
 import { buildHepatitisData, nhwaData } from "../../domain/models";
-import { nhwaClerkData, nhwaViewerData } from "../../domain/models/nhwa";
-import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya";
-import { rabiesData, simpleRabiesData } from "../../domain/models/rabies";
-import { snakebiteData } from "../../domain/models/snakebite";
+import { nhwaClerkData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
+import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
+import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
+import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
 import i18n from "../../locales";
-import { goToDhis2Url } from "../../utils";
+import { goToDhis2Url } from "../../utils/utils";
 import nhwaHeader from "../../webapp/components/headers/nhwa-header";
 import whoHeader from "../../webapp/components/headers/who-header";
 import {
@@ -44,8 +44,8 @@ export interface Configuration {
     description: string;
     userGroupIds: string[];
     page: any;
-    header: any;
-    data: any;
+    header?: any;
+    data?: any;
     icon: string;
 }
 
@@ -141,21 +141,16 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
-export const handleRedirection = async (baseUrl: string, version: number) => {
-    const url = `${baseUrl}/api/me.json?fields=name,userGroups[id]`;
-    const { name, userGroups } = (
-        await axios.get(url, {
-            withCredentials: true,
-        })
-    ).data as { name: string; userGroups: Array<{ id: string }> };
+export const handleRedirection = async (baseUrl: string, version: number, user: User) => {
+    const isAdmin = isSuperAdmin(user);
 
-    const userGroupIds = userGroups.map(userGroup => userGroup.id);
-    const configurations = buildAvailableConfigurations(version).filter(config =>
-        shouldRedirect(userGroupIds, config.userGroupIds)
+    const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
+    const configurations = buildAvailableConfigurations(version).filter(
+        config => isAdmin || shouldRedirect(userGroupIds, config.userGroupIds)
     );
 
     if (configurations.length > 0) {
-        return { username: name, configurations };
+        return { username: user.name, configurations };
     } else {
         goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
         return null;

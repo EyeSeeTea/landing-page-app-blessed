@@ -4,7 +4,7 @@ import _ from "lodash";
 import PropTypes from "prop-types";
 import React from "react";
 import i18n from "../../../../locales";
-import { goToDhis2InNewTab, goToDhis2Url } from "../../../../utils";
+import { goToDhis2InNewTab, goToDhis2Url } from "../../../../utils/utils";
 import { useAppContext } from "../../../contexts/app-context";
 import { styles } from "./styles";
 

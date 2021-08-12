@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { withRouter } from "react-router-dom";
 import i18n from "../../../../locales";
-import { goToDhis2Url, goToExternalUrl } from "../../../../utils";
+import { goToDhis2Url, goToExternalUrl } from "../../../../utils/utils";
 import { styles } from "./styles";
 
 const WHOHeader = ({ classes, history, baseUrl, title, backUrl }) => {

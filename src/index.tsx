@@ -4,8 +4,9 @@ import axios from "axios";
 import { init } from "d2";
 import _ from "lodash";
 import ReactDOM from "react-dom";
-import App from "./webapp/pages/app/App";
+import { Instance } from "./domain/entities/Instance";
 import { getD2APiFromInstance } from "./utils/d2-api";
+import App from "./webapp/pages/app/App";
 
 async function getBaseUrl() {
     if (process.env.NODE_ENV === "development") {
@@ -34,7 +35,7 @@ async function main() {
 
     try {
         const d2 = await init({ baseUrl: baseUrl + "/api", schemas: [] });
-        const api = getD2APiFromInstance({ type: "local", url: baseUrl });
+        const api = getD2APiFromInstance(new Instance({ url: baseUrl }));
         Object.assign(window, { d2, api });
 
         const userSettings = await api.get<{ keyUiLocale: string }>("/userSettings").getData();
