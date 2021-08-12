@@ -1,6 +1,7 @@
 import { ConfirmationDialog, ShareUpdate, Sharing, SharingRule } from "@eyeseetea/d2-ui-components";
-import { FormControl, FormLabel, TextField } from "@material-ui/core";
-import { ChangeEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
+import ReactMde from "react-mde";
+import "react-mde/lib/styles/css/react-mde-all.css";
 import { AppNotification } from "../../../domain/entities/Notification";
 import { NamedRef } from "../../../domain/entities/Ref";
 import i18n from "../../../locales";
@@ -31,8 +32,7 @@ export const NewNotificationDialog: React.FC<NewNotificationDialogProps> = ({
         [compositionRoot]
     );
 
-    const onContentChanged = useCallback((event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const content = event.target.value;
+    const onContentChanged = useCallback((content: string) => {
         updateNotification(notification => ({ ...notification, content }));
     }, []);
 
@@ -59,34 +59,28 @@ export const NewNotificationDialog: React.FC<NewNotificationDialogProps> = ({
             maxWidth={"md"}
             fullWidth={true}
         >
-            <FormControl fullWidth>
-                <FormLabel component="legend">{i18n.t("Message")}</FormLabel>
+            <ReactMde
+                value={notification.content}
+                onChange={onContentChanged}
+                minEditorHeight={200}
+                disablePreview={true}
+            />
 
-                <TextField
-                    multiline
-                    minRows={3}
-                    maxRows={5}
-                    InputLabelProps={{ shrink: true }}
-                    value={notification.content}
-                    onChange={onContentChanged}
-                />
-
-                <Sharing
-                    subtitle={i18n.t("Recipients")}
-                    meta={{
-                        meta: { allowPublicAccess: false, allowExternalAccess: false },
-                        object: {
-                            id: "",
-                            displayName: "",
-                            userAccesses: mapToSharingRule(notification.recipients.users),
-                            userGroupAccesses: mapToSharingRule(notification.recipients.userGroups),
-                        },
-                    }}
-                    showOptions={sharingOptions}
-                    onSearch={search}
-                    onChange={onSharingChanged}
-                />
-            </FormControl>
+            <Sharing
+                subtitle={i18n.t("Recipients")}
+                meta={{
+                    meta: { allowPublicAccess: false, allowExternalAccess: false },
+                    object: {
+                        id: "",
+                        displayName: "",
+                        userAccesses: mapToSharingRule(notification.recipients.users),
+                        userGroupAccesses: mapToSharingRule(notification.recipients.userGroups),
+                    },
+                }}
+                showOptions={sharingOptions}
+                onSearch={search}
+                onChange={onSharingChanged}
+            />
         </ConfirmationDialog>
     );
 };

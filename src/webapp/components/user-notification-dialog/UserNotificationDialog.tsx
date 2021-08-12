@@ -1,7 +1,7 @@
 import { ConfirmationDialog } from "@eyeseetea/d2-ui-components";
-import Linkify from "react-linkify";
 import { AppNotification } from "../../../domain/entities/Notification";
 import i18n from "../../../locales";
+import { NotificationContent } from "./NotificationContent";
 
 export const UserNotificationDialog: React.FC<UserNotificationDialogProps> = ({ notifications, onClose }) => {
     return (
@@ -14,7 +14,7 @@ export const UserNotificationDialog: React.FC<UserNotificationDialogProps> = ({ 
             fullWidth={true}
         >
             {notifications.map(notification => (
-                <Linkify key={notification.id}>{notification.content}</Linkify>
+                <NotificationContent key={notification.id} content={notification.content} />
             ))}
         </ConfirmationDialog>
     );
