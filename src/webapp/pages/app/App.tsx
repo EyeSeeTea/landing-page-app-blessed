@@ -34,6 +34,14 @@ const App = ({ api }: { api: D2Api }) => {
             const compositionRoot = getCompositionRoot(instance);
             setAppContext({ api, compositionRoot });
 
+            const continueLoading = async () => {
+                const user = await compositionRoot.usecases.instance.getCurrentUser();
+                const version = await compositionRoot.usecases.instance.getVersion();
+                const apiVersion = getMajorVersion(version);
+                const options = await handleRedirection(baseUrl, apiVersion, user);
+                if (options) setRouterProps({ ...options, baseUrl });
+            };
+
             const notifications = await compositionRoot.usecases.notifications.list();
             if (notifications.length > 0) {
                 setUserDialogProps({
@@ -41,15 +49,12 @@ const App = ({ api }: { api: D2Api }) => {
                     onClose: async () => {
                         await compositionRoot.usecases.notifications.save(notifications);
                         setUserDialogProps(undefined);
+                        await continueLoading();
                     },
                 });
+            } else {
+                await continueLoading();
             }
-
-            const user = await compositionRoot.usecases.instance.getCurrentUser();
-            const version = await compositionRoot.usecases.instance.getVersion();
-            const apiVersion = getMajorVersion(version);
-            const options = await handleRedirection(baseUrl, apiVersion, user);
-            if (options) setRouterProps({ ...options, baseUrl });
 
             await sleep(1000);
             setLoading(false);
