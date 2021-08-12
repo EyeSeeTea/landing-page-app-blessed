@@ -4,6 +4,8 @@ import i18n from "../../../locales";
 import { NotificationContent } from "./NotificationContent";
 
 export const UserNotificationDialog: React.FC<UserNotificationDialogProps> = ({ notifications, onClose }) => {
+    const content = notifications.map(({ content }) => content).join("\n\n");
+
     return (
         <ConfirmationDialog
             title={i18n.t("Notifications")}
@@ -13,9 +15,7 @@ export const UserNotificationDialog: React.FC<UserNotificationDialogProps> = ({ 
             maxWidth={"md"}
             fullWidth={true}
         >
-            {notifications.map(notification => (
-                <NotificationContent key={notification.id} content={notification.content} />
-            ))}
+            <NotificationContent content={content} />
         </ConfirmationDialog>
     );
 };
