@@ -5,26 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2020-12-15T10:31:20.283Z\n"
-"PO-Revision-Date: 2020-12-15T10:31:20.283Z\n"
-
-msgid "User guide"
-msgstr ""
-
-msgid "Logout"
-msgstr ""
-
-msgid "LOG OUT"
-msgstr ""
-
-msgid "World Health Organization"
-msgstr ""
-
-msgid "Please wait"
-msgstr ""
-
-msgid "Getting ready, Please wait"
-msgstr ""
+"POT-Creation-Date: 2021-08-12T06:18:08.594Z\n"
+"PO-Revision-Date: 2021-08-12T06:18:08.594Z\n"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -86,22 +68,7 @@ msgstr ""
 msgid "Allows the users to edit account credentials and public profile"
 msgstr ""
 
-msgid "Details of the report"
-msgstr ""
-
-msgid "Reporting date"
-msgstr ""
-
-msgid "Submit or update your report"
-msgstr ""
-
-msgid "Thank you for your report on the policy situation"
-msgstr ""
-
-msgid "Go back to home page"
-msgstr ""
-
-msgid "Programme"
+msgid "Manage notifications"
 msgstr ""
 
 msgid "Data"
@@ -126,6 +93,24 @@ msgid "Access a dashboard visualizing the data that you entered before"
 msgstr ""
 
 msgid "Other Useful Features"
+msgstr ""
+
+msgid "Details of the report"
+msgstr ""
+
+msgid "Reporting date"
+msgstr ""
+
+msgid "Submit or update your report"
+msgstr ""
+
+msgid "Thank you for your report on the policy situation"
+msgstr ""
+
+msgid "Go back to home page"
+msgstr ""
+
+msgid "Programme"
 msgstr ""
 
 msgid "NHWA maturity assessment"
@@ -289,4 +274,55 @@ msgid "Snake bite data entry"
 msgstr ""
 
 msgid "Enter data on the snakebite data entry"
+msgstr ""
+
+msgid "User guide"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "LOG OUT"
+msgstr ""
+
+msgid "World Health Organization"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Notifications"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Please wait"
+msgstr ""
+
+msgid "Getting ready, Please wait"
+msgstr ""
+
+msgid "Create new notification"
+msgstr ""
+
+msgid "Recipients"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Created At"
+msgstr ""
+
+msgid "Read by"
 msgstr ""
