@@ -1,4 +1,4 @@
-import { Button } from "@dhis2/ui-core";
+import { Button } from "@dhis2/ui";
 import { withStyles } from "@material-ui/core";
 import _ from "lodash";
 import PropTypes from "prop-types";

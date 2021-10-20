@@ -31,7 +31,7 @@ export class NotificationsD2ApiRepository implements NotificationsRepository {
                     return isForUser || isForGroup;
                 })
                 .filter(notification => !notification.readBy.find(({ id }) => id === currentUser.id));
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
             return [];
         }
@@ -40,7 +40,7 @@ export class NotificationsD2ApiRepository implements NotificationsRepository {
     public async listAll(): Promise<AppNotification[]> {
         try {
             return await this.storageClient.listObjectsInCollection<AppNotification>(Namespaces.NOTIFICATIONS);
-        } catch (error) {
+        } catch (error: any) {
             console.error(error);
             return [];
         }
