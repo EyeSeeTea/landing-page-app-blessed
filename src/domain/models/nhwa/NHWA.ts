@@ -31,7 +31,7 @@ export const nhwaData = (version: number) => [
             "The validation exercise enables countries to view existing data and undertake necessary action of data correction/update as required."
         ),
         rowLength: 1,
-        icon: "img/dhis-web-reporting.png",
+        icon: "img/dhis-web-data-visualizer.png",
         size: "small",
         action: {
             type: "dhisRedirect",
@@ -79,25 +79,13 @@ export const nhwaData = (version: number) => [
         rowLength: 1,
     },
     {
-        key: "pivot-table-link",
-        iconDescription: i18n.t("Pivot table"),
-        description: i18n.t("Enables users to create pivot tables, using available data"),
-        rowLength: 3,
-        icon: "img/dhis-web-pivot.png",
-        size: "small",
-        action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-pivot/index.action",
-        },
-    },
-    {
         key: "data-visualizer-link",
         iconDescription: i18n.t("Data Visualizer"),
         description: i18n.t(
             "Enables users to easily create dynamic data analysis and visualizations through charts and data tables."
         ),
         rowLength: 3,
-        icon: "img/dhis-web-visualizer.png",
+        icon: "img/dhis-web-data-visualizer.png",
         size: "small",
         action: {
             type: "method",
@@ -114,7 +102,7 @@ export const nhwaData = (version: number) => [
         iconDescription: i18n.t("GIS"),
         description: i18n.t("Enables users to visualize data in Geographical location system."),
         rowLength: 3,
-        icon: "img/dhis-web-mapping.png",
+        icon: "img/dhis-web-maps.png",
         size: "small",
         action: {
             type: "method",
@@ -143,7 +131,7 @@ export const nhwaData = (version: number) => [
         iconDescription: i18n.t("NHWA Reports"),
         description: i18n.t("Access to the NHWA reports"),
         rowLength: 3,
-        icon: "img/dhis-web-reporting.png",
+        icon: "img/dhis-web-reports.png",
         size: "small",
         action: {
             type: "method",
@@ -196,7 +184,7 @@ export const nhwaData = (version: number) => [
         description: i18n.t("Enables the users to approves the data submitted in the system"),
         rowLength: 3,
         size: "small",
-        icon: "img/dhis-web-data-approval.png",
+        icon: "img/dhis-web-approval.png",
         action: {
             type: "method",
             value: async (_baseUrl: string, cb: Function) => {
