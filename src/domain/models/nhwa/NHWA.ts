@@ -127,26 +127,6 @@ export const nhwaData = (version: number) => [
         },
     },
     {
-        key: "nhwa-reports-link",
-        iconDescription: i18n.t("NHWA Reports"),
-        description: i18n.t("Access to the NHWA reports"),
-        rowLength: 3,
-        icon: "img/dhis-web-reports.png",
-        size: "small",
-        action: {
-            type: "method",
-            value: async (_baseUrl: string, cb: Function) => {
-                cb({
-                    type: "dhisRedirect",
-                    value:
-                        version < 33
-                            ? "/dhis-web-reporting/displayViewReportForm.action"
-                            : "/dhis-web-reports/index.html#/standard-report",
-                });
-            },
-        },
-    },
-    {
         key: "other-features-title",
         title: i18n.t("Other Useful Features"),
         size: "small",
@@ -208,6 +188,30 @@ export const nhwaData = (version: number) => [
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-user-profile/#/profile",
+        },
+    },
+    {
+        key: "training-link",
+        iconDescription: i18n.t("Training App"),
+        description: i18n.t("Learn DHIS2"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/training-app.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/api/apps/Training-App/index.html",
+        },
+    },
+    {
+        key: "messaging-link",
+        iconDescription: i18n.t("Messaging"),
+        description: i18n.t("DHIS2 Messaging"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/dhis-web-messaging.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-messaging",
         },
     },
 ];
