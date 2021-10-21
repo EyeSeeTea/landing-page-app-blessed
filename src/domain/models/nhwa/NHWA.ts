@@ -35,7 +35,7 @@ export const nhwaData = (version: number) => [
         size: "small",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-pivot/index.html?id=mElD0yiuFpU",
+            value: "/dhis-web-data-visualizer/index.html#/mElD0yiuFpU",
         },
     },
     {
