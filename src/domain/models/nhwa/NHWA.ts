@@ -191,6 +191,18 @@ export const nhwaData = (version: number) => [
         },
     },
     {
+        key: "user-extended-link",
+        iconDescription: i18n.t("User Extended"),
+        description: i18n.t("Allows the users to edit extended information"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/user-extended.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/api/apps/User-Extended-App/index.html",
+        },
+    },
+    {
         key: "training-link",
         iconDescription: i18n.t("Training App"),
         description: i18n.t("Learn DHIS2"),
@@ -223,5 +235,11 @@ export const nhwaViewerData = (version: number) =>
     _.filter(
         nhwaData(version),
         ({ key }) =>
-            !["data-approval-link", "data-quality-link", "nhwa-data-entry-title", "nhwa-data-entry-link"].includes(key)
+            ![
+                "data-approval-link",
+                "data-quality-link",
+                "nhwa-data-entry-title",
+                "nhwa-data-entry-link",
+                "user-extended-link",
+            ].includes(key)
     );
