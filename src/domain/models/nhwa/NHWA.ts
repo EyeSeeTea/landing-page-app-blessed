@@ -1,7 +1,7 @@
 import _ from "lodash";
 import i18n from "../../../locales";
 
-export const nhwaData = (version: number) => [
+export const nhwaData = (_version: number) => [
     {
         key: "maturity-assessment-title",
         title: i18n.t("NHWA maturity assessment"),
@@ -92,7 +92,7 @@ export const nhwaData = (version: number) => [
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value: version < 34 ? "/dhis-web-visualizer/index.action" : "/dhis-web-data-visualizer/index.html",
+                    value: "/dhis-web-data-visualizer/index.html",
                 });
             },
         },
@@ -109,7 +109,7 @@ export const nhwaData = (version: number) => [
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value: version < 34 ? "/dhis-web-mapping/index.action" : "/dhis-web-maps/index.html",
+                    value: "/dhis-web-maps/index.html",
                 });
             },
         },
@@ -124,6 +124,23 @@ export const nhwaData = (version: number) => [
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-dashboard/index.html",
+        },
+    },
+    {
+        key: "nhwa-reports-link",
+        iconDescription: i18n.t("NHWA Reports"),
+        description: i18n.t("Access to the NHWA reports"),
+        rowLength: 3,
+        icon: "img/dhis-web-reports.png",
+        size: "small",
+        action: {
+            type: "method",
+            value: async (_baseUrl: string, cb: Function) => {
+                cb({
+                    type: "dhisRedirect",
+                    value: "/dhis-web-reports/index.html#/standard-report",
+                });
+            },
         },
     },
     {
@@ -170,10 +187,7 @@ export const nhwaData = (version: number) => [
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value:
-                        version < 34
-                            ? "/dhis-web-reporting/showDataApprovalForm.action"
-                            : "/dhis-web-approval/index.action",
+                    value: "/dhis-web-approval/index.action",
                 });
             },
         },
@@ -193,7 +207,7 @@ export const nhwaData = (version: number) => [
     {
         key: "user-extended-link",
         iconDescription: i18n.t("User Extended"),
-        description: i18n.t("Allows the users to edit extended information"),
+        description: i18n.t("List, edit or create users in the NHWA platform"),
         rowLength: 3,
         size: "small",
         icon: "img/user-extended.png",
@@ -203,27 +217,27 @@ export const nhwaData = (version: number) => [
         },
     },
     {
-        key: "training-link",
-        iconDescription: i18n.t("Training App"),
-        description: i18n.t("Learn DHIS2"),
-        rowLength: 3,
-        size: "small",
-        icon: "img/training-app.png",
-        action: {
-            type: "dhisRedirect",
-            value: "/api/apps/Training-App/index.html",
-        },
-    },
-    {
         key: "messaging-link",
         iconDescription: i18n.t("Messaging"),
-        description: i18n.t("DHIS2 Messaging"),
+        description: i18n.t("Send internal messages to other users in the NHWA Platform"),
         rowLength: 3,
         size: "small",
         icon: "img/dhis-web-messaging.png",
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-messaging",
+        },
+    },
+    {
+        key: "training-link",
+        iconDescription: i18n.t("Training App"),
+        description: i18n.t("Learn how to use the different applications of DHIS2"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/training-app.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/api/apps/Training-App/index.html",
         },
     },
 ];
