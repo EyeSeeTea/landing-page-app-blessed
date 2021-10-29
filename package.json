@@ -1,7 +1,7 @@
 {
     "name": "est-landing-page",
     "description": "EyeSeeTea Landing Page for WHO",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "license": "GPL-3.0",
     "author": "EyeSeeTea team",
     "homepage": ".",
@@ -43,7 +43,7 @@
     "scripts": {
         "start": "react-scripts start",
         "craco-start": "craco start",
-        "prebuild": "yarn localize && yarn test",
+        "prebuild": "yarn localize",
         "build-folder": "rm -rf build/ && d2-manifest package.json manifest.webapp && react-scripts build && yarn run manifest && cp -r i18n icon.png build",
         "build": "yarn build-folder && rm -f $npm_package_name.zip && cd build && zip --quiet -r ../$npm_package_name.zip *",
         "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
