@@ -25,7 +25,7 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
     const dataSet = "S1UMweeoPsi";
 
     const { userGroups } = (
-        await axios.get(`${baseUrl}/api/me.json`, {
+        await axios.get<any>(`${baseUrl}/api/me.json`, {
             params: { fields: "userGroups" },
             withCredentials: true,
         })
@@ -48,7 +48,7 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
         .value();
 
     const { dataInputPeriods } = (
-        await axios.get(`${baseUrl}/api/dataSets/${dataSet}.json`, {
+        await axios.get<any>(`${baseUrl}/api/dataSets/${dataSet}.json`, {
             params: { fields: "dataInputPeriods" },
             withCredentials: true,
         })
@@ -58,7 +58,7 @@ const actionRabiesDataEntry = async (baseUrl: string, cb: Function, tab: "animal
         _.max(dataInputPeriods.map((dip: { period: Ref }) => parseInt(dip.period.id))) ?? new Date().getFullYear() - 1;
 
     const { organisationUnits: allOrgUnits } = (
-        await axios.get(`${baseUrl}/api/me.json`, {
+        await axios.get<any>(`${baseUrl}/api/me.json`, {
             params: { fields: "organisationUnits[id,dataSets,level]" },
             withCredentials: true,
         })

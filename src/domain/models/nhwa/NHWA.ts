@@ -1,7 +1,7 @@
 import _ from "lodash";
 import i18n from "../../../locales";
 
-export const nhwaData = (version: number) => [
+export const nhwaData = (_version: number) => [
     {
         key: "maturity-assessment-title",
         title: i18n.t("NHWA maturity assessment"),
@@ -31,11 +31,11 @@ export const nhwaData = (version: number) => [
             "The validation exercise enables countries to view existing data and undertake necessary action of data correction/update as required."
         ),
         rowLength: 1,
-        icon: "img/dhis-web-reporting.png",
+        icon: "img/dhis-web-data-visualizer.png",
         size: "small",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-pivot/index.html?id=mElD0yiuFpU",
+            value: "/dhis-web-data-visualizer/index.html#/mElD0yiuFpU",
         },
     },
     {
@@ -79,32 +79,20 @@ export const nhwaData = (version: number) => [
         rowLength: 1,
     },
     {
-        key: "pivot-table-link",
-        iconDescription: i18n.t("Pivot table"),
-        description: i18n.t("Enables users to create pivot tables, using available data"),
-        rowLength: 3,
-        icon: "img/dhis-web-pivot.png",
-        size: "small",
-        action: {
-            type: "dhisRedirect",
-            value: "/dhis-web-pivot/index.action",
-        },
-    },
-    {
         key: "data-visualizer-link",
         iconDescription: i18n.t("Data Visualizer"),
         description: i18n.t(
             "Enables users to easily create dynamic data analysis and visualizations through charts and data tables."
         ),
         rowLength: 3,
-        icon: "img/dhis-web-visualizer.png",
+        icon: "img/dhis-web-data-visualizer.png",
         size: "small",
         action: {
             type: "method",
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value: version < 34 ? "/dhis-web-visualizer/index.action" : "/dhis-web-data-visualizer/index.html",
+                    value: "/dhis-web-data-visualizer/index.html",
                 });
             },
         },
@@ -114,14 +102,14 @@ export const nhwaData = (version: number) => [
         iconDescription: i18n.t("GIS"),
         description: i18n.t("Enables users to visualize data in Geographical location system."),
         rowLength: 3,
-        icon: "img/dhis-web-mapping.png",
+        icon: "img/dhis-web-maps.png",
         size: "small",
         action: {
             type: "method",
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value: version < 34 ? "/dhis-web-mapping/index.action" : "/dhis-web-maps/index.html",
+                    value: "/dhis-web-maps/index.html",
                 });
             },
         },
@@ -143,17 +131,14 @@ export const nhwaData = (version: number) => [
         iconDescription: i18n.t("NHWA Reports"),
         description: i18n.t("Access to the NHWA reports"),
         rowLength: 3,
-        icon: "img/dhis-web-reporting.png",
+        icon: "img/dhis-web-reports.png",
         size: "small",
         action: {
             type: "method",
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value:
-                        version < 33
-                            ? "/dhis-web-reporting/displayViewReportForm.action"
-                            : "/dhis-web-reports/index.html#/standard-report",
+                    value: "/dhis-web-reports/index.html#/standard-report",
                 });
             },
         },
@@ -196,16 +181,13 @@ export const nhwaData = (version: number) => [
         description: i18n.t("Enables the users to approves the data submitted in the system"),
         rowLength: 3,
         size: "small",
-        icon: "img/dhis-web-data-approval.png",
+        icon: "img/dhis-web-approval.png",
         action: {
             type: "method",
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value:
-                        version < 34
-                            ? "/dhis-web-reporting/showDataApprovalForm.action"
-                            : "/dhis-web-approval/index.action",
+                    value: "/dhis-web-approval/index.action",
                 });
             },
         },
@@ -222,6 +204,42 @@ export const nhwaData = (version: number) => [
             value: "/dhis-web-user-profile/#/profile",
         },
     },
+    {
+        key: "user-extended-link",
+        iconDescription: i18n.t("User Extended"),
+        description: i18n.t("List, edit or create users in the NHWA platform"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/user-extended.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/api/apps/User-Extended-App/index.html",
+        },
+    },
+    {
+        key: "messaging-link",
+        iconDescription: i18n.t("Messaging"),
+        description: i18n.t("Send internal messages to other users in the NHWA Platform"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/dhis-web-messaging.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-messaging",
+        },
+    },
+    {
+        key: "training-link",
+        iconDescription: i18n.t("Training App"),
+        description: i18n.t("Learn how to use the different applications of DHIS2"),
+        rowLength: 3,
+        size: "small",
+        icon: "img/training-app.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/api/apps/Training-App/index.html",
+        },
+    },
 ];
 
 export const nhwaClerkData = (version: number) =>
@@ -231,5 +249,11 @@ export const nhwaViewerData = (version: number) =>
     _.filter(
         nhwaData(version),
         ({ key }) =>
-            !["data-approval-link", "data-quality-link", "nhwa-data-entry-title", "nhwa-data-entry-link"].includes(key)
+            ![
+                "data-approval-link",
+                "data-quality-link",
+                "nhwa-data-entry-title",
+                "nhwa-data-entry-link",
+                "user-extended-link",
+            ].includes(key)
     );
