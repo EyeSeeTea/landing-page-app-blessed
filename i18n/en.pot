@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2021-08-12T06:18:08.594Z\n"
-"PO-Revision-Date: 2021-08-12T06:18:08.594Z\n"
+"POT-Creation-Date: 2021-10-22T05:36:29.610Z\n"
+"PO-Revision-Date: 2021-10-22T05:36:29.610Z\n"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -151,12 +151,6 @@ msgid ""
 "with the existing data."
 msgstr ""
 
-msgid "Pivot table"
-msgstr ""
-
-msgid "Enables users to create pivot tables, using available data"
-msgstr ""
-
 msgid "Data Visualizer"
 msgstr ""
 
@@ -192,6 +186,24 @@ msgid "Approval"
 msgstr ""
 
 msgid "Enables the users to approves the data submitted in the system"
+msgstr ""
+
+msgid "User Extended"
+msgstr ""
+
+msgid "List, edit or create users in the NHWA platform"
+msgstr ""
+
+msgid "Messaging"
+msgstr ""
+
+msgid "Send internal messages to other users in the NHWA Platform"
+msgstr ""
+
+msgid "Training App"
+msgstr ""
+
+msgid "Learn how to use the different applications of DHIS2"
 msgstr ""
 
 msgid "Enter data"
