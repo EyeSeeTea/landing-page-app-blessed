@@ -66,8 +66,8 @@ export const MalariaData = [
         rowLength: 3,
         icon: "img/burden-reduction.png",
         action: {
-            type: "page",
-            value: "/",
+            type: "dhisRedirect",
+            value: "/dhis-web-dashboard/index.html#/kZuhWRElcwL",
         },
     },
     {
@@ -87,7 +87,7 @@ export const MalariaData = [
         rowLength: 3,
         icon: "img/dq-app.png",
         action: {
-            type: "dhisRedirect",
+            type: "page",
             value: "/api/apps/WHO-Data-Quality-Tool/index.html#/dashboard",
         },
     },
@@ -98,7 +98,7 @@ export const MalariaData = [
         rowLength: 2,
         icon: "img/bl.png",
         action: {
-            type: "dhisRedirect",
+            type: "page",
             value: "/api/apps/Bulk-Load/index.html",
         },
     },
@@ -109,8 +109,8 @@ export const MalariaData = [
         rowLength: 2,
         icon: "img/mal-tracker.png",
         action: {
-            type: "page",
-            value: "/",
+            type: "dhisRedirect",
+            value: "/dhis-web-tracker-capture",
         },
     },
 ];
