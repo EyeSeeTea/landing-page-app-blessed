@@ -118,8 +118,8 @@ export const MalariaData = [
         rowLength: 3,
         icon: "img/dq-dashboard.png",
         action: {
-            type: "page",
-            value: "/",
+            type: "dhisRedirect",
+            value: "",
         },
     },
     {
@@ -128,7 +128,7 @@ export const MalariaData = [
         rowLength: 3,
         icon: "img/dq-app.png",
         action: {
-            type: "page",
+            type: "dhisRedirect",
             value: "/api/apps/WHO-Data-Quality-Tool/index.html#/dashboard",
         },
     },
@@ -141,7 +141,7 @@ export const MalariaData = [
         rowLength: 2,
         icon: "img/bl.png",
         action: {
-            type: "page",
+            type: "dhisRedirect",
             value: "/api/apps/Bulk-Load/index.html",
         },
     },
