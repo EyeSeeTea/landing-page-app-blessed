@@ -14,7 +14,7 @@ const EastMalRepoHeader = ({ classes, history, baseUrl, title, backUrl }) => {
 
     return (
         <header className={classes.container}>
-            <img className={classes.logo} onClick={actionWHO} alt={title} src="img/east-mal-repo.png" />
+            <img className={classes.logo} onClick={actionWHO} alt={title} src="img/who-emro.png" />
             <div className={classes.titleContainer} onClick={actionBack}>
                 <Home className={classes.title} fontSize="large" />
                 <Typography className={classes.title} variant="h4">
