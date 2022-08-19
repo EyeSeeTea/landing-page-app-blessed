@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { isSuperAdmin, User } from "../../domain/entities/User";
-import { buildHepatitisData, nhwaData } from "../../domain/models";
-import { nhwaClerkData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
+import { buildHepatitisData, nhwaAdminData } from "../../domain/models";
+import { nhwaClerkData, nhwaManagerData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
 import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
 import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
 import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
@@ -51,13 +51,23 @@ export interface Configuration {
 
 export const buildAvailableConfigurations = (version: number): Configuration[] => [
     {
-        programme: "nhwa-managers",
+        programme: "nhwa-admins",
         title: i18n.t("National Health Workforce Accounts Online Data Platform"),
-        description: i18n.t("NHWA Data Managers and NHWA Admins"),
-        userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
+        description: i18n.t("NHWA Admins"),
+        userGroupIds: [NHWA_ADMINS],
         page: NHWALandingPage,
         header: nhwaHeader,
-        data: nhwaData(version),
+        data: nhwaAdminData(version),
+        icon: "img/icon.png",
+    },
+    {
+        programme: "nhwa-managers",
+        title: i18n.t("National Health Workforce Accounts Online Data Platform"),
+        description: i18n.t("NHWA Data Managers"),
+        userGroupIds: [NHWA_DATA_MANAGERS],
+        page: NHWALandingPage,
+        header: nhwaHeader,
+        data: nhwaManagerData(version),
         icon: "img/icon.png",
     },
     {
