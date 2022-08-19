@@ -5,6 +5,7 @@ import { nhwaClerkData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
 import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
 import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
 import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
+import { internationalData } from "../../domain/models/international/International";
 import i18n from "../../locales";
 import { goToDhis2Url } from "../../utils/utils";
 import nhwaHeader from "../../webapp/components/headers/nhwa-header";
@@ -15,7 +16,9 @@ import {
     NTDLeishKenyaLandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
+    InternationalLandingPage,
 } from "../../webapp/pages";
+import internationalHeader from "../../webapp/components/headers/international-header";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -37,6 +40,12 @@ export const NTD_RAB_WHO_Official = "Zr1fdsbkiAR";
 export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
+
+const EFH_ADMIN = "e8u0kJa8HM5";
+const EFH_DATA_ENTRY = "wjoMlqXjabf";
+const EFH_MIO = "eKTwo5C7h5N";
+const EFH_DASHBOARD = "";
+const DATA_MONITORING = "";
 
 export interface Configuration {
     programme: string;
@@ -135,6 +144,16 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
         header: whoHeader,
         data: ntdLeishKenyaData,
         icon: "img/kenya.png",
+    },
+    {
+        programme: "international-projects",
+        title: i18n.t("International Projects"),
+        description: i18n.t("Landing Page for International Projects"),
+        userGroupIds: [EFH_ADMIN, EFH_DASHBOARD, EFH_DATA_ENTRY, EFH_MIO, DATA_MONITORING],
+        page: InternationalLandingPage,
+        header: internationalHeader,
+        data: internationalData,
+        icon: "img/icon.png",
     },
 ];
 

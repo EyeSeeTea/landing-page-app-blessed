@@ -6,6 +6,7 @@ import NHWALandingPage from "./landing-page/nhwa";
 import NTDLeishKenyaLandingPage from "./landing-page/ntd-leish-kenya";
 import RabiesLandingPage from "./landing-page/rabies";
 import SnakebiteLandingPage from "./landing-page/snakebite";
+import InternationalLandingPage from "./landing-page/international"
 import { NotificationsPage } from "./notifications-page/NotificationsPage";
 
 export {
@@ -18,4 +19,5 @@ export {
     RabiesLandingPage,
     SnakebiteLandingPage,
     NTDLeishKenyaLandingPage,
+    InternationalLandingPage,
 };
