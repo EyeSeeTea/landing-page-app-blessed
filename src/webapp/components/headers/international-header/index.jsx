@@ -8,13 +8,15 @@ import { goToDhis2Url, goToExternalUrl } from "../../../../utils/utils";
 import { styles } from "./styles";
 
 const InternationalHeader = ({ classes, history, baseUrl, title, backUrl }) => {
-    const actionWHO = () => goToExternalUrl("https://who.int");
+    const actionSamaritan = () => goToExternalUrl("https://www.samaritanspurse.org");
     const actionBack = () => history.push(backUrl);
     const actionLogout = () => goToDhis2Url(baseUrl, "/dhis-web-commons-security/logout.action");
 
     return (
         <header className={classes.container}>
-            <img className={classes.logo} onClick={actionWHO} alt={title} src="img/international-logo.svg" />
+            <a href="https://www.samaritanspurse.org">
+                <img className={classes.logo} onClick={actionSamaritan} alt={title} src="img/international-logo.svg" />
+            </a>
             <div className={classes.titleContainer} onClick={actionBack}>
                 <Home className={classes.title} fontSize="large" />
                 <Typography className={classes.title} variant="h4">
@@ -36,7 +38,7 @@ InternationalHeader.propTypes = {
 };
 
 InternationalHeader.defaultProps = {
-    title: i18n.t("World Health Organization"),
+    title: i18n.t("International Projects"),
     backUrl: "/",
 };
 
