@@ -163,7 +163,6 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
 export const handleRedirection = async (baseUrl: string, version: number, user: User) => {
-  
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
     const isAdminUserGroup = shouldRedirect(userGroupIds, [IT_MAINTENANCE_TEAM]);
     const configurations = buildAvailableConfigurations(version).filter(

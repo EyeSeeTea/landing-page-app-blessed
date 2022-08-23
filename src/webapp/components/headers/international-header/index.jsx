@@ -1,16 +1,25 @@
 import { Chip, Typography, withStyles } from "@material-ui/core";
 import { ExitToApp, Home } from "@material-ui/icons";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import i18n from "../../../../locales";
 import { goToDhis2Url, goToExternalUrl } from "../../../../utils/utils";
 import { styles } from "./styles";
 
-const InternationalHeader = ({ classes, history, baseUrl, title, backUrl }) => {
+const InternationalHeader = ({ classes, history, baseUrl, title, backUrl, user }) => {
     const actionSamaritan = () => goToExternalUrl("https://www.samaritanspurse.org");
     const actionBack = () => history.push(backUrl);
     const actionLogout = () => goToDhis2Url(baseUrl, "/dhis-web-commons-security/logout.action");
+
+    useEffect(() => {
+        const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
+        if (userGroupIds === [""]) {
+            return goToDhis2Url("/api/apps/Data-Management-App/index.html");
+        } else if (userGroupIds === ["e8u0kJa8HM5, wjoMlqXjabf, eKTwo5C7h5N, cW5vzBo63yj"]) {
+            return goToDhis2Url("/api/apps/Emergency-Field-Hospital-App/index.html");
+        } else return;
+    }, []);
 
     return (
         <header className={classes.container}>
@@ -33,6 +42,7 @@ InternationalHeader.propTypes = {
     classes: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     baseUrl: PropTypes.string.isRequired,
+    user: PropTypes.object.isRequired,
     title: PropTypes.string,
     backUrl: PropTypes.string,
 };
