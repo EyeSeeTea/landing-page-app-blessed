@@ -41,7 +41,7 @@ export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
-const MAL_Malaria_Access = "ZXEVDM9XRea";
+const MAL_EMRO = "FpQ7a5OylZH";
 
 export interface Configuration {
     programme: string;
@@ -145,7 +145,7 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
         programme: "east-mediterranian-mal-repo",
         title: i18n.t("Eastern Mediterranean regional malaria repository"),
         description: i18n.t("Eastern Mediterranean regional malaria repository"),
-        userGroupIds: [MAL_Malaria_Access],
+        userGroupIds: [MAL_EMRO],
         page: MalariaLandingPage,
         header: eastMalRepoHeader,
         data: MalariaData,
