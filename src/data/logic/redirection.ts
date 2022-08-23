@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { isSuperAdmin, User } from "../../domain/entities/User";
+import { User } from "../../domain/entities/User";
 import { buildHepatitisData, nhwaData } from "../../domain/models";
 import { nhwaClerkData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
 import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
@@ -44,8 +44,10 @@ export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 const EFH_ADMIN = "e8u0kJa8HM5";
 const EFH_DATA_ENTRY = "wjoMlqXjabf";
 const EFH_MIO = "eKTwo5C7h5N";
-const EFH_DASHBOARD = "";
+const EFH_DASHBOARD = "cW5vzBo63yj";
 const DATA_MONITORING = "";
+
+const IT_MAINTENANCE_TEAM = "BwyMfDBLih9";
 
 export interface Configuration {
     programme: string;
@@ -161,11 +163,11 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
 export const handleRedirection = async (baseUrl: string, version: number, user: User) => {
-    const isAdmin = isSuperAdmin(user);
-
+  
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
+    const isAdminUserGroup = shouldRedirect(userGroupIds, [IT_MAINTENANCE_TEAM]);
     const configurations = buildAvailableConfigurations(version).filter(
-        config => isAdmin || shouldRedirect(userGroupIds, config.userGroupIds)
+        config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
     );
 
     if (configurations.length > 0) {

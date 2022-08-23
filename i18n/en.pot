@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2021-10-22T05:36:29.610Z\n"
-"PO-Revision-Date: 2021-10-22T05:36:29.610Z\n"
+"POT-Creation-Date: 2022-08-23T08:44:09.107Z\n"
+"PO-Revision-Date: 2022-08-23T08:44:09.107Z\n"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -45,6 +45,12 @@ msgid "National Leishmaniasis Control Programme for Kenya"
 msgstr ""
 
 msgid "Landing Page for MoH Kenya"
+msgstr ""
+
+msgid "International Projects"
+msgstr ""
+
+msgid "Landing Page for International Projects"
 msgstr ""
 
 msgid "Available landing pages"
@@ -111,6 +117,15 @@ msgid "Go back to home page"
 msgstr ""
 
 msgid "Programme"
+msgstr ""
+
+msgid "Data Monitoring Tool"
+msgstr ""
+
+msgid "EFH"
+msgstr ""
+
+msgid "Tracker Capture"
 msgstr ""
 
 msgid "NHWA maturity assessment"
@@ -288,13 +303,13 @@ msgstr ""
 msgid "Enter data on the snakebite data entry"
 msgstr ""
 
+msgid "LOG OUT"
+msgstr ""
+
 msgid "User guide"
 msgstr ""
 
 msgid "Logout"
-msgstr ""
-
-msgid "LOG OUT"
 msgstr ""
 
 msgid "World Health Organization"
