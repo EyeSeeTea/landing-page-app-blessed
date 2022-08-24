@@ -7,49 +7,57 @@ import PropTypes from "prop-types";
 const MalariaRepoDescription = ({ classes }) => {
     return (
         <>
-            <p>
-                {i18n.t(
-                    "Malaria endemic countries in the region are invited to upload a subset of their malaria related data (by district and month) into this DHIS2 instance."
-                )}
-            </p>
-            <p>
-                {i18n.t(
-                    "Some countries are already implementing DHIS2 for their routine HMIS and have already adopted the malaria modules. These countries can ready link the two systems. Others are using other HMIS systems and will need to use the Bulk Load app to load the data."
-                )}
-            </p>
-            <p className={classes.content}>{i18n.t("This repository will be useful for the following:")}</p>
-            <ul className={classes.content}>
-                <li>
-                    {i18n.t("Conducting surveillance workshops")}
-                    <ul>
-                        <li>{i18n.t("This will permit exercises based on real country data")}</li>
-                        <li>{i18n.t("Peer Reviews")}</li>
-                    </ul>
-                </li>
-                <li>{i18n.t("Data reviews")}</li>
-                <li>{i18n.t("Conducting surveillance workshops")}</li>
-                <li>
-                    {i18n.t("Annual sub-national data submission")}
-                    <ul>
-                        <li>
-                            {i18n.t(
-                                "We could pre-generate the WMR sub-national data form with data aggregated annually at the district level"
-                            )}
-                        </li>
-                        <li>
-                            {i18n.t("You would then download the pre-filled form and complete the missing variables")}
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    {i18n.t("World Malaria Report submission")}
-                    <ul>
-                        <li>{i18n.t("Pre-fill a subset of national WMR variables")}</li>
-                    </ul>
-                </li>
-                <li>{i18n.t("Surveillance support and data validation throughout the yearn")}</li>
-                <li>{i18n.t("Validation checks against sub-national totals")}</li>
-            </ul>
+            <div className={classes.verticalSpace}>
+                <p className={classes.heading}>
+                    {i18n.t(
+                        "Malaria endemic countries in the region are invited to upload a subset of their malaria related data (by district and month) into this DHIS2 instance."
+                    )}
+                </p>
+                <p>
+                    {i18n.t(
+                        "Some countries are already implementing DHIS2 for their routine HMIS and have already adopted the malaria modules. These countries can ready link the two systems. Others are using other HMIS systems and will need to use the Bulk Load app to load the data."
+                    )}
+                </p>
+            </div>
+            <div className={classes.verticalSpace}>
+                <p>{i18n.t("This repository will be useful for the following:")}</p>
+                <ul className={classes.list}>
+                    <li>
+                        <span className={classes.subHeading}>{i18n.t("Conducting surveillance workshops")}</span>
+                        <ul className={classes.noListStyle}>
+                            <li>{i18n.t("This will permit exercises based on real country data")}</li>
+                            <li>{i18n.t("Peer Reviews")}</li>
+                        </ul>
+                    </li>
+                    <li className={classes.rowSpan3}>
+                        <span className={classes.subHeading}>{i18n.t("Annual sub-national data submission")}</span>
+                        <ul className={classes.noListStyle}>
+                            <li>
+                                {i18n.t(
+                                    "We could pre-generate the WMR sub-national data form with data aggregated annually at the district level"
+                                )}
+                            </li>
+                            <li>
+                                {i18n.t(
+                                    "You would then download the pre-filled form and complete the missing variables"
+                                )}
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span className={classes.subHeading}>{i18n.t("World Malaria Report submission")}</span>
+                        <ul className={classes.noListStyle}>
+                            <li>{i18n.t("Pre-fill a subset of national WMR variables")}</li>
+                        </ul>
+                    </li>
+                    <li className={classes.subHeading}>{i18n.t("Data reviews")}</li>
+                    <li className={classes.subHeading}>
+                        {i18n.t("Surveillance support and data validation throughout the yearn")}
+                    </li>
+                    <li className={classes.subHeading}>{i18n.t("Conducting surveillance workshops")}</li>
+                    <li className={classes.subHeading}>{i18n.t("Validation checks against sub-national totals")}</li>
+                </ul>
+            </div>
         </>
     );
 };
@@ -93,10 +101,8 @@ MalariaRepoDescription.propTypes = {
 export const MalariaData = [
     {
         key: "title-data",
-        title: i18n.t("Welcome to the Eastern Mediterranean regional malaria repository"),
         description: <StyledMalariaRepoDescription />,
         rowLength: 1,
-        enableBottomLine: true,
     },
     {
         key: "br-dashboard",
@@ -125,6 +131,7 @@ export const MalariaData = [
     {
         key: "who-data-quality-app",
         title: i18n.t("WHO Data Quality App"),
+        description: i18n.t("WHO Data Quality Tool for DHIS2, based on the WHO Data Quality Framework."),
         rowLength: 3,
         icon: "img/dq-app.png",
         action: {
