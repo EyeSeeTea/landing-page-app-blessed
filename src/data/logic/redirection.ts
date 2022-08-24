@@ -2,11 +2,13 @@ import _ from "lodash";
 import { isSuperAdmin, User } from "../../domain/entities/User";
 import { buildHepatitisData, nhwaAdminData } from "../../domain/models";
 import { nhwaClerkData, nhwaManagerData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
+import { MalariaData } from "../../domain/models/east_mediterranian_mal/Malaria.jsx";
 import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
 import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
 import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
 import i18n from "../../locales";
 import { goToDhis2Url } from "../../utils/utils";
+import eastMalRepoHeader from "../../webapp/components/headers/east-mal-repo-header";
 import nhwaHeader from "../../webapp/components/headers/nhwa-header";
 import whoHeader from "../../webapp/components/headers/who-header";
 import {
@@ -15,6 +17,7 @@ import {
     NTDLeishKenyaLandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
+    MalariaLandingPage,
 } from "../../webapp/pages";
 
 //TODO: Ask if we need a simple snakebite data or not
@@ -37,6 +40,8 @@ export const NTD_RAB_WHO_Official = "Zr1fdsbkiAR";
 export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
+
+const MAL_EMRO = "FpQ7a5OylZH";
 
 export interface Configuration {
     programme: string;
@@ -145,6 +150,16 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
         header: whoHeader,
         data: ntdLeishKenyaData,
         icon: "img/kenya.png",
+    },
+    {
+        programme: "east-mediterranian-mal-repo",
+        title: i18n.t("Eastern Mediterranean regional malaria repository"),
+        description: i18n.t("Eastern Mediterranean regional malaria repository"),
+        userGroupIds: [MAL_EMRO],
+        page: MalariaLandingPage,
+        header: eastMalRepoHeader,
+        data: MalariaData,
+        icon: "img/east-mal-repo.png",
     },
 ];
 
