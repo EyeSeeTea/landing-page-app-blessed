@@ -41,11 +41,11 @@ export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
-const EFH_ADMIN = "e8u0kJa8HM5";
-const EFH_DATA_ENTRY = "wjoMlqXjabf";
-const EFH_MIO = "eKTwo5C7h5N";
-const EFH_DASHBOARD = "cW5vzBo63yj";
-const DATA_MONITORING = "";
+export const EFH_ADMIN = "e8u0kJa8HM5";
+export const EFH_DATA_ENTRY = "wjoMlqXjabf";
+export const EFH_MIO = "eKTwo5C7h5N";
+export const EFH_DASHBOARD = "cW5vzBo63yj";
+export const DATA_MONITORING = "";
 
 const IT_MAINTENANCE_TEAM = "BwyMfDBLih9";
 
@@ -170,7 +170,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     );
 
     if (configurations.length > 0) {
-        return { username: user.name, configurations };
+        return { username: user.name, userGroupIds, configurations };
     } else {
         goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
         return null;
