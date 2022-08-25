@@ -1,13 +1,16 @@
 import _ from "lodash";
+
 import { User } from "../../domain/entities/User";
-import { buildHepatitisData, nhwaData } from "../../domain/models";
-import { nhwaClerkData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
+import { buildHepatitisData, nhwaAdminData } from "../../domain/models";
+import { nhwaClerkData, nhwaManagerData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
+import { MalariaData } from "../../domain/models/east_mediterranian_mal/Malaria.jsx";
 import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
 import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
 import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
 import { internationalData } from "../../domain/models/international/International";
 import i18n from "../../locales";
 import { goToDhis2Url } from "../../utils/utils";
+import eastMalRepoHeader from "../../webapp/components/headers/east-mal-repo-header";
 import nhwaHeader from "../../webapp/components/headers/nhwa-header";
 import whoHeader from "../../webapp/components/headers/who-header";
 import {
@@ -17,6 +20,7 @@ import {
     RabiesLandingPage,
     SnakebiteLandingPage,
     InternationalLandingPage,
+    MalariaLandingPage,
 } from "../../webapp/pages";
 import internationalHeader from "../../webapp/components/headers/international-header";
 
@@ -46,6 +50,9 @@ export const DATA_MANAGEMENT_USER = "gn7m6dZ7gxb";
 
 const IT_MAINTENANCE_TEAM = "BwyMfDBLih9";
 
+const MAL_EMRO = "FpQ7a5OylZH";
+
+
 export interface Configuration {
     programme: string;
     title: string;
@@ -59,13 +66,23 @@ export interface Configuration {
 
 export const buildAvailableConfigurations = (version: number): Configuration[] => [
     {
-        programme: "nhwa-managers",
+        programme: "nhwa-admins",
         title: i18n.t("National Health Workforce Accounts Online Data Platform"),
-        description: i18n.t("NHWA Data Managers and NHWA Admins"),
-        userGroupIds: [NHWA_DATA_MANAGERS, NHWA_ADMINS],
+        description: i18n.t("NHWA Admins"),
+        userGroupIds: [NHWA_ADMINS],
         page: NHWALandingPage,
         header: nhwaHeader,
-        data: nhwaData(version),
+        data: nhwaAdminData(version),
+        icon: "img/icon.png",
+    },
+    {
+        programme: "nhwa-managers",
+        title: i18n.t("National Health Workforce Accounts Online Data Platform"),
+        description: i18n.t("NHWA Data Managers"),
+        userGroupIds: [NHWA_DATA_MANAGERS],
+        page: NHWALandingPage,
+        header: nhwaHeader,
+        data: nhwaManagerData(version),
         icon: "img/icon.png",
     },
     {
@@ -153,6 +170,16 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
         header: internationalHeader,
         data: internationalData,
         icon: "img/icon.png",
+    },
+    {
+        programme: "east-mediterranian-mal-repo",
+        title: i18n.t("Eastern Mediterranean regional malaria repository"),
+        description: i18n.t("Eastern Mediterranean regional malaria repository"),
+        userGroupIds: [MAL_EMRO],
+        page: MalariaLandingPage,
+        header: eastMalRepoHeader,
+        data: MalariaData,
+        icon: "img/east-mal-repo.png",
     },
 ];
 

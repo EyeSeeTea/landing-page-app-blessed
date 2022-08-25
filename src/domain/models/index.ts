@@ -1,5 +1,5 @@
 import { defaultData } from "./Generic";
 import { buildHepatitisData } from "./hepatitis/Hepatitis";
-import { nhwaData } from "./nhwa/NHWA";
+import { nhwaAdminData } from "./nhwa/NHWA";
 
-export { defaultData, buildHepatitisData, nhwaData };
+export { defaultData, buildHepatitisData, nhwaAdminData };
