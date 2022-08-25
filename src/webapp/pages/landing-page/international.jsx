@@ -8,9 +8,9 @@ import { DATA_MONITORING, EFH_ADMIN, EFH_DASHBOARD, EFH_DATA_ENTRY, EFH_MIO } fr
 
 const InternationalLandingPage = props => {
     useEffect(() => {
-        if (_.isEqual(props.userGroupIds, [DATA_MONITORING])) {
+        if (_.intersection(props.userGroupIds, [DATA_MONITORING])) {
             return goToDhis2Url(props.baseUrl, "/api/apps/Data-Management-App/index.html");
-        } else if (_.isEqual(props.userGroupIds, [EFH_ADMIN, EFH_DASHBOARD, EFH_DATA_ENTRY, EFH_MIO])) {
+        } else if (_.intersection(props.userGroupIds, [EFH_ADMIN, EFH_DASHBOARD, EFH_DATA_ENTRY, EFH_MIO])) {
             return goToDhis2Url(props.baseUrl, "/api/apps/Emergency-Field-Hospital-App/index.html");
         }
     }, [props]);
