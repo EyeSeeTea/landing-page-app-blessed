@@ -41,11 +41,8 @@ export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
-export const EFH_ADMIN = "e8u0kJa8HM5";
-export const EFH_DATA_ENTRY = "wjoMlqXjabf";
-export const EFH_MIO = "eKTwo5C7h5N";
-export const EFH_DASHBOARD = "cW5vzBo63yj";
-export const DATA_MONITORING = "";
+export const EFH_USER = "xMIXMg7vMH3";
+export const DATA_MANAGEMENT_USER = "gn7m6dZ7gxb";
 
 const IT_MAINTENANCE_TEAM = "BwyMfDBLih9";
 
@@ -151,7 +148,7 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
         programme: "international-projects",
         title: i18n.t("International Projects"),
         description: i18n.t("Landing Page for International Projects"),
-        userGroupIds: [EFH_ADMIN, EFH_DASHBOARD, EFH_DATA_ENTRY, EFH_MIO, DATA_MONITORING],
+        userGroupIds: [EFH_USER, DATA_MANAGEMENT_USER],
         page: InternationalLandingPage,
         header: internationalHeader,
         data: internationalData,
