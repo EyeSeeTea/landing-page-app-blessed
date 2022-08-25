@@ -170,7 +170,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     );
 
     if (configurations.length > 0) {
-        return { username: user.name, userGroupIds, configurations };
+        return { username: user.name, userGroupIds: userGroupIds, configurations };
     } else {
         goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
         return null;
