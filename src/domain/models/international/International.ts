@@ -15,7 +15,7 @@ export const internationalData = [
         key: "efh",
         title: i18n.t("EFH"),
         rowLength: 2,
-        icon: "img/dhis-web-event-capture.png",
+        icon: "img/dhis-web-capture.png",
         action: {
             type: "dhisRedirect",
             value: "/api/apps/Emergency-Field-Hospital-App/index.html",
