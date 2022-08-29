@@ -45,8 +45,8 @@ export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
-export const EFH_USER = "xMIXMg7vMH3";
-export const DATA_MANAGEMENT_USER = "gn7m6dZ7gxb";
+export const EFH_USER = "IdneucbQYRb";
+export const DATA_MANAGEMENT_USER = "mh5Tx6MS9jn";
 
 const IT_MAINTENANCE_TEAM = "BwyMfDBLih9";
 
