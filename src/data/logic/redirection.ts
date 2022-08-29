@@ -52,7 +52,6 @@ const IT_MAINTENANCE_TEAM = "BwyMfDBLih9";
 
 const MAL_EMRO = "FpQ7a5OylZH";
 
-
 export interface Configuration {
     programme: string;
     title: string;
@@ -183,20 +182,29 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
     },
 ];
 
+const defaultProgramme: string | undefined = "international-projects";
+
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
 export const handleRedirection = async (baseUrl: string, version: number, user: User) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
     const isAdminUserGroup = shouldRedirect(userGroupIds, [IT_MAINTENANCE_TEAM]);
-    const configurations = buildAvailableConfigurations(version).filter(
+    const availableConfiguration = buildAvailableConfigurations(version);
+    const configurations = availableConfiguration.filter(
         config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
     );
 
     if (configurations.length > 0) {
         return { username: user.name, userGroupIds: userGroupIds, configurations };
     } else {
-        goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
-        return null;
+        const fallbackConfig = availableConfiguration.find(config => config.programme === defaultProgramme);
+
+        if (fallbackConfig) {
+            return { username: user.name, userGroupIds: userGroupIds, configurations: [fallbackConfig] };
+        } else {
+            goToDhis2Url(baseUrl, "/");
+            return null;
+        }
     }
 };
