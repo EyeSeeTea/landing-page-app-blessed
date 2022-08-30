@@ -26,7 +26,7 @@ export class ConfigD2ApiRepository implements ConfigRepository {
 
 const ConfigCodec = Codec.interface({
     fallbackUrl: optional(string),
-    defaultProgramme: string,
+    defaultProgramme: optional(string),
 });
 
 const defaultConfig: Config = {
