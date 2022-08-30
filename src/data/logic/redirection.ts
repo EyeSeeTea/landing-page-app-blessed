@@ -23,6 +23,7 @@ import {
     MalariaLandingPage,
 } from "../../webapp/pages";
 import internationalHeader from "../../webapp/components/headers/international-header";
+import { Config } from "../../domain/entities/Config";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -182,28 +183,31 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
     },
 ];
 
-const defaultProgramme: string | undefined = "international-projects";
-
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
-export const handleRedirection = async (baseUrl: string, version: number, user: User) => {
+export const handleRedirection = async (baseUrl: string, version: number, user: User, config: Config) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
     const isAdminUserGroup = shouldRedirect(userGroupIds, [IT_MAINTENANCE_TEAM]);
     const availableConfiguration = buildAvailableConfigurations(version);
     const configurations = availableConfiguration.filter(
         config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
     );
+    const username = user.name;
 
     if (configurations.length > 0) {
-        return { username: user.name, userGroupIds: userGroupIds, configurations };
+        return { username, userGroupIds, configurations };
     } else {
-        const fallbackConfig = availableConfiguration.find(config => config.programme === defaultProgramme);
+        const { defaultProgramme, fallbackUrl } = config;
+
+        const fallbackConfig = defaultProgramme
+            ? availableConfiguration.find(config => config.programme === defaultProgramme)
+            : undefined;
 
         if (fallbackConfig) {
-            return { username: user.name, userGroupIds: userGroupIds, configurations: [fallbackConfig] };
+            return { username, userGroupIds, configurations: [fallbackConfig] };
         } else {
-            goToDhis2Url(baseUrl, "/");
+            goToDhis2Url(baseUrl, fallbackUrl);
             return null;
         }
     }
