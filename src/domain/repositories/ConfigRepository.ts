@@ -1,5 +1,5 @@
-import { User } from "../entities/User";
+import { Config } from "../entities/Config";
 
 export interface ConfigRepository {
-    getUser(): Promise<User>;
+    get(): Promise<Config>;
 }
