@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2021-10-22T05:36:29.610Z\n"
+"POT-Creation-Date: 2022-08-26T08:44:22.342Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,7 +11,10 @@ msgstr ""
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
 
-msgid "NHWA Data Managers and NHWA Admins"
+msgid "NHWA Admins"
+msgstr ""
+
+msgid "NHWA Data Managers"
 msgstr ""
 
 msgid "NHWA Data Clerks"
@@ -47,6 +50,15 @@ msgstr ""
 msgid "Landing Page for MoH Kenya"
 msgstr ""
 
+msgid "International Projects"
+msgstr ""
+
+msgid "Landing Page for International Projects"
+msgstr ""
+
+msgid "Eastern Mediterranean regional malaria repository"
+msgstr ""
+
 msgid "Available landing pages"
 msgstr ""
 
@@ -71,6 +83,99 @@ msgstr ""
 "des öffentlichen Profils"
 
 msgid "Manage notifications"
+msgstr ""
+
+msgid ""
+"Malaria endemic countries in the region are invited to upload a subset of "
+"their malaria related data (by district and month) into this DHIS2 instance."
+msgstr ""
+
+msgid ""
+"Some countries are already implementing DHIS2 for their routine HMIS and "
+"have already adopted the malaria modules. These countries can ready link the "
+"two systems. Others are using other HMIS systems and will need to use the "
+"Bulk Load app to load the data."
+msgstr ""
+
+msgid "Conducting surveillance workshops"
+msgstr ""
+
+msgid "This will permit exercises based on real country data"
+msgstr ""
+
+msgid "Peer Reviews"
+msgstr ""
+
+msgid "Annual sub-national data submission"
+msgstr ""
+
+msgid ""
+"We could pre-generate the WMR sub-national data form with data aggregated "
+"annually at the district level"
+msgstr ""
+
+msgid ""
+"You would then download the pre-filled form and complete the missing "
+"variables"
+msgstr ""
+
+msgid "World Malaria Report submission"
+msgstr ""
+
+msgid "Pre-fill a subset of national WMR variables"
+msgstr ""
+
+msgid "Data reviews"
+msgstr ""
+
+msgid "Surveillance support and data validation throughout the yearn"
+msgstr ""
+
+msgid "Validation checks against sub-national totals"
+msgstr ""
+
+msgid ""
+"The WHO Malaria Data Quality (DQ) dashboard is an addendum to the Burden "
+"Reduction aggregate package."
+msgstr ""
+
+msgid "Burden Reduction Dashboard"
+msgstr ""
+
+msgid "Data Quality Dashboard"
+msgstr ""
+
+msgid "WHO Data Quality App"
+msgstr ""
+
+msgid ""
+"WHO Data Quality Tool for DHIS2, based on the WHO Data Quality Framework."
+msgstr ""
+
+msgid "Bulk Load"
+msgstr ""
+
+msgid ""
+"The Bulk Load is an application designed to ease the import of data using "
+"Microsoft Excel. It generates templates (an Excel sheet) from datasets and "
+"programs, and imports data directly from those templates."
+msgstr ""
+
+msgid "Malaria Case Surveillance Tracker"
+msgstr ""
+
+msgid ""
+"As countries progress towards malaria elimination, the aim of surveillance "
+"is to detect all malaria cases; investigate every confirmed malaria case; "
+"identify the likely location of an infection in order to direct actions to "
+"interrupt transmission and to ensure that each detected case is promptly "
+"treated and monitored to prevent secondary infection. An ideal surveillance "
+"information system for malaria elimination includes rapid and complete case "
+"reporting, central data storage and management, automated data analysis, and "
+"customized outputs and feedback that lead to timely and targeted responses. "
+"The DHIS2 tracker package for malaria case surveillance and foci "
+"investigation is an aid for malaria surveillance in burden reduction and "
+"elimination settings."
 msgstr ""
 
 msgid "Data"
@@ -118,6 +223,15 @@ msgstr "Gehen Sie zurück zur Startseite"
 
 msgid "Programme"
 msgstr "Programm"
+
+msgid "Data Monitoring Tool"
+msgstr ""
+
+msgid "EFH"
+msgstr ""
+
+msgid "Tracker Capture"
+msgstr ""
 
 msgid "NHWA maturity assessment"
 msgstr ""
@@ -294,13 +408,16 @@ msgstr ""
 msgid "Enter data on the snakebite data entry"
 msgstr ""
 
+msgid "LOG OUT"
+msgstr ""
+
+msgid "Eastern Mediterranian Regional Malaria Repository"
+msgstr ""
+
 msgid "User guide"
 msgstr ""
 
 msgid "Logout"
-msgstr ""
-
-msgid "LOG OUT"
 msgstr ""
 
 msgid "World Health Organization"

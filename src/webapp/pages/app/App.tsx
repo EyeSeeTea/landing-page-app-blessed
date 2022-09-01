@@ -37,8 +37,9 @@ const App = ({ api }: { api: D2Api }) => {
             const continueLoading = async () => {
                 const user = await compositionRoot.usecases.instance.getCurrentUser();
                 const version = await compositionRoot.usecases.instance.getVersion();
+                const config = await compositionRoot.usecases.config.get();
                 const apiVersion = getMajorVersion(version);
-                const options = await handleRedirection(baseUrl, apiVersion, user);
+                const options = await handleRedirection(baseUrl, apiVersion, user, config);
                 if (options) setRouterProps({ ...options, baseUrl });
             };
 

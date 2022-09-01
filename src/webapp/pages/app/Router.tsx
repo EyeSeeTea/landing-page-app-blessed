@@ -5,7 +5,7 @@ import { CacheCleanerPage, EntryCapturePage, GenericLandingPage, NotificationsPa
 import { Configuration } from "../../../data/logic/redirection";
 import { defaultData } from "../../../domain/models";
 
-export const Router: React.FC<RouterProps> = ({ baseUrl, username, configurations }) => {
+export const Router: React.FC<RouterProps> = ({ baseUrl, username, userGroupIds, configurations }) => {
     return (
         <HashRouter>
             <Switch>
@@ -35,6 +35,7 @@ export const Router: React.FC<RouterProps> = ({ baseUrl, username, configuration
                                 header={header}
                                 baseUrl={baseUrl}
                                 username={username}
+                                userGroupIds={userGroupIds}
                                 items={data}
                             />
                         )}
@@ -61,5 +62,6 @@ export const Router: React.FC<RouterProps> = ({ baseUrl, username, configuration
 export interface RouterProps {
     baseUrl: string;
     username: string;
+    userGroupIds: string[];
     configurations: Configuration[];
 }

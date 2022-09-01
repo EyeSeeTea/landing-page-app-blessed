@@ -1,11 +1,13 @@
 import _ from "lodash";
-import { isSuperAdmin, User } from "../../domain/entities/User";
+
+import { User } from "../../domain/entities/User";
 import { buildHepatitisData, nhwaAdminData } from "../../domain/models";
 import { nhwaClerkData, nhwaManagerData, nhwaViewerData } from "../../domain/models/nhwa/NHWA";
 import { MalariaData } from "../../domain/models/east_mediterranian_mal/Malaria.jsx";
 import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
 import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
 import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
+import { internationalData } from "../../domain/models/international/International";
 import i18n from "../../locales";
 import { goToDhis2Url } from "../../utils/utils";
 import eastMalRepoHeader from "../../webapp/components/headers/east-mal-repo-header";
@@ -17,8 +19,11 @@ import {
     NTDLeishKenyaLandingPage,
     RabiesLandingPage,
     SnakebiteLandingPage,
+    InternationalLandingPage,
     MalariaLandingPage,
 } from "../../webapp/pages";
+import internationalHeader from "../../webapp/components/headers/international-header";
+import { Config } from "../../domain/entities/Config";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -40,6 +45,11 @@ export const NTD_RAB_WHO_Official = "Zr1fdsbkiAR";
 export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
+
+export const EFH_USER = "IdneucbQYRb";
+export const DATA_MANAGEMENT_USER = "mh5Tx6MS9jn";
+
+const WIDP_IT_TEAM = "UfhhwZK73Lg";
 
 const MAL_EMRO = "FpQ7a5OylZH";
 
@@ -152,6 +162,16 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
         icon: "img/kenya.png",
     },
     {
+        programme: "international-projects",
+        title: i18n.t("International Projects"),
+        description: i18n.t("Landing Page for International Projects"),
+        userGroupIds: [EFH_USER, DATA_MANAGEMENT_USER],
+        page: InternationalLandingPage,
+        header: internationalHeader,
+        data: internationalData,
+        icon: "img/icon.png",
+    },
+    {
         programme: "east-mediterranian-mal-repo",
         title: i18n.t("Eastern Mediterranean regional malaria repository"),
         description: i18n.t("Eastern Mediterranean regional malaria repository"),
@@ -166,18 +186,29 @@ export const buildAvailableConfigurations = (version: number): Configuration[] =
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
-export const handleRedirection = async (baseUrl: string, version: number, user: User) => {
-    const isAdmin = isSuperAdmin(user);
-
+export const handleRedirection = async (baseUrl: string, version: number, user: User, config: Config) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
-    const configurations = buildAvailableConfigurations(version).filter(
-        config => isAdmin || shouldRedirect(userGroupIds, config.userGroupIds)
+    const isAdminUserGroup = shouldRedirect(userGroupIds, [WIDP_IT_TEAM]);
+    const availableConfiguration = buildAvailableConfigurations(version);
+    const configurations = availableConfiguration.filter(
+        config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
     );
+    const username = user.name;
 
     if (configurations.length > 0) {
-        return { username: user.name, configurations };
+        return { username, userGroupIds, configurations };
     } else {
-        goToDhis2Url(baseUrl, "/dhis-web-dashboard/index.action");
-        return null;
+        const { defaultProgramme, fallbackUrl } = config;
+
+        const fallbackConfig = defaultProgramme
+            ? availableConfiguration.find(config => config.programme === defaultProgramme)
+            : undefined;
+
+        if (fallbackConfig) {
+            return { username, userGroupIds, configurations: [fallbackConfig] };
+        } else {
+            goToDhis2Url(baseUrl, fallbackUrl);
+            return null;
+        }
     }
 };

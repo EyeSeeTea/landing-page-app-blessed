@@ -1,4 +1,3 @@
-import _ from "lodash";
 import i18n from "../../../locales";
 import { withStyles } from "@material-ui/core";
 import { styles } from "./styles";
