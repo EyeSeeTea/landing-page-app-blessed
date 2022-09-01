@@ -1,7 +1,7 @@
 import _ from "lodash";
 import i18n from "../../../locales";
 
-export const nhwaData = (_version: number) => [
+export const nhwaAdminData = (_version: number) => [
     {
         key: "maturity-assessment-title",
         title: i18n.t("NHWA maturity assessment"),
@@ -242,12 +242,15 @@ export const nhwaData = (_version: number) => [
     },
 ];
 
+export const nhwaManagerData = (version: number) =>
+    _.filter(nhwaAdminData(version), ({ key }) => !["user-extended-link"].includes(key));
+
 export const nhwaClerkData = (version: number) =>
-    _.filter(nhwaData(version), ({ key }) => !["data-approval-link"].includes(key));
+    _.filter(nhwaAdminData(version), ({ key }) => !["data-approval-link"].includes(key));
 
 export const nhwaViewerData = (version: number) =>
     _.filter(
-        nhwaData(version),
+        nhwaAdminData(version),
         ({ key }) =>
             ![
                 "data-approval-link",
