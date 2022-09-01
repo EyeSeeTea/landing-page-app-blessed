@@ -49,7 +49,7 @@ export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 export const EFH_USER = "IdneucbQYRb";
 export const DATA_MANAGEMENT_USER = "mh5Tx6MS9jn";
 
-const IT_MAINTENANCE_TEAM = "BwyMfDBLih9";
+const WIDP_IT_TEAM = "UfhhwZK73Lg";
 
 const MAL_EMRO = "FpQ7a5OylZH";
 
@@ -188,7 +188,7 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
 
 export const handleRedirection = async (baseUrl: string, version: number, user: User, config: Config) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
-    const isAdminUserGroup = shouldRedirect(userGroupIds, [IT_MAINTENANCE_TEAM]);
+    const isAdminUserGroup = shouldRedirect(userGroupIds, [WIDP_IT_TEAM]);
     const availableConfiguration = buildAvailableConfigurations(version);
     const configurations = availableConfiguration.filter(
         config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
