@@ -3,7 +3,7 @@ import i18n from "@dhis2/d2-i18n";
 export const internationalData = [
     {
         key: "data-monitoring",
-        title: i18n.t("Data Monitoring Tool"),
+        title: i18n.t("Data Management Tool"),
         rowLength: 2,
         icon: "img/dhis-web-dataentry.png",
         action: {
