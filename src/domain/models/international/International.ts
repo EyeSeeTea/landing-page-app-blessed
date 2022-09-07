@@ -5,7 +5,7 @@ export const internationalData = [
         key: "data-monitoring",
         title: i18n.t("Data Management Tool"),
         rowLength: 2,
-        icon: "img/dhis-web-dataentry.png",
+        icon: "img/data-monitoring-tool.png",
         action: {
             type: "dhisRedirect",
             value: "/api/apps/Data-Management-App/index.html",
@@ -15,7 +15,7 @@ export const internationalData = [
         key: "efh",
         title: i18n.t("EFH"),
         rowLength: 2,
-        icon: "img/dhis-web-capture.png",
+        icon: "img/emergency-field-hospital.png",
         action: {
             type: "dhisRedirect",
             value: "/api/apps/Emergency-Field-Hospital-App/index.html",
