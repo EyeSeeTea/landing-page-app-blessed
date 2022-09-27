@@ -189,6 +189,7 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
 export const handleRedirection = async (baseUrl: string, version: number, user: User, config: Config) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
     const isAdminUserGroup = shouldRedirect(userGroupIds, [WIDP_IT_TEAM]);
+    const isNHWAAdmin = shouldRedirect(userGroupIds, [NHWA_ADMINS]);
     const availableConfiguration = buildAvailableConfigurations(version);
     const configurations = availableConfiguration.filter(
         config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
@@ -196,7 +197,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const username = user.name;
 
     if (configurations.length > 0) {
-        return { username, userGroupIds, configurations };
+        return { username, userGroupIds, configurations, isNHWAAdmin };
     } else {
         const { defaultProgramme, fallbackUrl } = config;
 
@@ -205,7 +206,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             : undefined;
 
         if (fallbackConfig) {
-            return { username, userGroupIds, configurations: [fallbackConfig] };
+            return { username, userGroupIds, configurations: [fallbackConfig], isNHWAAdmin };
         } else {
             goToDhis2Url(baseUrl, fallbackUrl);
             return null;

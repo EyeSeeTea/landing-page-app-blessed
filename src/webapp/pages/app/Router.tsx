@@ -51,7 +51,7 @@ export const Router: React.FC<RouterProps> = ({ baseUrl, username, userGroupIds,
                     <Route
                         key={"default"}
                         //@ts-ignore
-                        render={() => <GenericLandingPage items={defaultData(configurations, userGroupIds)} baseUrl={baseUrl} />}
+                        render={() => <GenericLandingPage items={defaultData(configurations)} baseUrl={baseUrl} />}
                     />,
                 ]}
             </Switch>
@@ -64,4 +64,5 @@ export interface RouterProps {
     username: string;
     userGroupIds: string[];
     configurations: Configuration[];
+    isNHWAAdmin: boolean;
 }

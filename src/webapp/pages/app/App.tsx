@@ -9,7 +9,7 @@ import { handleRedirection } from "../../../data/logic/redirection";
 import { Instance } from "../../../domain/entities/Instance";
 import { D2Api } from "../../../types/d2-api";
 import { getMajorVersion } from "../../../utils/d2-api";
-import { sleep } from "../../../utils/utils";
+import { goToExternalUrl, sleep } from "../../../utils/utils";
 import {
     UserNotificationDialog,
     UserNotificationDialogProps,
@@ -40,7 +40,10 @@ const App = ({ api }: { api: D2Api }) => {
                 const config = await compositionRoot.usecases.config.get();
                 const apiVersion = getMajorVersion(version);
                 const options = await handleRedirection(baseUrl, apiVersion, user, config);
-                if (options) setRouterProps({ ...options, baseUrl });
+                if (options) {
+                    if (options.isNHWAAdmin) window.location.hash = "/nhwa-admins";
+                    setRouterProps({ ...options, baseUrl });
+                }
             };
 
             const notifications = await compositionRoot.usecases.notifications.list();
