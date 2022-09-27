@@ -9,7 +9,7 @@ import { handleRedirection } from "../../../data/logic/redirection";
 import { Instance } from "../../../domain/entities/Instance";
 import { D2Api } from "../../../types/d2-api";
 import { getMajorVersion } from "../../../utils/d2-api";
-import { goToExternalUrl, sleep } from "../../../utils/utils";
+import { sleep } from "../../../utils/utils";
 import {
     UserNotificationDialog,
     UserNotificationDialogProps,
