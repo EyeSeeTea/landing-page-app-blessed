@@ -41,7 +41,7 @@ const App = ({ api }: { api: D2Api }) => {
                 const apiVersion = getMajorVersion(version);
                 const options = await handleRedirection(baseUrl, apiVersion, user, config);
                 if (options) {
-                    if (options.isNHWAAdmin) window.location.hash = "/nhwa-admins";
+                    if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admins";
                     setRouterProps({ ...options, baseUrl });
                 }
             };

@@ -33,6 +33,7 @@ const NHWA_ADMINS = "EX00r2JNlQo";
 const NHWA_DATA_CLERKS = "DWWxlpQi9M8";
 const NHWA_DATA_MANAGERS = "xcDZeClzdse";
 const NHWA_DATA_VIEWERS = "r7QSG6UcnDW";
+const NHWA_GLOBAL_TEAM = "MVWS4lpbPo2";
 
 const NTD_Leish_LandingPage_KEN = "aQt4ynXtBOS";
 
@@ -189,7 +190,12 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
 export const handleRedirection = async (baseUrl: string, version: number, user: User, config: Config) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
     const isAdminUserGroup = shouldRedirect(userGroupIds, [WIDP_IT_TEAM]);
+
     const isNHWAAdmin = shouldRedirect(userGroupIds, [NHWA_ADMINS]);
+    const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
+    const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
+    const redirectToNHWAAdmin = (isNHWAAdmin && isNHWAGlobalTeam && isNHWADataManager) || !isAdminUserGroup;
+
     const availableConfiguration = buildAvailableConfigurations(version);
     const configurations = availableConfiguration.filter(
         config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
@@ -197,7 +203,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const username = user.name;
 
     if (configurations.length > 0) {
-        return { username, userGroupIds, configurations, isNHWAAdmin };
+        return { username, userGroupIds, configurations, redirectToNHWAAdmin };
     } else {
         const { defaultProgramme, fallbackUrl } = config;
 
@@ -206,7 +212,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             : undefined;
 
         if (fallbackConfig) {
-            return { username, userGroupIds, configurations: [fallbackConfig], isNHWAAdmin };
+            return { username, userGroupIds, configurations: [fallbackConfig], redirectToNHWAAdmin };
         } else {
             goToDhis2Url(baseUrl, fallbackUrl);
             return null;

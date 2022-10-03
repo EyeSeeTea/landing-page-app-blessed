@@ -64,5 +64,5 @@ export interface RouterProps {
     username: string;
     userGroupIds: string[];
     configurations: Configuration[];
-    isNHWAAdmin: boolean;
+    redirectToNHWAAdmin: boolean;
 }
