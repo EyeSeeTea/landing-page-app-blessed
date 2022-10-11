@@ -195,7 +195,6 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
-    console.log(isAdminUserGroup);
 
     const availableConfiguration = buildAvailableConfigurations(version);
     const configurations = availableConfiguration.filter(
