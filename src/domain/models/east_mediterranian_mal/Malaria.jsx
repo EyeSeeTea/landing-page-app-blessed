@@ -124,7 +124,7 @@ export const MalariaData = [
         icon: "img/dq-dashboard.png",
         action: {
             type: "dhisRedirect",
-            value: "",
+            value: "/dhis-web-dashboard/index.html#/xRjeIawqMbW",
         },
     },
     {

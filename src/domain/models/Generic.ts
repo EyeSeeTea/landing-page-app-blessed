@@ -5,6 +5,7 @@ export const defaultData = (
         programme: string;
         description: string;
         icon: string;
+        userGroupIds: string[];
     }[]
 ) => [
     {
