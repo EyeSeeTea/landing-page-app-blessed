@@ -40,7 +40,10 @@ const App = ({ api }: { api: D2Api }) => {
                 const config = await compositionRoot.usecases.config.get();
                 const apiVersion = getMajorVersion(version);
                 const options = await handleRedirection(baseUrl, apiVersion, user, config);
-                if (options) setRouterProps({ ...options, baseUrl });
+                if (options) {
+                    if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admins";
+                    setRouterProps({ ...options, baseUrl });
+                }
             };
 
             const notifications = await compositionRoot.usecases.notifications.list();
