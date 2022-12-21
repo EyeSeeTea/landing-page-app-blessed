@@ -7,7 +7,7 @@ import { MalariaData } from "../../domain/models/east_mediterranian_mal/Malaria.
 import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishKenya";
 import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
 import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
-import { internationalData } from "../../domain/models/international/International";
+import { internationalData, internationalGroupIds } from "../../domain/models/international/International";
 import i18n from "../../locales";
 import { goToDhis2Url } from "../../utils/utils";
 import eastMalRepoHeader from "../../webapp/components/headers/east-mal-repo-header";
@@ -47,8 +47,9 @@ export const NTD_RAB_WHO_RO = "pjwgXz3y70w";
 export const SS_NTD_RAB_AggData_Entry = "Mg0TXhvvXJ4";
 export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
-export const EFH_USER = "IdneucbQYRb";
-export const DATA_MANAGEMENT_USER = "mh5Tx6MS9jn";
+export const EFH_USER = internationalGroupIds.EFH_USER;
+export const EBOLA_USER = internationalGroupIds.EBOLA_USER;
+export const DATA_MANAGEMENT_USER = internationalGroupIds.DATA_MANAGEMENT_USER;
 
 const WIDP_IT_TEAM = "UfhhwZK73Lg";
 
@@ -88,7 +89,10 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
             userGroupIds: [NHWA_DATA_MANAGERS],
             page: NHWALandingPage,
             header: nhwaHeader,
-            data: !isAdminUserGroup && isNHWADataManager && isNHWAGlobalTeam ? nhwaAdminData(version) : nhwaManagerData(version),
+            data:
+                !isAdminUserGroup && isNHWADataManager && isNHWAGlobalTeam
+                    ? nhwaAdminData(version)
+                    : nhwaManagerData(version),
             icon: "img/icon.png",
         },
         {
@@ -171,7 +175,7 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
             programme: "international-projects",
             title: i18n.t("International Projects"),
             description: i18n.t("Landing Page for International Projects"),
-            userGroupIds: [EFH_USER, DATA_MANAGEMENT_USER],
+            userGroupIds: [EFH_USER, EBOLA_USER, DATA_MANAGEMENT_USER],
             page: InternationalLandingPage,
             header: internationalHeader,
             data: internationalData,
