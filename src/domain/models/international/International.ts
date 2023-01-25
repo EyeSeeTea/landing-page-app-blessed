@@ -1,10 +1,17 @@
 import i18n from "@dhis2/d2-i18n";
 
+export const internationalGroupIds = {
+    EFH_USER: "IdneucbQYRb",
+    EBOLA_USER: "khvNTC9Nxxm",
+    DATA_MANAGEMENT_USER: "mh5Tx6MS9jn",
+};
+
 export const internationalData = [
     {
         key: "data-monitoring",
         title: i18n.t("Data Management Tool"),
-        rowLength: 2,
+        userGroupIds: [internationalGroupIds.DATA_MANAGEMENT_USER],
+        rowLength: 3,
         icon: "img/data-monitoring-tool.png",
         action: {
             type: "dhisRedirect",
@@ -14,11 +21,23 @@ export const internationalData = [
     {
         key: "efh",
         title: i18n.t("EFH"),
-        rowLength: 2,
+        userGroupIds: [internationalGroupIds.EFH_USER],
+        rowLength: 3,
         icon: "img/emergency-field-hospital.png",
         action: {
             type: "dhisRedirect",
-            value: "/api/apps/Emergency-Field-Hospital-App/index.html",
+            value: "/api/apps/Emergency-Responses-App/index.html",
+        },
+    },
+    {
+        key: "ebola",
+        title: i18n.t("Ebola"),
+        userGroupIds: [internationalGroupIds.EBOLA_USER],
+        rowLength: 3,
+        icon: "img/ebola.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/api/apps/Emergency-Responses-App/index.html#/ebola",
         },
     },
     {
