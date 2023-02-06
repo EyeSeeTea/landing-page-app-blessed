@@ -51,6 +51,17 @@ export const EFH_USER = internationalGroupIds.EFH_USER;
 export const EBOLA_USER = internationalGroupIds.EBOLA_USER;
 export const DATA_MANAGEMENT_USER = internationalGroupIds.DATA_MANAGEMENT_USER;
 
+export const AMR_AMC_DATA_CAPTURE = "XWwZ5a4ewX4";
+export const AMR_AMC_VISUALIZER = "QJirtndlPAI";
+export const AMR_AMR_DATA_CAPTURE = "CCRMy5e6ONV";
+export const AMR_AMR_VISUALIZER = "eyW7ie6NEuW";
+export const AMR_EGASP_DATA_CAPTURE = "j1BTDP7JUJp";
+export const AMR_EGASP_VISUALIZER = "M2jd9QXVWou";
+
+export const AMR_AMC_ADMIN = "sVbZXz6W0oQ";
+export const AMR_AMR_ADMIN = "oQFamWE16A1";
+export const AMR_EGASP_ADMIN = "txu7PyLyeld";
+
 const WIDP_IT_TEAM = "UfhhwZK73Lg";
 
 const MAL_EMRO = "FpQ7a5OylZH";
@@ -205,7 +216,18 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
 
+    const isGLASSCountryUser = shouldRedirect(userGroupIds, [
+        AMR_AMC_DATA_CAPTURE,
+        AMR_AMC_VISUALIZER,
+        AMR_AMR_DATA_CAPTURE,
+        AMR_AMR_VISUALIZER,
+        AMR_EGASP_DATA_CAPTURE,
+        AMR_EGASP_VISUALIZER,
+    ]);
+    const isGLASSAdmin = shouldRedirect(userGroupIds, [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EGASP_ADMIN]);
+
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
+    const redirectToGLASS = !isGLASSAdmin && isGLASSCountryUser;
 
     const availableConfiguration = buildAvailableConfigurations(version, userGroupIds);
     const configurations = availableConfiguration.filter(
@@ -214,7 +236,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const username = user.name;
 
     if (configurations.length > 0) {
-        return { username, userGroupIds, configurations, redirectToNHWAAdmin };
+        return { username, userGroupIds, configurations, redirectToNHWAAdmin, redirectToGLASS };
     } else {
         const { defaultProgramme, fallbackUrl } = config;
 
@@ -223,7 +245,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             : undefined;
 
         if (fallbackConfig) {
-            return { username, userGroupIds, configurations: [fallbackConfig], redirectToNHWAAdmin };
+            return { username, userGroupIds, configurations: [fallbackConfig], redirectToNHWAAdmin, redirectToGLASS };
         } else {
             goToDhis2Url(baseUrl, fallbackUrl);
             return null;
