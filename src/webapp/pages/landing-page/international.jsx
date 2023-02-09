@@ -14,9 +14,9 @@ const InternationalLandingPage = props => {
     return renderPage ? <LandingPage {...props} items={itemsFiltered} /> : <LinearProgress />;
 };
 
-const { DATA_MANAGEMENT_USER, EBOLA_USER, EFH_USER } = internationalGroupIds;
+const { DATA_MANAGEMENT_USER, EBOLA_USER, EFH_USER, CHOLERA_USER } = internationalGroupIds;
 
-const internationalUserGroupIds = [DATA_MANAGEMENT_USER, EFH_USER, EBOLA_USER];
+const internationalUserGroupIds = [DATA_MANAGEMENT_USER, EFH_USER, EBOLA_USER, CHOLERA_USER];
 
 const urlsByKey = _(internationalData)
     .map(obj => [obj.key, obj.action?.value])
@@ -27,6 +27,7 @@ const urlsByUserGroup = {
     [DATA_MANAGEMENT_USER]: urlsByKey["data-monitoring"],
     [EFH_USER]: urlsByKey["efh"],
     [EBOLA_USER]: urlsByKey["ebola"],
+    [CHOLERA_USER]: urlsByKey["cholera"],
 };
 
 function useRedirectIfSingleMatch(props) {
