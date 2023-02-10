@@ -49,6 +49,7 @@ export const SS_NTD_RAB_AggData_View = "B6oADCiiW8v";
 
 export const EFH_USER = internationalGroupIds.EFH_USER;
 export const EBOLA_USER = internationalGroupIds.EBOLA_USER;
+export const CHOLERA_USER = internationalGroupIds.CHOLERA_USER;
 export const DATA_MANAGEMENT_USER = internationalGroupIds.DATA_MANAGEMENT_USER;
 
 const WIDP_IT_TEAM = "UfhhwZK73Lg";
@@ -175,7 +176,7 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
             programme: "international-projects",
             title: i18n.t("International Projects"),
             description: i18n.t("Landing Page for International Projects"),
-            userGroupIds: [EFH_USER, EBOLA_USER, DATA_MANAGEMENT_USER],
+            userGroupIds: [EFH_USER, EBOLA_USER, CHOLERA_USER, DATA_MANAGEMENT_USER],
             page: InternationalLandingPage,
             header: internationalHeader,
             data: internationalData,
