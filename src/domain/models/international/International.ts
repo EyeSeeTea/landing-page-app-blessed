@@ -46,7 +46,7 @@ export const internationalData = [
         title: i18n.t("Cholera"),
         userGroupIds: [internationalGroupIds.CHOLERA_USER],
         rowLength: 3,
-        icon: "img/ebola.png",
+        icon: "img/cholera.png",
         action: {
             type: "dhisRedirect",
             value: "/api/apps/Emergency-Responses-App/index.html#/cholera",
