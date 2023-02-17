@@ -9,7 +9,7 @@ import { handleRedirection } from "../../../data/logic/redirection";
 import { Instance } from "../../../domain/entities/Instance";
 import { D2Api } from "../../../types/d2-api";
 import { getMajorVersion } from "../../../utils/d2-api";
-import { sleep } from "../../../utils/utils";
+import { goToExternalUrl, sleep } from "../../../utils/utils";
 import {
     UserNotificationDialog,
     UserNotificationDialogProps,
@@ -42,6 +42,8 @@ const App = ({ api }: { api: D2Api }) => {
                 const options = await handleRedirection(baseUrl, apiVersion, user, config);
                 if (options) {
                     if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admins";
+                    if (options.redirectToMalaria)
+                        goToExternalUrl("https://dev.eyeseetea.com/who-dev-236/api/apps/Homepage-App/index.html#/");
                     setRouterProps({ ...options, baseUrl });
                 }
             };

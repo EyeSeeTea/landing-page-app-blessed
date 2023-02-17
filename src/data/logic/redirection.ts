@@ -54,6 +54,8 @@ export const DATA_MANAGEMENT_USER = internationalGroupIds.DATA_MANAGEMENT_USER;
 
 const WIDP_IT_TEAM = "UfhhwZK73Lg";
 
+export const MAL_COUNTRY_ROLE = "xdJjyqMxaZq";
+
 const MAL_EMRO = "FpQ7a5OylZH";
 
 export interface Configuration {
@@ -205,8 +207,10 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isNHWAAdmin = shouldRedirect(userGroupIds, [NHWA_ADMINS]);
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
+    const isMALCountryRole = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
+    const redirectToMalaria = isMALCountryRole;
 
     const availableConfiguration = buildAvailableConfigurations(version, userGroupIds);
     const configurations = availableConfiguration.filter(
@@ -215,7 +219,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const username = user.name;
 
     if (configurations.length > 0) {
-        return { username, userGroupIds, configurations, redirectToNHWAAdmin };
+        return { username, userGroupIds, configurations, redirectToNHWAAdmin, redirectToMalaria };
     } else {
         const { defaultProgramme, fallbackUrl } = config;
 
@@ -224,7 +228,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             : undefined;
 
         if (fallbackConfig) {
-            return { username, userGroupIds, configurations: [fallbackConfig], redirectToNHWAAdmin };
+            return { username, userGroupIds, configurations: [fallbackConfig], redirectToNHWAAdmin, redirectToMalaria };
         } else {
             goToDhis2Url(baseUrl, fallbackUrl);
             return null;
