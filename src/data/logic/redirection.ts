@@ -227,7 +227,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
 
-    const isGLASSAdmin = shouldRedirect(userGroupIds, [
+    const redirectToGLASSHq = shouldRedirect(userGroupIds, [
         AMR_AMC_ADMIN,
         AMR_AMR_ADMIN,
         AMR_EAR_ADMIN,
@@ -242,7 +242,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const username = user.name;
 
     if (configurations.length > 0) {
-        return { username, userGroupIds, configurations, redirectToNHWAAdmin };
+        return { username, userGroupIds, configurations, redirectToNHWAAdmin, redirectToGLASSHq };
     } else {
         const { defaultProgramme, fallbackUrl } = config;
 
@@ -251,7 +251,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             : undefined;
 
         if (fallbackConfig) {
-            return { username, userGroupIds, configurations: [fallbackConfig], redirectToNHWAAdmin };
+            return { username, userGroupIds, configurations: [fallbackConfig], redirectToNHWAAdmin, redirectToGLASSHq };
         } else {
             goToDhis2Url(baseUrl, fallbackUrl);
             return null;

@@ -42,6 +42,7 @@ const App = ({ api }: { api: D2Api }) => {
                 const options = await handleRedirection(baseUrl, apiVersion, user, config);
                 if (options) {
                     if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admins";
+                    if (options.redirectToGLASSHq) window.location.hash = "/glass-hq";
                     setRouterProps({ ...options, baseUrl });
                 }
             };
