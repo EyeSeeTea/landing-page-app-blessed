@@ -21,9 +21,12 @@ import {
     SnakebiteLandingPage,
     InternationalLandingPage,
     MalariaLandingPage,
+    GLASSLandingPage,
 } from "../../webapp/pages";
 import internationalHeader from "../../webapp/components/headers/international-header";
+import glassHqHeader from "../../webapp/components/headers/glass-hq";
 import { Config } from "../../domain/entities/Config";
+import { glassAdminData } from "../../domain/models/glass/GLASS";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -55,6 +58,12 @@ export const DATA_MANAGEMENT_USER = internationalGroupIds.DATA_MANAGEMENT_USER;
 const WIDP_IT_TEAM = "UfhhwZK73Lg";
 
 const MAL_EMRO = "FpQ7a5OylZH";
+
+const AMR_AMC_ADMIN = "sVbZXz6W0oQ";
+const AMR_AMR_ADMIN = "oQFamWE16A1";
+const AMR_EAR_ADMIN = "dFKVRdjuw6M";
+const AMR_EGASP_ADMIN = "txu7PyLyeld";
+const AMR_TRICYCLE_ADMIN = "HzJNcf5HGqQ";
 
 export interface Configuration {
     programme: string;
@@ -192,6 +201,16 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
             data: MalariaData,
             icon: "img/east-mal-repo.png",
         },
+        {
+            programme: "glass-hq",
+            title: i18n.t("GLASS HQ"),
+            description: i18n.t("Landing page for GLASS admin"),
+            userGroupIds: [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EAR_ADMIN, AMR_EGASP_ADMIN, AMR_TRICYCLE_ADMIN],
+            page: GLASSLandingPage,
+            header: glassHqHeader,
+            data: glassAdminData,
+            icon: "img/glass.png",
+        },
     ];
 };
 
@@ -207,6 +226,14 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
+
+    const isGLASSAdmin = shouldRedirect(userGroupIds, [
+        AMR_AMC_ADMIN,
+        AMR_AMR_ADMIN,
+        AMR_EAR_ADMIN,
+        AMR_EGASP_ADMIN,
+        AMR_TRICYCLE_ADMIN,
+    ]);
 
     const availableConfiguration = buildAvailableConfigurations(version, userGroupIds);
     const configurations = availableConfiguration.filter(
