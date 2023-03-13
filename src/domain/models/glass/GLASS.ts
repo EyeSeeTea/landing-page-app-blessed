@@ -85,3 +85,8 @@ export const glassAdminData = [
         },
     },
 ];
+
+export const glassRegionalData = _.filter(
+    glassAdminData,
+    ({ key }) => !["glass-reports-link", "capture-link", "messaging-link", "user-extended-link"].includes(key)
+);

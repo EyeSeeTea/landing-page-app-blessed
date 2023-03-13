@@ -24,9 +24,9 @@ import {
     GLASSLandingPage,
 } from "../../webapp/pages";
 import internationalHeader from "../../webapp/components/headers/international-header";
-import glassHqHeader from "../../webapp/components/headers/glass-hq";
+import glassHeader from "../../webapp/components/headers/glass-hq";
 import { Config } from "../../domain/entities/Config";
-import { glassAdminData } from "../../domain/models/glass/GLASS";
+import { glassAdminData, glassRegionalData } from "../../domain/models/glass/GLASS";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -64,6 +64,12 @@ const AMR_AMR_ADMIN = "oQFamWE16A1";
 const AMR_EAR_ADMIN = "dFKVRdjuw6M";
 const AMR_EGASP_ADMIN = "txu7PyLyeld";
 const AMR_TRICYCLE_ADMIN = "HzJNcf5HGqQ";
+
+const AMR_AMC_USER_MANAGEMENT = "gImdwsYXCge";
+const AMR_AMR_USER_MANAGEMENT = "QZPCnL0mtWV";
+const AMR_EAR_USER_MANAGEMENT = "CaP6VJ0VWlF";
+const AMR_EGASP_USER_MANAGEMENT = "Xy6CQHs4LwT";
+const AMR_TRICYCLE_USER_MANAGEMENT = "aSD6fSkhsRI";
 
 export interface Configuration {
     programme: string;
@@ -203,12 +209,28 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
         },
         {
             programme: "glass-hq",
-            title: i18n.t("GLASS HQ"),
+            title: i18n.t("GLASS HQ Landing Page"),
             description: i18n.t("Landing page for GLASS admin"),
             userGroupIds: [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EAR_ADMIN, AMR_EGASP_ADMIN, AMR_TRICYCLE_ADMIN],
             page: GLASSLandingPage,
-            header: glassHqHeader,
+            header: glassHeader,
             data: glassAdminData,
+            icon: "img/glass.png",
+        },
+        {
+            programme: "glass-regional",
+            title: i18n.t("GLASS Regional Landing Page"),
+            description: i18n.t("Landing page for GLASS regional users"),
+            userGroupIds: [
+                AMR_AMC_USER_MANAGEMENT,
+                AMR_AMR_USER_MANAGEMENT,
+                AMR_EAR_USER_MANAGEMENT,
+                AMR_EGASP_USER_MANAGEMENT,
+                AMR_TRICYCLE_USER_MANAGEMENT,
+            ],
+            page: GLASSLandingPage,
+            header: glassHeader,
+            data: glassRegionalData,
             icon: "img/glass.png",
         },
     ];
@@ -235,6 +257,14 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
         AMR_TRICYCLE_ADMIN,
     ]);
 
+    const redirectToGLASSRegional = shouldRedirect(userGroupIds, [
+        AMR_AMC_ADMIN,
+        AMR_AMR_ADMIN,
+        AMR_EAR_ADMIN,
+        AMR_EGASP_ADMIN,
+        AMR_TRICYCLE_ADMIN,
+    ]);
+
     const availableConfiguration = buildAvailableConfigurations(version, userGroupIds);
     const configurations = availableConfiguration.filter(
         config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
@@ -242,7 +272,14 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const username = user.name;
 
     if (configurations.length > 0) {
-        return { username, userGroupIds, configurations, redirectToNHWAAdmin, redirectToGLASSHq };
+        return {
+            username,
+            userGroupIds,
+            configurations,
+            redirectToNHWAAdmin,
+            redirectToGLASSHq,
+            redirectToGLASSRegional,
+        };
     } else {
         const { defaultProgramme, fallbackUrl } = config;
 
@@ -251,7 +288,14 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             : undefined;
 
         if (fallbackConfig) {
-            return { username, userGroupIds, configurations: [fallbackConfig], redirectToNHWAAdmin, redirectToGLASSHq };
+            return {
+                username,
+                userGroupIds,
+                configurations: [fallbackConfig],
+                redirectToNHWAAdmin,
+                redirectToGLASSHq,
+                redirectToGLASSRegional,
+            };
         } else {
             goToDhis2Url(baseUrl, fallbackUrl);
             return null;
