@@ -241,6 +241,7 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
 
 export const handleRedirection = async (baseUrl: string, version: number, user: User, config: Config) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
+    const orgUnitLevels = user.orgUnits.map(({ level }) => level);
 
     const isAdminUserGroup = shouldRedirect(userGroupIds, [WIDP_IT_TEAM]);
     const isNHWAAdmin = shouldRedirect(userGroupIds, [NHWA_ADMINS]);
@@ -257,13 +258,14 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
         AMR_TRICYCLE_ADMIN,
     ]);
 
-    const redirectToGLASSRegional = shouldRedirect(userGroupIds, [
-        AMR_AMC_ADMIN,
-        AMR_AMR_ADMIN,
-        AMR_EAR_ADMIN,
-        AMR_EGASP_ADMIN,
-        AMR_TRICYCLE_ADMIN,
-    ]);
+    const redirectToGLASSRegional =
+        shouldRedirect(userGroupIds, [
+            AMR_AMC_ADMIN,
+            AMR_AMR_ADMIN,
+            AMR_EAR_ADMIN,
+            AMR_EGASP_ADMIN,
+            AMR_TRICYCLE_ADMIN,
+        ]) && orgUnitLevels.some(level => level === 2);
 
     const availableConfiguration = buildAvailableConfigurations(version, userGroupIds);
     const configurations = availableConfiguration.filter(
