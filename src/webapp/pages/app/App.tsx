@@ -42,7 +42,10 @@ const App = ({ api }: { api: D2Api }) => {
                 const options = await handleRedirection(baseUrl, apiVersion, user, config);
                 if (options) {
                     if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admin";
-                    if (options.redirectToGLASS) goToExternalUrl("https://dev.eyeseetea.com/who-dev-236/api/apps/glass/index.html#/");
+                    if (options.redirectToGLASS) {
+                        const glassAppPath = "/api/apps/glass/index.html#/";
+                        goToExternalUrl(baseUrl + glassAppPath);
+                    }
                     setRouterProps({ ...options, baseUrl });
                 }
             };
