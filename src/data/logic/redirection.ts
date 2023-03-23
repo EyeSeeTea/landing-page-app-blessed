@@ -71,6 +71,15 @@ const AMR_EAR_USER_MANAGEMENT = "CaP6VJ0VWlF";
 const AMR_EGASP_USER_MANAGEMENT = "Xy6CQHs4LwT";
 const AMR_TRICYCLE_USER_MANAGEMENT = "aSD6fSkhsRI";
 
+export const AMR_AMC_DATA_CAPTURE = "XWwZ5a4ewX4";
+export const AMR_AMR_DATA_CAPTURE = "CCRMy5e6ONV";
+
+export const AMR_AMC_VISUALIZER = "QJirtndlPAI";
+export const AMR_AMR_VISUALIZER = "eyW7ie6NEuW";
+
+export const AMR_EGASP_DATA_CAPTURE = "j1BTDP7JUJp";
+export const AMR_EGASP_VISUALIZER = "M2jd9QXVWou";
+
 export interface Configuration {
     programme: string;
     title: string;
@@ -248,6 +257,16 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
 
+    const isGLASSCountryUser = shouldRedirect(userGroupIds, [
+        AMR_AMC_DATA_CAPTURE,
+        AMR_AMC_VISUALIZER,
+        AMR_AMR_DATA_CAPTURE,
+        AMR_AMR_VISUALIZER,
+        AMR_EGASP_DATA_CAPTURE,
+        AMR_EGASP_VISUALIZER,
+    ]);
+    const isGLASSAdmin = shouldRedirect(userGroupIds, [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EGASP_ADMIN]);
+
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
 
     const redirectToGLASSHq = shouldRedirect(userGroupIds, [
@@ -279,6 +298,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             userGroupIds,
             configurations,
             redirectToNHWAAdmin,
+            redirectToGLASS,
             redirectToGLASSHq,
             redirectToGLASSRegional,
         };
@@ -295,7 +315,8 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
                 userGroupIds,
                 configurations: [fallbackConfig],
                 redirectToNHWAAdmin,
-                redirectToGLASSHq,
+                redirectToGLASS,
+                redirectToGLASS,Hq,
                 redirectToGLASSRegional,
             };
         } else {

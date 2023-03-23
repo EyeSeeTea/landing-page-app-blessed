@@ -9,7 +9,7 @@ import { handleRedirection } from "../../../data/logic/redirection";
 import { Instance } from "../../../domain/entities/Instance";
 import { D2Api } from "../../../types/d2-api";
 import { getMajorVersion } from "../../../utils/d2-api";
-import { sleep } from "../../../utils/utils";
+import { goToExternalUrl, sleep } from "../../../utils/utils";
 import {
     UserNotificationDialog,
     UserNotificationDialogProps,
@@ -41,7 +41,11 @@ const App = ({ api }: { api: D2Api }) => {
                 const apiVersion = getMajorVersion(version);
                 const options = await handleRedirection(baseUrl, apiVersion, user, config);
                 if (options) {
-                    if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admins";
+                    if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admin";
+                    if (options.redirectToGLASS) {
+                        const glassAppPath = "/api/apps/glass/index.html#/";
+                        goToExternalUrl(baseUrl + glassAppPath);
+                    }
                     if (options.redirectToGLASSHq) window.location.hash = "/glass-hq";
                     if (options.redirectToGLASSRegional) window.location.hash = "/glass-regional";
                     setRouterProps({ ...options, baseUrl });

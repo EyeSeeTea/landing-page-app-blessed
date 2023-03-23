@@ -65,6 +65,7 @@ export interface RouterProps {
     userGroupIds: string[];
     configurations: Configuration[];
     redirectToNHWAAdmin: boolean;
+    redirectToGLASS: boolean;
     redirectToGLASSHq: boolean;
     redirectToGLASSRegional: boolean;
 }
