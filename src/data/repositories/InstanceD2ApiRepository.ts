@@ -34,6 +34,10 @@ export class InstanceD2ApiRepository implements InstanceRepository {
                         username: true,
                         userRoles: { id: true, name: true, authorities: true },
                     },
+                    organisationUnits: {
+                        id: true,
+                        level: true,
+                    },
                 },
             })
             .getData();
@@ -42,6 +46,7 @@ export class InstanceD2ApiRepository implements InstanceRepository {
             id: d2User.id,
             name: d2User.displayName,
             userGroups: d2User.userGroups,
+            orgUnits: d2User.organisationUnits,
             ...d2User.userCredentials,
         };
     }

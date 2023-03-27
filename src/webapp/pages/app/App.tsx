@@ -41,9 +41,17 @@ const App = ({ api }: { api: D2Api }) => {
                 const apiVersion = getMajorVersion(version);
                 const options = await handleRedirection(baseUrl, apiVersion, user, config);
                 if (options) {
-                    if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admins";
-                    if (options.redirectToMalaria)
-                        goToExternalUrl("https://dev.eyeseetea.com/who-dev-236/api/apps/Homepage-App/index.html#/");
+                    if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admin";
+                    if (options.redirectToGLASS) {
+                        const glassAppPath = "/api/apps/glass/index.html#/";
+                        goToExternalUrl(baseUrl + glassAppPath);
+                    }
+                    if (options.redirectToGLASSHq) window.location.hash = "/glass-hq";
+                    if (options.redirectToGLASSRegional) window.location.hash = "/glass-regional";
+                    if (options.redirectToMalaria) {
+                        const homePageAppPath = "/api/apps/Homepage-App/index.html#/";
+                        goToExternalUrl(baseUrl + homePageAppPath);
+                    }
                     setRouterProps({ ...options, baseUrl });
                 }
             };
