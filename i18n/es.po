@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2022-09-12T19:57:54.972Z\n"
+"POT-Creation-Date: 2023-03-27T16:26:36.857Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,6 +57,18 @@ msgid "Landing Page for International Projects"
 msgstr ""
 
 msgid "Eastern Mediterranean regional malaria repository"
+msgstr ""
+
+msgid "GLASS HQ Landing Page"
+msgstr ""
+
+msgid "Landing page for GLASS admin"
+msgstr ""
+
+msgid "GLASS Regional Landing Page"
+msgstr ""
+
+msgid "Landing page for GLASS regional users"
 msgstr ""
 
 msgid "Available landing pages"
@@ -177,6 +189,45 @@ msgid ""
 "elimination settings."
 msgstr ""
 
+#, fuzzy
+msgid "GLASS Dashboard"
+msgstr "Tablero"
+
+msgid "View what countries have submitted data"
+msgstr ""
+
+msgid ""
+"Extract and upload historical data from the database in batch by country and "
+"by year"
+msgstr ""
+
+msgid "GLASS App"
+msgstr ""
+
+msgid "Access, upload and download files on behalf of a country"
+msgstr ""
+
+msgid "Messaging"
+msgstr ""
+
+msgid "Send internal messages to other users in the GLASS Platform"
+msgstr ""
+
+msgid "GLASS Reports"
+msgstr ""
+
+msgid "Access to the GLASS reports for data approval and submission"
+msgstr ""
+
+msgid "Capture"
+msgstr ""
+
+msgid "User Extended"
+msgstr ""
+
+msgid "List, edit or create users in the GLASS platform"
+msgstr ""
+
 msgid "Data"
 msgstr "Datos"
 
@@ -223,6 +274,12 @@ msgid "Data Management Tool"
 msgstr ""
 
 msgid "EFH"
+msgstr ""
+
+msgid "Ebola"
+msgstr ""
+
+msgid "Cholera"
 msgstr ""
 
 msgid "Tracker Capture"
@@ -303,13 +360,7 @@ msgstr ""
 msgid "Enables the users to approves the data submitted in the system"
 msgstr ""
 
-msgid "User Extended"
-msgstr ""
-
 msgid "List, edit or create users in the NHWA platform"
-msgstr ""
-
-msgid "Messaging"
 msgstr ""
 
 msgid "Send internal messages to other users in the NHWA Platform"
@@ -407,6 +458,9 @@ msgid "LOG OUT"
 msgstr ""
 
 msgid "Eastern Mediterranian Regional Malaria Repository"
+msgstr ""
+
+msgid "GLASS Admin"
 msgstr ""
 
 msgid "User guide"
