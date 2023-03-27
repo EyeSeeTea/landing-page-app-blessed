@@ -258,7 +258,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isNHWAAdmin = shouldRedirect(userGroupIds, [NHWA_ADMINS]);
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
-    const isMALCountryRole = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
+    const isMALCountryRole = shouldRedirect(userGroupIds, [MAL_COUNTRY_ROLE]);
 
     const isGLASSCountryUser = shouldRedirect(userGroupIds, [
         AMR_AMC_DATA_CAPTURE,
