@@ -2,7 +2,8 @@ import i18n from "@dhis2/d2-i18n";
 
 export const internationalGroupIds = {
     EFH_USER: "IdneucbQYRb",
-    EBOLA_USER: "khvNTC9Nxxm",
+    EBOLA_USER: "rQXqbZGn0A2",
+    CHOLERA_USER: "VDkRapZb8zw",
     DATA_MANAGEMENT_USER: "mh5Tx6MS9jn",
 };
 
@@ -38,6 +39,17 @@ export const internationalData = [
         action: {
             type: "dhisRedirect",
             value: "/api/apps/Emergency-Responses-App/index.html#/ebola",
+        },
+    },
+    {
+        key: "cholera",
+        title: i18n.t("Cholera"),
+        userGroupIds: [internationalGroupIds.CHOLERA_USER],
+        rowLength: 3,
+        icon: "img/cholera.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/api/apps/Emergency-Responses-App/index.html#/cholera",
         },
     },
     {
