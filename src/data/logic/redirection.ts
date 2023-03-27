@@ -57,6 +57,8 @@ export const DATA_MANAGEMENT_USER = internationalGroupIds.DATA_MANAGEMENT_USER;
 
 const WIDP_IT_TEAM = "UfhhwZK73Lg";
 
+export const MAL_COUNTRY_ROLE = "xdJjyqMxaZq";
+
 const MAL_EMRO = "FpQ7a5OylZH";
 
 const AMR_AMC_ADMIN = "sVbZXz6W0oQ";
@@ -256,6 +258,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isNHWAAdmin = shouldRedirect(userGroupIds, [NHWA_ADMINS]);
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
+    const isMALCountryRole = shouldRedirect(userGroupIds, [MAL_COUNTRY_ROLE]);
 
     const isGLASSCountryUser = shouldRedirect(userGroupIds, [
         AMR_AMC_DATA_CAPTURE,
@@ -268,6 +271,8 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isGLASSAdmin = shouldRedirect(userGroupIds, [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EGASP_ADMIN]);
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
+
+    const redirectToMalaria = isMALCountryRole;
 
     const redirectToGLASS = !isGLASSAdmin && isGLASSCountryUser;
 
@@ -303,6 +308,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             redirectToGLASS,
             redirectToGLASSHq,
             redirectToGLASSRegional,
+            redirectToMalaria
         };
     } else {
         const { defaultProgramme, fallbackUrl } = config;
@@ -320,6 +326,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
                 redirectToGLASS,
                 redirectToGLASSHq,
                 redirectToGLASSRegional,
+                redirectToMalaria
             };
         } else {
             goToDhis2Url(baseUrl, fallbackUrl);

@@ -68,4 +68,5 @@ export interface RouterProps {
     redirectToGLASS: boolean;
     redirectToGLASSHq: boolean;
     redirectToGLASSRegional: boolean;
+    redirectToMalaria: boolean;
 }

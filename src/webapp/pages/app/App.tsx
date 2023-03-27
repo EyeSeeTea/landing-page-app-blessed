@@ -48,6 +48,10 @@ const App = ({ api }: { api: D2Api }) => {
                     }
                     if (options.redirectToGLASSHq) window.location.hash = "/glass-hq";
                     if (options.redirectToGLASSRegional) window.location.hash = "/glass-regional";
+                    if (options.redirectToMalaria) {
+                        const homePageAppPath = "/api/apps/Homepage-App/index.html#/";
+                        goToExternalUrl(baseUrl + homePageAppPath);
+                    }
                     setRouterProps({ ...options, baseUrl });
                 }
             };
