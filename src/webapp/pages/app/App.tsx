@@ -46,6 +46,8 @@ const App = ({ api }: { api: D2Api }) => {
                         const glassAppPath = "/api/apps/glass/index.html#/";
                         goToExternalUrl(baseUrl + glassAppPath);
                     }
+                    if (options.redirectToGLASSHq) window.location.hash = "/glass-hq";
+                    if (options.redirectToGLASSRegional) window.location.hash = "/glass-regional";
                     setRouterProps({ ...options, baseUrl });
                 }
             };

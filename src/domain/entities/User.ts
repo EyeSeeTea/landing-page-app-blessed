@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { BaseMetadata, NamedRef } from "../../domain/entities/Ref";
+import { BaseMetadata, NamedRef, Ref } from "../../domain/entities/Ref";
 
 export interface User {
     id: string;
@@ -7,10 +7,15 @@ export interface User {
     username: string;
     userRoles: UserRole[];
     userGroups: NamedRef[];
+    orgUnits: OrgUnit[];
 }
 
 export interface UserRole extends NamedRef {
     authorities: string[];
+}
+
+export interface OrgUnit extends Ref {
+    level: number;
 }
 
 export const validateUserPermission = (

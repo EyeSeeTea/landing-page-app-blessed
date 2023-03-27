@@ -21,9 +21,12 @@ import {
     SnakebiteLandingPage,
     InternationalLandingPage,
     MalariaLandingPage,
+    GLASSLandingPage,
 } from "../../webapp/pages";
 import internationalHeader from "../../webapp/components/headers/international-header";
+import glassHeader from "../../webapp/components/headers/glass-hq";
 import { Config } from "../../domain/entities/Config";
+import { glassAdminData, glassRegionalData } from "../../domain/models/glass/GLASS";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -52,20 +55,30 @@ export const EBOLA_USER = internationalGroupIds.EBOLA_USER;
 export const CHOLERA_USER = internationalGroupIds.CHOLERA_USER;
 export const DATA_MANAGEMENT_USER = internationalGroupIds.DATA_MANAGEMENT_USER;
 
-export const AMR_AMC_DATA_CAPTURE = "XWwZ5a4ewX4";
-export const AMR_AMC_VISUALIZER = "QJirtndlPAI";
-export const AMR_AMR_DATA_CAPTURE = "CCRMy5e6ONV";
-export const AMR_AMR_VISUALIZER = "eyW7ie6NEuW";
-export const AMR_EGASP_DATA_CAPTURE = "j1BTDP7JUJp";
-export const AMR_EGASP_VISUALIZER = "M2jd9QXVWou";
-
-export const AMR_AMC_ADMIN = "sVbZXz6W0oQ";
-export const AMR_AMR_ADMIN = "oQFamWE16A1";
-export const AMR_EGASP_ADMIN = "txu7PyLyeld";
-
 const WIDP_IT_TEAM = "UfhhwZK73Lg";
 
 const MAL_EMRO = "FpQ7a5OylZH";
+
+const AMR_AMC_ADMIN = "sVbZXz6W0oQ";
+const AMR_AMR_ADMIN = "oQFamWE16A1";
+const AMR_EAR_ADMIN = "dFKVRdjuw6M";
+const AMR_EGASP_ADMIN = "txu7PyLyeld";
+const AMR_TRICYCLE_ADMIN = "HzJNcf5HGqQ";
+
+const AMR_AMC_USER_MANAGEMENT = "gImdwsYXCge";
+const AMR_AMR_USER_MANAGEMENT = "QZPCnL0mtWV";
+const AMR_EAR_USER_MANAGEMENT = "CaP6VJ0VWlF";
+const AMR_EGASP_USER_MANAGEMENT = "Xy6CQHs4LwT";
+const AMR_TRICYCLE_USER_MANAGEMENT = "aSD6fSkhsRI";
+
+export const AMR_AMC_DATA_CAPTURE = "XWwZ5a4ewX4";
+export const AMR_AMR_DATA_CAPTURE = "CCRMy5e6ONV";
+
+export const AMR_AMC_VISUALIZER = "QJirtndlPAI";
+export const AMR_AMR_VISUALIZER = "eyW7ie6NEuW";
+
+export const AMR_EGASP_DATA_CAPTURE = "j1BTDP7JUJp";
+export const AMR_EGASP_VISUALIZER = "M2jd9QXVWou";
 
 export interface Configuration {
     programme: string;
@@ -203,6 +216,32 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
             data: MalariaData,
             icon: "img/east-mal-repo.png",
         },
+        {
+            programme: "glass-hq",
+            title: i18n.t("GLASS HQ Landing Page"),
+            description: i18n.t("Landing page for GLASS admin"),
+            userGroupIds: [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EAR_ADMIN, AMR_EGASP_ADMIN, AMR_TRICYCLE_ADMIN],
+            page: GLASSLandingPage,
+            header: glassHeader,
+            data: glassAdminData,
+            icon: "img/glass.png",
+        },
+        {
+            programme: "glass-regional",
+            title: i18n.t("GLASS Regional Landing Page"),
+            description: i18n.t("Landing page for GLASS regional users"),
+            userGroupIds: [
+                AMR_AMC_USER_MANAGEMENT,
+                AMR_AMR_USER_MANAGEMENT,
+                AMR_EAR_USER_MANAGEMENT,
+                AMR_EGASP_USER_MANAGEMENT,
+                AMR_TRICYCLE_USER_MANAGEMENT,
+            ],
+            page: GLASSLandingPage,
+            header: glassHeader,
+            data: glassRegionalData,
+            icon: "img/glass.png",
+        },
     ];
 };
 
@@ -211,6 +250,7 @@ const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
 
 export const handleRedirection = async (baseUrl: string, version: number, user: User, config: Config) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
+    const orgUnitLevels = user.orgUnits.map(({ level }) => level);
 
     const isAdminUserGroup = shouldRedirect(userGroupIds, [WIDP_IT_TEAM]);
     const isNHWAAdmin = shouldRedirect(userGroupIds, [NHWA_ADMINS]);
@@ -228,7 +268,25 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isGLASSAdmin = shouldRedirect(userGroupIds, [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EGASP_ADMIN]);
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
+
     const redirectToGLASS = !isGLASSAdmin && isGLASSCountryUser;
+
+    const redirectToGLASSHq = shouldRedirect(userGroupIds, [
+        AMR_AMC_ADMIN,
+        AMR_AMR_ADMIN,
+        AMR_EAR_ADMIN,
+        AMR_EGASP_ADMIN,
+        AMR_TRICYCLE_ADMIN,
+    ]);
+
+    const redirectToGLASSRegional =
+        shouldRedirect(userGroupIds, [
+            AMR_AMC_ADMIN,
+            AMR_AMR_ADMIN,
+            AMR_EAR_ADMIN,
+            AMR_EGASP_ADMIN,
+            AMR_TRICYCLE_ADMIN,
+        ]) && orgUnitLevels.some(level => level === 2);
 
     const availableConfiguration = buildAvailableConfigurations(version, userGroupIds);
     const configurations = availableConfiguration.filter(
@@ -237,7 +295,15 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const username = user.name;
 
     if (configurations.length > 0) {
-        return { username, userGroupIds, configurations, redirectToNHWAAdmin, redirectToGLASS };
+        return {
+            username,
+            userGroupIds,
+            configurations,
+            redirectToNHWAAdmin,
+            redirectToGLASS,
+            redirectToGLASSHq,
+            redirectToGLASSRegional,
+        };
     } else {
         const { defaultProgramme, fallbackUrl } = config;
 
@@ -246,7 +312,15 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             : undefined;
 
         if (fallbackConfig) {
-            return { username, userGroupIds, configurations: [fallbackConfig], redirectToNHWAAdmin, redirectToGLASS };
+            return {
+                username,
+                userGroupIds,
+                configurations: [fallbackConfig],
+                redirectToNHWAAdmin,
+                redirectToGLASS,
+                redirectToGLASSHq,
+                redirectToGLASSRegional,
+            };
         } else {
             goToDhis2Url(baseUrl, fallbackUrl);
             return null;
