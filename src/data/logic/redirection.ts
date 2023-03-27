@@ -269,6 +269,8 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
 
+    const redirectToGLASS = !isGLASSAdmin && isGLASSCountryUser;
+
     const redirectToGLASSHq = shouldRedirect(userGroupIds, [
         AMR_AMC_ADMIN,
         AMR_AMR_ADMIN,
@@ -316,7 +318,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
                 configurations: [fallbackConfig],
                 redirectToNHWAAdmin,
                 redirectToGLASS,
-                redirectToGLASS,Hq,
+                redirectToGLASSHq,
                 redirectToGLASSRegional,
             };
         } else {
