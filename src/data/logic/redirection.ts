@@ -57,9 +57,13 @@ export const DATA_MANAGEMENT_USER = internationalGroupIds.DATA_MANAGEMENT_USER;
 
 const WIDP_IT_TEAM = "UfhhwZK73Lg";
 
-export const MAL_COUNTRY_ROLE = "xdJjyqMxaZq";
+export const MAL_AFRO = "wU7MKFPOYjs";
+export const MAL_EURO = "eirm2mJI2MP";
+export const MAL_PAHO = "c4UAotLtJF7";
+export const MAL_SEARO = "gweicDtTEfq";
+export const MAL_WPRO = "MXacwnPoBJA";
 
-const MAL_EMRO = "FpQ7a5OylZH";
+export const MAL_EMRO = "FpQ7a5OylZH";
 
 const AMR_AMC_ADMIN = "sVbZXz6W0oQ";
 const AMR_AMR_ADMIN = "oQFamWE16A1";
@@ -258,8 +262,8 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     const isNHWAAdmin = shouldRedirect(userGroupIds, [NHWA_ADMINS]);
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
-    const isMALCountryRole = shouldRedirect(userGroupIds, [MAL_COUNTRY_ROLE]);
-
+    const isMALRegionalUser = shouldRedirect(userGroupIds, [MAL_AFRO, MAL_EURO, MAL_PAHO, MAL_SEARO, MAL_WPRO, MAL_EMRO]);
+    
     const isGLASSCountryUser = shouldRedirect(userGroupIds, [
         AMR_AMC_DATA_CAPTURE,
         AMR_AMC_VISUALIZER,
@@ -272,7 +276,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
 
-    const redirectToMalaria = isMALCountryRole;
+    const redirectToMalaria = isMALRegionalUser;
 
     const redirectToGLASS = !isGLASSAdmin && isGLASSCountryUser;
 
