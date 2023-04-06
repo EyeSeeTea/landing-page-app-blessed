@@ -41,7 +41,7 @@ const App = ({ api }: { api: D2Api }) => {
                 const apiVersion = getMajorVersion(version);
                 const options = await handleRedirection(baseUrl, apiVersion, user, config);
                 if (options) {
-                    if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admin";
+                    if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admins";
                     if (options.redirectToGLASS) {
                         const glassAppPath = "/api/apps/glass/index.html#/";
                         goToExternalUrl(baseUrl + glassAppPath);

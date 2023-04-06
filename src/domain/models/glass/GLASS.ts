@@ -49,7 +49,9 @@ export const glassAdminData = [
     {
         key: "glass-reports-link",
         title: i18n.t("GLASS Reports"),
-        description: i18n.t("Access to the GLASS reports for data approval and submission"),
+        description: i18n.t(
+            "Approve/reject data submissions, accept/deny data modification requests and monitor the status global data submissions"
+        ),
         rowLength: 3,
         icon: "img/dhis-web-reports.png",
         action: {
@@ -57,7 +59,7 @@ export const glassAdminData = [
             value: async (_baseUrl: string, cb: Function) => {
                 cb({
                     type: "dhisRedirect",
-                    value: "/dhis-web-reports/index.html#/standard-report",
+                    value: "/api/apps/DHIS2-GLASS-Submission-Report/index.html",
                 });
             },
         },
