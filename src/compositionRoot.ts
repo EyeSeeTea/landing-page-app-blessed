@@ -2,6 +2,7 @@ import { ConfigD2ApiRepository } from "./data/repositories/ConfigD2ApiRepository
 import { InstanceD2ApiRepository } from "./data/repositories/InstanceD2ApiRepository";
 import { NotificationsD2ApiRepository } from "./data/repositories/NotificationsD2ApiRepository";
 import { Instance } from "./domain/entities/Instance";
+import { DHIS2MessageCountUseCase } from "./domain/usecases/DHIS2MessageCountUseCase";
 import { DeleteNotificationsUseCase } from "./domain/usecases/DeleteNotificationsUseCase";
 import { GetConfigUseCase } from "./domain/usecases/GetConfigUseCase";
 import { GetCurrentUserUseCase } from "./domain/usecases/GetCurrentUserUseCase";
@@ -21,6 +22,7 @@ export function getCompositionRoot(instance: Instance) {
             notifications: getExecute({
                 list: new ListUserNotificationsUseCase(notificationsRepository),
                 listAll: new ListAllNotificationsUseCase(notificationsRepository),
+                dhis2MessageCount: new DHIS2MessageCountUseCase(notificationsRepository),
                 save: new SaveNotificationsUseCase(notificationsRepository),
                 delete: new DeleteNotificationsUseCase(notificationsRepository),
             }),
