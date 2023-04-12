@@ -32,7 +32,7 @@ export const glassAdminData = [
         },
     },
     {
-        key: "glass-dashboard-link",
+        key: "reports-menu",
         title: i18n.t("View GLASS submitted data"),
         description: i18n.t("View what countries have submitted data"),
         rowLength: 3,
@@ -40,6 +40,17 @@ export const glassAdminData = [
         action: {
             type: "dhisRedirect",
             value: "/dhis-web-dashboard/index.html#/w7Kub3oACD9",
+        },
+    },
+    {
+        key: "validation-report",
+        title: i18n.t("Validate GLASS unapproved data"),
+        description: i18n.t("View and validate GLASS unapproved data"),
+        rowLength: 3,
+        icon: "img/dhis-web-dashboard.png",
+        action: {
+            type: "dhisRedirect",
+            value: "/dhis-web-dashboard/index.html#/SPc31vIlfwc",
         },
     },
     {
