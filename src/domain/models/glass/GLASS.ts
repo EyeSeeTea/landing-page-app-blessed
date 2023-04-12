@@ -50,7 +50,7 @@ export const glassAdminData = [
         icon: "img/dhis-web-dashboard.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-dashboard/index.html#/SPc31vIlfwc",
+            value: "/dhis-web-dashboard/index.html#/SPc31vI1fwc",
         },
     },
     {
