@@ -6,7 +6,7 @@ export const glassAdminData = [
         key: "glass-app",
         title: i18n.t("Submit country data"),
         description: i18n.t("Access, upload and download files on behalf of a country"),
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/glass.png",
         action: {
             type: "dhisRedirect",
@@ -19,7 +19,7 @@ export const glassAdminData = [
         description: i18n.t(
             "Approve/reject data submissions, accept/deny data modification requests and monitor the status global data submissions"
         ),
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/dhis-web-reports.png",
         action: {
             type: "method",
@@ -35,7 +35,7 @@ export const glassAdminData = [
         key: "reports-menu",
         title: i18n.t("View GLASS submitted data"),
         description: i18n.t("View what countries have submitted data"),
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/dhis-web-dashboard.png",
         action: {
             type: "dhisRedirect",
@@ -46,7 +46,7 @@ export const glassAdminData = [
         key: "validation-report",
         title: i18n.t("Validate GLASS unapproved data"),
         description: i18n.t("View and validate GLASS unapproved data"),
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/dhis-web-dashboard.png",
         action: {
             type: "dhisRedirect",
@@ -57,7 +57,7 @@ export const glassAdminData = [
         key: "capture-link",
         title: i18n.t("Country Enrolment"),
         description: "View and edit the country enrolment",
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/dhis-web-capture.png",
         action: {
             type: "dhisRedirect",
@@ -68,7 +68,7 @@ export const glassAdminData = [
         key: "bulk-load",
         title: i18n.t("Bulk Load"),
         description: i18n.t("Extract and upload historical data from the database in batch by country and by year"),
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/bl.png",
         action: {
             type: "dhisRedirect",
@@ -79,7 +79,7 @@ export const glassAdminData = [
         key: "user-extended-link",
         title: i18n.t("User Management"),
         description: i18n.t("List, edit or create users in the GLASS platform"),
-        rowLength: 3,
+        rowLength: 2,
         icon: "img/user-extended.png",
         action: {
             type: "dhisRedirect",
@@ -90,7 +90,7 @@ export const glassAdminData = [
         key: "messaging-link",
         title: i18n.t("Messaging"),
         description: i18n.t("Send internal messages to other users in the GLASS Platform"),
-        rowLength: 1,
+        rowLength: 2,
         icon: "img/dhis-web-messaging.png",
         action: {
             type: "dhisRedirect",
