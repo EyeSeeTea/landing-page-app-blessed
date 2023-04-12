@@ -6,12 +6,23 @@ import { NotificationsRepository } from "../../domain/repositories/Notifications
 import { DataStoreStorageClient } from "../clients/storage/DataStoreStorageClient";
 import { Namespaces } from "../clients/storage/Namespaces";
 import { StorageClient } from "../clients/storage/StorageClient";
+import { D2Api, Id } from "../../types/d2-api";
+import { getD2APiFromInstance } from "../../utils/d2-api";
+
+interface MessageConversations {
+    messageConversations: {
+        id: Id;
+        displayName: string;
+    }[];
+}
 
 export class NotificationsD2ApiRepository implements NotificationsRepository {
     private storageClient: StorageClient;
+    private api: D2Api;
 
     constructor(instance: Instance, private instanceRepository: InstanceRepository) {
         this.storageClient = new DataStoreStorageClient("global", instance);
+        this.api = getD2APiFromInstance(instance);
     }
 
     public async list(): Promise<AppNotification[]> {
@@ -44,6 +55,15 @@ export class NotificationsD2ApiRepository implements NotificationsRepository {
             console.error(error);
             return [];
         }
+    }
+
+    public async dhis2MessageCount(): Promise<number> {
+        const { messageConversations } =
+            (await this.api
+                .get<MessageConversations>("/messageConversations.json?filter=read%3Aeq%3Afalse")
+                .getData()) ?? [];
+
+        return messageConversations.length;
     }
 
     public async save(notifications: AppNotification[]): Promise<void> {
