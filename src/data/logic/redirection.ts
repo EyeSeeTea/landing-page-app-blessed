@@ -310,7 +310,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
     );
     const username = user.name;
 
-    if (configurations.length > 0 || isMALRegionalUser) {
+    if (configurations.length > 0 || isMALRegionalUser || isGLASSCountryUser) {
         return {
             username,
             userGroupIds,
