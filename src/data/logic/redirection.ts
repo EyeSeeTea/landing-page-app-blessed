@@ -27,6 +27,7 @@ import internationalHeader from "../../webapp/components/headers/international-h
 import glassHeader from "../../webapp/components/headers/glass-hq";
 import { Config } from "../../domain/entities/Config";
 import { glassAdminData, glassRegionalData } from "../../domain/models/glass/GLASS";
+import { DashboardIds } from "../../domain/entities/GLASSDashboard";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -97,10 +98,15 @@ export interface Configuration {
     icon: string;
 }
 
-export const buildAvailableConfigurations = (version: number, userGroupIds: string[]): Configuration[] => {
+export const buildAvailableConfigurations = (
+    version: number,
+    userGroupIds: string[],
+    dashboards: DashboardIds
+): Configuration[] => {
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isAdminUserGroup = shouldRedirect(userGroupIds, [WIDP_IT_TEAM]);
+    const { validationReport, reportsMenu } = dashboards;
 
     return [
         {
@@ -229,7 +235,7 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
             userGroupIds: [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EAR_ADMIN, AMR_EGASP_ADMIN, AMR_TRICYCLE_ADMIN],
             page: GLASSLandingPage,
             header: glassHeader,
-            data: glassAdminData,
+            data: glassAdminData(reportsMenu, validationReport),
             icon: "img/glass.png",
         },
         {
@@ -245,7 +251,7 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
             ],
             page: GLASSLandingPage,
             header: glassHeader,
-            data: glassRegionalData,
+            data: glassRegionalData(reportsMenu, validationReport),
             icon: "img/glass.png",
         },
     ];
@@ -254,7 +260,13 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
-export const handleRedirection = async (baseUrl: string, version: number, user: User, config: Config) => {
+export const handleRedirection = async (
+    baseUrl: string,
+    version: number,
+    user: User,
+    config: Config,
+    dashboards: DashboardIds
+) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
     const orgUnitLevels = user.orgUnits.map(({ level }) => level);
 
@@ -304,7 +316,7 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
             AMR_TRICYCLE_ADMIN,
         ]) && orgUnitLevels.some(level => level === 2);
 
-    const availableConfiguration = buildAvailableConfigurations(version, userGroupIds);
+    const availableConfiguration = buildAvailableConfigurations(version, userGroupIds, dashboards);
     const configurations = availableConfiguration.filter(
         config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
     );
