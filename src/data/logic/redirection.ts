@@ -322,7 +322,7 @@ export const handleRedirection = async (
     );
     const username = user.name;
 
-    if (configurations.length > 0 || isMALRegionalUser) {
+    if (configurations.length > 0 || isMALRegionalUser || isGLASSCountryUser) {
         return {
             username,
             userGroupIds,
