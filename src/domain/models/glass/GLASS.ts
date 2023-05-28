@@ -15,7 +15,7 @@ export const glassAdminData = (reportsMenuDashboard: string, validationReportDas
     },
     {
         key: "glass-reports-link",
-        title: i18n.t("GLASS Reports"),
+        title: i18n.t("Approve/reject country data"),
         description: i18n.t(
             "Approve/reject data submissions, accept/deny data modification requests and monitor the status global data submissions"
         ),
@@ -33,7 +33,7 @@ export const glassAdminData = (reportsMenuDashboard: string, validationReportDas
     },
     {
         key: "reports-menu",
-        title: i18n.t("View GLASS submitted data"),
+        title: i18n.t("Countries approved data"),
         description: i18n.t("View what countries have submitted data"),
         rowLength: 2,
         icon: "img/dhis-web-dashboard.png",
@@ -102,5 +102,5 @@ export const glassAdminData = (reportsMenuDashboard: string, validationReportDas
 export const glassRegionalData = (reportsMenuDashboard: string, validationReportDashboard: string) =>
     _.filter(
         glassAdminData(reportsMenuDashboard, validationReportDashboard),
-        ({ key }) => !["capture-link", "messaging-link", "user-extended-link"].includes(key)
+        ({ key }) => !["messaging-link", "user-extended-link"].includes(key)
     );
