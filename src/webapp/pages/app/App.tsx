@@ -41,7 +41,10 @@ const App = ({ api }: { api: D2Api }) => {
                 const config = await compositionRoot.usecases.config.get();
                 const glassModule =
                     (await api.dataStore(glassNamespace).get<any[]>(Namespaces.MODULES).getData()) ?? [];
-                const glassDashboardIds = glassModule.find(module => module.name === "AMR")?.dashboards;
+                const glassDashboardIds = glassModule.find(module => module.name === "AMR")?.dashboards ?? {
+                    reportsMenu: "",
+                    validationReport: "",
+                };
 
                 const apiVersion = getMajorVersion(version);
                 const options = await handleRedirection(baseUrl, apiVersion, user, config, glassDashboardIds);
@@ -51,8 +54,9 @@ const App = ({ api }: { api: D2Api }) => {
                         const glassAppPath = "/api/apps/glass/index.html#/";
                         goToExternalUrl(baseUrl + glassAppPath);
                     }
-                    if (options.redirectToGLASSHq) window.location.hash = "/glass-hq";
-                    if (options.redirectToGLASSRegional) window.location.hash = "/glass-regional";
+                    if (options.redirectToAMRAMRHq) window.location.hash = "/amr-amr-hq";
+                    if (options.redirectToAMRAMRRegional) window.location.hash = "/amr-amr-regional";
+                    if (options.showAvailableLandingPages) window.location.hash = "/";
                     if (options.redirectToMalaria) {
                         const homePageAppPath = "/api/apps/Homepage-App/index.html#/";
                         goToExternalUrl(baseUrl + homePageAppPath);

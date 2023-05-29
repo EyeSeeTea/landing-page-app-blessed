@@ -66,7 +66,8 @@ export interface RouterProps {
     configurations: Configuration[];
     redirectToNHWAAdmin: boolean;
     redirectToGLASS: boolean;
-    redirectToGLASSHq: boolean;
-    redirectToGLASSRegional: boolean;
+    redirectToAMRAMRHq: boolean;
+    redirectToAMRAMRRegional: boolean;
+    showAvailableLandingPages: boolean;
     redirectToMalaria: boolean;
 }
