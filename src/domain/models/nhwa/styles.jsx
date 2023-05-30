@@ -29,6 +29,10 @@ export const styles = theme => ({
         },
         cursor: "pointer",
     },
+    notification: {
+        fontSize: "17px",
+        fontWeight: "bold",
+    },
     separator: {
         textAlign: "left",
         margin: 5,
