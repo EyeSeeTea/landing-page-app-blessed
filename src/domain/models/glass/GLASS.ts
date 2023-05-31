@@ -1,7 +1,7 @@
 import _ from "lodash";
 import i18n from "../../../locales";
 
-export const glassAdminData = [
+export const glassAdminData = (reportsMenuDashboard: string, validationReportDashboard: string) => [
     {
         key: "glass-app",
         title: i18n.t("Submit country data"),
@@ -15,7 +15,7 @@ export const glassAdminData = [
     },
     {
         key: "glass-reports-link",
-        title: i18n.t("GLASS Reports"),
+        title: i18n.t("Approve/reject country data"),
         description: i18n.t(
             "Approve/reject data submissions, accept/deny data modification requests and monitor the status global data submissions"
         ),
@@ -33,13 +33,13 @@ export const glassAdminData = [
     },
     {
         key: "reports-menu",
-        title: i18n.t("View GLASS submitted data"),
+        title: i18n.t("Countries approved data"),
         description: i18n.t("View what countries have submitted data"),
         rowLength: 2,
         icon: "img/dhis-web-dashboard.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-dashboard/index.html#/w7Kub3oACD9",
+            value: `/dhis-web-dashboard/index.html#/${reportsMenuDashboard}`,
         },
     },
     {
@@ -50,7 +50,7 @@ export const glassAdminData = [
         icon: "img/dhis-web-dashboard.png",
         action: {
             type: "dhisRedirect",
-            value: "/dhis-web-dashboard/index.html#/SPc31vI1fwc",
+            value: `/dhis-web-dashboard/index.html#/${validationReportDashboard}`,
         },
     },
     {
@@ -99,7 +99,8 @@ export const glassAdminData = [
     },
 ];
 
-export const glassRegionalData = _.filter(
-    glassAdminData,
-    ({ key }) => !["capture-link", "messaging-link", "user-extended-link"].includes(key)
-);
+export const glassRegionalData = (reportsMenuDashboard: string, validationReportDashboard: string) =>
+    _.filter(
+        glassAdminData(reportsMenuDashboard, validationReportDashboard),
+        ({ key }) => !["messaging-link", "user-extended-link"].includes(key)
+    );

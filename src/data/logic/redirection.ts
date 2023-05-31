@@ -27,6 +27,7 @@ import internationalHeader from "../../webapp/components/headers/international-h
 import glassHeader from "../../webapp/components/headers/glass-hq";
 import { Config } from "../../domain/entities/Config";
 import { glassAdminData, glassRegionalData } from "../../domain/models/glass/GLASS";
+import { DashboardIds } from "../../domain/entities/GLASSDashboard";
 
 //TODO: Ask if we need a simple snakebite data or not
 const HEP_CASCADE_CURE_DATA_ENTRY = "OSHcVu6XSUL";
@@ -65,26 +66,10 @@ export const MAL_WPRO = "MXacwnPoBJA";
 
 export const MAL_EMRO = "FpQ7a5OylZH";
 
-const AMR_AMC_ADMIN = "sVbZXz6W0oQ";
 const AMR_AMR_ADMIN = "oQFamWE16A1";
-const AMR_EAR_ADMIN = "dFKVRdjuw6M";
-const AMR_EGASP_ADMIN = "txu7PyLyeld";
-const AMR_TRICYCLE_ADMIN = "HzJNcf5HGqQ";
-
-const AMR_AMC_USER_MANAGEMENT = "gImdwsYXCge";
 const AMR_AMR_USER_MANAGEMENT = "QZPCnL0mtWV";
-const AMR_EAR_USER_MANAGEMENT = "CaP6VJ0VWlF";
-const AMR_EGASP_USER_MANAGEMENT = "Xy6CQHs4LwT";
-const AMR_TRICYCLE_USER_MANAGEMENT = "aSD6fSkhsRI";
-
-export const AMR_AMC_DATA_CAPTURE = "XWwZ5a4ewX4";
 export const AMR_AMR_DATA_CAPTURE = "CCRMy5e6ONV";
-
-export const AMR_AMC_VISUALIZER = "QJirtndlPAI";
 export const AMR_AMR_VISUALIZER = "eyW7ie6NEuW";
-
-export const AMR_EGASP_DATA_CAPTURE = "j1BTDP7JUJp";
-export const AMR_EGASP_VISUALIZER = "M2jd9QXVWou";
 
 export interface Configuration {
     programme: string;
@@ -97,10 +82,15 @@ export interface Configuration {
     icon: string;
 }
 
-export const buildAvailableConfigurations = (version: number, userGroupIds: string[]): Configuration[] => {
+export const buildAvailableConfigurations = (
+    version: number,
+    userGroupIds: string[],
+    dashboards: DashboardIds
+): Configuration[] => {
     const isNHWADataManager = shouldRedirect(userGroupIds, [NHWA_DATA_MANAGERS]);
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isAdminUserGroup = shouldRedirect(userGroupIds, [WIDP_IT_TEAM]);
+    const { validationReport, reportsMenu } = dashboards;
 
     return [
         {
@@ -223,29 +213,23 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
             icon: "img/east-mal-repo.png",
         },
         {
-            programme: "glass-hq",
-            title: i18n.t("GLASS HQ Landing Page"),
-            description: i18n.t("Landing page for GLASS admin"),
-            userGroupIds: [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EAR_ADMIN, AMR_EGASP_ADMIN, AMR_TRICYCLE_ADMIN],
+            programme: "amr-amr-hq",
+            title: i18n.t("AMR-AMR HQ Landing Page"),
+            description: i18n.t("Anti-Microbial Resistance Aggregate Data admin landing page"),
+            userGroupIds: [AMR_AMR_ADMIN],
             page: GLASSLandingPage,
             header: glassHeader,
-            data: glassAdminData,
+            data: glassAdminData(reportsMenu, validationReport),
             icon: "img/glass.png",
         },
         {
-            programme: "glass-regional",
-            title: i18n.t("GLASS Regional Landing Page"),
-            description: i18n.t("Landing page for GLASS regional users"),
-            userGroupIds: [
-                AMR_AMC_USER_MANAGEMENT,
-                AMR_AMR_USER_MANAGEMENT,
-                AMR_EAR_USER_MANAGEMENT,
-                AMR_EGASP_USER_MANAGEMENT,
-                AMR_TRICYCLE_USER_MANAGEMENT,
-            ],
+            programme: "amr-amr-regional",
+            title: i18n.t("AMR-AMR Regional Landing Page"),
+            description: i18n.t("Anti-Microbial Resistance Aggregate Data regional landing page"),
+            userGroupIds: [AMR_AMR_USER_MANAGEMENT],
             page: GLASSLandingPage,
             header: glassHeader,
-            data: glassRegionalData,
+            data: glassRegionalData(reportsMenu, validationReport),
             icon: "img/glass.png",
         },
     ];
@@ -254,7 +238,13 @@ export const buildAvailableConfigurations = (version: number, userGroupIds: stri
 const shouldRedirect = (actualIds: string[], expectedIds: string[]): boolean =>
     _.intersection(actualIds, expectedIds).length > 0;
 
-export const handleRedirection = async (baseUrl: string, version: number, user: User, config: Config) => {
+export const handleRedirection = async (
+    baseUrl: string,
+    version: number,
+    user: User,
+    config: Config,
+    dashboards: DashboardIds
+) => {
     const userGroupIds = user.userGroups.map(userGroup => userGroup.id);
     const orgUnitLevels = user.orgUnits.map(({ level }) => level);
 
@@ -271,15 +261,8 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
         MAL_EMRO,
     ]);
 
-    const isGLASSCountryUser = shouldRedirect(userGroupIds, [
-        AMR_AMC_DATA_CAPTURE,
-        AMR_AMC_VISUALIZER,
-        AMR_AMR_DATA_CAPTURE,
-        AMR_AMR_VISUALIZER,
-        AMR_EGASP_DATA_CAPTURE,
-        AMR_EGASP_VISUALIZER,
-    ]);
-    const isGLASSAdmin = shouldRedirect(userGroupIds, [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EGASP_ADMIN]);
+    const isGLASSCountryUser = shouldRedirect(userGroupIds, [AMR_AMR_DATA_CAPTURE, AMR_AMR_VISUALIZER]);
+    const isGLASSAdmin = shouldRedirect(userGroupIds, [AMR_AMR_ADMIN]);
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
 
@@ -287,38 +270,34 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
 
     const redirectToGLASS = !isGLASSAdmin && isGLASSCountryUser;
 
-    const redirectToGLASSHq = shouldRedirect(userGroupIds, [
-        AMR_AMC_ADMIN,
+    const redirectToAMRAMRHq = shouldRedirect(userGroupIds, [AMR_AMR_ADMIN]);
+
+    const redirectToAMRAMRRegional =
+        shouldRedirect(userGroupIds, [AMR_AMR_ADMIN]) && orgUnitLevels.some(level => level === 2);
+
+    const showAvailableLandingPages = shouldRedirect(userGroupIds, [
         AMR_AMR_ADMIN,
-        AMR_EAR_ADMIN,
-        AMR_EGASP_ADMIN,
-        AMR_TRICYCLE_ADMIN,
+        AMR_AMR_DATA_CAPTURE,
+        AMR_AMR_USER_MANAGEMENT,
+        AMR_AMR_VISUALIZER,
     ]);
 
-    const redirectToGLASSRegional =
-        shouldRedirect(userGroupIds, [
-            AMR_AMC_ADMIN,
-            AMR_AMR_ADMIN,
-            AMR_EAR_ADMIN,
-            AMR_EGASP_ADMIN,
-            AMR_TRICYCLE_ADMIN,
-        ]) && orgUnitLevels.some(level => level === 2);
-
-    const availableConfiguration = buildAvailableConfigurations(version, userGroupIds);
+    const availableConfiguration = buildAvailableConfigurations(version, userGroupIds, dashboards);
     const configurations = availableConfiguration.filter(
         config => isAdminUserGroup || shouldRedirect(userGroupIds, config.userGroupIds)
     );
     const username = user.name;
 
-    if (configurations.length > 0 || isMALRegionalUser) {
+    if (configurations.length > 0 || isMALRegionalUser || isGLASSCountryUser) {
         return {
             username,
             userGroupIds,
             configurations,
             redirectToNHWAAdmin,
             redirectToGLASS,
-            redirectToGLASSHq,
-            redirectToGLASSRegional,
+            redirectToAMRAMRHq,
+            redirectToAMRAMRRegional,
+            showAvailableLandingPages,
             redirectToMalaria,
         };
     } else {
@@ -335,8 +314,9 @@ export const handleRedirection = async (baseUrl: string, version: number, user: 
                 configurations: [fallbackConfig],
                 redirectToNHWAAdmin,
                 redirectToGLASS,
-                redirectToGLASSHq,
-                redirectToGLASSRegional,
+                redirectToAMRAMRHq,
+                redirectToAMRAMRRegional,
+                showAvailableLandingPages,
                 redirectToMalaria,
             };
         } else {

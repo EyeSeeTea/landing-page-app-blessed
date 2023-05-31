@@ -20,6 +20,7 @@ import "./App.css";
 import { Router, RouterProps } from "./Router";
 import muiThemeLegacy from "./themes/dhis2-legacy.theme";
 import { muiTheme } from "./themes/dhis2.theme";
+import { Namespaces, glassNamespace } from "../../../data/clients/storage/Namespaces";
 
 const App = ({ api }: { api: D2Api }) => {
     const { baseUrl } = useConfig();
@@ -38,16 +39,24 @@ const App = ({ api }: { api: D2Api }) => {
                 const user = await compositionRoot.usecases.instance.getCurrentUser();
                 const version = await compositionRoot.usecases.instance.getVersion();
                 const config = await compositionRoot.usecases.config.get();
+                const glassModule =
+                    (await api.dataStore(glassNamespace).get<any[]>(Namespaces.MODULES).getData()) ?? [];
+                const glassDashboardIds = glassModule.find(module => module.name === "AMR")?.dashboards ?? {
+                    reportsMenu: "",
+                    validationReport: "",
+                };
+
                 const apiVersion = getMajorVersion(version);
-                const options = await handleRedirection(baseUrl, apiVersion, user, config);
+                const options = await handleRedirection(baseUrl, apiVersion, user, config, glassDashboardIds);
                 if (options) {
                     if (options.redirectToNHWAAdmin) window.location.hash = "/nhwa-admins";
                     if (options.redirectToGLASS) {
                         const glassAppPath = "/api/apps/glass/index.html#/";
                         goToExternalUrl(baseUrl + glassAppPath);
                     }
-                    if (options.redirectToGLASSHq) window.location.hash = "/glass-hq";
-                    if (options.redirectToGLASSRegional) window.location.hash = "/glass-regional";
+                    if (options.redirectToAMRAMRHq) window.location.hash = "/amr-amr-hq";
+                    if (options.redirectToAMRAMRRegional) window.location.hash = "/amr-amr-regional";
+                    if (options.showAvailableLandingPages) window.location.hash = "/";
                     if (options.redirectToMalaria) {
                         const homePageAppPath = "/api/apps/Homepage-App/index.html#/";
                         goToExternalUrl(baseUrl + homePageAppPath);
