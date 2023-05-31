@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2023-04-06T04:15:14.806Z\n"
+"POT-Creation-Date: 2023-04-12T17:30:42.458Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -190,28 +190,10 @@ msgid ""
 "elimination settings."
 msgstr ""
 
-#, fuzzy
-msgid "GLASS Dashboard"
-msgstr "Instrumententafel"
-
-msgid "View what countries have submitted data"
-msgstr ""
-
-msgid ""
-"Extract and upload historical data from the database in batch by country and "
-"by year"
-msgstr ""
-
-msgid "GLASS App"
+msgid "Submit country data"
 msgstr ""
 
 msgid "Access, upload and download files on behalf of a country"
-msgstr ""
-
-msgid "Messaging"
-msgstr ""
-
-msgid "Send internal messages to other users in the GLASS Platform"
 msgstr ""
 
 msgid "GLASS Reports"
@@ -222,13 +204,36 @@ msgid ""
 "monitor the status global data submissions"
 msgstr ""
 
-msgid "Capture"
+msgid "View GLASS submitted data"
 msgstr ""
 
-msgid "User Extended"
+msgid "View what countries have submitted data"
+msgstr ""
+
+msgid "Validate GLASS unapproved data"
+msgstr ""
+
+msgid "View and validate GLASS unapproved data"
+msgstr ""
+
+msgid "Country Enrolment"
+msgstr ""
+
+msgid ""
+"Extract and upload historical data from the database in batch by country and "
+"by year"
+msgstr ""
+
+msgid "User Management"
 msgstr ""
 
 msgid "List, edit or create users in the GLASS platform"
+msgstr ""
+
+msgid "Messaging"
+msgstr ""
+
+msgid "Send internal messages to other users in the GLASS Platform"
 msgstr ""
 
 msgid "Data"
@@ -365,6 +370,9 @@ msgid "Approval"
 msgstr ""
 
 msgid "Enables the users to approves the data submitted in the system"
+msgstr ""
+
+msgid "User Extended"
 msgstr ""
 
 msgid "List, edit or create users in the NHWA platform"
@@ -517,3 +525,7 @@ msgstr ""
 
 msgid "Read by"
 msgstr ""
+
+#, fuzzy
+#~ msgid "GLASS Dashboard"
+#~ msgstr "Instrumententafel"
