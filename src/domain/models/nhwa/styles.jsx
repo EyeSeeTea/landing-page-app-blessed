@@ -32,6 +32,7 @@ export const styles = theme => ({
     notification: {
         fontSize: "17px",
         fontWeight: "bold",
+        color: "#DC143C",
     },
     separator: {
         textAlign: "left",
