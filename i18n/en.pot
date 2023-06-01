@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-04-12T17:30:42.458Z\n"
-"PO-Revision-Date: 2023-04-12T17:30:42.458Z\n"
+"POT-Creation-Date: 2023-05-31T11:25:49.628Z\n"
+"PO-Revision-Date: 2023-05-31T11:25:49.628Z\n"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -59,16 +59,16 @@ msgstr ""
 msgid "Eastern Mediterranean regional malaria repository"
 msgstr ""
 
-msgid "GLASS HQ Landing Page"
+msgid "AMR-AMR HQ Landing Page"
 msgstr ""
 
-msgid "Landing page for GLASS admin"
+msgid "Anti-Microbial Resistance Aggregate Data admin landing page"
 msgstr ""
 
-msgid "GLASS Regional Landing Page"
+msgid "AMR-AMR Regional Landing Page"
 msgstr ""
 
-msgid "Landing page for GLASS regional users"
+msgid "Anti-Microbial Resistance Aggregate Data regional landing page"
 msgstr ""
 
 msgid "Available landing pages"
@@ -193,7 +193,7 @@ msgstr ""
 msgid "Access, upload and download files on behalf of a country"
 msgstr ""
 
-msgid "GLASS Reports"
+msgid "Approve/reject country data"
 msgstr ""
 
 msgid ""
@@ -201,7 +201,7 @@ msgid ""
 "monitor the status global data submissions"
 msgstr ""
 
-msgid "View GLASS submitted data"
+msgid "Countries approved data"
 msgstr ""
 
 msgid "View what countries have submitted data"

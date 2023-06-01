@@ -41,6 +41,7 @@ export const nhwaAdminData = (_version: number) => [
     {
         key: "nhwa-data-entry-title",
         title: i18n.t("NHWA data entry"),
+        notification: "The Module 1 of NHWA v2 has been integrated into the data platform",
         description: i18n.t(
             "Data entry into the system can be done (i) directly through the system interface or (ii) as batch upload through excel sheets."
         ),
