@@ -8,7 +8,6 @@ const NHWANotification = () => {
             <u>
                 <i>Please note to download the new templates for Batch upload option</i>
             </u>
-            . All the historic data has been mapped for M01, M02; remaining modules to follow.
         </>
     );
 };
