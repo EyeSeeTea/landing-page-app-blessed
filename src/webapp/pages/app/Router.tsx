@@ -69,5 +69,5 @@ export interface RouterProps {
     redirectToAMRAMRHq: boolean;
     redirectToAMRAMRRegional: boolean;
     showAvailableLandingPages: boolean;
-    redirectToMalaria: boolean;
+    redirectToHomePage: boolean;
 }

@@ -66,6 +66,11 @@ export const MAL_WPRO = "MXacwnPoBJA";
 
 export const MAL_EMRO = "FpQ7a5OylZH";
 
+const AMR_AMC = ["Ph7PPRKnFRG", "sVbZXz6W0oQ", "XWwZ5a4ewX4", "QJirtndlPAI", "gImdwsYXCge"];
+const AMR_AMR_Candida = ["bYfcMN2Mi9g", "yvf67QNjPtQ]", "gyYNOForkCz", "wj6b5tYY8YP", "Jp9nRBt355l"];
+const AMR_EGASP = ["WNq9l21GiEv", "txu7PyLyeld", "j1BTDP7JUJp", "M2jd9QXVWou", "Xy6CQHs4LwT"];
+const AMR_Individual = ["lZpP2B5bqyj", "JTS46zAZPvh", "eqlVCJoHZQY", "ZOtcnoqsqvD", "jj1nhhQ7uTG"];
+
 const AMR_AMR_ADMIN = "oQFamWE16A1";
 const AMR_AMR_USER_MANAGEMENT = "QZPCnL0mtWV";
 export const AMR_AMR_DATA_CAPTURE = "CCRMy5e6ONV";
@@ -260,13 +265,19 @@ export const handleRedirection = async (
         MAL_WPRO,
         MAL_EMRO,
     ]);
-
+    const isAMRUser = shouldRedirect(userGroupIds, _.union(AMR_AMC, AMR_AMR_Candida, AMR_EGASP, AMR_Individual));
+    const isAMRAMRUser = shouldRedirect(userGroupIds, [
+        AMR_AMR_ADMIN,
+        AMR_AMR_DATA_CAPTURE,
+        AMR_AMR_USER_MANAGEMENT,
+        AMR_AMR_VISUALIZER,
+    ]);
     const isGLASSCountryUser = shouldRedirect(userGroupIds, [AMR_AMR_DATA_CAPTURE, AMR_AMR_VISUALIZER]);
     const isGLASSAdmin = shouldRedirect(userGroupIds, [AMR_AMR_ADMIN]);
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
 
-    const redirectToMalaria = isMALRegionalUser;
+    const redirectToHomePage = isMALRegionalUser || (isAMRAMRUser && !isAMRUser);
 
     const redirectToGLASS = !isGLASSAdmin && isGLASSCountryUser;
 
@@ -275,12 +286,9 @@ export const handleRedirection = async (
     const redirectToAMRAMRRegional =
         shouldRedirect(userGroupIds, [AMR_AMR_ADMIN]) && orgUnitLevels.some(level => level === 2);
 
-    const showAvailableLandingPages = shouldRedirect(userGroupIds, [
-        AMR_AMR_ADMIN,
-        AMR_AMR_DATA_CAPTURE,
-        AMR_AMR_USER_MANAGEMENT,
-        AMR_AMR_VISUALIZER,
-    ]);
+    const showAvailableLandingPages = isAMRAMRUser;
+
+    console.log({ isAMRUser, showAvailableLandingPages });
 
     const availableConfiguration = buildAvailableConfigurations(version, userGroupIds, dashboards);
     const configurations = availableConfiguration.filter(
@@ -298,7 +306,7 @@ export const handleRedirection = async (
             redirectToAMRAMRHq,
             redirectToAMRAMRRegional,
             showAvailableLandingPages,
-            redirectToMalaria,
+            redirectToHomePage,
         };
     } else {
         const { defaultProgramme, fallbackUrl } = config;
@@ -317,7 +325,7 @@ export const handleRedirection = async (
                 redirectToAMRAMRHq,
                 redirectToAMRAMRRegional,
                 showAvailableLandingPages,
-                redirectToMalaria,
+                redirectToHomePage,
             };
         } else {
             goToDhis2Url(baseUrl, fallbackUrl);
