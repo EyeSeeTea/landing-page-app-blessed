@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2023-05-31T11:25:49.628Z\n"
+"POT-Creation-Date: 2023-10-23T21:43:40.716Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,6 +71,30 @@ msgstr ""
 msgid "Anti-Microbial Resistance Aggregate Data regional landing page"
 msgstr ""
 
+msgid "AMR-AMC Landing Page"
+msgstr ""
+
+msgid "Anti-Microbial Resistance AMC landing page"
+msgstr ""
+
+msgid "AMR-Candida (Funghi) Landing Page"
+msgstr ""
+
+msgid "Anti-Microbial Resistance Candida (Funghi) landing page"
+msgstr ""
+
+msgid "AMR-EGASP Landing Page"
+msgstr ""
+
+msgid "Anti-Microbial Resistance EGASP landing page"
+msgstr ""
+
+msgid "AMR-Individual Landing Page"
+msgstr ""
+
+msgid "Anti-Microbial Resistance Individual landing page"
+msgstr ""
+
 msgid "Available landing pages"
 msgstr ""
 
@@ -96,6 +120,10 @@ msgstr ""
 
 msgid "Manage notifications"
 msgstr ""
+
+#, fuzzy
+msgid "Go to Home Page App"
+msgstr "Gehen Sie zurück zur Startseite"
 
 msgid ""
 "Malaria endemic countries in the region are invited to upload a subset of "
