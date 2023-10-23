@@ -8,6 +8,7 @@ import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishK
 import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
 import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
 import { internationalData, internationalGroupIds } from "../../domain/models/international/International";
+import { amrData } from "../../domain/models/amr/AMR";
 import i18n from "../../locales";
 import { goToDhis2Url } from "../../utils/utils";
 import eastMalRepoHeader from "../../webapp/components/headers/east-mal-repo-header";
@@ -237,6 +238,46 @@ export const buildAvailableConfigurations = (
             data: glassRegionalData(reportsMenu, validationReport),
             icon: "img/glass.png",
         },
+        {
+            programme: "amr-amc",
+            title: i18n.t("AMR-AMC Landing Page"),
+            description: i18n.t("Anti-Microbial Resistance AMC landing page"),
+            userGroupIds: AMR_AMC,
+            page: GLASSLandingPage,
+            header: glassHeader,
+            data: amrData,
+            icon: "img/glass.png",
+        },
+        {
+            programme: "amr-candida",
+            title: i18n.t("AMR-Candida (Funghi) Landing Page"),
+            description: i18n.t("Anti-Microbial Resistance Candida (Funghi) landing page"),
+            userGroupIds: AMR_AMR_Candida,
+            page: GLASSLandingPage,
+            header: glassHeader,
+            data: amrData,
+            icon: "img/glass.png",
+        },
+        {
+            programme: "amr-egasp",
+            title: i18n.t("AMR-EGASP Landing Page"),
+            description: i18n.t("Anti-Microbial Resistance EGASP landing page"),
+            userGroupIds: AMR_EGASP,
+            page: GLASSLandingPage,
+            header: glassHeader,
+            data: amrData,
+            icon: "img/glass.png",
+        },
+        {
+            programme: "amr-individual",
+            title: i18n.t("AMR-Individual Landing Page"),
+            description: i18n.t("Anti-Microbial Resistance Individual landing page"),
+            userGroupIds: AMR_Individual,
+            page: GLASSLandingPage,
+            header: glassHeader,
+            data: amrData,
+            icon: "img/glass.png",
+        },
     ];
 };
 
@@ -287,8 +328,6 @@ export const handleRedirection = async (
         shouldRedirect(userGroupIds, [AMR_AMR_ADMIN]) && orgUnitLevels.some(level => level === 2);
 
     const showAvailableLandingPages = isAMRAMRUser;
-
-    console.log({ isAMRUser, showAvailableLandingPages });
 
     const availableConfiguration = buildAvailableConfigurations(version, userGroupIds, dashboards);
     const configurations = availableConfiguration.filter(
