@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2023-10-23T21:43:40.716Z\n"
+"POT-Creation-Date: 2023-12-06T12:17:03.705Z\n"
 "PO-Revision-Date: 2019-08-07T14:26:49.235Z\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -118,10 +118,6 @@ msgstr "Permite que os usuários editem credenciais da conta e perfil público"
 
 msgid "Manage notifications"
 msgstr ""
-
-#, fuzzy
-msgid "Go to Home Page App"
-msgstr "Voltar à página inicial"
 
 msgid ""
 "Malaria endemic countries in the region are invited to upload a subset of "
@@ -547,6 +543,10 @@ msgstr ""
 
 msgid "Read by"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Go to Home Page App"
+#~ msgstr "Voltar à página inicial"
 
 #, fuzzy
 #~ msgid "GLASS Dashboard"

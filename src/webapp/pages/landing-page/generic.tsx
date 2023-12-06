@@ -32,7 +32,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ classes, history, baseUrl, it
             action,
             enableBottomLine,
             rowLength,
-            buttonText,
             size = "large",
         }: any) => (
             <Grid
@@ -52,7 +51,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ classes, history, baseUrl, it
                     </Typography>
                 )}
                 {enableBottomLine && !action && <hr className={classes.bottomLine} />}
-                {buttonText && <button className={classes.button}>{buttonText}</button>}
                 {notification && <p className={classes.notification}>&#10071; {notification}</p>}
                 {icon && (
                     <div className={classes.iconContainer}>
