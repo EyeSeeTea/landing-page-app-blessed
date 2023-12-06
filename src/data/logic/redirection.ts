@@ -8,7 +8,6 @@ import { ntdLeishKenyaData } from "../../domain/models/ntd_leish_kenya/NTDLeishK
 import { rabiesData, simpleRabiesData } from "../../domain/models/rabies/Rabies";
 import { snakebiteData } from "../../domain/models/snakebite/Snakebite";
 import { internationalData, internationalGroupIds } from "../../domain/models/international/International";
-import { amrData } from "../../domain/models/amr/AMR";
 import i18n from "../../locales";
 import { goToDhis2Url } from "../../utils/utils";
 import eastMalRepoHeader from "../../webapp/components/headers/east-mal-repo-header";
@@ -82,9 +81,10 @@ export interface Configuration {
     title: string;
     description: string;
     userGroupIds: string[];
-    page: any;
+    page?: any;
     header?: any;
     data?: any;
+    dhisRedirect?: string;
     icon: string;
 }
 
@@ -97,6 +97,8 @@ export const buildAvailableConfigurations = (
     const isNHWAGlobalTeam = shouldRedirect(userGroupIds, [NHWA_GLOBAL_TEAM]);
     const isAdminUserGroup = shouldRedirect(userGroupIds, [WIDP_IT_TEAM]);
     const { validationReport, reportsMenu } = dashboards;
+
+    const homePageAppPath = "/api/apps/Homepage-App/index.html#/";
 
     return [
         {
@@ -243,40 +245,32 @@ export const buildAvailableConfigurations = (
             title: i18n.t("AMR-AMC Landing Page"),
             description: i18n.t("Anti-Microbial Resistance AMC landing page"),
             userGroupIds: AMR_AMC,
-            page: GLASSLandingPage,
-            header: glassHeader,
-            data: amrData,
             icon: "img/glass.png",
+            dhisRedirect: homePageAppPath,
         },
         {
             programme: "amr-candida",
             title: i18n.t("AMR-Candida (Funghi) Landing Page"),
             description: i18n.t("Anti-Microbial Resistance Candida (Funghi) landing page"),
             userGroupIds: AMR_AMR_Candida,
-            page: GLASSLandingPage,
-            header: glassHeader,
-            data: amrData,
             icon: "img/glass.png",
+            dhisRedirect: homePageAppPath,
         },
         {
             programme: "amr-egasp",
             title: i18n.t("AMR-EGASP Landing Page"),
             description: i18n.t("Anti-Microbial Resistance EGASP landing page"),
             userGroupIds: AMR_EGASP,
-            page: GLASSLandingPage,
-            header: glassHeader,
-            data: amrData,
             icon: "img/glass.png",
+            dhisRedirect: homePageAppPath,
         },
         {
             programme: "amr-individual",
             title: i18n.t("AMR-Individual Landing Page"),
             description: i18n.t("Anti-Microbial Resistance Individual landing page"),
             userGroupIds: AMR_Individual,
-            page: GLASSLandingPage,
-            header: glassHeader,
-            data: amrData,
             icon: "img/glass.png",
+            dhisRedirect: homePageAppPath,
         },
     ];
 };
