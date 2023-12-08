@@ -66,15 +66,31 @@ export const MAL_WPRO = "MXacwnPoBJA";
 
 export const MAL_EMRO = "FpQ7a5OylZH";
 
-const AMR_AMC = ["Ph7PPRKnFRG", "sVbZXz6W0oQ", "XWwZ5a4ewX4", "QJirtndlPAI", "gImdwsYXCge"];
-const AMR_AMR_Candida = ["bYfcMN2Mi9g", "yvf67QNjPtQ]", "gyYNOForkCz", "wj6b5tYY8YP", "Jp9nRBt355l"];
-const AMR_EGASP = ["WNq9l21GiEv", "txu7PyLyeld", "j1BTDP7JUJp", "M2jd9QXVWou", "Xy6CQHs4LwT"];
-const AMR_Individual = ["lZpP2B5bqyj", "JTS46zAZPvh", "eqlVCJoHZQY", "ZOtcnoqsqvD", "jj1nhhQ7uTG"];
-
 const AMR_AMR_ADMIN = "oQFamWE16A1";
 const AMR_AMR_USER_MANAGEMENT = "QZPCnL0mtWV";
-export const AMR_AMR_DATA_CAPTURE = "CCRMy5e6ONV";
-export const AMR_AMR_VISUALIZER = "eyW7ie6NEuW";
+const AMR_AMR_DATA_CAPTURE = "CCRMy5e6ONV";
+const AMR_AMR_VISUALIZER = "eyW7ie6NEuW";
+
+const AMR_AMC_DATA_CAPTURE = "XWwZ5a4ewX4";
+const AMR_AMC_VISUALIZER = "QJirtndlPAI";
+const AMR_EGASP_DATA_CAPTURE = "j1BTDP7JUJp";
+const AMR_EGASP_VISUALIZER = "M2jd9QXVWou";
+
+const AMR_AMC_ADMIN = "sVbZXz6W0oQ";
+const AMR_EGASP_ADMIN = "txu7PyLyeld";
+
+const AMR_COUNTRY_GROUPS = [
+    AMR_AMC_DATA_CAPTURE,
+    AMR_AMC_VISUALIZER,
+    AMR_EGASP_DATA_CAPTURE,
+    AMR_EGASP_VISUALIZER,
+    AMR_AMR_DATA_CAPTURE,
+    AMR_AMR_VISUALIZER,
+];
+const AMR_AMC = [AMR_AMC_ADMIN, AMR_AMC_DATA_CAPTURE, AMR_AMC_VISUALIZER, "Ph7PPRKnFRG", "gImdwsYXCge"];
+const AMR_EGASP = [AMR_EGASP_ADMIN, AMR_EGASP_DATA_CAPTURE, AMR_EGASP_VISUALIZER, "WNq9l21GiEv", "Xy6CQHs4LwT"];
+const AMR_AMR_Candida = ["bYfcMN2Mi9g", "yvf67QNjPtQ]", "gyYNOForkCz", "wj6b5tYY8YP", "Jp9nRBt355l"];
+const AMR_Individual = ["lZpP2B5bqyj", "JTS46zAZPvh", "eqlVCJoHZQY", "ZOtcnoqsqvD", "jj1nhhQ7uTG"];
 
 export interface Configuration {
     programme: string;
@@ -307,8 +323,8 @@ export const handleRedirection = async (
         AMR_AMR_USER_MANAGEMENT,
         AMR_AMR_VISUALIZER,
     ]);
-    const isGLASSCountryUser = shouldRedirect(userGroupIds, [AMR_AMR_DATA_CAPTURE, AMR_AMR_VISUALIZER]);
-    const isGLASSAdmin = shouldRedirect(userGroupIds, [AMR_AMR_ADMIN]);
+    const isGLASSCountryUser = shouldRedirect(userGroupIds, AMR_COUNTRY_GROUPS);
+    const isGLASSAdmin = shouldRedirect(userGroupIds, [AMR_AMC_ADMIN, AMR_AMR_ADMIN, AMR_EGASP_ADMIN]);
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
 
