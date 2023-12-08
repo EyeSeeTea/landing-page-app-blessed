@@ -6,6 +6,7 @@ export const defaultData = (
         description: string;
         icon: string;
         userGroupIds: string[];
+        dhisRedirect?: string;
     }[]
 ) => [
     {
@@ -13,14 +14,14 @@ export const defaultData = (
         title: i18n.t("Available landing pages"),
         rowLength: 1,
     },
-    ...availableConfigurations.map(({ programme, description, icon }) => ({
+    ...availableConfigurations.map(({ programme, description, icon, dhisRedirect }) => ({
         key: programme,
         title: description,
         icon,
         rowLength: 3,
         action: {
-            type: "page",
-            value: `/${programme}`,
+            type: dhisRedirect ? "dhisRedirect" : "page",
+            value: dhisRedirect ?? `/${programme}`,
         },
     })),
     {
