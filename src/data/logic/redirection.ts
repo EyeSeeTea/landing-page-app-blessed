@@ -328,7 +328,7 @@ export const handleRedirection = async (
 
     const redirectToNHWAAdmin = !isAdminUserGroup && (isNHWAAdmin || (isNHWAGlobalTeam && isNHWADataManager));
 
-    const redirectToHomePage = isMALRegionalUser || (isAMRAMRUser && !isAMRUser);
+    const redirectToHomePage = isMALRegionalUser || (isAMRAMRUser && !isAMRUser) || isAMRUser;
 
     const redirectToGLASS = !isGLASSAdmin && isGLASSCountryUser;
 
