@@ -57,7 +57,7 @@ const App = ({ api }: { api: D2Api }) => {
                     if (options.redirectToAMRAMRHq) window.location.hash = "/amr-amr-hq";
                     if (options.redirectToAMRAMRRegional) window.location.hash = "/amr-amr-regional";
                     if (options.showAvailableLandingPages) window.location.hash = "/";
-                    if (options.redirectToMalaria) {
+                    if (options.redirectToHomePage) {
                         const homePageAppPath = "/api/apps/Homepage-App/index.html#/";
                         goToExternalUrl(baseUrl + homePageAppPath);
                     }
