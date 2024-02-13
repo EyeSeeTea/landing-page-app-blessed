@@ -1,7 +1,7 @@
 {
     "name": "est-landing-page",
     "description": "EyeSeeTea Landing Page for WHO",
-    "version": "0.5.9",
+    "version": "0.5.11",
     "license": "GPL-3.0",
     "author": "EyeSeeTea team",
     "homepage": ".",
@@ -21,7 +21,7 @@
         "@material-ui/icons": "4.11.2",
         "@material-ui/styles": "4.11.4",
         "@typescript-eslint/parser": "5.1.0",
-        "axios": "0.23.0",
+        "axios": "1.6.0",
         "d2": "31.10.0",
         "d2-manifest": "1.0.0",
         "font-awesome": "4.7.0",
