@@ -29,16 +29,22 @@ export const Router: React.FC<RouterProps> = ({ baseUrl, username, userGroupIds,
                     <Route
                         key={programme}
                         path={configurations.length > 1 ? `/${programme}` : "/"}
-                        render={() => (
-                            <PageComponent
-                                title={title}
-                                header={header}
-                                baseUrl={baseUrl}
-                                username={username}
-                                userGroupIds={userGroupIds}
-                                items={data}
-                            />
-                        )}
+                        render={() => {
+                            if (PageComponent || data) {
+                                return (
+                                    <PageComponent
+                                        title={title}
+                                        header={header}
+                                        baseUrl={baseUrl}
+                                        username={username}
+                                        userGroupIds={userGroupIds}
+                                        items={data}
+                                    />
+                                );
+                            } else {
+                                return null;
+                            }
+                        }}
                     />,
                 ])}
 
@@ -69,5 +75,5 @@ export interface RouterProps {
     redirectToAMRAMRHq: boolean;
     redirectToAMRAMRRegional: boolean;
     showAvailableLandingPages: boolean;
-    redirectToMalaria: boolean;
+    redirectToHomePage: boolean;
 }

@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2023-05-31T11:25:49.628Z\n"
-"PO-Revision-Date: 2023-05-31T11:25:49.628Z\n"
+"POT-Creation-Date: 2023-12-06T12:17:03.705Z\n"
+"PO-Revision-Date: 2023-12-06T12:17:03.705Z\n"
 
 msgid "National Health Workforce Accounts Online Data Platform"
 msgstr ""
@@ -69,6 +69,30 @@ msgid "AMR-AMR Regional Landing Page"
 msgstr ""
 
 msgid "Anti-Microbial Resistance Aggregate Data regional landing page"
+msgstr ""
+
+msgid "AMR-AMC Landing Page"
+msgstr ""
+
+msgid "Anti-Microbial Resistance AMC landing page"
+msgstr ""
+
+msgid "AMR-Candida (Funghi) Landing Page"
+msgstr ""
+
+msgid "Anti-Microbial Resistance Candida (Funghi) landing page"
+msgstr ""
+
+msgid "AMR-EGASP Landing Page"
+msgstr ""
+
+msgid "Anti-Microbial Resistance EGASP landing page"
+msgstr ""
+
+msgid "AMR-Individual Landing Page"
+msgstr ""
+
+msgid "Anti-Microbial Resistance Individual landing page"
 msgstr ""
 
 msgid "Available landing pages"
